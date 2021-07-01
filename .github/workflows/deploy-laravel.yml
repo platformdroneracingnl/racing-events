@@ -1,21 +1,13 @@
 name: PDRNL - Deploy
 
 on:
-  push:
-    # Negeer commits die zijn gemaakt in:
-    paths-ignore:
-      - '.github/**'
-      - 'extra/**'
-      - 'README.md'
-      - LICENSE
-    # De branch waarop het getriggerd wordt
-    branches: master
-  pull_request:
-    types: [opened, synchronize, reopened]
+  release:
+    types:
+      - published
 
 jobs:
   phpunit:
-    name: PHPUnit
+    name: 🧪 PHPUnit
     runs-on: ubuntu-latest
     env:
       FOLDER: ./laravel
@@ -29,12 +21,12 @@ jobs:
           php artisan key:generate
           php vendor/bin/phpunit
   deploy:
-    name: Deploy to production
+    name: 🚀 Deploy to production
     runs-on: ubuntu-latest
     env:
       FOLDER: ./laravel
     needs: phpunit
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v1
       - name: Setup PHP
