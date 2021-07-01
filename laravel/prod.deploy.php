@@ -11,8 +11,8 @@ set('repository', 'git@github.com:platformdroneracingnl/race-event-registration.
 
 set('slack_webhook', env('APP_SLACK_WEBHOOK'));
 set('release', env('RELEASE_VERSION'));
-set('slack_failure_text', 'Version *{{release}}* has just been successfully deployed on the live server.');
-set('slack_success_text', 'The deployment failed, check the build logs to see what went wrong.');
+set('slack_success_text', 'Version *{{release}}* has just been successfully deployed on the live server.');
+set('slack_failure_text', 'The deployment failed, check the build logs to see what went wrong.');
 
 host('prod')
     ->set('remote_user', env('APP_DEPLOY_USER'))
