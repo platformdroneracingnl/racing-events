@@ -1,0 +1,56 @@
+name: PDRNL - Deploy
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  phpunit:
+    name: 🧪 PHPUnit
+    runs-on: ubuntu-latest
+    env:
+      FOLDER: ./laravel
+    steps:
+      - uses: actions/checkout@v1
+      - name: Laravel PHPunit test
+        working-directory: ${{env.FOLDER}}
+        run: |
+          composer install --prefer-dist
+          cp .env.example .env
+          php artisan key:generate
+          php vendor/bin/phpunit
+  deploy:
+    name: 🚀 Deploy to production
+    runs-on: ubuntu-latest
+    env:
+      FOLDER: ./laravel
+    needs: phpunit
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 7.4
+          extensions: mbstring, bcmath
+      - name: Setup the deployment file
+        working-directory: ${{env.FOLDER}}
+        run: mv prod.deploy.php deploy.php
+      - name: Composer install
+        working-directory: ${{env.FOLDER}}
+        run: composer install
+      - name: Setup Deployer
+        uses: atymic/deployer-php-action@master
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+      - name: Run Deployment
+        working-directory: ${{env.FOLDER}}
+        env:
+          APP_HOST: ${{ secrets.APP_HOST }}
+          APP_DEPLOY_PATH: ${{ secrets.APP_DEPLOY_PATH }}
+          APP_DEPLOY_USER: ${{ secrets.APP_DEPLOY_USER }}
+          APP_SLACK_WEBHOOK: ${{ secrets.APP_SLACK_WEBHOOK }}
+          RELEASE_VERSION: ${{ github.event.release.tag_name }}
+        run: php vendor/bin/dep deploy -v
