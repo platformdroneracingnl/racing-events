@@ -3,7 +3,7 @@
 *** github_username, repo_name
 -->
 
-# 🐳 Laravel docker prod/dev setup
+# 🏆 PDRNL Events Registration
 <!-- PROJECT SHIELDS -->
 ![Project Maintenance][maintenance-shield]
 [![License][license-shield]](LICENSE.md)
@@ -18,15 +18,17 @@
 
 ## About
 
-This is a template repository for running Laravel within a Docker environment.
+A centralized competition registration platform where all drone racing pilots can register for competitions.
+
+## Development - Get started
+<details>
+  <summary>Click to expand!</summary>
 
 ## Requirements
 
 - [Docker](https://www.docker.com) (and docker-compose)
 - [Composer](https://getcomposer.org)
-- [Nginx proxy manager](https://nginxproxymanager.com) (when you want to run multiple instances on 1 server)
-
-## Get started
+- [Nginx proxy manager](https://nginxproxymanager.com) (optional)
 
 You can start developing in 2 ways:
 ### Devcontainers
@@ -82,6 +84,7 @@ After this only do a Laravel migration to the database and you are ready!
 ```bash
 cd laravel && php artisan migrate
 ```
+</details>
 
 ## Contributing
 
@@ -115,15 +118,15 @@ SOFTWARE.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg?style=for-the-badge
-[contributors-shield]: https://img.shields.io/github/contributors/klaasnicolaas/laravel-docker.svg?style=for-the-badge
-[contributors-url]: https://github.com/klaasnicolaas/laravel-docker/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/klaasnicolaas/laravel-docker.svg?style=for-the-badge
-[forks-url]: https://github.com/klaasnicolaas/laravel-docker/network/members
-[stars-shield]: https://img.shields.io/github/stars/klaasnicolaas/laravel-docker.svg?style=for-the-badge
-[stars-url]: https://github.com/klaasnicolaas/laravel-docker/stargazers
-[issues-shield]: https://img.shields.io/github/issues/klaasnicolaas/laravel-docker.svg?style=for-the-badge
-[issues-url]: https://github.com/klaasnicolaas/laravel-docker/issues
-[license-shield]: https://img.shields.io/github/license/klaasnicolaas/laravel-docker.svg?style=for-the-badge
-[commits-shield]: https://img.shields.io/github/commit-activity/y/klaasnicolaas/laravel-docker.svg?style=for-the-badge
-[commits]: https://github.com/klaasnicolaas/laravel-docker/commits/master
-[last-commit-shield]: https://img.shields.io/github/last-commit/klaasnicolaas/laravel-docker.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
+[contributors-url]: https://github.com/platformdroneracingnl/race-event-registration/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
+[forks-url]: https://github.com/platformdroneracingnl/race-event-registration/network/members
+[stars-shield]: https://img.shields.io/github/stars/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
+[stars-url]: https://github.com/platformdroneracingnl/race-event-registration/stargazers
+[issues-shield]: https://img.shields.io/github/issues/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
+[issues-url]: https://github.com/platformdroneracingnl/race-event-registration/issues
+[license-shield]: https://img.shields.io/github/license/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
+[commits-shield]: https://img.shields.io/github/commit-activity/y/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
+[commits]: https://github.com/platformdroneracingnl/race-event-registration/commits/master
+[last-commit-shield]: https://img.shields.io/github/last-commit/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
