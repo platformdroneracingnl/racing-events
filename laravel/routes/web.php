@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Route::get('/phpinfo', function() {
+    return phpinfo();
+});
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 
