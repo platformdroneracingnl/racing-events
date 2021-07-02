@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -20,6 +20,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'pilot_name',
+        'date_of_birth',
+        'country',
+        'phonenumber',
+        'image',
+        'organization',
+        'race_team',
+        'suspended_until',
     ];
 
     /**
@@ -33,6 +41,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'date_of_birth',
+        'suspended_until',
+    ];
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -40,4 +58,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Relationships
+     */
+    public function country() {
+        return $this->hasOne('App\Models\Country', 'id', 'country');
+    }
+
+    public function organization() {
+        return $this->hasOne('App\Models\Organization');
+    }
 }
