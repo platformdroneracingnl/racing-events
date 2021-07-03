@@ -18,11 +18,24 @@ Route::get('/phpinfo', function() {
     return phpinfo();
 });
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
+    function() {
+        // Routes that do not require login
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
+        // Routes that requires account login
+        Route::group(['middleware' => ['auth']], function() {
+            Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+        });
+    }
+);
+
+// Give 404 error if path not exists
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index']);
 //Language Translation
 
-Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+// Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
-Route::post('/formsubmit', [App\Http\Controllers\HomeController::class, 'FormSubmit'])->name('FormSubmit');
+// Route::post('/formsubmit', [App\Http\Controllers\HomeController::class, 'FormSubmit'])->name('FormSubmit');
