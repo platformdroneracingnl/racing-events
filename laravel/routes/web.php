@@ -28,6 +28,7 @@ Route::group([
         // Routes that requires account login
         Route::group(['middleware' => ['auth']], function() {
             Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/layout', [App\Http\Controllers\DashboardController::class, 'changeLayout'])->name('layout');
         });
     }
 );

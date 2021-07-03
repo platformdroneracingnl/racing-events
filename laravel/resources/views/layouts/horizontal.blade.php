@@ -1,23 +1,27 @@
+@php
+    use App\Http\Controllers\DashboardController;
+@endphp
+
 <header id="page-topbar">
     <div class="navbar-header">
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="{{url('index')}}" class="logo logo-dark">
+                <a href="{{ route('root')}}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ URL::asset('/assets/images/logo-sm.png') }}" alt="" height="22">
+                        <img src="{{ URL::asset('/pdrnl/img/logo-sm.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="20">
+                        <img src="{{ URL::asset('/pdrnl/img/brand/pdrnl-black.png') }}" alt="" height="25">
                     </span>
                 </a>
 
-                <a href="{{url('index')}}" class="logo logo-light">
+                <a href="{{ route('root')}}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ URL::asset('/assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="20">
+                        <img src="{{ URL::asset('/pdrnl/img/brand/pdrnl-white.png') }}" alt="" height="25">
                     </span>
                 </a>
             </div>
@@ -61,52 +65,27 @@
             <div class="dropdown d-inline-block language-switch">
                 <button type="button" class="btn header-item waves-effect"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @switch(Session::get('lang'))
-                        @case('ru')
-                            <img src="{{ URL::asset('/assets/images/flags/russia.jpg')}}" alt="Header Language" height="16"> <span class="align-middle">Russian</span>
-                        @break
-                        @case('it')
-                            <img src="{{ URL::asset('/assets/images/flags/italy.jpg')}}" alt="Header Language" height="16"> <span class="align-middle">Italian</span>
-                        @break
+                    @switch(LaravelLocalization::getCurrentLocale())
                         @case('de')
-                            <img src="{{ URL::asset('/assets/images/flags/germany.jpg')}}" alt="Header Language" height="16"> <span class="align-middle">German</span>
+                            <img src="{{ URL::asset('/assets/images/flags/de.png')}}" alt="Header Language" height="16"> <span class="align-middle">Deutsch</span>
                         @break
-                        @case('es')
-                            <img src="{{ URL::asset('/assets/images/flags/spain.jpg')}}" alt="Header Language" height="16"> <span class="align-middle">Spanish</span>
+                        @case('nl')
+                            <img src="{{ URL::asset('/assets/images/flags/nl.png')}}" alt="Header Language" height="16"> <span class="align-middle">Nederlands</span>
                         @break
                         @default
-                            <img src="{{ URL::asset('/assets/images/flags/us.jpg')}}" alt="Header Language" height="16"> <span class="align-middle">English</span>
+                            <img src="{{ URL::asset('/assets/images/flags/en.png')}}" alt="Header Language" height="16"> <span class="align-middle">English</span>
                     @endswitch
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
-                    
-                    <!-- item-->
-                    <a href="{{ url('index/en') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('assets/images/flags/us.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="{{ url('index/es') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('assets/images/flags/spain.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="{{ url('index/de') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('assets/images/flags/germany.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="{{ url('index/it') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('assets/images/flags/italy.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="{{ url('index/ru') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('assets/images/flags/russia.jpg')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
-                    </a>
+                    @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        <a class="dropdown-item" type="button" rel="alternate" hreflang="{{ $localeCode }}" {{$localeCode == LaravelLocalization::getCurrentLocale() ? 'style=background-color:#f39200;color:white;' : ''}} href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            <img src="{{ URL::asset('assets/images/flags/'.$localeCode.'.png')}}" alt="user-image" class="me-1" height="12"> <span class="align-middle">{{ $properties['native'] }}</span>
+                        </a>
+                    @endforeach
                 </div>
             </div>
 
+            <!-- Extra options in grid -->
             <div class="dropdown d-none d-lg-inline-block ms-1">
                 <button type="button" class="btn header-item noti-icon waves-effect"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -117,41 +96,20 @@
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset('/assets/images/brands/github.png') }}" alt="Github">
-                                    <span>GitHub</span>
+                                    <i class="mdi mdi-information-outline fa-2x"></i>
+                                    <span>Documentation</span>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="dropdown-icon-item" href="{{ route('layout') }}">
+                                    <i class="mdi mdi-view-dashboard-variant-outline fa-2x"></i>
+                                    <span>Layout</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset('/assets/images/brands/bitbucket.png') }}" alt="bitbucket">
-                                    <span>Bitbucket</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset('/assets/images/brands/dribbble.png') }}" alt="dribbble">
-                                    <span>Dribbble</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="row g-0">
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset('/assets/images/brands/dropbox.png') }}" alt="dropbox">
-                                    <span>Dropbox</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset('/assets/images/brands/mail_chimp.png') }}" alt="mail_chimp">
-                                    <span>Mail Chimp</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset('/assets/images/brands/slack.png') }}" alt="slack">
-                                    <span>Slack</span>
+                                    <i class="mdi mdi-github fa-2x"></i>
+                                    <span>Development</span>
                                 </a>
                             </div>
                         </div>
@@ -159,12 +117,14 @@
                 </div>
             </div>
 
+            <!-- Fullscreen -->
             <div class="dropdown d-none d-lg-inline-block ms-1">
                 <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
                     <i class="uil-minus-path"></i>
                 </button>
             </div>
 
+            <!-- Notifications -->
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -252,6 +212,7 @@
                 </div>
             </div>
 
+            <!-- Profile -->
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -264,7 +225,7 @@
                     <!-- item-->
                     <a class="dropdown-item" href="#"><i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle">@lang('translation.View_Profile')</span></a>
                     <a class="dropdown-item" href="#"><i class="uil uil-wallet font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">@lang('translation.My_Wallet')</span></a>
-                    <a class="dropdown-item d-block" href="#"><i class="uil uil-cog font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">@lang('translation.Settings')</span> <span class="badge bg-soft-success rounded-pill mt-1 ms-2">03</span></a>
+                    <a class="dropdown-item d-block" href="#"><i class="uil uil-cog font-size-18 align-middle me-1 text-muted"></i> <span class="right-bar-toggle align-middle">@lang('translation.Settings')</span> <span class="badge bg-soft-success rounded-pill mt-1 ms-2">03</span></a>
                     <a class="dropdown-item" href="#"><i class="uil uil-lock-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">@lang('translation.Lock_screen')</span></a>
                     <a class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="uil uil-sign-out-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">@lang('translation.Sign_out')</span></a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -273,11 +234,12 @@
                 </div>
             </div>
 
-            <div class="dropdown d-inline-block">
+            <!-- Settings -->
+            {{-- <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
                     <i class="uil-cog"></i>
                 </button>
-            </div>
+            </div> --}}
             
         </div>
     </div>
