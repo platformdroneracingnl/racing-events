@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('suspended_until')->nullable();
             $table->string('image')->nullable();
             $table->rememberToken();
+            $table->bigInteger('settings')->unsigned()->default(0);
             $table->timestamps();
 
             $table->foreign('country')
