@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Internetcode\LaravelUserSettings\LaravelUserSettingsServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
