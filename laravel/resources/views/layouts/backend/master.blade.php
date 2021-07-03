@@ -2,8 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @include('layouts.title-meta')
-    @include('layouts.head')
+    @include('layouts.includes.title-meta')
+    @include('layouts.includes.head')
 </head>
 
 @section('body')
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <!-- End Page-content -->
-            @include('layouts.footer')
+            @include('layouts.includes.footer')
         </div>
         <!-- end main content-->
     </div>
@@ -42,7 +42,7 @@
     <!-- /Right-bar -->
 
     <!-- JAVASCRIPT -->
-    @include('layouts.vendor-scripts')
+    @include('layouts.includes.vendor-scripts')
 </body>
 
 </html>
