@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Internetcode\LaravelUserSettings\LaravelUserSettingsServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -21,6 +21,7 @@ class UserTableSeeder extends Seeder
             'email' => 'admin@themesbrand.com',
             'password' => Hash::make('12345678'),
             'created_at' => now(),
+            // 'settings' => 2, // is True
         ]);
     }
 }
