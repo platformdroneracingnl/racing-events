@@ -29,6 +29,7 @@ Route::group([
         Route::group(['middleware' => ['auth']], function() {
             Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
             Route::get('/layout', [App\Http\Controllers\DashboardController::class, 'changeLayout'])->name('layout');
+            Route::patch('management/user/{id}/suspend', [App\Http\Controllers\Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
         });
     }
 );

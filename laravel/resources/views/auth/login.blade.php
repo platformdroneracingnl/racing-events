@@ -22,6 +22,11 @@
                                 <p class="text-muted">Sign in to continue to PDRNL.</p>
                             </div>
                             <div class="p-2 mt-4">
+
+                                @if (session('message'))
+                                    <div class="alert alert-danger">{{ session('message') }}</div>
+                                @endif
+
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
