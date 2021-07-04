@@ -33,6 +33,20 @@ Route::group([
             // Change layout
             Route::get('/layout', [App\Http\Controllers\DashboardController::class, 'changeLayout'])->name('layout');
 
+            // Mark notifications as read
+            Route::get('markAsRead', function() {
+                auth()->user()->unreadNotifications->markAsRead();
+                return redirect()->back();
+            })->name('markRead');
+
+            // Mark specific notification as read
+            Route::get('notifications', [NotificationsController::class, 'index'])->name('notify.index');
+            Route::get('notifications/remove', [NotificationsController::class, 'removeAll'])->name('notify.removeAll');
+            Route::get('notifications/readall', [NotificationsController::class, 'readAll'])->name('notify.readAll');
+            Route::delete('notification/remove/{id}', [NotificationsController::class, 'remove'])->name('notify.remove');
+            Route::get('notification/show/{id}', [NotificationsController::class, 'show'])->name('notify.show');
+            Route::get('notification/read/{id}', [NotificationsController::class, 'read'])->name('notify.read');
+
             // Management
             Route::resource('management/roles', 'App\Http\Controllers\Management\RoleController', ['names' => 'management.roles']);
 			Route::resource('management/users', 'App\Http\Controllers\Management\UserController', ['names' => 'management.users']);
