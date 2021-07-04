@@ -151,8 +151,23 @@
                         <li><a href="pages-500">@lang('translation.Error_500')</a></li>
                     </ul>
                 </li>
+                @if(auth()->user()->hasRole(['organizer','manager','supervisor']))
+                    <!-- Divider -->
+                    <hr class="my-1">
+                    <!-- Heading -->
+                    <li class="menu-title">PDRNL Supervisor</li>
 
-                <li class="menu-title">@lang('translation.Components')</li>
+                    @can('user-list')
+                        <li class="nav-item {{ Route::currentRouteNamed('management.users.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('management.users.index') }}"><i class="uil-list-ul"></i> @lang('menu.manage_users')</a>
+                        </li>
+                    @endcan
+                    @can('role-list')
+                        <li class="nav-item {{ Route::currentRouteNamed('management.roles.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('management.roles.index') }}"><i class="uil-list-ul"></i> @lang('menu.manage_roles')</a>
+                        </li>
+                    @endcan
+                @endif
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

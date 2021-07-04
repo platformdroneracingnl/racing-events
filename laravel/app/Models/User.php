@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +11,7 @@ use Internetcode\LaravelUserSettings\Traits\HasSettingsTrait;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasSettingsTrait;
+    use HasFactory, Notifiable, HasSettingsTrait, HasRoles;
 
     /**
      * The attributes that are mass assignable.

@@ -61,8 +61,14 @@
                                 <i class="uil-home-alt me-2"></i> @lang('translation.Dashboard')
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://rankings.platformdroneracing.nl/" target="_blank">
+                                <i class="fas fa-poll-h me-2"></i> @lang('menu.results')
+                            </a>
+                        </li>
     
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button">
                                 <i class="uil-flask me-2"></i>@lang('translation.UI_Elements') <div class="arrow-down"></div>
                             </a>
@@ -105,9 +111,9 @@
                                 </div>
 
                             </div>
-                        </li>
+                        </li> --}}
     
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
                                 <i class="uil-apps me-2"></i>@lang('translation.Apps') <div class="arrow-down"></div>
                             </a>
@@ -165,11 +171,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> --}}
     
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button"
-                               >
+                        {{-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button">
                                 <i class="uil-layers me-2"></i>@lang('translation.Components') <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-components">
@@ -240,11 +245,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> --}}
     
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-more" role="button"
-                               >
+                        {{-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-more" role="button">
                                 <i class="uil-copy me-2"></i>@lang('translation.Extra_pages') <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-more">
@@ -278,10 +282,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
-                               >
+                        </li> --}}
+                        <!-- Layouts -->
+                        {{-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button">
                                 <i class="uil-window-section me-2"></i>@lang('translation.Layouts') <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-layout">
@@ -312,8 +316,28 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
-    
+                        </li> --}}
+
+                        <!-- Management -->
+                        @if(auth()->user()->hasRole(['organizer','manager','supervisor']))
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" id="topnav-management" role="button">
+                                    <i class="uil-window-section me-2"></i>Management <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-management">
+                                    @can('user-list')
+                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.users.*') ? 'active' : '' }}" href="{{ route('management.users.index') }}">
+                                            @lang('menu.manage_users')
+                                        </a>
+                                    @endcan
+                                    @can('role-list')
+                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.roles.*') ? 'active' : '' }}" href="{{ route('management.roles.index') }}">
+                                            @lang('menu.manage_roles')
+                                        </a>
+                                    @endcan
+                                </div>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </nav>

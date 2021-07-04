@@ -1,0 +1,22 @@
+/* -----------------------------------------
+    DataTable
+----------------------------------------- */
+
+.dataTables_filter {
+    display: none;
+}
+
+/* -----------------------------------------
+    Mobile
+----------------------------------------- */
+
+@media (max-width: 768px) {
+    .btn-on-mobile {
+        width:100%;
+        margin-top: 15px;
+    }
+
+    .gif-on-mobile {
+        width: -webkit-fill-available;
+    }
+}
