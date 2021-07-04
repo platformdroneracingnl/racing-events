@@ -50,7 +50,7 @@
 
                     <div class="table-responsive">
                         <table id="usersTable" class="table align-middle table-hover dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead class="table-dark">
+                            <thead class="table-light">
                                 <tr>
                                     <th scope="col">Nr.</th>
                                     <th scope="col">Name</th>

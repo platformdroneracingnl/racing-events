@@ -10,7 +10,7 @@ $(document).ready( function () {
 
     var dataTable = $('#usersTable').DataTable({
         paging: true,
-        scrollX: true,
+        scrollX: false,
         lengthChange: false,
         deferRender: true,
         info: true,

@@ -50,7 +50,7 @@
 
                     <div class="table-responsive">
                         <table class="table align-middle table-hover">
-                            <thead class="table-dark">
+                            <thead class="table-light">
                                 <tr>
                                     <th scope="col">Nr.</th>
                                     <th scope="col">Name</th>
