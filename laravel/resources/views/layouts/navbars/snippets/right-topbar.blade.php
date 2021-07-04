@@ -63,87 +63,77 @@
 
 <!-- Notifications -->
 <div class="dropdown d-inline-block">
+    <!-- Notification Bell -->
     <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="uil-bell"></i>
-        <span class="badge bg-danger rounded-pill">3</span>
+        <!-- Counter -->
+        @if (auth()->user()->unreadNotifications->count() != 0)
+            <span class="badge bg-danger rounded-pill">{{ auth()->user()->unreadNotifications->count() }}</span>
+        @endif
     </button>
+    <!-- Dropdown -->
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
         aria-labelledby="page-header-notifications-dropdown">
         <div class="p-3">
             <div class="row align-items-center">
+                <!-- Notification counter -->
                 <div class="col">
-                    <h5 class="m-0 font-size-16"> @lang('translation.Notifications') </h5>
+                    <h5 class="m-0 font-size-16"> 
+                        @if (auth()->user()->unreadNotifications->count() == 1)
+                            @lang('pdrnl.notify_nr_single', ['number' => auth()->user()->unreadNotifications->count()])
+                        @else
+                            @lang('pdrnl.notify_nr_multi', ['number' => auth()->user()->unreadNotifications->count()])
+                        @endif
+                    </h5>
                 </div>
+                <!-- Mark all as read -->
                 <div class="col-auto">
-                    <a href="#!" class="small"> @lang('translation.Mark_read')</a>
+                    <a href="{{ route('markRead') }}" class="small"> @lang('translation.Mark_read')</a>
                 </div>
             </div>
         </div>
-        <div data-simplebar style="max-height: 230px;">
-            <a href="" class="text-reset notification-item">
-                <div class="d-flex align-items-start">
-                    <div class="avatar-xs me-3">
-                        <span class="avatar-title bg-primary rounded-circle font-size-16">
-                            <i class="uil-shopping-basket"></i>
-                        </span>
-                    </div>
-                    <div class="flex-1">
-                        <h6 class="mt-0 mb-1">@lang('translation.order_placed')</h6>
-                        <div class="font-size-12 text-muted">
-                            <p class="mb-1">@lang('translation.languages_grammar')</p>
-                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> @lang('translation.3_min_ago')</p>
+        <!-- List group -->
+        <div data-simplebar style="max-height: 250px;">
+            @foreach (auth()->user()->unreadNotifications as $notification)
+                <a href="{{ route('notify.show', $notification->id) }}" class="text-reset notification-item">
+                    <div class="d-flex align-items-start">
+                        <!-- icon -->
+                        <div class="avatar-xs me-3">
+                            <span class="avatar-title bg-warning rounded-circle font-size-16">
+                                <i class="uil-info-circle"></i>
+                            </span>
+                        </div>
+                        <!-- Information -->
+                        <div class="flex-1">
+                            <h6 class="mt-0 mb-1">
+                                @if (isset($notification->data['title']) != null)
+                                    {{ $notification->data['title'] }}
+                                @else
+                                    Platform Drone Racing NL
+                                @endif
+                            </h6>
+                            <div class="font-size-12 text-muted">
+                                <p class="mb-1">
+                                    @if ($notification->data['type'] == "registration")
+                                        {{ __($notification->data['message']) }} <b>{{ __($notification->data['status']) }}</b>
+                                    @else
+                                        {{ __($notification->data['message']) }}
+                                    @endif
+                                </p>
+                                <p class="mb-0">
+                                    <i class="mdi mdi-clock-outline"></i> {{ $notification->created_at->diffForHumans() }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="" class="text-reset notification-item">
-                <div class="d-flex align-items-start">
-                    <img src="{{ URL::asset('/assets/images/users/avatar-3.jpg') }}"
-                        class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                    <div class="flex-1">
-                        <h6 class="mt-0 mb-1">James Lemire</h6>
-                        <div class="font-size-12 text-muted">
-                            <p class="mb-1">@lang('translation.simplified_English')</p>
-                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> @lang('translation.1_hours_ago')</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="" class="text-reset notification-item">
-                <div class="d-flex align-items-start">
-                    <div class="avatar-xs me-3">
-                        <span class="avatar-title bg-success rounded-circle font-size-16">
-                            <i class="uil-truck"></i>
-                        </span>
-                    </div>
-                    <div class="flex-1">
-                        <h6 class="mt-0 mb-1">@lang('translation.item_shipped')</h6>
-                        <div class="font-size-12 text-muted">
-                            <p class="mb-1">@lang('translation.languages_grammar')</p>
-                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> @lang('translation.3_min_ago')</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="" class="text-reset notification-item">
-                <div class="d-flex align-items-start">
-                    <img src="{{ URL::asset('/assets/images/users/avatar-4.jpg') }}"
-                        class="me-3 rounded-circle avatar-xs" alt="user-pic">
-                    <div class="flex-1">
-                        <h6 class="mt-0 mb-1">Salena Layfield</h6>
-                        <div class="font-size-12 text-muted">
-                            <p class="mb-1">@lang('translation.friend_occidental')</p>
-                            <p class="mb-0"><i class="mdi mdi-clock-outline"></i> @lang('translation.1_hours_ago')</p>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
+        <!-- View more -->
         <div class="p-2 border-top d-grid">
-            <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
-                <i class="uil-arrow-circle-right me-1"></i> @lang('translation.View_More')..
+            <a class="btn btn-sm btn-link font-size-14 text-center" href="{{ route('notify.index') }}">
+                <i class="uil-arrow-circle-right me-1"></i> {{ __('View More') }}..
             </a>
         </div>
     </div>
@@ -160,7 +150,7 @@
     </button>
     <div class="dropdown-menu dropdown-menu-end">
         <!-- item-->
-        <a class="dropdown-item" href="#"><i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle">@lang('translation.View_Profile')</span></a>
+        <a class="dropdown-item" href="{{ route('profile.show') }}"><i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle">@lang('translation.View_Profile')</span></a>
         <a class="dropdown-item" href="#"><i class="uil uil-wallet font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">@lang('translation.My_Wallet')</span></a>
         <a class="dropdown-item d-block right-bar-toggle" href="#"><i class="uil uil-cog font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">@lang('translation.Settings')</span> <span class="badge bg-soft-success rounded-pill mt-1 ms-2">03</span></a>
         <a class="dropdown-item" href="#"><i class="uil uil-lock-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">@lang('translation.Lock_screen')</span></a>

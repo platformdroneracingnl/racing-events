@@ -15,6 +15,8 @@
         @slot('title') Gebruikers @endslot
     @endcomponent
 
+    @include('backend.snippets.alerts')
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow">
@@ -50,7 +52,7 @@
 
                     <div class="table-responsive">
                         <table id="usersTable" class="table align-middle table-hover dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead class="table-dark">
+                            <thead class="table-light">
                                 <tr>
                                     <th scope="col">Nr.</th>
                                     <th scope="col">Name</th>
@@ -93,7 +95,7 @@
                                         <td>
                                             @if ($user->suspended_until != null)
                                                 {{ $user->suspended_until->format('d-m-Y') }}
-                                                <span class="badge badge-danger">@lang('pdrnl.days_left', ['days' => now()->diffInDays($user->suspended_until)])</span>
+                                                <span class="badge bg-danger">@lang('pdrnl.days_left', ['days' => now()->diffInDays($user->suspended_until)])</span>
                                             @endif
                                         </td>
                                         <!-- Options -->
@@ -196,5 +198,4 @@
     </script>
     <script src="{{ URL::asset('/assets/libs/jszip/jszip.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
-    {{-- <script src="{{ URL::asset('/assets/js/pages/datatables.init.js') }}"></script> --}}
 @endsection

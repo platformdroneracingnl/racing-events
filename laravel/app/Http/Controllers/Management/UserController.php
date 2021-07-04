@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\ChangeUserAccount;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use App\Models\Organization;
+use App\Models\Raceteam;
 use App\Models\User;
 use App;
+use DB;
 
 class UserController extends Controller
 {
@@ -57,10 +62,45 @@ class UserController extends Controller
         $user = User::find($id);
         $organizations = Organization::all();
         $raceTeams = Raceteam::all();
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $roles = Role::pluck('name')->all();
 
-        return view('management.users.edit', compact('user','roles','userRole','organizations','raceTeams'));
+        return view('backend.management.users.edit', compact('user','roles','organizations','raceTeams'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id) {
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'same:confirm-password',
+            'roles' => 'required'
+        ]);
+
+        $input = $request->all();
+        if(!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = Arr::except($input,array('password'));
+        }
+
+        $user = User::find($id);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        $user->assignRole($request->input('roles'));
+
+        // Send user a notification that profile has been changed
+        $user->notify(new ChangeUserAccount(route('profile.show')));
+
+        return redirect()->route('management.users.index')
+            ->with('success','Gebruiker succesvol aangepast');
     }
 
     // Suspend a user

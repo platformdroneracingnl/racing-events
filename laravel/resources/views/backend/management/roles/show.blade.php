@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="mb-3 text-end">
-                                @can('user-edit')
+                                @can('role-edit')
                                     <a href="{{ route('management.roles.edit',$role->id) }}" class="me-1 btn btn-warning waves-effect waves-light btn-on-mobile">
                                         <i class="mdi mdi-pencil-outline me-2"></i> Change role
                                     </a>

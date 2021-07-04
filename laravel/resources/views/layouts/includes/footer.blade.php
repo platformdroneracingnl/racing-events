@@ -1,10 +1,10 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3">
                 <script>document.write(new Date().getFullYear())</script> © PDRNL
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-9">
                 <div class="text-sm-end d-none d-sm-block">
                     @auth
                         @if(auth()->user()->hasRole(['manager','supervisor']))
