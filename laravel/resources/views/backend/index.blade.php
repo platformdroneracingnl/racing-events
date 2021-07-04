@@ -7,7 +7,7 @@
 @section('content')
     @component('common-components.breadcrumb')
         @slot('pagetitle') Layouts @endslot
-        @slot('title') Horizontal @endslot
+        @slot('title') Dashboard @endslot
     @endcomponent
 
     <div class="row">

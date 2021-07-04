@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,12 @@ Route::group([
             Route::resource('management/roles', 'App\Http\Controllers\Management\RoleController', ['names' => 'management.roles']);
 			Route::resource('management/users', 'App\Http\Controllers\Management\UserController', ['names' => 'management.users']);
             Route::patch('management/user/{id}/suspend', [App\Http\Controllers\Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
+
+            // Profile
+			Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+			Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+			Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+			Route::delete('profile/{userID}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
         });
     }
 );
