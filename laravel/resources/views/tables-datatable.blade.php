@@ -1,7 +1,9 @@
 @extends('layouts.master')
+
 @section('title')
     @lang('translation.Datatables')
 @endsection
+
 @section('css')
     <!-- DataTables -->
     <link href="{{ URL::asset('/assets/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />

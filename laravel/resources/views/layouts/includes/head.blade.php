@@ -1,4 +1,7 @@
+<link rel="stylesheet" href="{{ asset('pdrnl')}}/css/style.css">
+
 @yield('css')
+
 <!-- Bootstrap Css -->
 <link href="{{ URL::asset('/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <!-- Icons Css -->
