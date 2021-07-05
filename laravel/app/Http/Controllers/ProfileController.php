@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use PragmaRX\Google2FAQRCode\Google2FA;
 use App\Models\Country;
 use App\Models\Organization;
 use App\Models\Registration;
@@ -42,15 +43,15 @@ class ProfileController extends Controller
         $google2fa_url = "";
         $secret_key = "";
 
-        // if ($user->loginSecurity()->exists()) {
-        //     $google2fa = (new \PragmaRX\Google2FAQRCode\Google2FA());
-        //     $google2fa_url = $google2fa->getQRCodeInline(
-        //         'Platform Drone Racing NL',
-        //         $user->email,
-        //         $user->loginSecurity->google2fa_secret
-        //     );
-        //     $secret_key = $user->loginSecurity->google2fa_secret;
-        // }
+        if ($user->loginSecurity()->exists()) {
+            $google2fa = new Google2FA();
+            $google2fa_url = $google2fa->getQRCodeInline(
+                'Platform Drone Racing NL',
+                $user->email,
+                $user->loginSecurity->google2fa_secret
+            );
+            $secret_key = $user->loginSecurity->google2fa_secret;
+        }
 
         $data = array(
             'user' => $user,

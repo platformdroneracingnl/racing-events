@@ -28,7 +28,7 @@ Route::group([
         Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
         // Routes that requires account login
-        Route::group(['middleware' => ['auth']], function() {
+        Route::group(['middleware' => ['auth', '2fa']], function() {
             // Dashboard
             Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
@@ -62,6 +62,19 @@ Route::group([
         });
     }
 );
+
+// 2FA Security
+Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function() {
+	// Route::get('/','LoginSecurityController@show2faForm');
+    Route::post('/generateSecret', [LoginSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');
+    Route::post('/enable2fa', [LoginSecurityController::class, 'enable2fa'])->name('enable2fa');
+	Route::post('/disable2fa', [LoginSecurityController::class, 'disable2fa'])->name('disable2fa');
+	
+	// 2fa middleware
+    Route::post('/verify', function () {
+        return redirect(URL()->previous());
+    })->name('2faVerify')->middleware('2fa');
+});
 
 // Give 404 error if path not exists
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index']);
