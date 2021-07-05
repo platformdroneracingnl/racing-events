@@ -321,7 +321,7 @@
                         <!-- Management -->
                         @if(auth()->user()->hasRole(['organizer','manager','supervisor']))
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle arrow-none" id="topnav-management" role="button">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-management" role="button">
                                     <i class="uil-window-section me-2"></i>Management <div class="arrow-down"></div>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="topnav-management">
