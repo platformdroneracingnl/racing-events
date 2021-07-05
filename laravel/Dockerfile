@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \
+    libmagickwand-dev  \
     default-mysql-client \
     iputils-ping \
     libonig-dev
@@ -19,8 +20,18 @@ RUN apt-get update && apt-get install -y \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+#####################################
+# Imagick:
+#####################################
+
+RUN pecl install imagick && \
+    docker-php-ext-enable imagick
+
 # Install extensions
-RUN docker-php-ext-install mbstring pdo pdo_mysql
+RUN docker-php-ext-install \
+    mbstring \
+    pdo \
+    pdo_mysql
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
