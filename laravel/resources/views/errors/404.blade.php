@@ -1,7 +1,9 @@
-@extends('layouts.master-without-nav')
+@extends('layouts.auth.master-without-nav')
+
 @section('title')
     @lang('translation.Error_404')
 @endsection
+
 @section('content')
     <div class="my-5 pt-sm-5">
         <div class="container">
@@ -19,10 +21,10 @@
                                 </div>
                             </div>
                         </div>
-                        <h4 class="text-uppercase mt-4">Sorry, page not found</h4>
-                        <p class="text-muted">It will be as simple as Occidental in fact, it will be Occidental</p>
+                        <h4 class="text-uppercase text-white mt-4">Sorry, page not found</h4>
+                        <p class="text-white">It will be as simple as Occidental in fact, it will be Occidental</p>
                         <div class="mt-5">
-                            <a class="btn btn-primary waves-effect waves-light" href="{{ url('index') }}">Back to
+                            <a class="btn btn-primary waves-effect waves-light" href="{{ route('dashboard') }}">Back to
                                 Dashboard</a>
                         </div>
                     </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\LoginSecurityController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -78,8 +79,3 @@ Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function() {
 
 // Give 404 error if path not exists
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index']);
-//Language Translation
-
-// Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
-
-// Route::post('/formsubmit', [App\Http\Controllers\HomeController::class, 'FormSubmit'])->name('FormSubmit');
