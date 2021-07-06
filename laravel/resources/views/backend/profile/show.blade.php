@@ -6,7 +6,6 @@
 
 @section('css')
     <!-- plugin css -->
-    <link href="{{ URL::asset('/assets/libs/dropzone/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('/assets/libs/litepicker/litepicker.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
@@ -41,16 +40,16 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#">Edit</a>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Remove</a>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Change profile picture</a>
+                                <a class="dropdown-item" href="#">Remove account</a>
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                        <div>
-                            <img src="{{ URL::asset('/assets/images/users/avatar-4.jpg') }}" alt=""
-                                class="avatar-xl rounded-circle img-thumbnail">
+                        <!-- Avatar -->
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <img src="@if(!empty(auth()->user()->image)) {{ asset('storage') }}/images/profiles/{{auth()->user()->image}} @else {{ asset('pdrnl') }}/img/default.png @endif" alt="Your profile image" class="avatar-xl rounded-circle img-thumbnail">
                         </div>
+                        <!-- User info -->
                         <h4 class="mt-3 mb-1">{{ auth()->user()->name }} @if(!empty($countryCode->code)) / {{ $countryCode->code}} @endif </h4>
                         <p class="text-muted">{{ auth()->user()->pilot_name }}</p>
 
@@ -143,11 +142,47 @@
         </div>
     </div>
     <!-- end row -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Verander profielfoto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('profile.avatar') }}" id="profileAvatar" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <!-- Avatar -->
+                        <div class="text-center mb-3">
+                            <img id="img-upload" src="{{ asset('pdrnl') }}/img/default.png" alt="Your profile image"
+                                    class="avatar-xxl rounded-circle img-thumbnail" style="width: 15rem;">
+                        </div>
+                        <p class="body-desc">
+                            It will be easier for your friends to recognize you if you upload your real photo. You can upload the image in JPG, PNG or SVG format.
+                        </p>
+
+                        <div class="form-group">
+                            {{-- <label class="form-control-label" for="customFile">@lang('category/profile.photo')</label> --}}
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input form-control form-control-alternative" id="customFile" name="image">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="oldImage" value="{{auth()->user()->image}}">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('button.close')</button>
+                        <button type="submit" class="btn btn-primary">@lang('button.save')</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
     <!-- Plugins js -->
-    <script src="{{ URL::asset('/assets/libs/dropzone/dropzone.min.js') }}"></script>
     <script src="{{ URL::asset('/assets/libs/litepicker/litepicker.min.js') }}"></script>
     <script src="{{ asset('pdrnl')}}/js/profile.js"></script>
 @endsection

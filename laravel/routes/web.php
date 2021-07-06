@@ -59,6 +59,7 @@ Route::group([
 			Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
 			Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 			Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+            Route::post('profile/avatar', [ProfileController::class, 'storeAvatar'])->name('profile.avatar');
 			Route::delete('profile/{userID}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
         });
     }

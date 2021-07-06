@@ -25,6 +25,7 @@ $('#customFile').on('change',function(){
     $(this).next('.custom-file-label').html(fileName);
 });
 
+// Birthday date picker
 var today = new Date();
 var birth_day = new Litepicker({ 
     element: document.getElementById('input-date-of-birth'),
@@ -38,4 +39,21 @@ var birth_day = new Litepicker({
         years: true,
     },
     maxDate: today
+});
+
+// Upload profile picture
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('#img-upload').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#customFile").change(function(){
+    readURL(this);
 });
