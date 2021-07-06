@@ -5,9 +5,10 @@ $(function(){
 
     $('.nav-tabs a').click(function (e) {
         $(this).tab('show');
-        var scrollmem = $('nav-tabs').scrollTop();
         window.location.hash = this.hash;
-        $('html,body').scrollTop(scrollmem);
+
+        var scrollmem = $('html, body').scrollTop();
+        $('html, body').scrollTop(scrollmem);
     });
 });
 

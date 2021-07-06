@@ -30,7 +30,7 @@
 
     <div class="row mb-4">
         <!-- Profile summary -->
-        <div class="col-xl-4">
+        <div class="col-xl-4 mb-3 mb-md-0">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="text-center">
