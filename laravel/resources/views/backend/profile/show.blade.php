@@ -4,6 +4,12 @@
     @lang('translation.Profile')
 @endsection
 
+@section('css')
+    <!-- plugin css -->
+    <link href="{{ URL::asset('/assets/libs/dropzone/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('/assets/libs/litepicker/litepicker.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('content')
     @component('common-components.breadcrumb')
         @slot('pagetitle') PDRNL @endslot
@@ -140,5 +146,8 @@
 @endsection
 
 @section('script')
+    <!-- Plugins js -->
+    <script src="{{ URL::asset('/assets/libs/dropzone/dropzone.min.js') }}"></script>
+    <script src="{{ URL::asset('/assets/libs/litepicker/litepicker.min.js') }}"></script>
     <script src="{{ asset('pdrnl')}}/js/profile.js"></script>
 @endsection

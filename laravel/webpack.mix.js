@@ -126,6 +126,7 @@ const folder = {
             {"name": "spectrum-colorpicker", "assets": ["./node_modules/spectrum-colorpicker2/dist/spectrum.min.js", "./node_modules/spectrum-colorpicker2/dist/spectrum.min.css"]},
             {"name": "jquery-steps", "assets": ["./node_modules/jquery-steps/build/jquery.steps.min.js"]},
             {"name": "datepicker", "assets": ["./node_modules/@chenfengyuan/datepicker/dist/datepicker.min.js","./node_modules/@chenfengyuan/datepicker/dist/datepicker.min.css"]},
+            {"name": "litepicker", "assets": ["./node_modules/litepicker/dist/bundle.js", "./node_modules/litepicker/dist/css/litepicker.css"]},
         ]
     };
 
