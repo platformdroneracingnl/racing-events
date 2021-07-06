@@ -81,7 +81,7 @@
         <div class="col-12 col-md-6 col-lg-4">
             <form class="form-horizontal" method="POST" action="{{ route('disable2fa') }}">
                 {{ csrf_field() }}
-                <div class="input-group{{ $errors->has('current-password') ? ' has-error' : '' }}" id="show_hide_password">
+                <div class="input-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
                     <input id="current-password" type="password" placeholder="{{ __('Current Password') }}" class="form-control col-md-4" name="current-password" required>
                     <button class="btn btn-light" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
                     @if ($errors->has('current-password'))

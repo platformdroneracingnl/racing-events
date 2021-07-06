@@ -92,7 +92,7 @@
         <div class="col-xl-8">
             <div class="card mb-0">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
+                <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist" id="profile-list">
                     <li class="nav-item">
                         <a class="nav-link active" data-bs-toggle="tab" href="#overview" role="tab">
                             <i class="uil uil-user-circle font-size-20"></i>
@@ -102,19 +102,19 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#changeprofile" role="tab">
                             <i class="uil uil-clipboard-notes font-size-20"></i>
-                            <span class="d-none d-sm-block">Change profile</span>
+                            <span class="d-none d-sm-block">@lang('category/profile.change_prof')</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#authentication" role="tab">
                             <i class="uil uil-shield-check font-size-20"></i>
-                            <span class="d-none d-sm-block">Two-factor authentication</span>
+                            <span class="d-none d-sm-block">@lang('category/profile.2fa_authentication')</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#changepassword" role="tab">
                             <i class="uil uil-key-skeleton-alt font-size-20"></i>
-                            <span class="d-none d-sm-block">Change password</span>
+                            <span class="d-none d-sm-block">@lang('category/profile.change_pass')</span>
                         </a>
                     </li>
                 </ul>

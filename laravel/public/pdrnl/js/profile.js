@@ -5,7 +5,7 @@ $(function(){
 
     $('.nav-tabs a').click(function (e) {
         $(this).tab('show');
-        var scrollmem = $('body').scrollTop();
+        var scrollmem = $('nav-tabs').scrollTop();
         window.location.hash = this.hash;
         $('html,body').scrollTop(scrollmem);
     });
@@ -22,19 +22,6 @@ $('#customFile').on('change',function(){
     var fileName = $(this).val();
     //replace the "Choose a file" label
     $(this).next('.custom-file-label').html(fileName);
-});
-
-$("#show_hide_password a").on('click', function(event) {
-    event.preventDefault();
-    if($('#show_hide_password input').attr("type") == "text"){
-        $('#show_hide_password input').attr('type', 'password');
-        $('#show_hide_password i').addClass( "fa-eye-slash" );
-        $('#show_hide_password i').removeClass( "fa-eye" );
-    }else if($('#show_hide_password input').attr("type") == "password"){
-        $('#show_hide_password input').attr('type', 'text');
-        $('#show_hide_password i').removeClass( "fa-eye-slash" );
-        $('#show_hide_password i').addClass( "fa-eye" );
-    }
 });
 
 var today = new Date();
