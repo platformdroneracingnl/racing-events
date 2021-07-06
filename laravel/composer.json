@@ -20,6 +20,7 @@
         "laravel/ui": "^3.2",
         "mcamara/laravel-localization": "^1.6",
         "pragmarx/google2fa-laravel": "^1.4",
+        "realrashid/sweet-alert": "^4.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^4.2"
     },

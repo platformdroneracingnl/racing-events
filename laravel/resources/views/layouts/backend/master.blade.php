@@ -16,6 +16,8 @@
 
     @show
 
+    @include('sweetalert::alert')
+
     <!-- Begin page -->
     <div id="layout-wrapper">
         @include('layouts.navbars.navbar')
