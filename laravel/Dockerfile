@@ -15,10 +15,19 @@ RUN apt-get update && apt-get install -y \
     libmagickwand-dev  \
     default-mysql-client \
     iputils-ping \
-    libonig-dev
+    libonig-dev \
+    libpng-dev \
+    libjpeg-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+#####################################
+# GD:
+#####################################
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd
 
 #####################################
 # Imagick:
