@@ -10,6 +10,15 @@
         @slot('title') Dashboard @endslot
     @endcomponent
 
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <i class="uil-shutter-alt spin-icon"></i>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6 col-xl-3">
             <div class="card">

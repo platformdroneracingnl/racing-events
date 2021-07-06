@@ -30,6 +30,7 @@
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
 
+                                    <!-- E-mail -->
                                     <div class="mb-3">
                                         <label class="form-label" for="email">Email</label>
                                         <input type="text" class="form-control @error('email') is-invalid @enderror"
@@ -42,6 +43,7 @@
                                         @enderror
                                     </div>
 
+                                    <!-- Password -->
                                     <div class="mb-3">
                                         <div class="float-end">
                                             @if (Route::has('password.request'))
@@ -50,8 +52,12 @@
                                             @endif
                                         </div>
                                         <label class="form-label" for="userpassword">Password</label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            value="12345678" name="password" id="userpassword" placeholder="Enter password">
+                                        <div class="input-group">
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                                value="12345678" name="password" id="userpassword" placeholder="Enter password">
+                                            <button class="btn btn-light" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                        </div>
+
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

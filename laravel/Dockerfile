@@ -12,15 +12,35 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \
+    libmagickwand-dev  \
     default-mysql-client \
     iputils-ping \
-    libonig-dev
+    libonig-dev \
+    libpng-dev \
+    libjpeg-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+#####################################
+# GD:
+#####################################
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd
+
+#####################################
+# Imagick:
+#####################################
+
+RUN pecl install imagick && \
+    docker-php-ext-enable imagick
+
 # Install extensions
-RUN docker-php-ext-install mbstring pdo pdo_mysql
+RUN docker-php-ext-install \
+    mbstring \
+    pdo \
+    pdo_mysql
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

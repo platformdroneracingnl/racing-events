@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\LoginSecurityController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -28,7 +29,7 @@ Route::group([
         Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
         // Routes that requires account login
-        Route::group(['middleware' => ['auth']], function() {
+        Route::group(['middleware' => ['auth', '2fa']], function() {
             // Dashboard
             Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
@@ -58,15 +59,24 @@ Route::group([
 			Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
 			Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 			Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+            Route::post('profile/avatar', [ProfileController::class, 'storeAvatar'])->name('profile.avatar');
 			Route::delete('profile/{userID}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
         });
     }
 );
 
+// 2FA Security
+Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function() {
+	// Route::get('/','LoginSecurityController@show2faForm');
+    Route::post('/generateSecret', [LoginSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');
+    Route::post('/enable2fa', [LoginSecurityController::class, 'enable2fa'])->name('enable2fa');
+	Route::post('/disable2fa', [LoginSecurityController::class, 'disable2fa'])->name('disable2fa');
+	
+	// 2fa middleware
+    Route::post('/verify', function () {
+        return redirect(URL()->previous());
+    })->name('2faVerify')->middleware('2fa');
+});
+
 // Give 404 error if path not exists
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index']);
-//Language Translation
-
-// Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
-
-// Route::post('/formsubmit', [App\Http\Controllers\HomeController::class, 'FormSubmit'])->name('FormSubmit');

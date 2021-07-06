@@ -194,6 +194,13 @@ File: Main Js File
         $("#light-mode-switch, #dark-mode-switch, #rtl-mode-switch").on("change", function(e) {
             updateThemeSetting(e.target.id);
         });
+
+        // show password input value
+        $("#password-addon").on('click', function(){
+            if($(this).siblings('input').length > 0) {
+                $(this).siblings('input').attr('type') == "password" ? $(this).siblings('input').attr('type', 'input') : $(this).siblings('input').attr('type', 'password');
+            }
+        })
     }
 
     function updateThemeSetting(id) {

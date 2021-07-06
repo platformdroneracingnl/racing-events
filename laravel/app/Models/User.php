@@ -71,4 +71,20 @@ class User extends Authenticatable
     public function organization() {
         return $this->hasOne('App\Models\Organization');
     }
+
+    public function registrations() {
+        return $this->hasMany('App\Models\Registration')->orderBy('created_at', 'DESC');
+    }
+
+    public function events() {
+        return $this->hasMany('App\Models\Event');
+    }
+
+    public function loginSecurity() {
+        return $this->hasOne('App\Models\LoginSecurity');
+    }
+
+    public function waivers() {
+        return $this->hasMany('App\Models\Waiver');
+    }
 }

@@ -6,6 +6,8 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use PragmaRX\Google2FAQRCode\Google2FA;
+use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Organization;
 use App\Models\Registration;
@@ -42,15 +44,15 @@ class ProfileController extends Controller
         $google2fa_url = "";
         $secret_key = "";
 
-        // if ($user->loginSecurity()->exists()) {
-        //     $google2fa = (new \PragmaRX\Google2FAQRCode\Google2FA());
-        //     $google2fa_url = $google2fa->getQRCodeInline(
-        //         'Platform Drone Racing NL',
-        //         $user->email,
-        //         $user->loginSecurity->google2fa_secret
-        //     );
-        //     $secret_key = $user->loginSecurity->google2fa_secret;
-        // }
+        if ($user->loginSecurity()->exists()) {
+            $google2fa = new Google2FA();
+            $google2fa_url = $google2fa->getQRCodeInline(
+                'Platform Drone Racing NL',
+                $user->email,
+                $user->loginSecurity->google2fa_secret
+            );
+            $secret_key = $user->loginSecurity->google2fa_secret;
+        }
 
         $data = array(
             'user' => $user,
@@ -75,28 +77,6 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileRequest $request) {
-        // Check if request contains new image otherwise skip it
-        if($request->has('image')) {
-            // Remove old image if exist
-            $filename = $request->input('oldImage');
-            if(File::exists( public_path('storage/images/profiles/' . $filename))) {
-                File::delete( public_path('storage/images/profiles/' . $filename));
-            }
-
-            // Save the new uploaded image
-            $image = $request->input('name');
-            $filename = str_replace(' ','',$image . '.' . 'png');
-            $store_image = Image::make($request->image)->resize(null, 800, function($constraint) {
-                $constraint->aspectRatio();
-            });
-            $store_image->stream();
-
-            // Save image file in storage folder
-            Storage::disk('local')->put('public/images/profiles/' . $filename, $store_image ,'public');
-            // Save image name to user DB tabel
-            auth()->user()->update(['image' => $filename]);
-        }
-
         // Save your date of birth
         if($request->input('date_of_birth') != null) {
             // Convert to International date format
@@ -129,6 +109,54 @@ class ProfileController extends Controller
         // ->withPasswordStatus(__('Password successfully updated.'))
     }
 
+    /**
+     * Store user profile image
+     */
+    public function storeAvatar(Request $request) {
+        try {
+            request()->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
+            ]);
+    
+            // Check if request contains new image otherwise skip it
+            if($request->has('image')) {
+                // Remove old image if exist
+                $this->deleteOldImage(); 
+    
+                // Save the new uploaded image
+                $image = strtolower(auth()->user()->name);
+                $filename = str_replace(' ','', $image. '-' .time(). '.' .'png');
+                $store_image = Image::make($request->image)->resize(null, 800, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $store_image->stream();
+    
+                // Save image file in storage folder
+                Storage::disk('local')->put('public/images/profiles/' . $filename, $store_image ,'public');
+                // Save image name to user DB tabel
+                auth()->user()->update(['image' => $filename]);
+            }
+
+            // SWEETALERT
+            alert()->success(trans('sweetalert.password_change_title'),trans('sweetalert.password_change_text'));
+            return back();
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+    }
+
+    /**
+     * Remove old profile image from user
+     */
+    protected function deleteOldImage() {
+        if (auth()->user()->image) {
+            Storage::disk('local')->delete('public/images/profiles/'.auth()->user()->image);
+        }
+    }
+
+    /**
+     * Remove user account
+     */
     public function destroyUser($userID) {
         try {
             // Remove profile image
