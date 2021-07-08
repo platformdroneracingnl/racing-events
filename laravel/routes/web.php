@@ -1,9 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Management;
+
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\LoginSecurityController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,15 +31,14 @@ Route::group([
     'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
     function() {
         // Routes that do not require login
-        Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+        Route::get('/', [HomeController::class, 'root'])->name('root');
 
         // Routes that requires account login
         Route::group(['middleware' => ['auth', '2fa']], function() {
             // Dashboard
-            Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
-
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
             // Change layout
-            Route::get('/layout', [App\Http\Controllers\DashboardController::class, 'changeLayout'])->name('layout');
+            Route::get('/layout', [DashboardController::class, 'changeLayout'])->name('layout');
 
             // Mark notifications as read
             Route::get('markAsRead', function() {
@@ -51,9 +55,13 @@ Route::group([
             Route::get('notification/read/{id}', [NotificationsController::class, 'read'])->name('notify.read');
 
             // Management
-            Route::resource('management/roles', 'App\Http\Controllers\Management\RoleController', ['names' => 'management.roles']);
-			Route::resource('management/users', 'App\Http\Controllers\Management\UserController', ['names' => 'management.users']);
-            Route::patch('management/user/{id}/suspend', [App\Http\Controllers\Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
+            Route::resource('management/roles', Management\RoleController::class, ['names' => 'management.roles']);
+			Route::resource('management/users', Management\UserController::class, ['names' => 'management.users']);
+            Route::patch('management/user/{id}/suspend', [Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
+            Route::resource('management/events', Management\EventController::class, ['names' => 'management.events']);
+            Route::resource('management/organizations', Management\OrganizationController::class, ['names' => 'management.organizations']);
+			Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);
+			Route::resource('management/race_teams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
 
             // Profile
 			Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
@@ -79,4 +87,4 @@ Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function() {
 });
 
 // Give 404 error if path not exists
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('{any}', [HomeController::class, 'index']);
