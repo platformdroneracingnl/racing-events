@@ -1,12 +1,12 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    Gebruikers
+    Users - Management
 @endsection
 
 @php
     use App\Http\Controllers\Management\OrganizationController;
-    use App\Http\Controllers\Management\RaceteamController;
+    use App\Http\Controllers\Management\RaceTeamController;
 @endphp
 
 @section('content')
@@ -22,6 +22,7 @@
             <div class="card shadow">
                 <div class="card-body">
                     <div class="row mb-2">
+                        <!-- Header -->
                         <div class="col-12 col-md-6">
                             @can('role-create')
                                 <div class="mb-3">
@@ -31,7 +32,8 @@
                                 </div>
                             @endcan
                         </div>
-                        
+
+                        <!-- Search -->
                         <div class="col-12 col-md-6">
                             <div class="form-inline float-md-end mb-3">
                                 <div class="search-box">
@@ -58,7 +60,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">E-mail</th>
                                     <th scope="col">Organization</th>
-                                    <th scope="col">Raceteam</th>
+                                    <th scope="col">Race team</th>
                                     <th scope="col">Roles</th>
                                     <th scope="col">Member since</th>
                                     <th scope="col">Suspended until</th>
@@ -79,7 +81,7 @@
                                         <!-- Organization -->
                                         <td> @if(!empty($user->organization)) {{ OrganizationController::getOrganization($user->organization)->name }} @endif </td>
                                         <!-- Race team -->
-                                        <td> @if(!empty($user->race_team)) {{ RaceteamController::getRaceTeam($user->race_team)->name }} @endif</td>
+                                        <td> @if(!empty($user->race_team)) {{ RaceTeamController::getRaceTeam($user->race_team)->name }} @endif</td>
                                         <!-- Roles -->
                                         <td>
                                             @if(!empty($user->getRoleNames()))

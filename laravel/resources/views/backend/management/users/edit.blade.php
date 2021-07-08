@@ -4,6 +4,11 @@
     Edit user
 @endsection
 
+@section('css')
+    <!-- plugin css -->
+    <link href="{{ URL::asset('/assets/libs/select2/select2.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('content')
     @component('common-components.breadcrumb')
         @slot('pagetitle') Management @endslot
@@ -44,35 +49,35 @@
                             @method('patch')
                             <div class="row">
                                 {{-- Name --}}
-                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="col-12 col-sm-6 col-md-4">
                                     <div class="mb-3">
-                                        <strong>Naam: *</strong>
-                                        <input type="text" name="name" class="form-control" placeholder="Naam" required value="{{$user->name}}">
+                                        <label class="form-label" for="name">Naam *</label>
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Naam" required value="{{$user->name}}">
                                     </div>
                                 </div>
                                 {{-- Pilot name --}}
-                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="col-12 col-sm-6 col-md-4">
                                     <div class="mb-3">
-                                        <strong>Piloot naam: *</strong>
-                                        <input type="text" name="pilot_name" class="form-control" placeholder="Piloot naam" required value="{{$user->pilot_name}}">
+                                        <label class="form-label" for="pilot_name">Piloot naam *</label>
+                                        <input type="text" id="pilot_name" name="pilot_name" class="form-control" placeholder="Piloot naam" required value="{{$user->pilot_name}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 {{-- Email --}}
-                                <div class="col-xs-12 col-sm-8 col-md-8">
+                                <div class="col-12 col-sm-8 col-md-8">
                                     <div class="mb-3">
-                                        <strong>E-mail: *</strong>
-                                        <input type="text" name="email" class="form-control" placeholder="E-mail" required value="{{$user->email}}">
+                                        <label class="form-label" for="email">E-mail *</label>
+                                        <input type="text" id="email" name="email" class="form-control" placeholder="E-mail" required value="{{$user->email}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 {{-- Organization --}}
-                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="col-12 col-sm-6 col-md-4">
                                     <div class="mb-3">
-                                        <strong>Organisatie:</strong>
-                                        <select class="custom-select form-control" name="organization">
+                                        <label class="form-label" for="organization">Organisatie</label>
+                                        <select class="custom-select form-control" name="organization" id="organization">
                                             <option value="option_select" disabled selected>--- {{__('Kies een organisatie')}} ---</option>
                                             <option value="" {{$user->organization == null  ? 'selected' : ''}}>{{__('Geen organisatie')}}</option>
                                             @foreach ($organizations as $organization)
@@ -82,14 +87,14 @@
                                     </div>
                                 </div>
                                 {{-- Race Team --}}
-                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="col-12 col-sm-6 col-md-4">
                                     <div class="mb-3">
-                                        <strong>Race Team:</strong>
-                                        <select class="custom-select form-control" name="raceteam">
+                                        <label class="form-label" for="race_team">Race Team</label>
+                                        <select class="custom-select form-control" name="race_team" id="race_team">
                                             <option value="option_select" disabled selected>--- {{__('Kies een race team')}} ---</option>
-                                            <option value="" {{$user->raceteam == null  ? 'selected' : ''}}>{{__('Geen race team')}}</option>
+                                            <option value="" {{$user->race_team == null  ? 'selected' : ''}}>{{__('Geen race team')}}</option>
                                             @foreach ($raceTeams as $team)
-                                                <option value="{{$team->id}}" {{$user->raceteam == $team->id  ? 'selected' : ''}}>{{$team->name}}</option>
+                                                <option value="{{$team->id}}" {{$user->race_team == $team->id  ? 'selected' : ''}}>{{$team->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -97,29 +102,29 @@
                             </div>
                             <div class="row">
                                 {{-- Password --}}
-                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="col-12 col-sm-6 col-md-4">
                                     <div class="mb-3">
-                                        <strong>Wachtwoord:</strong>
-                                        <input type="password" name="password" class="form-control" placeholder="Wachtwoord">
+                                        <label class="form-label" for="password">Wachtwoord:</label>
+                                        <input type="password" id="password" name="password" class="form-control" placeholder="Wachtwoord">
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-4 col-md-4">
+                                <div class="col-12 col-sm-6 col-md-4">
                                     <div class="mb-3">
-                                        <strong>Bevestig Wachtwoord:</strong>
-                                        <input type="password" name="confirm-password" class="form-control" placeholder="Bevestig Wachtwoord">
+                                        <label class="form-label" for="confirm-password">Bevestig Wachtwoord:</label>
+                                        <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="Bevestig Wachtwoord">
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-8 col-md-8">
+                                <div class="col-12 col-sm-6 col-md-8">
                                     <div class="mb-3">
-                                        <strong>Rol:</strong>
-                                        <select class="form-select" multiple name="roles[]">
+                                        <label class="form-label" for="roles">Rol</label>
+                                        <select class="select2 form-control form-select select2-multiple" multiple="multiple" id="roles" name="roles[]" data-placeholder="Choose ...">
                                             @foreach ($roles as $key => $role)
                                                 <option value="{{ $role }}" {{ $user->getRoleNames()->contains($role) ? 'selected' : '' }}>{{ $role }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                <div class="col-12 col-sm-12 col-md-12 text-center">
                                     <button type="submit" class="btn btn-primary">Aanpassen</button>
                                 </div>
                             </div>
@@ -129,4 +134,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('pdrnl')}}/js/init/select2.init.js"></script>
 @endsection
