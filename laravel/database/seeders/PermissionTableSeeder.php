@@ -39,10 +39,10 @@ class PermissionTableSeeder extends Seeder
             'event-delete',
             'event-registration',
             'event-checkin',
-            'raceteam-list',
-            'raceteam-create',
-            'raceteam-edit',
-            'raceteam-delete',
+            'race_team-list',
+            'race_team-create',
+            'race_team-edit',
+            'race_team-delete',
             'registration-signup',
             'registration-edit',
         ];
@@ -60,7 +60,7 @@ class PermissionTableSeeder extends Seeder
         $manager = Role::create(['name' => 'manager'])
             ->givePermissionTo(['user-list','role-list','organization-list','organization-create','organization-edit','organization-delete',
             'location-list','location-create','location-edit','location-delete','event-list','event-create','event-edit','event-delete','event-registration',
-            'event-checkin', 'raceteam-list', 'raceteam-create', 'raceteam-edit', 'raceteam-delete','registration-signup','registration-edit']);
+            'event-checkin', 'race_team-list', 'race_team-create', 'race_team-edit', 'race_team-delete','registration-signup','registration-edit']);
 
         // Organizer
         $organizer = Role::create(['name' => 'organizer'])

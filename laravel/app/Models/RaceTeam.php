@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Raceteam extends Model
+class RaceTeam extends Model
 {
     use HasFactory;
 
-    protected $table = 'raceteams';
+    protected $table = 'race_teams';
     protected $fillable = [
         'name',
         'image',

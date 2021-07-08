@@ -8,7 +8,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use App\Models\Organization;
-use App\Models\Raceteam;
+use App\Models\RaceTeam;
 use App\Models\User;
 use App;
 use DB;
@@ -61,7 +61,7 @@ class UserController extends Controller
     public function edit($id) {
         $user = User::find($id);
         $organizations = Organization::all();
-        $raceTeams = Raceteam::all();
+        $raceTeams = RaceTeam::all();
         $roles = Role::pluck('name')->all();
 
         return view('backend.management.users.edit', compact('user','roles','organizations','raceTeams'));
