@@ -6,6 +6,12 @@ button,a {
   outline: none !important;
 }
 
+// Remove padding when button in list
+li {
+  .btn {
+    padding: 0;
+  }
+}
 
 // Rounded Buttons
 .btn-rounded {

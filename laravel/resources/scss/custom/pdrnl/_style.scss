@@ -1,0 +1,20 @@
+// Own custom changes on the template
+
+/* -----------------------------------------
+    Mobile
+----------------------------------------- */
+@media (max-width: 768px) {
+    .btn-on-mobile {
+        width: 100%;
+        margin-top: 0.65rem;
+        margin-bottom: 0.65rem;
+    }
+
+    .search-box {
+        margin-top: 0.65rem;
+    }
+
+    .gif-on-mobile {
+        width: -webkit-fill-available;
+    }
+}
