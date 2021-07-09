@@ -1,7 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    Edit role
+    Edit role - Management
 @endsection
 
 @section('content')

@@ -1,12 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    Rollen
-@endsection
-
-@section('css')
-    <!-- DataTables -->
-    <link href="{{ URL::asset('/assets/libs/datatables/datatables.min.css') }}" rel="stylesheet" type="text/css" />
+    Roles - Management
 @endsection
 
 @section('content')
@@ -104,7 +99,6 @@
 @endsection
 
 @section('script')
-    <script src="{{ URL::asset('/assets/js/pages/datatables.init.js') }}"></script>
     <script src="{{ asset('pdrnl')}}/js/sweetalerts/role.js"></script>
     <script>
         var locale = {!! json_encode($lang) !!};
