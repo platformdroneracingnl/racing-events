@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use App\Notifications\ChangeUserAccount;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -39,6 +40,46 @@ class UserController extends Controller
         $data = User::orderBy('id','desc')->get();
 
         return view('backend.management.users.index', compact('data','lang','organization'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() {
+        $organizations = Organization::all();
+        $raceTeams = Raceteam::all();
+        $roles = Role::pluck('name','name')->all();
+        return view('backend.management.users.create', compact('roles','organizations','raceTeams'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
+        ]);
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+
+        // Create and asign role
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+
+        // Mark email of user as verified
+        $user->markEmailAsVerified();
+
+        return redirect()->route('management.users.index')
+            ->with('success', 'Gebruiker is succesvol aangemaakt');
     }
 
     /**
@@ -101,6 +142,18 @@ class UserController extends Controller
 
         return redirect()->route('management.users.index')
             ->with('success','Gebruiker succesvol aangepast');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        User::find($id)->delete();
+        return redirect()->route('management.users.index')
+            ->with('success','Gebruiker succesvol verwijderd');
     }
 
     // Suspend a user

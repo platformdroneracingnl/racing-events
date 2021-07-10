@@ -12,7 +12,7 @@
 @section('content')
     @component('common-components.breadcrumb')
         @slot('pagetitle') Management @endslot
-        @slot('title') Gebruikers @endslot
+        @slot('title') {{ __('Users') }} @endslot
     @endcomponent
 
     @include('backend.snippets.alerts')
@@ -20,34 +20,31 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow">
-                <div class="card-body">
-                    <div class="row mb-2">
-                        <!-- Header -->
+                <!-- Header -->
+                <div class="card-header bg-white border-0">
+                    <div class="row align-items-center">
                         <div class="col-12 col-md-6">
                             @can('role-create')
-                                <div class="mb-3">
-                                    <a href="{{ route('management.roles.create') }}" class="btn btn-success waves-effect waves-light btn-on-mobile">
-                                        <i class="mdi mdi-plus me-2"></i> Add New
-                                    </a>
-                                </div>
+                                <a href="{{ route('management.users.create') }}" class="btn btn-success waves-effect waves-light btn-on-mobile">
+                                    <i class="mdi mdi-plus me-2"></i> {{ __('New User') }}
+                                </a>
                             @endcan
                         </div>
-
                         <!-- Search -->
                         <div class="col-12 col-md-6">
-                            <div class="form-inline float-md-end mb-3">
+                            <div class="form-inline float-md-end">
                                 <div class="search-box">
                                     <div class="position-relative">
                                         <input id="searchbox" type="text" class="form-control rounded bg-light border-0"
-                                            placeholder="Search...">
+                                            placeholder="{{ __('Search') }}...">
                                         <i class="mdi mdi-magnify search-icon"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
+                </div>
+                <div class="card-body">
                     {{-- <h4 class="card-title">Default Datatable</h4> --}}
                     <p class="card-title-desc">Beheer alle gebruikers die aangemeld zijn op het platform
                     </p>
@@ -79,9 +76,9 @@
                                         <!-- Email -->
                                         <td>{{ $user->email }}</td>
                                         <!-- Organization -->
-                                        <td> @if(!empty($user->organization)) {{ OrganizationController::getOrganization($user->organization)->name }} @endif </td>
+                                        <td> @if(!empty($user->organization)) {{ $user->organization->name }} @endif </td>
                                         <!-- Race team -->
-                                        <td> @if(!empty($user->race_team)) {{ RaceTeamController::getRaceTeam($user->race_team)->name }} @endif</td>
+                                        <td> @if(!empty($user->race_team)) {{ $user->race_team->name }} @endif</td>
                                         <!-- Roles -->
                                         <td>
                                             @if(!empty($user->getRoleNames()))
@@ -102,19 +99,19 @@
                                         </td>
                                         <!-- Options -->
                                         <td>
-                                            <form action="{{ route('management.users.destroy', $user->id) }}" method="POST" class="deleteRole">
+                                            <form action="{{ route('management.users.destroy', $user->id) }}" method="POST" class="deleteUser">
                                                 @csrf
                                                 <ul class="list-inline mb-0">
                                                     <!-- Show -->
                                                     <li class="list-inline-item">
-                                                        <a href="{{ route('management.users.show',$user->id) }}" class="px-2 text-secondary">
+                                                        <a type="button" class="btn px-2 text-secondary" href="{{ route('management.users.show',$user->id) }}">
                                                             <i class="uil uil-info-circle font-size-18"></i>
                                                         </a>
                                                     </li>
                                                     <!-- Edit -->
                                                     @can('user-edit')
                                                         <li class="list-inline-item">
-                                                            <a href="{{ route('management.users.edit',$user->id) }}" class="px-2 text-primary">
+                                                            <a type="button" class="btn px-2 text-primary" href="{{ route('management.users.edit',$user->id) }}">
                                                                 <i class="uil uil-pen font-size-18"></i>
                                                             </a>
                                                         </li>
@@ -134,9 +131,9 @@
                                                     @can('user-delete')
                                                         @if ($user->id != auth()->user()->id)
                                                             <li class="list-inline-item">
-                                                                <a class="px-2 text-danger" type="submit">
+                                                                <button class="btn px-2 text-danger" type="submit">
                                                                     <i class="uil uil-trash-alt font-size-18"></i>
-                                                                </a>
+                                                                </button>
                                                             </li>
                                                         @endif
                                                     @endcan
@@ -195,9 +192,10 @@
 
 @section('script')
     <script src="{{ asset('pdrnl')}}/js/dataTables/users-management.js"></script>
+    <script src="{{ asset('pdrnl')}}/js/sweetalerts/user.js"></script>
     <script>
         var locale = {!! json_encode($lang) !!};
     </script>
-    <script src="{{ URL::asset('/assets/libs/jszip/jszip.min.js') }}"></script>
-    <script src="{{ URL::asset('/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    {{-- <script src="{{ URL::asset('/assets/libs/jszip/jszip.min.js') }}"></script>
+    <script src="{{ URL::asset('/assets/libs/pdfmake/pdfmake.min.js') }}"></script> --}}
 @endsection

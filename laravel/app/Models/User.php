@@ -27,8 +27,8 @@ class User extends Authenticatable
         'country',
         'phonenumber',
         'image',
-        'organization',
-        'race_team',
+        'organization_id',
+        'race_team_id',
         'suspended_until',
     ];
 
@@ -65,11 +65,15 @@ class User extends Authenticatable
      * Relationships
      */
     public function country() {
-        return $this->hasOne('App\Models\Country', 'id', 'country');
+        return $this->hasOne(Country::class, 'id', 'country');
     }
 
     public function organization() {
-        return $this->hasOne('App\Models\Organization');
+        return $this->hasOne(Organization::class, 'id', 'organization_id');
+    }
+
+    public function race_team() {
+        return $this->hasOne(RaceTeam::class, 'id', 'race_team_id');
     }
 
     public function registrations() {
@@ -77,7 +81,7 @@ class User extends Authenticatable
     }
 
     public function events() {
-        return $this->hasMany('App\Models\Event');
+        return $this->hasMany(Event::class);
     }
 
     public function loginSecurity() {
@@ -85,6 +89,6 @@ class User extends Authenticatable
     }
 
     public function waivers() {
-        return $this->hasMany('App\Models\Waiver');
+        return $this->hasMany(Waiver::class);
     }
 }
