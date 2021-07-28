@@ -30,9 +30,11 @@ class CreateEventsTable extends Migration
             $table->boolean('registration');
             $table->boolean('mollie_payments');
             $table->boolean('waitlist');
-            $table->text('description');
+            $table->boolean('google_calendar');
+            $table->longText('description');
             $table->string('docs_link')->nullable();
             $table->string('google_calendar_id')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

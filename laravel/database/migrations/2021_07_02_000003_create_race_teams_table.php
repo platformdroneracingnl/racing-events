@@ -16,7 +16,7 @@ class CreateRaceteamsTable extends Migration
         Schema::create('race_teams', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
