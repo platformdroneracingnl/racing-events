@@ -27,7 +27,7 @@
         "@chenfengyuan/datepicker": "^1.0.9",
         "@ckeditor/ckeditor5-build-classic": "^23.1.0",
         "@curiosityx/bootstrap-session-timeout": "^1.0.0",
-        "@fullcalendar/bootstrap": "^4.4.0",
+        "@fullcalendar/bootstrap": "^5.9.0",
         "@fullcalendar/core": "^4.4.0",
         "@fullcalendar/daygrid": "^4.4.0",
         "@fullcalendar/interaction": "^4.4.0",
