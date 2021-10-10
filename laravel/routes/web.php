@@ -61,7 +61,7 @@ Route::group([
             Route::resource('management/events', Management\EventController::class, ['names' => 'management.events']);
             Route::resource('management/organizations', Management\OrganizationController::class, ['names' => 'management.organizations']);
 			Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);
-			Route::resource('management/race_teams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
+			Route::resource('management/raceteams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
 
             // Profile
 			Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
