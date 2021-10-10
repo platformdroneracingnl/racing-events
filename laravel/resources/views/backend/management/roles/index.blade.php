@@ -15,9 +15,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow">
-                <!-- Header -->
-                <div class="card-header bg-white border-0">
-                    <div class="row align-items-center">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <!-- Header -->
                         <div class="col-12 col-md-6">
                             @can('role-create')
                                 <a href="{{ route('management.roles.create') }}" class="btn btn-success waves-effect waves-light btn-on-mobile">
@@ -37,60 +37,62 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Body -->
-                <div class="card-body">
-                    {{-- <h4 class="card-title">Default Datatable</h4> --}}
-                    <p class="card-title-desc">Beheer hier de rollen die een gebruiker kan hebben op het platform
-                    </p>
 
-                    <div class="table-responsive">
-                        <table class="table align-middle table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th scope="col">Nr.</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($roles as $key => $role)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $role->name }}</td>
-                                    <td>
-                                        <form action="{{ route('management.roles.destroy', $role->id) }}" method="POST" class="deleteRole">
-                                            @csrf
-                                            @method('DELETE')
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item">
-                                                    <a type="button" class="btn px-2 text-secondary" href="{{ route('management.roles.show', $role->id) }}">
-                                                        <i class="uil uil-info-circle font-size-18"></i>
-                                                    </a>
-                                                </li>
-                                                @can('role-edit')
-                                                    <li class="list-inline-item">
-                                                        <a type="button" class="btn px-2 text-primary" href="{{ route('management.roles.edit', $role->id) }}">
-                                                            <i class="uil uil-pen font-size-18"></i>
-                                                        </a>
-                                                    </li>
-                                                @endcan
-                                                @can('role-delete')
-                                                    <li class="list-inline-item">
-                                                        <button type="submit" class="btn px-2 text-danger">
-                                                            <i class="uil uil-trash-alt font-size-18"></i>
-                                                        </button>
-                                                    </li>
-                                                @endcan
-                                            </ul>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                    <!-- Body -->
+                    <div class="row">
+                        <p class="card-title-desc">Beheer hier de rollen die een gebruiker kan hebben op het platform
+                        </p>
                     </div>
 
+                    <!-- Table -->
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table align-middle table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Nr.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($roles as $key => $role)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $role->name }}</td>
+                                        <td>
+                                            <form action="{{ route('management.roles.destroy', $role->id) }}" method="POST" class="deleteRole">
+                                                @csrf
+                                                @method('DELETE')
+                                                <ul class="list-inline mb-0">
+                                                    <li class="list-inline-item">
+                                                        <a type="button" class="btn px-2 text-secondary" href="{{ route('management.roles.show', $role->id) }}">
+                                                            <i class="uil uil-info-circle font-size-18"></i>
+                                                        </a>
+                                                    </li>
+                                                    @can('role-edit')
+                                                        <li class="list-inline-item">
+                                                            <a type="button" class="btn px-2 text-primary" href="{{ route('management.roles.edit', $role->id) }}">
+                                                                <i class="uil uil-pen font-size-18"></i>
+                                                            </a>
+                                                        </li>
+                                                    @endcan
+                                                    @can('role-delete')
+                                                        <li class="list-inline-item">
+                                                            <button type="submit" class="btn px-2 text-danger">
+                                                                <i class="uil uil-trash-alt font-size-18"></i>
+                                                            </button>
+                                                        </li>
+                                                    @endcan
+                                                </ul>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div> <!-- end col -->

@@ -14,7 +14,7 @@
         <div class="col-lg-12">
             <div class="card shadow">
                 <!-- Header -->
-                <div class="card-header bg-white">
+                <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-12 col-md-6">
                             <h4 id="name">{{ $user->name }}</h4>

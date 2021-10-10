@@ -14,13 +14,13 @@
         <div class="col-lg-12">
             <div class="card shadow">
                 <!-- Header -->
-                <div class="card-header bg-white border-0">
+                <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col-12 col-md-6">
                             <h4 id="name">{{__('Create new role')}}</h4>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="mb-3 text-end">
+                            <div class="text-end">
                                 <a href="{{ route('management.roles.index') }}" class="btn btn-secondary waves-effect waves-light btn-on-mobile">
                                     <i class="mdi mdi-arrow-left me-2"></i> @lang('button.back')
                                 </a>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('management.roles.store') }}" method="POST">
+                    <form action="{{ route('management.roles.store') }}" method="POST" enctype="multipart/form-data" role="form">
                         @csrf
                         <div class="row">
                             <div class="col-12 col-sm-6 col-md-4">
