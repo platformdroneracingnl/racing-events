@@ -22,9 +22,11 @@ class CreateLocationsTable extends Migration
             $table->string('city');
             $table->string('province');
             $table->bigInteger('country')->unsigned();
+            $table->string('category');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('comment')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
 
             $table->foreign('country')

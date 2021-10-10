@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+// use Laravel\Scout\Searchable;
 use App\Models\Location;
 
 class Event extends Model {
 
     use HasFactory;
-    use Searchable;
+    // use Searchable;
 
     protected $fillable = [
         'user_id',
@@ -22,6 +22,7 @@ class Event extends Model {
         'registration',
         'mollie_payments',
         'waitlist',
+        'google_calendar',
         'category',
         'price',
         'max_registrations',
@@ -30,24 +31,25 @@ class Event extends Model {
         'start_registration',
         'end_registration',
         'location_id',
+        'image',
     ];
 
     protected $dates = ['start_registration','end_registration','date'];
 
     public function location() {
-        return $this->hasOne('App\Models\Location');
+        return $this->hasOne(Location::class);
     }
 
     public function registration() {
-        return $this->hasMany('App\Models\Registration');
+        return $this->hasMany(Registration::class);
     }
 
     public function user() {
-        return $this->hasOne('App\Models\User', 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function organization() {
-        return $this->hasOne('App\Models\Organization', 'id', 'organization_id');
+        return $this->hasOne(Organization::class, 'id', 'organization_id');
     }
 
     /**

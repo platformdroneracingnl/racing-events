@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phonenumber')->nullable();
-            $table->bigInteger('organization')->nullable()->unsigned();
-            $table->bigInteger('raceteam')->nullable()->unsigned();
+            $table->bigInteger('organization_id')->nullable()->unsigned();
+            $table->bigInteger('race_team_id')->nullable()->unsigned();
             $table->timestamp('suspended_until')->nullable();
             $table->string('image')->nullable();
             $table->rememberToken();
@@ -34,12 +34,12 @@ class CreateUsersTable extends Migration
             $table->foreign('country')
                 ->references('id')
                 ->on('countries');
-            $table->foreign('organization')
+            $table->foreign('organization_id')
                 ->references('id')
                 ->on('organizations');
-            $table->foreign('raceteam')
+            $table->foreign('race_team_id')
                 ->references('id')
-                ->on('raceteams');
+                ->on('race_teams');
         });
     }
 

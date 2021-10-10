@@ -26,9 +26,7 @@
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="uil-search"></i>
                 </button>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                    aria-labelledby="page-header-search-dropdown">
-                    
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
                     <form class="p-3">
                         <div class="form-group m-0">
                             <div class="input-group">
@@ -57,14 +55,20 @@
                     <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('dashboard')}}">
-                                <i class="uil-home-alt me-2"></i> @lang('translation.Dashboard')
+                            <a class="nav-link {{ Route::currentRouteNamed('dashboard') ? 'active' : '' }}" href="{{ route('dashboard')}}">
+                                <i class="uil-home-alt me-2"></i> @lang('menu.dashboard')
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteNamed(['events','events.*']) ? 'active' : '' }}" href="{{ route('root') }}">
+                                <i class="uil-calendar-alt me-2"></i> @lang('menu.competitions')
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="https://rankings.platformdroneracing.nl/" target="_blank">
-                                <i class="fas fa-poll-h me-2"></i> @lang('menu.results')
+                                <i class="fas fa-chart-line me-2"></i> @lang('menu.results')
                             </a>
                         </li>
     
@@ -317,12 +321,33 @@
                                 </div>
                             </div>
                         </li> --}}
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteNamed('registrations.*') ? 'active' : '' }}" href="{{ route('root') }}">
+                                <i class="uil-swatchbook me-2"></i> @lang('menu.my_registrations')
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-organizer" role="button">
+                                <i class="fas fa-tasks me-2"></i> {{__('Organisator')}} <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-organizer">
+                                <a class="dropdown-item {{ Route::currentRouteNamed('organizator.events.*') ? 'active' : '' }}" href="{{ route('root') }}" class="nav-link">
+                                    @lang('menu.my_competitions')
+                                </a>
+                                <a class="dropdown-item {{ Route::currentRouteNamed('organizator.waivers.*') ? 'active' : '' }}" href="{{ route('root') }}" class="nav-link">
+                                    @lang('category/events.waivers')
+                                </a>
+                            </div>
+                        </li>
 
                         <!-- Management -->
                         @if(auth()->user()->hasRole(['organizer','manager','supervisor']))
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-management" role="button">
-                                    <i class="uil-window-section me-2"></i>Management <div class="arrow-down"></div>
+                                    <i class="fas fa-sliders-h me-2"></i> Management <div class="arrow-down"></div>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="topnav-management">
                                     @can('user-list')
@@ -333,6 +358,28 @@
                                     @can('role-list')
                                         <a class="dropdown-item {{ Route::currentRouteNamed('management.roles.*') ? 'active' : '' }}" href="{{ route('management.roles.index') }}">
                                             @lang('menu.manage_roles')
+                                        </a>
+                                    @endcan
+                                    @if (auth()->user()->hasRole(['manager','supervisor']))
+                                        @can('event-list')
+                                            <a class="dropdown-item {{ Route::currentRouteNamed('management.events.*') ? 'active' : '' }}" href="{{ route('management.events.index') }}">
+                                                @lang('menu.manage_competitions')
+                                            </a>
+                                        @endcan
+                                    @endif
+                                    @can('location-list')
+                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.locations.*') ? 'active' : '' }}" href="{{ route('management.locations.index') }}">
+                                            @lang('menu.manage_locations')
+                                        </a>
+                                    @endcan
+                                    @can('organization-list')
+                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.organizations.*') ? 'active' : '' }}" href="{{ route('management.organizations.index') }}">
+                                            @lang('menu.manage_organizations')
+                                        </a>
+                                    @endcan
+                                    @can('race_team-list')
+                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.race_teams.*') ? 'active' : '' }}" href="{{ route('management.race_teams.index') }}">
+                                            @lang('menu.manage_race_teams')
                                         </a>
                                     @endcan
                                 </div>

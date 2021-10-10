@@ -18,6 +18,6 @@ class Organization extends Model
      * Relationships
      */
     public function user() {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasMany(User::class);
     }
 }

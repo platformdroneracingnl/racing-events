@@ -121,7 +121,7 @@ class ProfileController extends Controller
             // Check if request contains new image otherwise skip it
             if($request->has('image')) {
                 // Remove old image if exist
-                $this->deleteOldImage(); 
+                $this->deleteOldImage('profiles');
     
                 // Save the new uploaded image
                 $image = strtolower(auth()->user()->name);
@@ -142,15 +142,6 @@ class ProfileController extends Controller
             return back();
         } catch (\Throwable $th) {
             dd($th);
-        }
-    }
-
-    /**
-     * Remove old profile image from user
-     */
-    protected function deleteOldImage() {
-        if (auth()->user()->image) {
-            Storage::disk('local')->delete('public/images/profiles/'.auth()->user()->image);
         }
     }
 

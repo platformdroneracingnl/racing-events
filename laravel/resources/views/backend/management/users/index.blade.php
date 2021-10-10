@@ -1,18 +1,13 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    Gebruikers
+    Users - Management
 @endsection
-
-@php
-    use App\Http\Controllers\Management\OrganizationController;
-    use App\Http\Controllers\Management\RaceteamController;
-@endphp
 
 @section('content')
     @component('common-components.breadcrumb')
         @slot('pagetitle') Management @endslot
-        @slot('title') Gebruikers @endslot
+        @slot('title') {{ __('Users') }} @endslot
     @endcomponent
 
     @include('backend.snippets.alerts')
@@ -21,130 +16,133 @@
         <div class="col-lg-12">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="row mb-2">
+                    <div class="row mb-3">
+                        <!-- Header -->
                         <div class="col-12 col-md-6">
                             @can('role-create')
-                                <div class="mb-3">
-                                    <a href="{{ route('management.roles.create') }}" class="btn btn-success waves-effect waves-light btn-on-mobile">
-                                        <i class="mdi mdi-plus me-2"></i> Add New
-                                    </a>
-                                </div>
+                                <a href="{{ route('management.users.create') }}" class="btn btn-success waves-effect waves-light btn-on-mobile">
+                                    <i class="mdi mdi-plus me-2"></i> {{ __('New User') }}
+                                </a>
                             @endcan
                         </div>
-                        
+                        <!-- Search -->
                         <div class="col-12 col-md-6">
-                            <div class="form-inline float-md-end mb-3">
+                            <div class="form-inline float-md-end">
                                 <div class="search-box">
                                     <div class="position-relative">
                                         <input id="searchbox" type="text" class="form-control rounded bg-light border-0"
-                                            placeholder="Search...">
+                                            placeholder="{{ __('Search') }}...">
                                         <i class="mdi mdi-magnify search-icon"></i>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
-                    {{-- <h4 class="card-title">Default Datatable</h4> --}}
-                    <p class="card-title-desc">Beheer alle gebruikers die aangemeld zijn op het platform
-                    </p>
+                    <!-- Body -->
+                    <div class="row">
+                        <p class="card-title-desc">Beheer alle gebruikers die aangemeld zijn op het platform
+                        </p>
+                    </div>
 
-                    <div class="table-responsive">
-                        <table id="usersTable" class="table align-middle table-hover dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead class="table-light">
-                                <tr>
-                                    <th scope="col">Nr.</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">E-mail</th>
-                                    <th scope="col">Organization</th>
-                                    <th scope="col">Raceteam</th>
-                                    <th scope="col">Roles</th>
-                                    <th scope="col">Member since</th>
-                                    <th scope="col">Suspended until</th>
-                                    <th scope="col">Options</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($data as $key => $user)
+                    <!-- Table -->
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table id="usersTable" class="table align-middle table-hover dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead class="table-light">
                                     <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <!-- Name -->
-                                        <td>{{ $user->name }} @if ($user->suspended_until != null)
-                                                <span class="badge bg-danger">{{ __('Suspended') }}</span>
-                                            @endif
-                                        </td>
-                                        <!-- Email -->
-                                        <td>{{ $user->email }}</td>
-                                        <!-- Organization -->
-                                        <td> @if(!empty($user->organization)) {{ OrganizationController::getOrganization($user->organization)->name }} @endif </td>
-                                        <!-- Race team -->
-                                        <td> @if(!empty($user->race_team)) {{ RaceteamController::getRaceTeam($user->race_team)->name }} @endif</td>
-                                        <!-- Roles -->
-                                        <td>
-                                            @if(!empty($user->getRoleNames()))
-                                                @foreach($user->getRoleNames() as $v)
-                                                    <label class="badge bg-success">{{ $v }}</label>
-                                                @endforeach
-                                            @endif
-                                        </td>
-                                        <!-- Date account created -->
-                                        <td>
-                                            {{ $user->created_at->format('d-m-Y') }}
-                                        </td>
-                                        <td>
-                                            @if ($user->suspended_until != null)
-                                                {{ $user->suspended_until->format('d-m-Y') }}
-                                                <span class="badge bg-danger">@lang('pdrnl.days_left', ['days' => now()->diffInDays($user->suspended_until)])</span>
-                                            @endif
-                                        </td>
-                                        <!-- Options -->
-                                        <td>
-                                            <form action="{{ route('management.users.destroy', $user->id) }}" method="POST" class="deleteRole">
-                                                @csrf
-                                                <ul class="list-inline mb-0">
-                                                    <!-- Show -->
-                                                    <li class="list-inline-item">
-                                                        <a href="{{ route('management.users.show',$user->id) }}" class="px-2 text-secondary">
-                                                            <i class="uil uil-info-circle font-size-18"></i>
-                                                        </a>
-                                                    </li>
-                                                    <!-- Edit -->
-                                                    @can('user-edit')
+                                        <th scope="col">Nr.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Organization</th>
+                                        <th scope="col">Race team</th>
+                                        <th scope="col">Roles</th>
+                                        <th scope="col">Member since</th>
+                                        <th scope="col">Suspended until</th>
+                                        <th scope="col">Options</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $key => $user)
+                                        <tr>
+                                            <th scope="row">{{ $loop->iteration }}</th>
+                                            <!-- Name -->
+                                            <td>{{ $user->name }} @if ($user->suspended_until != null)
+                                                    <span class="badge bg-danger">{{ __('Suspended') }}</span>
+                                                @endif
+                                            </td>
+                                            <!-- Email -->
+                                            <td>{{ $user->email }}</td>
+                                            <!-- Organization -->
+                                            <td> @if(!empty($user->organization)) {{ $user->organization->name }} @endif </td>
+                                            <!-- Race team -->
+                                            <td> @if(!empty($user->race_team)) {{ $user->race_team->name }} @endif</td>
+                                            <!-- Roles -->
+                                            <td>
+                                                @if(!empty($user->getRoleNames()))
+                                                    @foreach($user->getRoleNames() as $v)
+                                                        <label class="badge bg-success">{{ $v }}</label>
+                                                    @endforeach
+                                                @endif
+                                            </td>
+                                            <!-- Date account created -->
+                                            <td>
+                                                {{ $user->created_at->format('d-m-Y') }}
+                                            </td>
+                                            <td>
+                                                @if ($user->suspended_until != null)
+                                                    {{ $user->suspended_until->format('d-m-Y') }}
+                                                    <span class="badge bg-danger">@lang('pdrnl.days_left', ['days' => now()->diffInDays($user->suspended_until)])</span>
+                                                @endif
+                                            </td>
+                                            <!-- Options -->
+                                            <td>
+                                                <form action="{{ route('management.users.destroy', $user->id) }}" method="POST" class="deleteUser">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <ul class="list-inline mb-0">
+                                                        <!-- Show -->
                                                         <li class="list-inline-item">
-                                                            <a href="{{ route('management.users.edit',$user->id) }}" class="px-2 text-primary">
-                                                                <i class="uil uil-pen font-size-18"></i>
+                                                            <a type="button" class="btn px-2 text-secondary" href="{{ route('management.users.show',$user->id) }}">
+                                                                <i class="uil uil-info-circle font-size-18"></i>
                                                             </a>
                                                         </li>
-                                                    @endcan
-                                                    <!-- Suspend -->
-                                                    @if ($user->id != auth()->user()->id)
-                                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#banModal-{{$user->id}}">
-                                                            @if ($user->suspended_until == null)
-                                                                {{ __('Blokkeer') }}
-                                                            @else
-                                                                {{ __('Deblokkeer') }}
-                                                            @endif
-                                                        </button>
-                                                    @endif
-                                                    @method('DELETE')
-                                                    <!-- Delete -->
-                                                    @can('user-delete')
-                                                        @if ($user->id != auth()->user()->id)
+                                                        <!-- Edit -->
+                                                        @can('user-edit')
                                                             <li class="list-inline-item">
-                                                                <a class="px-2 text-danger" type="submit">
-                                                                    <i class="uil uil-trash-alt font-size-18"></i>
+                                                                <a type="button" class="btn px-2 text-primary" href="{{ route('management.users.edit',$user->id) }}">
+                                                                    <i class="uil uil-pen font-size-18"></i>
                                                                 </a>
                                                             </li>
+                                                        @endcan
+                                                        <!-- Suspend -->
+                                                        @if ($user->id != auth()->user()->id)
+                                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#banModal-{{$user->id}}">
+                                                                @if ($user->suspended_until == null)
+                                                                    {{ __('Blokkeer') }}
+                                                                @else
+                                                                    {{ __('Deblokkeer') }}
+                                                                @endif
+                                                            </button>
                                                         @endif
-                                                    @endcan
-                                                </ul>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                                        <!-- Delete -->
+                                                        @can('user-delete')
+                                                            @if ($user->id != auth()->user()->id)
+                                                                <li class="list-inline-item">
+                                                                    <button type="submit" class="btn px-2 text-danger">
+                                                                        <i class="uil uil-trash-alt font-size-18"></i>
+                                                                    </button>
+                                                                </li>
+                                                            @endif
+                                                        @endcan
+                                                    </ul>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -193,9 +191,8 @@
 
 @section('script')
     <script src="{{ asset('pdrnl')}}/js/dataTables/users-management.js"></script>
+    <script src="{{ asset('pdrnl')}}/js/sweetalerts/user.js"></script>
     <script>
         var locale = {!! json_encode($lang) !!};
     </script>
-    <script src="{{ URL::asset('/assets/libs/jszip/jszip.min.js') }}"></script>
-    <script src="{{ URL::asset('/assets/libs/pdfmake/pdfmake.min.js') }}"></script>
 @endsection

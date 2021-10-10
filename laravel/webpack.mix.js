@@ -53,6 +53,7 @@ const folder = {
             {"name": "bootstrap-datepicker", "assets": ["./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js","./node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css"]},
             {"name": "gmaps", "assets": ["./node_modules/gmaps/gmaps.min.js"]},
             {"name": "leaflet", "assets": ["./node_modules/leaflet/dist/leaflet.js", "./node_modules/leaflet/dist/leaflet.css"]},
+            {"name": "leaflet.locatecontrol", "assets": ["./node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.js", "./node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css"]},
             {"name": "flot-curvedlines", "assets": ["./node_modules/flot.curvedlines/flot/jquery.flot.min.js"]},
             {"name": "owl-carousel", "assets": ["./node_modules/owl.carousel/dist/owl.carousel.min.js", "./node_modules/owl.carousel/dist/assets/owl.carousel.min.css","./node_modules/owl.carousel/dist/assets/owl.theme.default.min.css"]},
             {"name": "toastr", "assets": ["./node_modules/toastr/build/toastr.min.js", "./node_modules/toastr/build/toastr.min.css"]}, 

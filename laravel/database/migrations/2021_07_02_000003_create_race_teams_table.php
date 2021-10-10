@@ -13,10 +13,10 @@ class CreateRaceteamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('raceteams', function (Blueprint $table) {
+        Schema::create('race_teams', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateRaceteamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('raceteams');
+        Schema::dropIfExists('race_teams');
     }
 }
