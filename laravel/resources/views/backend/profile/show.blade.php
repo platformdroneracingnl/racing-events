@@ -4,11 +4,6 @@
     @lang('translation.Profile')
 @endsection
 
-@section('css')
-    <!-- plugin css -->
-    <link href="{{ URL::asset('/assets/libs/litepicker/litepicker.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
-
 @section('content')
     @component('common-components.breadcrumb')
         @slot('pagetitle') PDRNL @endslot
@@ -47,7 +42,7 @@
                         <div class="clearfix"></div>
                         <!-- Avatar -->
                         <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img src="@if(!empty(auth()->user()->image)) {{ asset('storage') }}/images/profiles/{{auth()->user()->image}} @else {{ asset('pdrnl') }}/img/default.png @endif" alt="Your profile image" class="avatar-xl rounded-circle img-thumbnail">
+                            <img src="@if(!empty(auth()->user()->image)) {{ asset('storage') }}/images/profiles/{{auth()->user()->image}} @else {{ asset('pdrnl') }}/img/default.png @endif" alt="Your profile image" class="avatar-xxl rounded-circle img-thumbnail">
                         </div>
                         <!-- User info -->
                         <h4 class="mt-3 mb-1">{{ auth()->user()->name }} @if(!empty($countryCode->code)) / {{ $countryCode->code}} @endif </h4>
@@ -156,14 +151,14 @@
                         @csrf
                         <!-- Avatar -->
                         <div class="text-center mb-3">
-                            <img id="img-upload" src="{{ asset('pdrnl') }}/img/default.png" alt="Your profile image"
-                                    class="avatar-xxl rounded-circle img-thumbnail" style="width: 15rem;">
+                            <img id="img-upload" src="@if(!empty(auth()->user()->image)) {{ asset('storage') }}/images/profiles/{{auth()->user()->image}} @else {{ asset('pdrnl') }}/img/default.png @endif" alt="Your profile image"
+                                    class="avatar-xxxl rounded-circle img-thumbnail">
                         </div>
                         <p class="body-desc">
                             It will be easier for your friends to recognize you if you upload your real photo. You can upload the image in JPG, PNG or SVG format.
                         </p>
 
-                        <div class="form-group">
+                        <div class="mb-3">
                             {{-- <label class="form-control-label" for="customFile">@lang('category/profile.photo')</label> --}}
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input form-control form-control-alternative" id="customFile" name="image">
@@ -183,6 +178,5 @@
 
 @section('script')
     <!-- Plugins js -->
-    <script src="{{ URL::asset('/assets/libs/litepicker/litepicker.min.js') }}"></script>
     <script src="{{ asset('pdrnl')}}/js/profile.js"></script>
 @endsection

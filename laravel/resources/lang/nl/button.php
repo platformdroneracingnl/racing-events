@@ -9,6 +9,7 @@ return [
     'close' => 'Sluiten',
     'view' => 'Bekijk',
     'edit' => 'Bewerk',
+    'new' => 'Nieuwe Toevoegen',
     'adjust' => 'Aanpassen',
     'delete' => 'Verwijder',
     'cancel' => 'Nee, annuleer',

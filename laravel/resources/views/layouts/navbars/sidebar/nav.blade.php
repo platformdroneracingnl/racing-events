@@ -151,6 +151,7 @@
                         <li><a href="pages-500">@lang('translation.Error_500')</a></li>
                     </ul>
                 </li>
+
                 @if(auth()->user()->hasRole(['organizer','manager','supervisor']))
                     <!-- Divider -->
                     <hr class="my-1">
@@ -167,9 +168,31 @@
                             <a class="nav-link" href="{{ route('management.roles.index') }}"><i class="uil-list-ul"></i> @lang('menu.manage_roles')</a>
                         </li>
                     @endcan
+                    @if (auth()->user()->hasRole(['manager','supervisor']))
+                        @can('event-list')
+                            <li class="nav-item {{ Route::currentRouteNamed('management.events.*') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('management.events.index') }}"><i class="uil-list-ul"></i> @lang('menu.manage_competitions')</a>
+                            </li>
+                        @endcan
+                    @endif
+                    @can('location-list')
+                        <li class="nav-item {{ Route::currentRouteNamed('management.locations.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('management.locations.index') }}"><i class="uil-list-ul"></i> @lang('menu.manage_locations')</a>
+                        </li>
+                    @endcan
+                    @can('organization-list')
+                        <li class="nav-item {{ Route::currentRouteNamed('management.organizations.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('management.organizations.index') }}"><i class="uil-list-ul"></i> @lang('menu.manage_organizations')</a>
+                        </li>
+                    @endcan
+                    @can('race_team-list')
+                        <li class="nav-item {{ Route::currentRouteNamed('management.race_teams.*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('management.race_teams.index') }}"><i class="uil-list-ul"></i> @lang('menu.manage_race_teams')</a>
+                        </li>
+                    @endcan
                 @endif
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="uil-flask"></i>
                         <span>@lang('translation.UI_Elements')</span>
@@ -196,9 +219,9 @@
                         <li><a href="ui-rating">@lang('translation.Rating')</a></li>
                         <li><a href="ui-notifications">@lang('translation.Notifications')</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="waves-effect">
                         <i class="uil-shutter-alt"></i>
                         <span class="badge rounded-pill bg-info float-end">6</span>
@@ -215,9 +238,9 @@
                         <li><a href="form-wizard">@lang('translation.Wizard')</a></li>
                         <li><a href="form-mask">@lang('translation.Mask')</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="uil-list-ul"></i>
                         <span>@lang('translation.Tables')</span>
@@ -228,9 +251,9 @@
                         <li><a href="tables-responsive">@lang('translation.Responsive')</a></li>
                         <li><a href="tables-editable">@lang('translation.Editable')</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="uil-chart"></i>
                         <span>@lang('translation.Charts')</span>
@@ -242,9 +265,9 @@
                         <li><a href="charts-knob">@lang('translation.Jquery_Knob')</a></li>
                         <li><a href="charts-sparkline">@lang('translation.Sparkline')</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="uil-streering"></i>
                         <span>@lang('translation.Icons')</span>
@@ -256,9 +279,9 @@
                         <li><a href="icons-dripicons">@lang('translation.Dripicons')</a></li>
                         <li><a href="icons-fontawesome">@lang('translation.Font_Awesome')</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="uil-location-point"></i>
                         <span>@lang('translation.Maps')</span>
@@ -268,9 +291,9 @@
                         <li><a href="maps-vector">@lang('translation.Vector')</a></li>
                         <li><a href="maps-leaflet">@lang('translation.Leaflet')</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="uil-share-alt"></i>
                         <span>@lang('translation.Multi_Level')</span>
@@ -284,7 +307,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
             </ul>
         </div>

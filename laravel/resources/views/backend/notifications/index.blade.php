@@ -15,8 +15,8 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="mb-3 text-end">
-                                <a class="btn btn-primary btn-on-mobile" href="{{ route('notify.readAll') }}">@lang('pdrnl.mark_all_read')</a>
-                                <a class="btn btn-danger btn-on-mobile" href="{{ route('notify.removeAll') }}">@lang('pdrnl.delete_all')</a>
+                                <a class="btn btn-primary btn-on-mobile" href="{{ route('notify.readAll') }}">@lang('button.mark_all_read')</a>
+                                <a class="btn btn-danger btn-on-mobile" href="{{ route('notify.removeAll') }}">@lang('button.delete_all')</a>
                             </div>
                         </div>
                     </div>
