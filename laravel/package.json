@@ -87,7 +87,7 @@
         "spectrum-colorpicker2": "^2.0.5",
         "sweetalert2": "^10.16.9",
         "table-edits": "^0.0.3",
-        "tinymce": "^5.6.2",
+        "tinymce": "^5.8.2",
         "toastr": "^2.1.4",
         "waypoints": "^4.0.1",
         "webpack-rtl-plugin": "^2.0.0"
