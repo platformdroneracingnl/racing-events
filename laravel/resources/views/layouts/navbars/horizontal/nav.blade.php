@@ -61,7 +61,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteNamed(['events','events.*']) ? 'active' : '' }}" href="{{ route('root') }}">
+                            <a class="nav-link {{ Route::currentRouteNamed(['events','events.*']) ? 'active' : '' }}" href="{{ route('events') }}">
                                 <i class="uil-calendar-alt me-2"></i> @lang('menu.competitions')
                             </a>
                         </li>

@@ -2,11 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management;
+use App\Http\Controllers\Organizator;
+use App\Http\Controllers\Pilots;
 
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\LoginSecurityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 
 
@@ -36,10 +39,20 @@ Route::group([
         // Routes that requires account login
         Route::group(['middleware' => ['auth', '2fa']], function() {
             // Dashboard
-            Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-            // Change layout
-            Route::get('/layout', [DashboardController::class, 'changeLayout'])->name('layout');
+            Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+            /**
+             * Events
+             */
+            Route::get('events', [EventController::class, 'index'])->name('events');
+            Route::get('events/{eventID}', [EventController::class, 'show'])->name('events.show');
+
+            // Change layout
+            Route::get('layout', [DashboardController::class, 'changeLayout'])->name('layout');
+
+            /**
+             * Notifications
+             */
             // Mark notifications as read
             Route::get('markAsRead', function() {
                 auth()->user()->unreadNotifications->markAsRead();
@@ -54,7 +67,9 @@ Route::group([
             Route::get('notification/show/{id}', [NotificationsController::class, 'show'])->name('notify.show');
             Route::get('notification/read/{id}', [NotificationsController::class, 'read'])->name('notify.read');
 
-            // Management
+            /**
+             * Management
+             */
             Route::resource('management/roles', Management\RoleController::class, ['names' => 'management.roles']);
 			Route::resource('management/users', Management\UserController::class, ['names' => 'management.users']);
             Route::patch('management/user/{id}/suspend', [Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
@@ -63,7 +78,26 @@ Route::group([
 			Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);
 			Route::resource('management/raceteams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
 
-            // Profile
+            // Organizator
+            // Events
+            Route::resource('organizator/events', Organizator\EventController::class, ['names' => 'organizator.events']);
+
+            // Waivers
+			Route::resource('organizator/waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
+
+            /**
+             * Registrations
+             */
+            // Pilot
+            Route::post('events/{eventID}/registration', [Pilots\RegistrationController::class, 'store'])->name('registration.event');
+            // Organization
+            Route::get('event/{eventID}/registrations', [Organizator\RegistrationController::class, 'index'])->name('organizator.event.registrations');
+            Route::get('event/{eventID}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
+            Route::patch('event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
+
+            /**
+             * Profile
+             */
 			Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
 			Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 			Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
@@ -73,7 +107,9 @@ Route::group([
     }
 );
 
-// 2FA Security
+/**
+ * 2FA Security
+ */
 Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function() {
 	// Route::get('/','LoginSecurityController@show2faForm');
     Route::post('/generateSecret', [LoginSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');
