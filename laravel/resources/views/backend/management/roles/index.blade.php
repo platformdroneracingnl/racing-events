@@ -46,9 +46,9 @@
 
                     <!-- Table -->
                     <div class="row">
-                        <div class="table-responsive">
-                            <table class="table align-middle table-hover">
-                                <thead class="table-light">
+                        <div class="table-responsive mb-4">
+                            <table class="table table-centered align-middle table-hover table-nowrap mb-0">
+                                <thead>
                                     <tr>
                                         <th scope="col">Nr.</th>
                                         <th scope="col">Name</th>

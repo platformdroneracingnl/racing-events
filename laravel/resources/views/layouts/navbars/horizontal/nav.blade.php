@@ -61,7 +61,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteNamed(['events','events.*']) ? 'active' : '' }}" href="{{ route('root') }}">
+                            <a class="nav-link {{ Route::currentRouteNamed(['events','events.*']) ? 'active' : '' }}" href="{{ route('events') }}">
                                 <i class="uil-calendar-alt me-2"></i> @lang('menu.competitions')
                             </a>
                         </li>
@@ -330,14 +330,14 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-organizer" role="button">
+                            <a class="nav-link dropdown-toggle arrow-none {{ Route::currentRouteNamed('organizator.*') ? 'active' : '' }}" href="#" id="topnav-organizer" role="button">
                                 <i class="fas fa-tasks me-2"></i> {{__('Organisator')}} <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-organizer">
-                                <a class="dropdown-item {{ Route::currentRouteNamed('organizator.events.*') ? 'active' : '' }}" href="{{ route('root') }}" class="nav-link">
+                                <a class="dropdown-item {{ Route::currentRouteNamed('organizator.events.*') ? 'active' : '' }}" href="{{ route('organizator.events.index') }}" class="nav-link">
                                     @lang('menu.my_competitions')
                                 </a>
-                                <a class="dropdown-item {{ Route::currentRouteNamed('organizator.waivers.*') ? 'active' : '' }}" href="{{ route('root') }}" class="nav-link">
+                                <a class="dropdown-item {{ Route::currentRouteNamed('organizator.waivers.*') ? 'active' : '' }}" href="{{ route('organizator.waivers.index') }}" class="nav-link">
                                     @lang('category/events.waivers')
                                 </a>
                             </div>
@@ -346,7 +346,7 @@
                         <!-- Management -->
                         @if(auth()->user()->hasRole(['organizer','manager','supervisor']))
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-management" role="button">
+                                <a class="nav-link dropdown-toggle arrow-none {{ Route::currentRouteNamed('management.*') ? 'active' : '' }}" href="#" id="topnav-management" role="button">
                                     <i class="fas fa-sliders-h me-2"></i> Management <div class="arrow-down"></div>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="topnav-management">
