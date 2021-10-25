@@ -2108,16 +2108,16 @@
         },
         {
             "name": "mcamara/laravel-localization",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mcamara/laravel-localization.git",
-                "reference": "4f0bfd89e5ee8100cb8cff8ca2cc3b985ed46694"
+                "reference": "645819da9ef29f3ba7588d9b4598799caf0b2463"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mcamara/laravel-localization/zipball/4f0bfd89e5ee8100cb8cff8ca2cc3b985ed46694",
-                "reference": "4f0bfd89e5ee8100cb8cff8ca2cc3b985ed46694",
+                "url": "https://api.github.com/repos/mcamara/laravel-localization/zipball/645819da9ef29f3ba7588d9b4598799caf0b2463",
+                "reference": "645819da9ef29f3ba7588d9b4598799caf0b2463",
                 "shasum": ""
             },
             "require": {
@@ -2168,7 +2168,7 @@
             ],
             "support": {
                 "issues": "https://github.com/mcamara/laravel-localization/issues",
-                "source": "https://github.com/mcamara/laravel-localization/tree/1.6.1"
+                "source": "https://github.com/mcamara/laravel-localization/tree/1.6.2"
             },
             "funding": [
                 {
@@ -2180,7 +2180,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-01T07:45:06+00:00"
+            "time": "2021-10-24T11:55:35+00:00"
         },
         {
             "name": "monolog/monolog",
