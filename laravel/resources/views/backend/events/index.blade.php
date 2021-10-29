@@ -5,7 +5,16 @@
     use Carbon\Carbon;
 @endphp
 
+@section('title')
+    Events
+@endsection
+
 @section('content')
+    @component('common-components.breadcrumb')
+        @slot('pagetitle') Pilots @endslot
+        @slot('title') {{ __('Events') }} @endslot
+    @endcomponent
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card shadow">
@@ -47,24 +56,30 @@
                                 @foreach ($events as $event)
                                     <tr>
                                         <th scope="row">
-                                            {{ $loop->iteration }}
-                                            <!-- Als aanmaak datum event groter is of gelijk aan dan dag vandaag -->
-                                            @if ($event->start_registration->format('Y-m-d') >= Carbon::today()->subWeek()->toDateString())
-                                                <span class="badge badge-warning">@lang('category/events.new')</span>
-                                            @endif
+                                            <div class="d-flex flex-row">
+                                                <div class="p-2">
+                                                    {{ $loop->iteration }}
+                                                </div>
+                                                <!-- If today is in the week before the registration start date  -->
+                                                <h5 style="vertical-align:middle;margin-top: 4px;">
+                                                    @if ($event->start_registration->format('Y-m-d') >= Carbon::today()->subWeek()->toDateString())
+                                                        <span class="badge bg-info">@lang('category/events.new')</span>
+                                                    @endif
+                                                </h5>
+                                            </div>
                                         </th>
                                         <td>{{ $event->name }}</td>
                                         <!-- Organizator -->
                                         <td>@if(!empty($event->organization_id)) {{ $event->organization->name }} @endif</td>
                                         <!-- Event datum -->
                                         <td>{{ $event->date->format('d-m-Y') }}</td>
-                                        <!-- Aantal inschrijvingen -->
+                                        <!-- Number of registrations -->
                                         <td>
                                             {{ RegistrationController::countRegistrations($event->id) }} / {{ $event->max_registrations }}
                                             @if ($event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
-                                                <span class="badge badge-success">{{ __('Waitlist') }}</span>
+                                                <span class="badge bg-success">{{ __('Waitlist') }}</span>
                                             @elseif (RegistrationController::countRegistrations($event->id) == $event->max_registrations)
-                                                <span class="badge badge-warning">@lang('category/events.full')!</span>
+                                                <span class="badge bg-warning">@lang('category/events.full')!</span>
                                             @endif
                                         </td>
                                         <!-- Start registratie datum -->
@@ -73,13 +88,15 @@
                                                 <div class="p-2">
                                                     {{ $event->start_registration->format('d-m-Y') }}
                                                 </div>
-                                                <h4 style="vertical-align:middle;margin-top: 4px;">
-                                                    @if ($event->registration == 0 and $event->start_registration > Carbon::today())
-                                                        <span class="badge bg-primary">{{ __('Registration has yet to start') }}</span>
-                                                    @elseif ($event->registration == 1 and $event->start_registration > Carbon::today())
-                                                        <span class="badge bg-success">{{ __('Registration already opened') }}</span>
+                                                <h5 style="vertical-align:middle;margin-top: 4px;">
+                                                    @if ($event->registration == 0 and $event->start_registration >= Carbon::today())
+                                                        <!-- If registration is closed and start date -->
+                                                        <span class="badge bg-info">{{ __('Registration starts soon') }}</span>
+                                                    @elseif ($event->registration == 1 and $event->end_registration >= Carbon::today())
+                                                        <!-- If registration is open and today is before the end date -->
+                                                        <span class="badge bg-success">{{ __('Registration is open!') }}</span>
                                                     @endif
-                                                </h4>
+                                                </h5>
                                             </div>
                                         </td>
                                         <!-- Eind registratie datum -->
@@ -89,9 +106,14 @@
                                                     {{ $event->end_registration->format('d-m-Y') }}
                                                 </div>
                                                 <h5 style="vertical-align:middle;margin-top: 4px;">
-                                                    @if ($event->registration == 0 and $event->end_registration < Carbon::today())
+                                                    @if ($event->end_registration < Carbon::today())
+                                                        <!-- If today is after the end date -->
                                                         <span class="badge bg-danger">{{ __('Registration date has passed') }}</span>
-                                                    @elseif ($event->registration == 1 or $event->start_registration < Carbon::today())
+                                                    @elseif ($event->registration == 0)
+                                                        <!-- If the registration is turned off or  -->
+                                                        <span class="badge bg-danger">{{ __('Registration closed') }}</span>
+                                                    @elseif ($event->registration == 1 and $event->end_registration >= Carbon::today())
+                                                        <!-- If registration is open and today is before end date -->
                                                         <span class="badge bg-success">@lang('pdrnl.days_left', ['days' => Carbon::today()->diffInDays($event->end_registration)])</span>
                                                     @endif
                                                 </h5>
@@ -111,7 +133,7 @@
                                             <a class="btn btn-sm btn-primary" href="{{ route('events.show',$event->id) }}">@lang('button.more_info')</a>
                                             @if (RegistrationController::checkRegistration($event->id) == true)
                                                 <!-- When you already has signup for the event -->
-                                                <button class="btn btn-sm btn-dark" disabled>{{ __('Signed up') }}</button>
+                                                <button class="btn btn-sm btn-outline-dark" disabled>@lang('button.signed_up')</button>
                                             @elseif ($event->registration and $event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
                                                 <!-- If the waitlist option is on -->
                                                 <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#regModal-{{ $event->id }}">@lang('category/events.register')</button>

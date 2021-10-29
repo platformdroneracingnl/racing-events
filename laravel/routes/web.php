@@ -45,7 +45,7 @@ Route::group([
              * Events
              */
             Route::get('events', [EventController::class, 'index'])->name('events');
-            Route::get('events/{eventID}', [EventController::class, 'show'])->name('events.show');
+            Route::get('events/{id}', [EventController::class, 'show'])->name('events.show');
 
             // Change layout
             Route::get('layout', [DashboardController::class, 'changeLayout'])->name('layout');
@@ -81,18 +81,24 @@ Route::group([
             // Organizator
             // Events
             Route::resource('organizator/events', Organizator\EventController::class, ['names' => 'organizator.events']);
+            Route::post('event/{registration}/destroy', [Organizator\EventController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
 
             // Waivers
 			Route::resource('organizator/waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
+            Route::get('event/{waiver}/export', [Organizator\WaiverController::class, 'exportPDF'])->name('organizator.waiver.export');
 
             /**
              * Registrations
              */
             // Pilot
-            Route::post('events/{eventID}/registration', [Pilots\RegistrationController::class, 'store'])->name('registration.event');
+            Route::get('registrations', [Pilots\RegistrationController::class, 'myRegistrationsIndex'])->name('registrations.index');
+            Route::post('events/{event}/registration', [Pilots\RegistrationController::class, 'store'])->name('registration.event');
             // Organization
-            Route::get('event/{eventID}/registrations', [Organizator\RegistrationController::class, 'index'])->name('organizator.event.registrations');
-            Route::get('event/{eventID}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
+            Route::get('event/{event}/registrations', [Organizator\RegistrationController::class, 'index'])->name('organizator.event.registrations');
+            Route::get('event/{event}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
+            Route::get('event/{registration}/check-in', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
+            Route::patch('event/{registration}/check-in/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
+            Route::patch('event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
             Route::patch('event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
 
             /**
@@ -102,7 +108,7 @@ Route::group([
 			Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 			Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
             Route::post('profile/avatar', [ProfileController::class, 'storeAvatar'])->name('profile.avatar');
-			Route::delete('profile/{userID}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
+			Route::delete('profile/{user}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
         });
     }
 );

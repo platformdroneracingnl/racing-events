@@ -178,8 +178,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Opslaan</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sluiten</button>
+                            <button type="submit" class="btn btn-primary">@lang('button.save')</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('button.close')</button>
                         </div>
                     </div>
                 </form>

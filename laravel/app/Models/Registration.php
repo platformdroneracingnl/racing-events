@@ -16,11 +16,11 @@ class Registration extends Model {
     protected $fillable = ['user_id', 'event_id', 'status_id', 'failsafe', 'vtx_power'];
 
     public function user() {
-        return $this->hasMany('App\Models\User', 'id', 'user_id');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
     public function event() {
-        return $this->hasMany('App\Models\Event', 'id', 'event_id');
+        return $this->hasOne('App\Models\Event', 'id', 'event_id');
     }
 
     public function status() {

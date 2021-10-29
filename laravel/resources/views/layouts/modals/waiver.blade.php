@@ -14,35 +14,43 @@
                 <div class="modal-body">
                     <h1 class="text-center"><strong>@lang('category/events.waiver_title')</strong></h1>
                     <br>
-                    <p>@lang('category/events.waiver_text_1')</p>
-                    <p>@lang('category/events.waiver_text_2')</p>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="form-control waiver__label" style="height: auto;">
-                                <input type="checkbox" name="waiver-opt1" id="opt1" style="margin-right: 10px;" required>@lang('category/events.waiver_opt1')
-                            </label>
+                    <div class="row">
+                        <div class="col">
+                            <p>@lang('category/events.waiver_text_1')</p>
+                            <p>@lang('category/events.waiver_text_2')</p>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="form-control waiver__label" style="height: auto;">
-                                <input type="checkbox" name="waiver-opt2" id="opt2" style="margin-right: 10px;" required>@lang('category/events.waiver_opt2')
-                            </label>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="waiver-opt1" id="opt1" required>
+                                <label class="form-check-label" for="opt1">
+                                    @lang('category/events.waiver_opt1')
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="waiver-opt2" id="opt2" required>
+                                <label class="form-check-label" for="opt2">
+                                    @lang('category/events.waiver_opt2')
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="waiver-opt3" id="opt3" required>
+                                <label class="form-check-label" for="opt3">
+                                    @lang('category/events.waiver_opt3')
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="form-control waiver__label" style="height: auto;">
-                                <input type="checkbox" name="waiver-opt3" id="opt3" style="margin-right: 10px;" required>@lang('category/events.waiver_opt3')
-                            </label>
+                    <div class="row">
+                        <div class="col">
+                            <span><strong>@lang('category/events.signed_by')</strong>: {{ Auth::user()->name }}<br>
+                            <strong>@lang('category/events.date')</strong>: {{ Carbon::now()->format('d-m-Y') }}</span>
                         </div>
                     </div>
-                    <br>
-                    <span><strong>@lang('category/events.signed_by')</strong>: {{ Auth::user()->name }}<br>
-                    <strong>@lang('category/events.date')</strong>: {{ Carbon::now()->format('d-m-Y') }}</span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('button.close')</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('button.close')</button>
                     <button type="submit" class="btn btn-info">@lang('category/events.register')</button>
                 </div>
             </form>
