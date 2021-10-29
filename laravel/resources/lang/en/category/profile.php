@@ -13,6 +13,7 @@ return [
     'registration_count' => 'You have already registered <b>:count</b> times for a competition',
     'not_complete' => 'Your profile is not complete yet! Registration for competitions is therefore not yet possible.',
 
+    'name' => 'Name',
     'pilot_name' => 'Pilot name',
     'date_of_birth' => 'Date of birth',
     'country' => 'Country',
