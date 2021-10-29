@@ -14,6 +14,7 @@ return [
     'delete' => 'Verwijder',
     'cancel' => 'Nee, annuleer',
     'delete_all' => 'Verwijder alles',
+    'signed_up' => 'Aangemeld',
     'is_on' => 'Staat aan',
     'is_off' => 'Staat uit',
     'information' => 'Informatie',

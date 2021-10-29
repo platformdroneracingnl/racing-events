@@ -141,7 +141,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="mb-3">
-                            <div class="square-switch">
+                            <div class="square-switch-xl">
                                 <input type="checkbox" id="inlineCheckbox1" name="online" switch="bool" />
                                 <label for="inlineCheckbox1" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
@@ -152,7 +152,7 @@
                             </small>
                         </div>
                         <div class="mb-3">
-                            <div class="square-switch">
+                            <div class="square-switch-xl">
                                 <input type="checkbox" id="inlineCheckbox2" name="registration" switch="bool" />
                                 <label for="inlineCheckbox2" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
@@ -165,7 +165,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="mb-3">
-                            <div class="square-switch">
+                            <div class="square-switch-xl">
                                 <input type="checkbox" id="inlineCheckbox3" name="waitlist" switch="bool" />
                                 <label for="inlineCheckbox3" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
@@ -176,7 +176,7 @@
                             </small>
                         </div>
                         <div class="mb-3">
-                            <div class="square-switch">
+                            <div class="square-switch-xl">
                                 <input type="checkbox" id="inlineCheckbox4" name="mollie_payments" switch="bool" />
                                 <label for="inlineCheckbox4" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
@@ -189,7 +189,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-6">
                         <div class="mb-">
-                            <div class="square-switch">
+                            <div class="square-switch-xl">
                                 <input type="checkbox" id="inlineCheckbox5" name="google_calendar" switch="bool" />
                                 <label for="inlineCheckbox5" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>

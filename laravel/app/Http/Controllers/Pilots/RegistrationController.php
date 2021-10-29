@@ -13,6 +13,16 @@ use Auth;
 
 class RegistrationController extends Controller
 {
+
+    /**
+     * Get all the registrations only for specific pilot
+     */
+    public function myRegistrationsIndex() {
+        $registrations = User::with('registrations')->find(Auth::user()->id);
+        return view('backend.pilots.registrations')
+            ->with('registrations', $registrations);
+    }
+
     /**
      * Store a newly created registration in storage.
      *
@@ -39,7 +49,7 @@ class RegistrationController extends Controller
         $event = Event::where('id', '=', $eventID)->get();
         $organization = Organization::where('id', '=', $event->first()->organization_id)->get();
         $user = User::where('id', '=', $event->first()->user_id)->get();
-        
+
         // Determine status of registration
         if($this->countRegistrations($eventID) < $event[0]->max_registrations and $event[0]->price == 0) {
             $registration->status_id = 3;

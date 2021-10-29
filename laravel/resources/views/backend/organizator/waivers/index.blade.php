@@ -60,10 +60,10 @@
                                     @foreach ($result as $waiver)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ WaiverController::getUser($waiver->user_id)->name }}</td>
-                                            <td>{{ WaiverController::getUser($waiver->user_id)->pilot_name }}</td>
-                                            <td>{{ WaiverController::getUser($waiver->user_id)->email }}</td>
-                                            <td>{{ WaiverController::getCompetition($waiver->event_id)->name }}</td>
+                                            <td>{{ $waiver->user->name }}</td>
+                                            <td>{{ $waiver->user->pilot_name }}</td>
+                                            <td>{{ $waiver->user->email }}</td>
+                                            <td>{{ $waiver->event->name }}</td>
                                             <td>{{ $waiver->created_at->format('d-m-Y H:i:s') }}</td>
                                             <td>
                                                 <a class="btn btn-sm btn-primary" href="{{ route('organizator.waiver.export', $waiver->id) }}"><i class="far fa-file-pdf"></i> Export als PDF</a>

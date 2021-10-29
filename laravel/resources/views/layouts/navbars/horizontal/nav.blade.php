@@ -324,7 +324,7 @@
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{ Route::currentRouteNamed('registrations.*') ? 'active' : '' }}" href="{{ route('root') }}">
+                            <a class="nav-link {{ Route::currentRouteNamed('registrations.*') ? 'active' : '' }}" href="{{ route('registrations.index') }}">
                                 <i class="uil-swatchbook me-2"></i> @lang('menu.my_registrations')
                             </a>
                         </li>

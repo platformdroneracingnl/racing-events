@@ -13,6 +13,7 @@ return [
     'registration_count' => 'Je hebt je al <b>:count</b> keer ingeschreven voor een wedstrijd',
     'not_complete' => 'Je profiel is nog niet compleet! Inschrijven op wedstrijden is daardoor nog niet mogelijk.',
 
+    'name' => 'Naam',
     'pilot_name' => 'Piloot naam',
     'date_of_birth' => 'Geboortedatum',
     'country' => 'Land',

@@ -64,7 +64,7 @@ class User extends Authenticatable
     /**
      * Relationships
      */
-    public function country() {
+    public function countries() {
         return $this->hasOne(Country::class, 'id', 'country');
     }
 

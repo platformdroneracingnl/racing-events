@@ -60,7 +60,7 @@ class NotificationsController extends Controller {
         // If notification can be found, mark as read and go to link
         if ($notification) {
             $notification->markAsRead();
-            return redirect($notification->data['link']);
+            return redirect($notification->data['url']);
         }
     }
 }

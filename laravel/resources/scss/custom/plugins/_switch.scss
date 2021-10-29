@@ -118,3 +118,47 @@ input[switch="dark"]:checked + label {
     border-radius: 4px;
   }
 }
+
+.square-switch-xl{
+  input[switch]+label {
+    border-radius: 4px;
+    width: 80px;
+    height: 36px;
+  }
+
+  input[switch]+label:before {
+    font-size: 15px;
+    top: 5px;
+  }
+
+  input[switch]+label:after{
+    border-radius: 4px;
+    height: 32px;
+  }
+
+  input[switch]:checked + label:after {
+    left: 57px;
+  }
+}
+
+.square-switch-xxl{
+  input[switch]+label {
+    border-radius: 4px;
+    width: 130px;
+    height: 40px;
+  }
+
+  input[switch]+label:before {
+    font-size: 15px;
+    top: 7px;
+  }
+
+  input[switch]+label:after{
+    border-radius: 4px;
+    height: 36px;
+  }
+
+  input[switch]:checked + label:after {
+    left: 107px;
+  }
+}
