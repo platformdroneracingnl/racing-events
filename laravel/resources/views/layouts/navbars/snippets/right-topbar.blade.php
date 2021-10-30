@@ -38,7 +38,7 @@
                     </a>
                 </div>
                 <div class="col">
-                    <a class="dropdown-icon-item" href="{{ route('layout') }}">
+                    <a class="dropdown-icon-item" href="{{ route('event.scan') }}">
                         <i class="mdi mdi-qrcode-scan fa-2x"></i>
                         <span>Scan</span>
                     </a>

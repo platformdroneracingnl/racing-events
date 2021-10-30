@@ -27,7 +27,7 @@ const folder = {
             {"name": "node-waves", "assets": ["./node_modules/node-waves/dist/waves.js"]},
             {"name": "waypoints", "assets": ["./node_modules/waypoints/lib/jquery.waypoints.min.js"]},
             {"name": "select2", "assets": ["./node_modules/select2/dist/js/select2.min.js", "./node_modules/select2/dist/css/select2.min.css"]},
-            {"name": "chart-js", "assets": ["./node_modules/chart.js/dist/Chart.bundle.min.js"]},
+            {"name": "chart-js", "assets": ["./node_modules/chart.js/dist/chart.min.js"]},
             {"name": "apexcharts", "assets": ["./node_modules/apexcharts/dist/apexcharts.min.js"]},
             {
                 "name": "datatables", "assets": ["./node_modules/datatables.net/js/jquery.dataTables.min.js",
@@ -128,6 +128,7 @@ const folder = {
             {"name": "jquery-steps", "assets": ["./node_modules/jquery-steps/build/jquery.steps.min.js"]},
             {"name": "datepicker", "assets": ["./node_modules/@chenfengyuan/datepicker/dist/datepicker.min.js","./node_modules/@chenfengyuan/datepicker/dist/datepicker.min.css"]},
             {"name": "litepicker", "assets": ["./node_modules/litepicker/dist/bundle.js", "./node_modules/litepicker/dist/css/litepicker.css"]},
+            {"name": "html5-qrcode", "assets": ["./node_modules/html5-qrcode/html5-qrcode.min.js"]},
         ]
     };
 

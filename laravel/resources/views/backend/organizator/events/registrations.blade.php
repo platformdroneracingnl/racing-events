@@ -26,6 +26,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="text-end">
+                                <a class="btn btn-info btn-on-mobile" href="{{ route('event.scan') }}"><i class="fas fa-qrcode"></i> Scan</a>
                                 <button type="button" class="btn btn-info btn-on-mobile" data-bs-toggle="modal" data-bs-target="#infoModal"><i class="fas fa-info-circle"></i> @lang('button.information')</button>
                                 <a class="btn btn-secondary btn-on-mobile" href="{{ route('organizator.event.export', $event->id) }}"><i class="far fa-file-pdf"></i> {{__('Export PDF')}}</a>
                                 <a class="btn btn-success btn-on-mobile" href="{{ route('organizator.events.index') }}">@lang('button.back')</a>
@@ -244,37 +245,14 @@
         </div>
     @endforeach
     <!-- Information Modal -->
-    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Information about registrations') }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>{{ __('Explanation of the different statuses in the registration') }}:
-                        <ul>
-                            <li><b>{{ __('Waiting for payment') }}</b>: {{ __('registration has been received and is awaiting payment') }}</li>
-                            <li><b>{{ __('Registration complete') }}</b>: {{ __('payment has been received, registration for the competition has been completed') }}</li>
-                            <li><b>{{ __('Waitlist') }}</b>: {{ __('race is full and pilot is on a waiting list (if waiting list option is enabled)') }}</li>
-                            <li><b>{{ __('Canceled') }}</b>: {{ __('registration has been canceled, but the pilot will not be refunded the registration fee') }}</li>
-                            <li><b>{{ __('Refunded') }}</b>: {{ __('registration has been canceled and the organizer has refunded the registration fee') }}</li>
-                        </ul>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('button.close')</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('layouts.modals.status')
 @endsection
 
 @section('script')
     <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
     <script src="{{ asset('pdrnl')}}/js/auto-refresh.js"></script>
     <script src="{{ asset('pdrnl')}}/js/dataTables/registrations-organizator.js"></script>
-    <script>
+    <script type="text/javascript">
         var locale = {!! json_encode($lang) !!};
     </script>
 @endsection
