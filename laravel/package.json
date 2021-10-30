@@ -59,7 +59,7 @@
         "html5-qrcode": "^2.1.1",
         "inputmask": "^4.0.9",
         "ion-rangeslider": "^2.3.1",
-        "jquery": "^3.5.1",
+        "jquery": "^3.6.0",
         "jquery-bar-rating": "^1.2.2",
         "jquery-countdown": "^2.2.0",
         "jquery-knob": "^1.2.11",
