@@ -26,7 +26,7 @@ class RegistrationController extends Controller
         $this->middleware('permission:event-list|event-create|event-edit|event-delete|event-registration|event-checkin', ['only' => ['registrations','exportPDF']]);
         $this->middleware('permission:event-delete', ['only' => ['destroyRegistration']]);
         $this->middleware('permission:event-registration', ['only' => ['changeMultipleRegistration','updateRegistration']]);
-        $this->middleware('permission:event-checkin', ['only' => ['checkin','updateCheckin']]);
+        $this->middleware('permission:event-checkin', ['only' => ['checkin','updateCheckin','scan']]);
     }
 
     /**
@@ -41,6 +41,13 @@ class RegistrationController extends Controller
 
         return view('backend.organizator.events.registrations', compact('event','registrationStatus','lang'))
             ->with(['registrations' => $result]);
+    }
+
+    /**
+     * Browser QR Code scan page
+     */
+    public function scan() {
+        return view('backend.organizator.scan');
     }
 
     /**
@@ -74,7 +81,7 @@ class RegistrationController extends Controller
             } else {
                 alert()->warning(trans('sweetalert.error_check_in_title'),trans('sweetalert.error_check_in_text'));
             }
-            return redirect()->route('dashboard');
+            return redirect()->route('event.scan');
         } catch (\Throwable $th) {
             dd($th);
         }
