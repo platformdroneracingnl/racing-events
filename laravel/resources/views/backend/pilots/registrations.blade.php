@@ -38,7 +38,7 @@
                     </div>
                     <!-- Table -->
                     <div class="table-responsive mb-4">
-                        <table class="table table-centered align-middle table-nowrap mb-0">
+                        <table class="table table-centered align-middle table-nowrap">
                             <thead>
                                 <tr>
                                     <th scope="col">Nr.</th>
