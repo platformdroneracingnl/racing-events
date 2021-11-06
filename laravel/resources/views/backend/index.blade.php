@@ -4,6 +4,12 @@
     @lang('translation.Horizontal_Layout')
 @endsection
 
+@php
+    use App\Http\Controllers\Pilots\RegistrationController;
+    use App\Http\Controllers\CountController;
+    use Carbon\Carbon;
+@endphp
+
 @section('content')
     @component('common-components.breadcrumb')
         @slot('pagetitle') Layouts @endslot
@@ -20,240 +26,74 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="float-end mt-2">
-                        <div id="total-revenue-chart"></div>
+        @if ($agent->isMobile() == false)
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="float-end mt-2">
+                            <div id="total-revenue-chart"></div>
+                        </div>
+                        <div>
+                            <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{ CountController::getTotalEvents() }}</span></h4>
+                            <p class="text-muted mb-0">Gehouden wedstrijden</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="mb-1 mt-1">$<span data-plugin="counterup">34,152</span></h4>
-                        <p class="text-muted mb-0">Total Revenue</p>
-                    </div>
-                    <p class="text-muted mt-3 mb-0"><span class="text-success me-1"><i
-                                class="mdi mdi-arrow-up-bold me-1"></i>2.65%</span> since last week
-                    </p>
                 </div>
             </div>
-        </div> <!-- end col-->
 
-        <div class="col-md-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="float-end mt-2">
-                        <div id="orders-chart"> </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="float-end mt-2">
+                            <div id="orders-chart"> </div>
+                        </div>
+                        <div>
+                            <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{ CountController::getTotalUsers() }}</span></h4>
+                            <p class="text-muted mb-0">Aantal gebruikers</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="mb-1 mt-1"><span data-plugin="counterup">5,643</span></h4>
-                        <p class="text-muted mb-0">Orders</p>
-                    </div>
-                    <p class="text-muted mt-3 mb-0"><span class="text-danger me-1"><i
-                                class="mdi mdi-arrow-down-bold me-1"></i>0.82%</span> since last week
-                    </p>
                 </div>
             </div>
-        </div> <!-- end col-->
 
-        <div class="col-md-6 col-xl-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="float-end mt-2">
-                        <div id="customers-chart"> </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="float-end mt-2">
+                            <div id="customers-chart"> </div>
+                        </div>
+                        <div>
+                            <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{ CountController::getTotalRegistrations() }}</span></h4>
+                            <p class="text-muted mb-0">Aantal inschrijvingen</p>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="mb-1 mt-1"><span data-plugin="counterup">45,254</span></h4>
-                        <p class="text-muted mb-0">Customers</p>
-                    </div>
-                    <p class="text-muted mt-3 mb-0"><span class="text-danger me-1"><i
-                                class="mdi mdi-arrow-down-bold me-1"></i>6.24%</span> since last week
-                    </p>
                 </div>
             </div>
-        </div> <!-- end col-->
+        @endif
 
         <div class="col-md-6 col-xl-3">
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="float-end mt-2">
-                        <div id="growth-chart"></div>
+            @if (empty(auth()->user()->country) or empty(auth()->user()->pilot_name))
+                <a href="{{ route('profile.show', '#changeprofile') }}">
+                    <div class="card bg-danger">
+                        <div class="card-body">
+                            <div>
+                                <h4 class="mb-1 mt-1" style="color: white">Profiel is <b>incompleet</b> <i class="mdi mdi-account-alert-outline"></i></h4>
+                                <p class="mb-0" style="color: white">Er ontbreken nog gegevens op je profiel</p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="mb-1 mt-1">+ <span data-plugin="counterup">12.58</span>%</h4>
-                        <p class="text-muted mb-0">Growth</p>
+                </a>
+            @else
+                <div class="card bg-success">
+                    <div class="card-body">
+                        <div>
+                            <h4 class="mb-1 mt-1" style="color: white">Profiel is <b>compleet</b> <i class="mdi mdi-account-check-outline"></i></h4>
+                            <p class="mb-0" style="color: white">Je kan inschrijven voor wedstrijden</p>
+                        </div>
                     </div>
-                    <p class="text-muted mt-3 mb-0"><span class="text-success me-1"><i
-                                class="mdi mdi-arrow-up-bold me-1"></i>10.51%</span> since last week
-                    </p>
                 </div>
-            </div>
-        </div> <!-- end col-->
-    </div> <!-- end row-->
-
-    <div class="row">
-        <div class="col-xl-8">
-            <div class="card">
-                <div class="card-body">
-                    <div class="float-end">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle text-reset" href="#" id="dropdownMenuButton5"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fw-semibold">Sort By:</span> <span class="text-muted">Yearly<i
-                                        class="mdi mdi-chevron-down ms-1"></i></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton5">
-                                <a class="dropdown-item" href="#">Monthly</a>
-                                <a class="dropdown-item" href="#">Yearly</a>
-                                <a class="dropdown-item" href="#">Weekly</a>
-                            </div>
-                        </div>
-                    </div>
-                    <h4 class="card-title mb-4">Sales Analytics</h4>
-
-                    <div class="mt-1">
-                        <ul class="list-inline main-chart mb-0">
-                            <li class="list-inline-item chart-border-left me-0 border-0">
-                                <h3 class="text-primary">$<span data-plugin="counterup">2,371</span><span
-                                        class="text-muted d-inline-block font-size-15 ms-3">Income</span></h3>
-                            </li>
-                            <li class="list-inline-item chart-border-left me-0">
-                                <h3><span data-plugin="counterup">258</span><span
-                                        class="text-muted d-inline-block font-size-15 ms-3">Sales</span>
-                                </h3>
-                            </li>
-                            <li class="list-inline-item chart-border-left me-0">
-                                <h3><span data-plugin="counterup">3.6</span>%<span
-                                        class="text-muted d-inline-block font-size-15 ms-3">Conversation Ratio</span></h3>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="mt-3">
-                        <div id="sales-analytics-chart" class="apex-charts" dir="ltr"></div>
-                    </div>
-                </div> <!-- end card-body-->
-            </div> <!-- end card-->
-        </div> <!-- end col-->
-
-        <div class="col-xl-4">
-            <div class="card bg-primary">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-sm-8">
-                            <p class="text-white font-size-18">Enhance your <b>Campaign</b> for better outreach <i
-                                    class="mdi mdi-arrow-right"></i></p>
-                            <div class="mt-4">
-                                <a href="javascript: void(0);" class="btn btn-success waves-effect waves-light">Upgrade
-                                    Account!</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="mt-4 mt-sm-0">
-                                <img src="{{ URL::asset('/assets/images/setup-analytics-amico.svg') }}" class="img-fluid"
-                                    alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- end card-body-->
-            </div> <!-- end card-->
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="float-end">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle text-reset" href="#" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fw-semibold">Sort By:</span> <span class="text-muted">Yearly<i
-                                        class="mdi mdi-chevron-down ms-1"></i></span>
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                <a class="dropdown-item" href="#">Monthly</a>
-                                <a class="dropdown-item" href="#">Yearly</a>
-                                <a class="dropdown-item" href="#">Weekly</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h4 class="card-title mb-4">Top Selling Products</h4>
-
-
-                    <div class="row align-items-center g-0 mt-3">
-                        <div class="col-sm-3">
-                            <p class="text-truncate mt-1 mb-0"><i class="mdi mdi-circle-medium text-primary me-2"></i>
-                                Desktops </p>
-                        </div>
-
-                        <div class="col-sm-9">
-                            <div class="progress mt-1" style="height: 6px;">
-                                <div class="progress-bar progress-bar bg-primary" role="progressbar" style="width: 52%"
-                                    aria-valuenow="52" aria-valuemin="0" aria-valuemax="52">
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-
-                    <div class="row align-items-center g-0 mt-3">
-                        <div class="col-sm-3">
-                            <p class="text-truncate mt-1 mb-0"><i class="mdi mdi-circle-medium text-info me-2"></i> iPhones
-                            </p>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="progress mt-1" style="height: 6px;">
-                                <div class="progress-bar progress-bar bg-info" role="progressbar" style="width: 45%"
-                                    aria-valuenow="45" aria-valuemin="0" aria-valuemax="45">
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-
-                    <div class="row align-items-center g-0 mt-3">
-                        <div class="col-sm-3">
-                            <p class="text-truncate mt-1 mb-0"><i class="mdi mdi-circle-medium text-success me-2"></i>
-                                Android </p>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="progress mt-1" style="height: 6px;">
-                                <div class="progress-bar progress-bar bg-success" role="progressbar" style="width: 48%"
-                                    aria-valuenow="48" aria-valuemin="0" aria-valuemax="48">
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-
-                    <div class="row align-items-center g-0 mt-3">
-                        <div class="col-sm-3">
-                            <p class="text-truncate mt-1 mb-0"><i class="mdi mdi-circle-medium text-warning me-2"></i>
-                                Tablets </p>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="progress mt-1" style="height: 6px;">
-                                <div class="progress-bar progress-bar bg-warning" role="progressbar" style="width: 78%"
-                                    aria-valuenow="78" aria-valuemin="0" aria-valuemax="78">
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-
-                    <div class="row align-items-center g-0 mt-3">
-                        <div class="col-sm-3">
-                            <p class="text-truncate mt-1 mb-0"><i class="mdi mdi-circle-medium text-purple me-2"></i> Cables
-                            </p>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="progress mt-1" style="height: 6px;">
-                                <div class="progress-bar progress-bar bg-purple" role="progressbar" style="width: 63%"
-                                    aria-valuenow="63" aria-valuemin="0" aria-valuemax="63">
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- end row-->
-
-                </div> <!-- end card-body-->
-            </div> <!-- end card-->
-        </div> <!-- end Col -->
-    </div> <!-- end row-->
+            @endif
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-xl-4">
@@ -526,215 +366,81 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Latest Transaction</h4>
-                    <div class="table-responsive">
-                        <table class="table table-centered table-nowrap mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th style="width: 20px;">
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="customCheck1">
-                                            <label class="form-check-label" for="customCheck1">&nbsp;</label>
-                                        </div>
-                                    </th>
-                                    <th>Order ID</th>
-                                    <th>Billing Name</th>
-                                    <th>Date</th>
-                                    <th>Total</th>
-                                    <th>Payment Status</th>
-                                    <th>Payment Method</th>
-                                    <th>View Details</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#MB2540</a> </td>
-                                    <td>Neal Matthews</td>
-                                    <td>
-                                        07 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $400
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-soft-success font-size-12">Paid</span>
-                                    </td>
-                                    <td>
-                                        <i class="fab fa-cc-mastercard me-1"></i> Mastercard
-                                    </td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                            View Details
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="customCheck3">
-                                            <label class="form-check-label" for="customCheck3">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#MB2541</a> </td>
-                                    <td>Jamal Burnett</td>
-                                    <td>
-                                        07 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $380
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-soft-danger font-size-12">Chargeback</span>
-                                    </td>
-                                    <td>
-                                        <i class="fab fa-cc-visa me-1"></i> Visa
-                                    </td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                            View Details
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="customCheck4">
-                                            <label class="form-check-label" for="customCheck4">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#MB2542</a> </td>
-                                    <td>Juan Mitchell</td>
-                                    <td>
-                                        06 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $384
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-soft-success font-size-12">Paid</span>
-                                    </td>
-                                    <td>
-                                        <i class="fab fa-cc-paypal me-1"></i> Paypal
-                                    </td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                            View Details
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="customCheck5">
-                                            <label class="form-check-label" for="customCheck5">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#MB2543</a> </td>
-                                    <td>Barry Dick</td>
-                                    <td>
-                                        05 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $412
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-soft-success font-size-12">Paid</span>
-                                    </td>
-                                    <td>
-                                        <i class="fab fa-cc-mastercard me-1"></i> Mastercard
-                                    </td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                            View Details
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="customCheck6">
-                                            <label class="form-check-label" for="customCheck6">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#MB2544</a> </td>
-                                    <td>Ronald Taylor</td>
-                                    <td>
-                                        04 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $404
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-soft-warning font-size-12">Refund</span>
-                                    </td>
-                                    <td>
-                                        <i class="fab fa-cc-visa me-1"></i> Visa
-                                    </td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                            View Details
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check font-size-16">
-                                            <input type="checkbox" class="form-check-input" id="customCheck7">
-                                            <label class="form-check-label" for="customCheck7">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td><a href="javascript: void(0);" class="text-body fw-bold">#MB2545</a> </td>
-                                    <td>Jacob Hunter</td>
-                                    <td>
-                                        04 Oct, 2019
-                                    </td>
-                                    <td>
-                                        $392
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill bg-soft-success font-size-12">Paid</span>
-                                    </td>
-                                    <td>
-                                        <i class="fab fa-cc-paypal me-1"></i> Paypal
-                                    </td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button"
-                                            class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
-                                            View Details
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6">
+                            <h4 class="card-title mb-4">{{ __('Last 5 matches') }}</h4>
+                        </div>
+                        <div class="col-12 col-md-6 text-end">
+                            <a href="{{ route('events') }}" class="btn btn-sm btn-primary btn-on-mobile mb-4">{{ __('View more competitions') }}</a>
+                        </div>
                     </div>
-                    <!-- end table-responsive -->
+                    <div class="row">
+                        <div class="table-responsive mb-4">
+                            <table class="table table-centered table-nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Nr.</th>
+                                        <th scope="col">@lang('category/events.competition')</th>
+                                        <th scope="col">@lang('category/events.date')</th>
+                                        <th scope="col">@lang('category/events.start_registration')</th>
+                                        <th scope="col">Pilots <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="{{ __('Number of registrations / Maximum number') }}"></i></th>
+                                        <th scope="col">@lang('category/events.price')</th>
+                                        <th scope="col">@lang('button.options')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($events as $event)
+                                        <tr>
+                                            <th scope="row">
+                                                {{ $loop->iteration }}
+                                                <!-- Als aanmaak datum event groter is of gelijk aan dan dag vandaag -->
+                                                @if ($event->start_registration->format('Y-m-d') >= Carbon::today()->subWeek()->toDateString())
+                                                    <!-- Alleen de eerste week word deze label getoond -->
+                                                    <span class="badge bg-warning">@lang('category/events.new')</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $event->name }}</td>
+                                            <td>{{ $event->date->format('d-m-Y') }}</td>
+                                            <td>{{ $event->start_registration->format('d-m-Y') }}</td>
+                                            <!-- Aantal inschrijvingen -->
+                                            <td>
+                                                {{ RegistrationController::countRegistrations($event->id) }} / {{ $event->max_registrations }}
+                                                @if ($event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
+                                                    <span class="badge badge-success">{{ __('Waitlist') }}</span>
+                                                @elseif (RegistrationController::countRegistrations($event->id) == $event->max_registrations)
+                                                    <span class="badge badge-warning">@lang('category/events.full')!</span>
+                                                @endif
+                                            </td>
+                                            <!-- Price -->
+                                            <td>
+                                                @if ($event->price == 0)
+                                                    {{ __('Free') }}!
+                                                @else
+                                                    €{{ number_format($event->price, 2) }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-sm btn-primary" href="{{ route('events.show',$event->id) }}">@lang('button.more_info')</a>
+                                                @if ($event->registration and $event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
+                                                    <a class="btn btn-success btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.opened')</a>
+                                                @elseif ($event->registration == 1 and RegistrationController::countRegistrations($event->id) < $event->max_registrations)
+                                                    <a class="btn btn-success btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.opened')</a>
+                                                @else
+                                                    <a class="btn btn-danger btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.closed')</a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- end row -->
-
 @endsection
 
 @section('script')

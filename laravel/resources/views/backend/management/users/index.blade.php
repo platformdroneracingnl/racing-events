@@ -48,7 +48,7 @@
                     <!-- Table -->
                     <div class="row">
                         <div class="table-responsive mb-4">
-                            <table id="usersTable" class="table align-middle table-centered table-hover dt-responsive table-nowrap mb-0" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                            <table id="usersTable" class="table align-middle table-centered table-hover dt-responsive table-nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead>
                                     <tr>
                                         <th scope="col">Nr.</th>

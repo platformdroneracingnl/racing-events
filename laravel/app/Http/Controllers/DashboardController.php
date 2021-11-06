@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Jenssegers\Agent\Agent;
+use App\Models\Event;
+use Carbon\Carbon;
 use Auth;
 
 class DashboardController extends Controller
@@ -14,7 +17,16 @@ class DashboardController extends Controller
         // $user->save();
 
         // dd(Auth::user()->setting('layout_sidebar'));
-        return view('backend.index');
+
+        $agent = new Agent();
+
+        // Geef waardes mee voor wedstrijd overzicht
+        $events = Event::orderBy('date', 'asc')
+            ->take(5)
+            ->get()
+            ->where('online', 1)
+            ->where('date', '>=', Carbon::today());
+        return view('backend.index', compact('events', 'agent'));
     }
 
     /*Language Translation*/
