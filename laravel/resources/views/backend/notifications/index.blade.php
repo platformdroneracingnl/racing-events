@@ -31,7 +31,7 @@
                                         <th scope="col">Info</th>
                                         <th scope="col">@lang('pdrnl.subject')</th>
                                         <th scope="col">@lang('pdrnl.message')</th>
-                                        <th scope="col">@lang('pdrnl.options')</th>
+                                        <th scope="col">@lang('button.options')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,8 +73,8 @@
                                                 <form action="{{ route('notify.remove', $notify->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a class="btn btn-sm btn-success" href="{{ route('notify.read', $notify->id) }}">@lang('pdrnl.mark_read')</a>
-                                                    <button type="submit" class="btn btn-sm btn-danger">@lang('pdrnl.delete')</button>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('notify.read', $notify->id) }}">@lang('button.mark_read')</a>
+                                                    <button type="submit" class="btn btn-sm btn-danger">@lang('button.delete')</button>
                                                 </form>
                                             </td>
                                         </tr>

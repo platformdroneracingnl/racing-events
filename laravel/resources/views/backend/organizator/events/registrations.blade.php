@@ -49,7 +49,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="table-responsive">
-                                <table id="registrationsTable" class="table align-middle table-centered table-hover dt-responsive table-nowrap mb-0" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table id="registrationsTable" class="table align-middle table-centered table-hover dt-responsive table-nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
                                             <th scope="col"><input type="checkbox" value="selectAll" id="masterCheck"/></th>
