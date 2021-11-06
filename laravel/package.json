@@ -29,7 +29,7 @@
         "@curiosityx/bootstrap-session-timeout": "^1.0.0",
         "@fullcalendar/bootstrap": "^5.10.1",
         "@fullcalendar/core": "^5.10.1",
-        "@fullcalendar/daygrid": "^4.4.0",
+        "@fullcalendar/daygrid": "^5.10.1",
         "@fullcalendar/interaction": "^5.10.1",
         "@fullcalendar/timegrid": "^5.10.1",
         "admin-resources": "git+https://github.com/themesbrand/admin-resources#master",
