@@ -5,10 +5,13 @@
         <div class="col-12 col-md-6">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="row mb-3 text-center">
+                    <div class="row mb-3">
                         <!-- Header -->
-                        <div class="col-12">
+                        <div class="col-12 col-md-6">
                             <h3 class="mb-0">QR Code scannen</h3>
+                        </div>
+                        <div class="col-12 col-md-6 text-end">
+                            <a class="btn btn-secondary btn-on-mobile ms-1" href="{{ url()->previous() }}"><i class="mdi mdi-arrow-left me-2"></i> @lang('button.back')</a>
                         </div>
                     </div>
                     <div class="row mb-3">

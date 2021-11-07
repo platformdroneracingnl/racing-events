@@ -26,10 +26,10 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="text-end">
-                                <a class="btn btn-info btn-on-mobile" href="{{ route('event.scan') }}"><i class="fas fa-qrcode"></i> Scan</a>
-                                <button type="button" class="btn btn-info btn-on-mobile" data-bs-toggle="modal" data-bs-target="#infoModal"><i class="fas fa-info-circle"></i> @lang('button.information')</button>
-                                <a class="btn btn-secondary btn-on-mobile" href="{{ route('organizator.event.export', $event->id) }}"><i class="far fa-file-pdf"></i> {{__('Export PDF')}}</a>
-                                <a class="btn btn-success btn-on-mobile" href="{{ route('organizator.events.index') }}">@lang('button.back')</a>
+                                <a class="btn btn-info btn-on-mobile ms-1" href="{{ route('event.scan') }}"><i class="fas fa-qrcode"></i> Scan</a>
+                                <button type="button" class="btn btn-info btn-on-mobile ms-1" data-bs-toggle="modal" data-bs-target="#infoModal"><i class="fas fa-info-circle"></i> @lang('button.information')</button>
+                                <a class="btn btn-success btn-on-mobile ms-1" href="{{ route('organizator.event.export', $event->id) }}"><i class="far fa-file-pdf"></i> {{__('Export PDF')}}</a>
+                                <a class="btn btn-secondary btn-on-mobile ms-1" href="{{ route('organizator.events.index') }}"><i class="mdi mdi-arrow-left me-2"></i> @lang('button.back')</a>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.backend.master')
 
 @section('title')
-    @lang('translation.Horizontal_Layout')
+    Dashboard
 @endsection
 
 @php
@@ -92,6 +92,88 @@
                     </div>
                 </div>
             @endif
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card shadow">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6">
+                            <h4 class="card-title mb-4">{{ __('Last 5 matches') }}</h4>
+                        </div>
+                        <div class="col-12 col-md-6 text-end">
+                            <a href="{{ route('events') }}" class="btn btn-sm btn-primary btn-on-mobile mb-4">{{ __('View more competitions') }}</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive mb-4">
+                            <table class="table table-centered table-nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nr.</th>
+                                        <th scope="col">@lang('category/events.competition')</th>
+                                        <th scope="col">@lang('category/events.organizer')</th>
+                                        <th scope="col">@lang('category/events.date')</th>
+                                        <th scope="col">@lang('category/events.start_registration')</th>
+                                        <th scope="col">Pilots <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="{{ __('Number of registrations / Maximum number') }}"></i></th>
+                                        <th scope="col">@lang('category/events.price')</th>
+                                        <th scope="col">@lang('button.options')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($events as $event)
+                                        <tr>
+                                            <th scope="row">
+                                                {{ $loop->iteration }}
+                                                <!-- Als aanmaak datum event groter is of gelijk aan dan dag vandaag -->
+                                                @if ($event->start_registration->format('Y-m-d') >= Carbon::today()->subWeek()->toDateString())
+                                                    <!-- Alleen de eerste week word deze label getoond -->
+                                                    <span class="badge bg-warning">@lang('category/events.new')</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ $event->name }}</td>
+                                            <!-- Organizator -->
+                                            <td>@if(!empty($event->organization_id)) {{ $event->organization->name }} @endif</td>
+                                            <!-- Event datum -->
+                                            <td>{{ $event->date->format('d-m-Y') }}</td>
+                                            <td>{{ $event->start_registration->format('d-m-Y') }}</td>
+                                            <!-- Aantal inschrijvingen -->
+                                            <td>
+                                                {{ RegistrationController::countRegistrations($event->id) }} / {{ $event->max_registrations }}
+                                                @if ($event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
+                                                    <span class="badge badge-success">{{ __('Waitlist') }}</span>
+                                                @elseif (RegistrationController::countRegistrations($event->id) == $event->max_registrations)
+                                                    <span class="badge badge-warning">@lang('category/events.full')!</span>
+                                                @endif
+                                            </td>
+                                            <!-- Price -->
+                                            <td>
+                                                @if ($event->price == 0)
+                                                    {{ __('Free') }}!
+                                                @else
+                                                    €{{ number_format($event->price, 2) }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-sm btn-primary ms-1" href="{{ route('events.show',$event->id) }}">@lang('button.more_info')</a>
+                                                @if ($event->registration and $event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
+                                                    <a class="btn btn-success btn-sm disabled ms-1" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.opened')</a>
+                                                @elseif ($event->registration == 1 and RegistrationController::countRegistrations($event->id) < $event->max_registrations)
+                                                    <a class="btn btn-success btn-sm disabled ms-1" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.opened')</a>
+                                                @else
+                                                    <a class="btn btn-danger btn-sm disabled ms-1" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.closed')</a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -358,85 +440,6 @@
                                 class="mdi mdi-chevron-right"></i></a>
                     </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end row -->
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card shadow">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-12 col-md-6">
-                            <h4 class="card-title mb-4">{{ __('Last 5 matches') }}</h4>
-                        </div>
-                        <div class="col-12 col-md-6 text-end">
-                            <a href="{{ route('events') }}" class="btn btn-sm btn-primary btn-on-mobile mb-4">{{ __('View more competitions') }}</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="table-responsive mb-4">
-                            <table class="table table-centered table-nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th scope="col">Nr.</th>
-                                        <th scope="col">@lang('category/events.competition')</th>
-                                        <th scope="col">@lang('category/events.date')</th>
-                                        <th scope="col">@lang('category/events.start_registration')</th>
-                                        <th scope="col">Pilots <i class="fas fa-info-circle" data-bs-toggle="tooltip" title="{{ __('Number of registrations / Maximum number') }}"></i></th>
-                                        <th scope="col">@lang('category/events.price')</th>
-                                        <th scope="col">@lang('button.options')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($events as $event)
-                                        <tr>
-                                            <th scope="row">
-                                                {{ $loop->iteration }}
-                                                <!-- Als aanmaak datum event groter is of gelijk aan dan dag vandaag -->
-                                                @if ($event->start_registration->format('Y-m-d') >= Carbon::today()->subWeek()->toDateString())
-                                                    <!-- Alleen de eerste week word deze label getoond -->
-                                                    <span class="badge bg-warning">@lang('category/events.new')</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ $event->name }}</td>
-                                            <td>{{ $event->date->format('d-m-Y') }}</td>
-                                            <td>{{ $event->start_registration->format('d-m-Y') }}</td>
-                                            <!-- Aantal inschrijvingen -->
-                                            <td>
-                                                {{ RegistrationController::countRegistrations($event->id) }} / {{ $event->max_registrations }}
-                                                @if ($event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
-                                                    <span class="badge badge-success">{{ __('Waitlist') }}</span>
-                                                @elseif (RegistrationController::countRegistrations($event->id) == $event->max_registrations)
-                                                    <span class="badge badge-warning">@lang('category/events.full')!</span>
-                                                @endif
-                                            </td>
-                                            <!-- Price -->
-                                            <td>
-                                                @if ($event->price == 0)
-                                                    {{ __('Free') }}!
-                                                @else
-                                                    €{{ number_format($event->price, 2) }}
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-primary" href="{{ route('events.show',$event->id) }}">@lang('button.more_info')</a>
-                                                @if ($event->registration and $event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
-                                                    <a class="btn btn-success btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.opened')</a>
-                                                @elseif ($event->registration == 1 and RegistrationController::countRegistrations($event->id) < $event->max_registrations)
-                                                    <a class="btn btn-success btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.opened')</a>
-                                                @else
-                                                    <a class="btn btn-danger btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.closed')</a>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
