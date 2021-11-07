@@ -76,15 +76,14 @@ const folder = {
             },
             {
                 "name": "fullcalendar", "assets": [
-                    "./node_modules/@fullcalendar/core/main.min.js",
-                    "./node_modules/@fullcalendar/bootstrap/main.min.js",
-                    "./node_modules/@fullcalendar/daygrid/main.min.js",
-                    "./node_modules/@fullcalendar/timegrid/main.min.js",
-                    "./node_modules/@fullcalendar/interaction/main.min.js",
-                    "./node_modules/@fullcalendar/core/main.min.css",
-                    "./node_modules/@fullcalendar/bootstrap/main.min.css",
-                    "./node_modules/@fullcalendar/daygrid/main.min.css",
-                    "./node_modules/@fullcalendar/timegrid/main.min.css"]
+                    "./node_modules/@fullcalendar/core/main.js",
+                    "./node_modules/@fullcalendar/bootstrap/main.js",
+                    "./node_modules/@fullcalendar/daygrid/main.js",
+                    "./node_modules/@fullcalendar/timegrid/main.js",
+                    "./node_modules/@fullcalendar/interaction/main.js",
+                    "./node_modules/@fullcalendar/bootstrap/main.css",
+                    "./node_modules/@fullcalendar/daygrid/main.css",
+                    "./node_modules/@fullcalendar/timegrid/main.css"]
             },
             {
                 "name": "jquery-vectormap", "assets": ["./node_modules/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js",
