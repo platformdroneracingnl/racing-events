@@ -37,7 +37,7 @@ class Event extends Model {
     protected $dates = ['start_registration','end_registration','date'];
 
     public function location() {
-        return $this->hasOne(Location::class);
+        return $this->hasOne(Location::class, 'id', 'location_id');
     }
 
     public function registration() {

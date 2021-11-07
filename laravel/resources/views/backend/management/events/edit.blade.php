@@ -29,10 +29,10 @@
                             </div>
                             <div class="col-12 col-md-6">
                                 <div class="text-end">
-                                    <a href="{{ route('management.events.index') }}" class="me-1 btn btn-secondary waves-effect waves-light btn-on-mobile">
-                                        <i class="mdi mdi-arrow-left me-2"></i> @lang('button.back')
+                                    <a href="{{ route('management.events.index') }}" class="ms-1 btn btn-secondary waves-effect waves-light btn-on-mobile">
+                                        <i class="mdi mdi-arrow-left ms-1"></i> @lang('button.back')
                                     </a>
-                                    <button type="submit" class="btn btn-primary btn-on-mobile">@lang('button.adjust')</button>
+                                    <button type="submit" class="btn btn-primary btn-on-mobile ms-1">@lang('button.adjust')</button>
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,23 @@
+.pdrnl-card-profile-stats {
+    padding: 1rem 0;
+}
+.pdrnl-card-profile-stats > div {
+    margin-right: 1rem;
+    padding: .875rem; 
+    text-align: center;
+}
+.pdrnl-card-profile-stats > div:last-child {
+    margin-right: 0;
+}
+.pdrnl-card-profile-stats > div .heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+}
+.pdrnl-card-profile-stats > div .description {
+    font-size: .875rem;
+    color: #adb5bd;
+}
 
 .logout-form:hover {
     cursor: pointer;
@@ -13,4 +33,19 @@
 
 .dataTables_filter {
     display: none;
+}
+
+@media (max-width: 768px) {
+    .btn-on-mobile {
+        width:100%;
+        margin-top: 15px;
+    }
+
+    .pdrnl-card-profile-stats > div {
+        margin-right: 0rem;
+    }
+
+    .gif-on-mobile {
+        width: -webkit-fill-available;
+    }
 }

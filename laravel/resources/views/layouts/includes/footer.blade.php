@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3">
-                <script>document.write(new Date().getFullYear())</script> © <a href="https://platformdroneracing.nl">PDRNL</a>
+                @php echo date("Y"); @endphp © <a href="https://platformdroneracing.nl">PDRNL</a>
             </div>
             <div class="col-sm-9">
                 <div class="text-sm-end d-none d-sm-block">

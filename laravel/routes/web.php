@@ -47,7 +47,7 @@ Route::group([
              * Events
              */
             Route::get('events', [EventController::class, 'index'])->name('events');
-            Route::get('events/{id}', [EventController::class, 'show'])->name('events.show');
+            Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
 
             // Change layout
             Route::get('layout', [DashboardController::class, 'changeLayout'])->name('layout');
