@@ -25,7 +25,8 @@
         "pragmarx/google2fa-laravel": "^2.0",
         "realrashid/sweet-alert": "^4.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
-        "spatie/laravel-permission": "^5.1"
+        "spatie/laravel-permission": "^5.1",
+        "willvincent/feeds": "^2.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
