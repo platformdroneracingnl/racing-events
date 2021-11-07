@@ -130,19 +130,19 @@
                                         <!-- Action buttons -->
                                         <td>
                                             <!-- Show more info button -->
-                                            <a class="btn btn-sm btn-primary" href="{{ route('events.show',$event->id) }}">@lang('button.more_info')</a>
+                                            <a class="btn btn-sm btn-primary ms-1" href="{{ route('events.show',$event->id) }}">@lang('button.more_info')</a>
                                             @if (RegistrationController::checkRegistration($event->id) == true)
                                                 <!-- When you already has signup for the event -->
-                                                <button class="btn btn-sm btn-outline-dark" disabled>@lang('button.signed_up')</button>
+                                                <button class="btn btn-sm btn-outline-dark ms-1" disabled>@lang('button.signed_up')</button>
                                             @elseif ($event->registration and $event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
                                                 <!-- If the waitlist option is on -->
-                                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#regModal-{{ $event->id }}">@lang('category/events.register')</button>
+                                                <button type="button" class="btn btn-sm btn-info ms-1" data-bs-toggle="modal" data-bs-target="#regModal-{{ $event->id }}">@lang('category/events.register')</button>
                                             @elseif ($event->registration == 1 and RegistrationController::countRegistrations($event->id) < $event->max_registrations)
                                                 <!-- If registration is open and number of registration is below the max -->
-                                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#regModal-{{ $event->id }}">@lang('category/events.register')</button>
+                                                <button type="button" class="btn btn-sm btn-info ms-1" data-bs-toggle="modal" data-bs-target="#regModal-{{ $event->id }}">@lang('category/events.register')</button>
                                             @else
                                                 <!-- Close registration -->
-                                                <a class="btn btn-sm btn-danger disabled" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.closed')</a>
+                                                <a class="btn btn-sm btn-danger disabled ms-1" tabindex="-1" role="button" aria-disabled="true">@lang('category/events.closed')</a>
                                             @endif
                                         </td>
                                     </tr>
