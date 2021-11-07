@@ -38,7 +38,7 @@
                 </li>
 
                 <li>
-                    <a href="/blabla">
+                    <a href="{{ route('news') }}">
                         <i class="uil-newspaper"></i>
                         <span>@lang('menu.news')</span>
                     </a>

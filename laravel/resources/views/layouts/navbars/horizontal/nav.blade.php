@@ -71,6 +71,12 @@
                                 <i class="fas fa-chart-line me-2"></i> @lang('menu.results')
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteNamed(['news','news.*']) ? 'active' : '' }}" href="{{ route('news') }}">
+                                <i class="uil-newspaper me-2"></i> @lang('menu.news')
+                            </a>
+                        </li>
     
                         {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button">

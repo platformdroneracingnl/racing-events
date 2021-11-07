@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginSecurityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\HomeController;
 
 
@@ -40,6 +41,7 @@ Route::group([
         Route::group(['middleware' => ['auth', '2fa']], function() {
             // Dashboard
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+            Route::get('news', [NewsController::class, 'index'])->name('news');
 
             /**
              * Events
