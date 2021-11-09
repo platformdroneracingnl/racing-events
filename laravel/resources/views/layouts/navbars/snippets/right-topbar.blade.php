@@ -74,12 +74,12 @@
     </button>
     <!-- Dropdown -->
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-        aria-labelledby="page-header-notifications-dropdown">
+        aria-labelledby="page-header-notifications-dropdown" style="width: 25rem;">
         <div class="p-3">
             <div class="row align-items-center">
                 <!-- Notification counter -->
                 <div class="col">
-                    <h5 class="m-0 font-size-16"> 
+                    <h5 class="m-0 font-size-14">
                         @if (auth()->user()->unreadNotifications->count() == 1)
                             @lang('pdrnl.notify_nr_single', ['number' => auth()->user()->unreadNotifications->count()])
                         @else
@@ -89,7 +89,7 @@
                 </div>
                 <!-- Mark all as read -->
                 <div class="col-auto">
-                    <a href="{{ route('markRead') }}" class="small"> @lang('translation.Mark_read')</a>
+                    <a href="{{ route('markRead') }}" class="small">@lang('button.mark_all_read')</a>
                 </div>
             </div>
         </div>
@@ -130,10 +130,10 @@
                 </a>
             @endforeach
         </div>
-        <!-- View more -->
+        <!-- View all -->
         <div class="p-2 border-top d-grid">
             <a class="btn btn-sm btn-link font-size-14 text-center" href="{{ route('notify.index') }}">
-                <i class="uil-arrow-circle-right me-1"></i> {{ __('View More') }}..
+                <i class="uil-arrow-circle-right me-1"></i> {{ __('View all') }}..
             </a>
         </div>
     </div>
@@ -173,7 +173,7 @@
         <!-- Log out -->
         <a class="dropdown-item logout-form" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="uil uil-sign-out-alt font-size-18 align-middle me-1 text-muted"></i>
-            <span class="align-middle">@lang('translation.Sign_out')</span>
+            <span class="align-middle">@lang('auth.logout')</span>
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
