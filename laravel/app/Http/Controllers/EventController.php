@@ -8,6 +8,7 @@ use App\Models\Location;
 Use App\Models\Event;
 use App\Models\User;
 use Carbon\Carbon;
+use Auth;
 use App;
 
 class EventController extends Controller
@@ -19,8 +20,11 @@ class EventController extends Controller
             ->get()
             ->where('online', 1)
             ->where('date', '>=', Carbon::today());
-
-        return view('backend.events.index', compact('events','lang'));
+        if (Auth::check()) {
+            return view('backend.events.index', compact('events','lang'));
+        } else {
+            return view('frontend.events', compact('events'));
+        }
     }
 
     /**

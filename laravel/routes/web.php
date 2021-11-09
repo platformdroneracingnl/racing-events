@@ -37,6 +37,7 @@ Route::group([
     function() {
         // Routes that do not require login
         Route::get('/', [HomeController::class, 'root'])->name('root');
+        Route::get('events', [EventController::class, 'index'])->name('events');
         Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
         // Routes that requires account login
@@ -48,7 +49,6 @@ Route::group([
             /**
              * Events
              */
-            Route::get('events', [EventController::class, 'index'])->name('events');
             Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
 
             // Change layout
