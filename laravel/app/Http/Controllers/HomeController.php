@@ -24,11 +24,6 @@ class HomeController extends Controller
 
     public function root()
     {
-        return view('frontend.index');
+        return view('frontend.welcome');
     }
-
-    // public function FormSubmit(Request $request)
-    // {
-    //     return view('form-repeater');
-    // }
 }

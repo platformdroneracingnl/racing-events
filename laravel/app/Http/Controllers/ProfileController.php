@@ -148,7 +148,7 @@ class ProfileController extends Controller
     /**
      * Remove user account
      */
-    public function destroyUser($userID) {
+    public function destroyUser(User $user) {
         try {
             // Remove profile image
             $filename = auth()->user()->image;
@@ -157,7 +157,7 @@ class ProfileController extends Controller
             }
 
             // Remove account
-            $user = User::find($userID)->delete();
+            $user = User::find($user->id)->delete();
 
             // SWEETALERT
             alert()->success(trans('sweetalert.profile_delete_title'),trans('sweetalert.profile_delete_text'));

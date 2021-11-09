@@ -10,7 +10,6 @@ return [
     'news' => 'Nieuws',
 
     'my_registrations' => 'Mijn Inschrijvingen',
-
     'my_competitions' => 'Mijn Wedstrijden',
 
     'manage_users' => 'Beheer Gebruikers',

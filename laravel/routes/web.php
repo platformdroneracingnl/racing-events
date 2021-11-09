@@ -8,6 +8,7 @@ use App\Http\Controllers\Pilots;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\LoginSecurityController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\NewsController;
@@ -36,9 +37,11 @@ Route::group([
     function() {
         // Routes that do not require login
         Route::get('/', [HomeController::class, 'root'])->name('root');
+        Route::get('events', [EventController::class, 'index'])->name('events');
+        Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
         // Routes that requires account login
-        Route::group(['middleware' => ['auth', '2fa']], function() {
+        Route::group(['middleware' => ['auth', '2fa', 'verified']], function() {
             // Dashboard
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
             Route::get('news', [NewsController::class, 'index'])->name('news');
@@ -46,7 +49,6 @@ Route::group([
             /**
              * Events
              */
-            Route::get('events', [EventController::class, 'index'])->name('events');
             Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
 
             // Change layout
@@ -116,6 +118,12 @@ Route::group([
         });
     }
 );
+
+Route::get('/register-retry', function(){
+    // Chrome F12 Headers - my_first_application_session=eyJpdiI6ImNnRH...
+    Cookie::queue(Cookie::forget(strtolower(str_replace(' ', '_', config('app.name'))) . '_session'));
+    return redirect('/');
+});
 
 /**
  * 2FA Security
