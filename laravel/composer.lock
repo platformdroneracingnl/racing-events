@@ -4222,20 +4222,20 @@
         },
         {
             "name": "realrashid/sweet-alert",
-            "version": "v4.0.0",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/realrashid/sweet-alert.git",
-                "reference": "4923bb91d7144c2ac5dacda0b5e1472fff3d88af"
+                "reference": "7615c5799fbc8743a6b5a7bd7f645f55a1d62723"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/4923bb91d7144c2ac5dacda0b5e1472fff3d88af",
-                "reference": "4923bb91d7144c2ac5dacda0b5e1472fff3d88af",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/7615c5799fbc8743a6b5a7bd7f645f55a1d62723",
+                "reference": "7615c5799fbc8743a6b5a7bd7f645f55a1d62723",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^7.0|^8.0",
+                "laravel/framework": "^5.6|^6.0|^7.0|^8.0",
                 "php": "^7.2|^8.0"
             },
             "require-dev": {
@@ -4308,7 +4308,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-14T19:01:35+00:00"
+            "time": "2021-11-06T09:34:33+00:00"
         },
         {
             "name": "ringcentral/psr7",
@@ -9828,5 +9828,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
