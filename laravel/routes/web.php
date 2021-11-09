@@ -8,6 +8,7 @@ use App\Http\Controllers\Pilots;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\LoginSecurityController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\NewsController;
@@ -36,6 +37,7 @@ Route::group([
     function() {
         // Routes that do not require login
         Route::get('/', [HomeController::class, 'root'])->name('root');
+        Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
         // Routes that requires account login
         Route::group(['middleware' => ['auth', '2fa', 'verified']], function() {
