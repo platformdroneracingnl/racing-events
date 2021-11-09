@@ -35,13 +35,13 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Change profile picture</a>
-                                <a class="dropdown-item" href="#">Remove account</a>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changeAvatarModel">Change profile picture</a>
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#deleteAccountModel">Remove account</a>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                         <!-- Avatar -->
-                        <div type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div type="button" data-bs-toggle="modal" data-bs-target="#changeAvatarModel">
                             <img src="@if(!empty(auth()->user()->image)) {{ asset('storage') }}/images/profiles/{{auth()->user()->image}} @else {{ asset('pdrnl') }}/img/default.png @endif" alt="Your profile image" class="avatar-xxl rounded-circle img-thumbnail">
                         </div>
                         <!-- User info -->
@@ -50,7 +50,7 @@
 
                         @if(!empty(auth()->user()->getRoleNames()))
                             <div class="mt-4">
-                                <button type="button" class="btn btn-success btn-sm">
+                                <button type="button" class="btn btn-soft-success btn-sm">
                                     @foreach(auth()->user()->getRoleNames() as $rol)
                                         {{ $rol }}
                                     @endforeach
@@ -139,11 +139,13 @@
     <!-- end row -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @include('layouts.modals.delete-account')
+
+    <div class="modal fade" id="changeAvatarModel" tabindex="-1" aria-labelledby="changeAvatarModelLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Verander profielfoto</h5>
+                    <h5 class="modal-title" id="changeAvatarModelLabel">Verander profielfoto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

@@ -12,7 +12,7 @@
 
 @section('content')
     @component('common-components.breadcrumb')
-        @slot('pagetitle') Layouts @endslot
+        @slot('pagetitle') PDRNL @endslot
         @slot('title') Dashboard @endslot
     @endcomponent
 
