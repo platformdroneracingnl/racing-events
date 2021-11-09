@@ -1,7 +1,7 @@
 @extends('layouts.auth.master-without-nav')
 
 @section('title')
-    Register
+    @lang('auth.register_account')
 @endsection
 
 @section('content')
@@ -18,26 +18,16 @@
                             @include('layouts.auth.logo')
 
                             <div class="text-center mt-2">
-                                <h5 class="text-primary">Register Account</h5>
+                                <h5 class="text-primary">@lang('auth.register_account')</h5>
                                 <p class="text-muted">Get your free PDRNL account now.</p>
                             </div>
                             <div class="p-2 mt-4">
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
 
+                                    <!-- Name -->
                                     <div class="mb-3">
-                                        <label class="form-label" for="email">Email</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="{{ old('email') }}" id="email" placeholder="Enter email">
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="name">Name</label>
+                                        <label class="form-label" for="name">@lang('auth.name')</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             name="name" value="{{ old('name') }}" id="name"
                                             placeholder="Enter name">
@@ -48,8 +38,21 @@
                                         @enderror
                                     </div>
 
+                                    <!-- Email -->
                                     <div class="mb-3">
-                                        <label class="form-label" for="userpassword">Password</label>
+                                        <label class="form-label" for="email">{{ __('E-mail') }}</label>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            name="email" value="{{ old('email') }}" id="email" placeholder="Enter email">
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="mb-3">
+                                        <label class="form-label" for="userpassword">@lang('auth.password')</label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                                             name="password" id="userpassword" placeholder="Enter password">
                                         @error('password')
@@ -60,7 +63,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label" for="password_confirmation">Confirm Password</label>
+                                        <label class="form-label" for="password_confirmation">@lang('auth.password_confirm')</label>
                                         <input type="password"
                                             class="form-control @error('password_confirmation') is-invalid @enderror"
                                             name="password_confirmation" id="password_confirmation"
@@ -75,47 +78,18 @@
 
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="auth-terms-condition-check">
-                                        <label class="form-check-label" for="auth-terms-condition-check">I accept <a
-                                                href="javascript: void(0);" class="text-dark">Terms and
-                                                Conditions</a></label>
+                                        <label class="form-check-label" for="auth-terms-condition-check">@lang('auth.agreement') <a
+                                                href="javascript: void(0);">{{ __('Privacy statement') }}</a></label>
                                     </div>
 
                                     <div class="mt-3 text-end">
                                         <button class="btn btn-primary w-sm waves-effect waves-light"
-                                            type="submit">Register</button>
+                                            type="submit">@lang('auth.create_account')</button>
                                     </div>
-
-                                    {{-- <div class="mt-4 text-center">
-                                        <div class="signin-other-title">
-                                            <h5 class="font-size-14 mb-3 title">Sign up using</h5>
-                                        </div>
-
-
-                                        <ul class="list-inline">
-                                            <li class="list-inline-item">
-                                                <a href="javascript:void()"
-                                                    class="social-list-item bg-primary text-white border-primary">
-                                                    <i class="mdi mdi-facebook"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="javascript:void()"
-                                                    class="social-list-item bg-info text-white border-info">
-                                                    <i class="mdi mdi-twitter"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="javascript:void()"
-                                                    class="social-list-item bg-danger text-white border-danger">
-                                                    <i class="mdi mdi-google"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div> --}}
 
                                     <div class="mt-4 text-center">
                                         <p class="text-muted mb-0">Already have an account ? <a href="{{ url('login') }}"
-                                                class="fw-medium text-primary"> Login</a></p>
+                                                class="fw-medium text-primary"> @lang('auth.login')</a></p>
                                     </div>
 
                                     @include('layouts.auth.footer')
