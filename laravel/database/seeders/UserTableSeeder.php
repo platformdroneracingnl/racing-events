@@ -21,8 +21,10 @@ class UserTableSeeder extends Seeder
             'name' => 'Admin',
             'pilot_name' => 'The BOSS',
             'email' => 'admin@themesbrand.com',
+            'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
             'created_at' => now(),
+            'updated_at' => now()
             // 'settings' => 2, // is True
         ]);
 

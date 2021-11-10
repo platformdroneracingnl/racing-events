@@ -234,3 +234,5 @@ const folder = {
     });
 
     mix.combine('resources/js/app.js', folder.dist_assets + "js/app.min.js");
+    mix.copy('node_modules/bootstrap/dist/css/bootstrap.min.css', 'public/vendor/bootstrap/bootstrap.min.css');
+    mix.copy('node_modules/bootstrap/dist/js/bootstrap.min.js', 'public/vendor/bootstrap/bootstrap.min.js');
