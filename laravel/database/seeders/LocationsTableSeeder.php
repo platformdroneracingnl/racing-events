@@ -23,6 +23,7 @@ class LocationsTableSeeder extends Seeder
             'city'          => 'Alkmaar',
             'province'      => 'Noord-Holland',
             'country'       => 151,
+            'category'      => 'indoor',
             'latitude'      => '52.634736318304604',
             'longitude'     => '4.716487583680192'
         ]);
@@ -36,6 +37,7 @@ class LocationsTableSeeder extends Seeder
             'city'          => 'Katwijk aan Zee',
             'province'      => 'Zuid-Holland',
             'country'       => 151,
+            'category'      => 'indoor',
             'latitude'      => '52.1712372',
             'longitude'     => '4.4107497'
         ]);
