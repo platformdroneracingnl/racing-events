@@ -26,13 +26,12 @@ jobs:
     env:
       FOLDER: ./laravel
     needs: phpunit
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2.4.0
       - name: Setup PHP
         uses: shivammathur/setup-php@master
         with:
-          php-version: 7.4
+          php-version: 8.0
           extensions: mbstring, bcmath
       - name: Setup the deployment file
         working-directory: ${{env.FOLDER}}
