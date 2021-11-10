@@ -13,6 +13,7 @@ use App\Models\Status;
 use app\Models\User;
 use App\Models\Event;
 use Auth;
+use PDF;
 use App;
 
 class RegistrationController extends Controller
@@ -147,6 +148,19 @@ class RegistrationController extends Controller
             alert()->warning("Oeps daar ging wat fout","Je hebt geen status opgegeven");
             return redirect()->back();
         }
+    }
+
+    /**
+     * Export drone pilots list of match to PDF
+     */
+    public function exportPDF(Event $event) {
+        // Get variables
+        $registrations = Registration::with('user')->get()->where('event_id', $event->id);
+
+        // Generate PDF and download
+        $pdf = PDF::loadView('backend.organizator.events.export-pdf', compact('registrations', 'event'))->setPaper('a4', 'landscape');
+        // return view('backend.organizator.events.export-pdf', compact('registrations', 'event'));
+        return $pdf->download($event->name.'-wedstrijd-export.pdf');
     }
 
     /**

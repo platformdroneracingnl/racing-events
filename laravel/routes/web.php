@@ -36,7 +36,7 @@ Route::group([
     'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
     function() {
         // Routes that do not require login
-        Route::get('/', [HomeController::class, 'root'])->name('root');
+        Route::get('/', [HomeController::class, 'root'])->name('root')->middleware('guest');
         Route::get('events', [EventController::class, 'index'])->name('events');
         Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
