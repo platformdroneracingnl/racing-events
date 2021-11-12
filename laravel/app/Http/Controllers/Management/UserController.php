@@ -95,7 +95,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  User $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user) {
@@ -109,7 +109,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  user $user
+     * @param  \App\Models\User  $user
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -144,7 +144,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  user  $user
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user) {
@@ -158,7 +158,7 @@ class UserController extends Controller
     /**
      * Suspend a user
      * 
-     * @param user $user
+     * @param \App\Models\User  $user
      * @param  \Illuminate\Http\Request  $request
      */
     public function suspendUser(Request $request, User $user) {

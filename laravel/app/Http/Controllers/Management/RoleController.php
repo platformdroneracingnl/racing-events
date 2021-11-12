@@ -66,7 +66,7 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  Role  $role
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function show(Role $role) {
@@ -79,7 +79,7 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Role  $role
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function edit(Role $role) {
@@ -94,7 +94,7 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Role  $role
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Role $role) {
