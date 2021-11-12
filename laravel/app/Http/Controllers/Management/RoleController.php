@@ -66,32 +66,27 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        $role = Role::find($id);
+    public function show(Role $role) {
         $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
-            ->where("role_has_permissions.role_id",$id)
+            ->where("role_has_permissions.role_id",$role->id)
             ->get();
-    
         return view('backend.management.roles.show', compact('role','rolePermissions'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $role = Role::find($id);
+    public function edit(Role $role) {
         $permission = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$role->id)
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
-    
         return view('backend.management.roles.edit', compact('role','permission','rolePermissions'));
     }
 
@@ -99,22 +94,20 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, Role $role) {
         $this->validate($request, [
             'name' => 'required',
             'permission' => 'required',
         ]);
-    
-        $role = Role::find($id);
+
         $role->name = $request->input('name');
         $role->save();
-    
+
         $role->syncPermissions($request->input('permission'));
-    
+
         return redirect()->route('management.roles.index')
             ->with('success','Rol is succesvol bijgewerkt');
     }
@@ -125,8 +118,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         DB::table("roles")->where('id',$id)->delete();
         return redirect()->route('management.roles.index')
             ->with('success','Rol is succesvol verwijderd');
