@@ -26,7 +26,7 @@ class Controller extends BaseController
      */
     protected function deleteOldImage($type, $oldImage) {
 
-        if ($type == 'profiles') {
+        if ($type == 'user-avatar') {
             if (auth()->user()->image) {
                 Storage::disk('local')->delete('public/images/profiles/'.auth()->user()->image);
             }

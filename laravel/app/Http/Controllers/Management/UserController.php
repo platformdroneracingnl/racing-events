@@ -85,22 +85,20 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        $user = User::find($id);
+    public function show(User $user) {
         return view('backend.management.users.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        $user = User::find($id);
+    public function edit(User $user) {
         $organizations = Organization::all();
         $raceTeams = RaceTeam::all();
         $roles = Role::pluck('name')->all();
@@ -111,15 +109,15 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  user $user
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, User $user) {
 
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
@@ -131,10 +129,9 @@ class UserController extends Controller
             $input = Arr::except($input,array('password'));
         }
 
-        $user = User::find($id);
         $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
 
+        DB::table('model_has_roles')->where('model_id',$user->id)->delete();
         $user->assignRole($request->input('roles'));
 
         // Send user a notification that profile has been changed
@@ -147,19 +144,25 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  user  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        User::find($id)->delete();
+    public function destroy(User $user) {
+        // Remove profile image and account
+        $this->deleteOldImage('profiles', $user->image);
+        $user->delete();
         return redirect()->route('management.users.index')
             ->with('success','Gebruiker succesvol verwijderd');
     }
 
-    // Suspend a user
-    public function suspendUser(Request $request, $id) {
+    /**
+     * Suspend a user
+     * 
+     * @param user $user
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function suspendUser(Request $request, User $user) {
         $input = $request->all();
-        $user = User::find($id);
 
         if ($request == null) {
             // Unsuspend user with null value

@@ -57,6 +57,12 @@
                                 </button>
                             </div>
                         @endif
+
+                        @unlessrole('supervisor')
+                            <div class="text-center">
+                                <button type="button" class="btn btn-outline-danger mt-4" data-bs-toggle="modal" data-bs-target="#deleteAccountModel">{{ __('Delete my account') }}</button>
+                            </div>
+                        @endunlessrole
                     </div>
 
                     <hr class="my-4">
@@ -161,7 +167,6 @@
                         </p>
 
                         <div class="mb-3">
-                            {{-- <label class="form-control-label" for="customFile">@lang('category/profile.photo')</label> --}}
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input form-control form-control-alternative" id="customFile" name="image">
                             </div>

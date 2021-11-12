@@ -37,14 +37,14 @@
                     <form action="{{route('management.users.store')}}" method="POST" enctype="multipart/form-data" role="form">
                         @csrf
                         <div class="row">
-                            {{-- Name --}}
+                            <!-- Name -->
                             <div class="col-12 col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="name">Naam *</label>
                                     <input type="text" id="name" name="name" class="form-control" placeholder="Naam" required>
                                 </div>
                             </div>
-                            {{-- Pilot name --}}
+                            <!-- Pilot name -->
                             <div class="col-12 col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="pilot_name">Piloot naam *</label>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            {{-- Email --}}
+                            <!-- Email -->
                             <div class="col-12 col-sm-8 col-md-8">
                                 <div class="mb-3">
                                     <label class="form-label" for="email">E-mail *</label>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            {{-- Organization --}}
+                            <!-- Organization -->
                             <div class="col-12 col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="organization">Organisatie</label>
@@ -75,7 +75,7 @@
                                     </select>
                                 </div>
                             </div>
-                            {{-- Race Team --}}
+                            <!-- Race Team -->
                             <div class="col-12 col-sm-6 col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="race_team">Race Team</label>
@@ -90,23 +90,25 @@
                             </div>
                         </div>
                         <div class="row">
-                            {{-- Password --}}
+                            <!-- Password -->
                             <div class="col-12 col-sm-6 col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="password">Wachtwoord:</label>
-                                    <input type="password" id="password" name="password" class="form-control" placeholder="Wachtwoord">
+                                    <label class="form-label" for="password">Wachtwoord *</label>
+                                    <input type="password" id="password" name="password" class="form-control" placeholder="Wachtwoord" required>
                                 </div>
                             </div>
+                            <!-- Password confirmation -->
                             <div class="col-12 col-sm-6 col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="confirm-password">Bevestig Wachtwoord:</label>
-                                    <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="Bevestig Wachtwoord">
+                                    <label class="form-label" for="confirm-password">Bevestig Wachtwoord *</label>
+                                    <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="Bevestig Wachtwoord" required>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-md-8">
+                                <!-- Role -->
                                 <div class="mb-3">
-                                    <label class="form-label" for="roles">Rol</label>
-                                    <select class="select2 form-select select2-multiple" multiple="multiple" id="roles" name="roles[]" data-placeholder="Choose ...">
+                                    <label class="form-label" for="roles">Rol *</label>
+                                    <select class="select2 form-select select2-multiple" multiple="multiple" id="roles" name="roles[]" data-placeholder="Choose ..." required>
                                         @foreach ($roles as $key => $role)
                                             <option value="{{ $role }}">{{ $role }}</option>
                                         @endforeach
