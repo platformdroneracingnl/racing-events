@@ -121,7 +121,7 @@ class ProfileController extends Controller
             // Check if request contains new image otherwise skip it
             if($request->has('image')) {
                 // Remove old image if exist
-                $this->deleteOldImage('profiles');
+                $this->deleteOldImage('profiles', $request->input('oldImage'));
     
                 // Save the new uploaded image
                 $image = strtolower(auth()->user()->name);

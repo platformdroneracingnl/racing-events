@@ -15,7 +15,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.3",
         "internetcode/laravel-user-settings": "^1.0",
-        "intervention/image": "master",
+        "intervention/image": "^2.7",
         "jenssegers/agent": "^2.6",
         "laracasts/utilities": "^3.2",
         "laravel/fortify": "^1.7",
