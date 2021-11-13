@@ -140,4 +140,18 @@ class RaceTeamController extends Controller
         return redirect()->route('management.race_teams.index')
                 ->with('success','Race Team succesvol bijgewerkt');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Raceteam  $raceteam
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Raceteam $raceteam) {
+        $this->deleteOldImage('race_teams', $raceteam->image);
+        $raceteam->delete();
+
+        return redirect()->route('management.race_teams.index')
+            ->with('success','Race Team succesvol verwijderd');
+    }
 }

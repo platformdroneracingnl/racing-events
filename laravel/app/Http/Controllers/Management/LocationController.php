@@ -176,9 +176,7 @@ class LocationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Location $location) {
-        $filename = $location->image;
-        $this->deleteOldImage('locations', $filename);
-
+        $this->deleteOldImage('locations', $location->image);
         $location->delete();
 
         return redirect()->route('management.locations.index')
