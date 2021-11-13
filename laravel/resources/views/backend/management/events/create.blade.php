@@ -74,8 +74,8 @@
                             </div>
                             <div class="col-12">
                                 <div class="mb-3">
-                                    <label class="form-label" for="organization">Organisator *</label>
-                                    <select class="select2 form-select" id="organization" name="organization_id" required>
+                                    <label class="form-label" for="organization">Organisator</label>
+                                    <select class="select2 form-select" id="organization" name="organization_id">
                                         <option value="" disabled selected>--- {{__('Kies een organisator')}} ---</option>
                                         @foreach ($organizations as $organization)
                                             <option value="{{$organization->id}}">{{$organization->name}}</option>

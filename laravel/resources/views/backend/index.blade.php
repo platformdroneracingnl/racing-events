@@ -135,11 +135,17 @@
                                             </td>
                                             <td>{{ $event->name }}</td>
                                             <!-- Organizator -->
-                                            <td>@if(!empty($event->organization_id)) {{ $event->organization->name }} @endif</td>
-                                            <!-- Event datum -->
+                                            <td>
+                                                @if (isset($event->organization_id))
+                                                    {{ $event->organization->name }}
+                                                @else
+                                                    {{ $event->user->name }}
+                                                @endif
+                                            </td>
+                                            <!-- Event date -->
                                             <td>{{ $event->date->format('d-m-Y') }}</td>
                                             <td>{{ $event->start_registration->format('d-m-Y') }}</td>
-                                            <!-- Aantal inschrijvingen -->
+                                            <!-- Aantal inschrijvingen / maximum aantal inschrijvingen -->
                                             <td>
                                                 {{ RegistrationController::countRegistrations($event->id) }} / {{ $event->max_registrations }}
                                                 @if ($event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
@@ -156,6 +162,7 @@
                                                     €{{ number_format($event->price, 2) }}
                                                 @endif
                                             </td>
+                                            <!-- Options -->
                                             <td>
                                                 <a class="btn btn-sm btn-primary ms-1" href="{{ route('events.show',$event->id) }}">@lang('button.more_info')</a>
                                                 @if ($event->registration and $event->waitlist == 1 and RegistrationController::countRegistrations($event->id) >= $event->max_registrations)
