@@ -68,9 +68,16 @@
                                                 </h5>
                                             </div>
                                         </th>
+                                        <!-- Competition name -->
                                         <td>{{ $event->name }}</td>
                                         <!-- Organizator -->
-                                        <td>@if(!empty($event->organization_id)) {{ $event->organization->name }} @endif</td>
+                                        <td>
+                                            @if (isset($event->organization_id))
+                                                {{ $event->organization->name }}
+                                            @else
+                                                {{ $event->user->name }}
+                                            @endif
+                                        </td>
                                         <!-- Event datum -->
                                         <td>{{ $event->date->format('d-m-Y') }}</td>
                                         <!-- Number of registrations -->

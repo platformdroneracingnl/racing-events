@@ -44,14 +44,24 @@
                 @foreach ($events as $event)
                     <tr>
                         <th scope="row">{{ $loop->iteration }}</th>
+                        <!-- Event name -->
                         <td>{{ $event->name }}</td>
-                        <td>{{ $event->organization->name }}</td>
+                        <!-- Organizer or person -->
+                        <td>
+                            @if (isset($event->organization_id))
+                                {{ $event->organization->name }}
+                            @else
+                                {{ $event->user->name }}
+                            @endif
+                        </td>
                         <td>{{ $event->date->format('d-m-Y') }}</td>
                         <td>{{ $event->start_registration->format('d-m-Y') }}</td>
+                        <!-- Number of registrations -->
                         <td>
                             {{ RegistrationController::countRegistrations($event->id) }} / 
                             {{ $event->max_registrations }}
                         </td>
+                        <!-- Visible -->
                         <td>
                             @if ($event->online == 1)
                                 <span class="badge bg-success">{{ __('Online') }}</span>
@@ -59,6 +69,7 @@
                                 <span class="badge bg-danger">{{ __('Offline') }}</span>
                             @endif
                         </td>
+                        <!-- Registration -->
                         <td>
                             @if ($event->registration == 1)
                                 <span class="badge bg-success">@lang('category/events.opened')</span>
@@ -66,6 +77,7 @@
                                 <span class="badge bg-danger">@lang('category/events.closed')</span>
                             @endif
                         </td>
+                        <!-- Waitlist -->
                         <td>
                             @if ($event->waitlist == 1)
                                 <span class="badge bg-success">@lang('category/events.in_use')</span>
@@ -73,6 +85,7 @@
                                 <span class="badge bg-danger">@lang('category/events.not_use')</span>
                             @endif
                         </td>
+                        <!-- Options -->
                         <td>
                             <form action="{{ route('management.events.destroy', $event->id) }}" method="POST" class="deleteEvent">
                                 @csrf

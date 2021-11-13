@@ -149,9 +149,7 @@ class OrganizationController extends Controller
      */
     public function destroy(Organization $organization) {
         // Remove old image if exist
-        $filename = $organization->image;
-        $this->deleteOldImage('organizations', $filename);
-
+        $this->deleteOldImage('organizations', $organization->image);
         $organization->delete();
 
         return redirect()->route('management.organizations.index')

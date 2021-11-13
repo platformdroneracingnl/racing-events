@@ -121,7 +121,7 @@ class ProfileController extends Controller
             // Check if request contains new image otherwise skip it
             if($request->has('image')) {
                 // Remove old image if exist
-                $this->deleteOldImage('profiles');
+                $this->deleteOldImage('user-avatar', $request->input('oldImage'));
     
                 // Save the new uploaded image
                 $image = strtolower(auth()->user()->name);
@@ -138,7 +138,7 @@ class ProfileController extends Controller
             }
 
             // SWEETALERT
-            alert()->success(trans('sweetalert.password_change_title'),trans('sweetalert.password_change_text'));
+            alert()->success(trans('sweetalert.avatar_change_title'),trans('sweetalert.avatar_change_text'));
             return back();
         } catch (\Throwable $th) {
             dd($th);
@@ -150,14 +150,9 @@ class ProfileController extends Controller
      */
     public function destroyUser(User $user) {
         try {
-            // Remove profile image
-            $filename = auth()->user()->image;
-            if(File::exists( public_path('storage/images/profiles/' . $filename))) {
-                File::delete( public_path('storage/images/profiles/' . $filename));
-            }
-
-            // Remove account
-            $user = User::find($user->id)->delete();
+            // Remove profile image and account
+            $this->deleteOldImage('user-avatar', $user->image);
+            $user->delete();
 
             // SWEETALERT
             alert()->success(trans('sweetalert.profile_delete_title'),trans('sweetalert.profile_delete_text'));

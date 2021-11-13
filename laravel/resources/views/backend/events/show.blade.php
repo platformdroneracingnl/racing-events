@@ -58,7 +58,7 @@
                         <div class="col-12 col-sm-12 col-md-12">
                             <h2 class="text-uppercase text-muted">@lang('category/events.general')</h2>
                             <strong>@lang('category/events.organizer'):</strong>
-                            {{ $finalOrganizator->name }}
+                            {{ $finalOrganizator }}
                         </div>
                         <!-- Price -->
                         <div class="col-12 col-sm-12 col-md-12">

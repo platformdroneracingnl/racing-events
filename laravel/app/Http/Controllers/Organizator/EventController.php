@@ -21,9 +21,7 @@ class EventController extends Controller
         $this->middleware('permission:event-list|event-create|event-edit|event-delete|event-registration|event-checkin', ['only' => ['index','show','registrations','exportPDF']]);
         $this->middleware('permission:event-create', ['only' => ['create','store']]);
         $this->middleware('permission:event-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:event-delete', ['only' => ['destroy', 'destroyRegistration']]);
-        $this->middleware('permission:event-registration', ['only' => ['changeMultipleRegistration','updateRegistration']]);
-        $this->middleware('permission:event-checkin', ['only' => ['checkin','updateCheckin']]);
+        $this->middleware('permission:event-delete', ['only' => ['destroy']]);
     }
 
     /**
@@ -58,10 +56,11 @@ class EventController extends Controller
         // Make new event object
         $event = new Event();
 
-        $event->online          = $this->getBoolean($request->input('online'));
-        $event->registration    = $this->getBoolean($request->input('registration'));
-        $event->waitlist        = $this->getBoolean($request->input('waitlist'));
-        $event->mollie_payments = $this->getBoolean($request->input('mollie_payments'));
+        $event->online          = $this->setBoolean($request->input('online'));
+        $event->registration    = $this->setBoolean($request->input('registration'));
+        $event->waitlist        = $this->setBoolean($request->input('waitlist'));
+        $event->mollie_payments = $this->setBoolean($request->input('mollie_payments'));
+        $event->google_calendar = $this->setBoolean($request->input('google_calendar'));
 
         $event->user_id                 = Auth::user()->id;
         $event->organization_id         = Auth::user()->organization;
@@ -77,8 +76,9 @@ class EventController extends Controller
         $event->description             = $request->input('description');
         $event->docs_link               = $request->input('docs_link');
 
-        // If the event is free, turn mollie off
-        if ($event->price == 0) {
+        // No price for event means free, turn mollie always off!
+        if ($event->price == null || 0) {
+            $event->price = 0;
             $event->mollie_payments = 0;
         };
 
@@ -139,9 +139,11 @@ class EventController extends Controller
         $registration    = $this->setBoolean($request->input('registration'));
         $waitlist        = $this->setBoolean($request->input('waitlist'));
         $mollie_payments = $this->setBoolean($request->input('mollie_payments'));
+        $google_calendar = $this->setBoolean($request->input('google_calendar'));
 
-        // If the event is free, turn mollie off
-        if ($event->price == 0) {
+        // No price for event means free, turn mollie always off!
+        if ($event->price == null || 0) {
+            $event->price = 0;
             $mollie_payments = 0;
         };
 
@@ -167,5 +169,24 @@ class EventController extends Controller
 
         return redirect()->route('organizator.events.index')
             ->with('success','Event succesvol bijgewerkt');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Event  $event
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Event $event) {
+        if ($event->google_calendar_id != null) {
+            // Delete Google Event
+            GoogleCalendarController::deleteCalendarEvent($event);
+        }
+        // Delete event and related objects
+        $this->deleteOldImage('events', $event->image);
+        $event->delete();
+
+        return redirect()->route('organizator.events.index')
+            ->with('success','Event succesvol verwijderd');
     }
 }

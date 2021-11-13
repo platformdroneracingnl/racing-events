@@ -23,7 +23,7 @@
                             <div class="text-end">
                                 @can('role-edit')
                                     <a href="{{ route('management.roles.edit',$role->id) }}" class="me-1 btn btn-warning waves-effect waves-light btn-on-mobile">
-                                        <i class="mdi mdi-pencil-outline me-2"></i> @lang('button.change') {{ __('role') }}
+                                        <i class="mdi mdi-pencil-outline me-2"></i> @lang('button.edit') {{ __('role') }}
                                     </a>
                                 @endcan
                                 <a href="{{ route('management.roles.index') }}" class="btn btn-secondary waves-effect waves-light btn-on-mobile">

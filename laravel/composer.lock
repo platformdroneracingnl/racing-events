@@ -1360,16 +1360,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "dev-master",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "a2d7238069bb01322f9c2a661449955434fec9c6"
+                "reference": "9a8cc99d30415ec0b3f7649e1647d03a55698545"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/a2d7238069bb01322f9c2a661449955434fec9c6",
-                "reference": "a2d7238069bb01322f9c2a661449955434fec9c6",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/9a8cc99d30415ec0b3f7649e1647d03a55698545",
+                "reference": "9a8cc99d30415ec0b3f7649e1647d03a55698545",
                 "shasum": ""
             },
             "require": {
@@ -1386,7 +1386,6 @@
                 "ext-imagick": "to use Imagick based image processing.",
                 "intervention/imagecache": "Caching extension for the Intervention Image library"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1429,7 +1428,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/master"
+                "source": "https://github.com/Intervention/image/tree/2.7.0"
             },
             "funding": [
                 {
@@ -1441,7 +1440,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-07-06T13:35:54+00:00"
+            "time": "2021-10-03T14:17:12+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",

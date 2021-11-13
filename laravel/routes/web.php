@@ -76,7 +76,7 @@ Route::group([
              */
             Route::resource('management/roles', Management\RoleController::class, ['names' => 'management.roles']);
 			Route::resource('management/users', Management\UserController::class, ['names' => 'management.users']);
-            Route::patch('management/user/{id}/suspend', [Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
+            Route::patch('management/user/{user}/suspend', [Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
             Route::resource('management/events', Management\EventController::class, ['names' => 'management.events']);
             Route::resource('management/organizations', Management\OrganizationController::class, ['names' => 'management.organizations']);
 			Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);

@@ -11,8 +11,13 @@ use Carbon\Carbon;
 use Auth;
 use App;
 
-class EventController extends Controller
-{
+class EventController extends Controller {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
         // If event is allowed to be visible and until the day of the match
         $lang = App::getLocale();
@@ -36,13 +41,12 @@ class EventController extends Controller
     public function show(Event $event) {
         $lang = App::getLocale();
         $agent = new Agent();
-        $person = User::where('id', $event->user_id)->get();
 
         // Determine who the organisator is (person or organization)
-        if(empty($event->organization)) {
-            $finalOrganizator = $person;
+        if(empty($event->organization_id)) {
+            $finalOrganizator = $event->user->name;
         } else {
-            $finalOrganizator = $event->organization;
+            $finalOrganizator = $event->organization->name;
         }
 
         return view('backend.events.show',compact('event','lang','agent','finalOrganizator'));

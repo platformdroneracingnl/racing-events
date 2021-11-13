@@ -217,4 +217,23 @@ class EventController extends Controller
         return redirect()->route('management.events.index')
             ->with('success','Event succesvol bijgewerkt');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Event  $event
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Event $event) {
+        if ($event->google_calendar_id != null) {
+            // Delete Google Event
+            GoogleCalendarController::deleteCalendarEvent($event);
+        }
+        // Delete event and related objects
+        $this->deleteOldImage('events', $event->image);
+        $event->delete();
+
+        return redirect()->route('management.events.index')
+            ->with('success','Event succesvol verwijderd');
+    }
 }

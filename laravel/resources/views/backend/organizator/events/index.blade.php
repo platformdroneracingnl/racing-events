@@ -83,7 +83,7 @@
                             @endif
                         </td>
                         <td>
-                            <form action="">
+                            <form action="{{ route('organizator.events.destroy', $event->id) }}" method="POST" class="deleteEvent">
                                 @csrf
                                 @method('DELETE')
                                 <ul class="list-inline mb-0">
