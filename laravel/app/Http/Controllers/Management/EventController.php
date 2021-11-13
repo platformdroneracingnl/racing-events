@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GoogleCalendarController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Organization;
@@ -117,9 +118,9 @@ class EventController extends Controller
         try {
             // Save the event object
             $event->save();
-            // if ($event->calendar == 1) {
-            //     GoogleCalendarController::createCalendarEvent($event);
-            // }
+            if ($event->google_calendar == 1) {
+                GoogleCalendarController::createCalendarEvent($event);
+            }
             return redirect()->route('management.events.index')
                 ->with('success','Event succesvol aangemaakt');
         } catch (\Throwable $th) {
@@ -200,16 +201,16 @@ class EventController extends Controller
         try {
             // Update the rest of the event object if needed
             $event->update($request->except(['online','registration','waitlist','mollie_payments','google_calendar','image']));
-            // if ($google_calendar == 1 and $event->google_calendar_id == null) {
-            //     // Create new Google Event
-            //     GoogleCalendarController::createCalendarEvent($event);
-            // } elseif ($google_calendar == 0 and $event->google_calendar_id != null) {
-            //     // Delete Google Event
-            //     GoogleCalendarController::deleteCalendarEvent($event);
-            // } else {
-            //     // Update Google Event
-            //     GoogleCalendarController::changeCalendarEvent($event);
-            // }
+            if ($google_calendar == 1 and $event->google_calendar_id == null) {
+                // Create new Google Event
+                GoogleCalendarController::createCalendarEvent($event);
+            } elseif ($google_calendar == 0 and $event->google_calendar_id != null) {
+                // Delete Google Event
+                GoogleCalendarController::deleteCalendarEvent($event);
+            } else {
+                // Update Google Event
+                GoogleCalendarController::changeCalendarEvent($event);
+            }
         } catch (\Throwable $th) {
             dd($th);
         }
