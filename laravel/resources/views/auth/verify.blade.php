@@ -5,9 +5,6 @@
 @endsection
 
 @section('content')
-    {{-- <div class="home-btn d-none d-sm-block">
-        <a href="{{ url('index') }}" class="text-dark"><i class="mdi mdi-home-variant h2"></i></a>
-    </div> --}}
     <div class="account-pages my-5  pt-sm-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -48,7 +45,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end container -->
         </div>
     </div>
 @endsection
