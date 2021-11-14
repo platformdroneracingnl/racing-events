@@ -35,6 +35,9 @@ Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
     function() {
+        // Include Fortify routes for localization
+        require(base_path('vendor/laravel/fortify/routes/routes.php'));
+
         // Routes that do not require login
         Route::get('/', [HomeController::class, 'root'])->name('root')->middleware('guest');
         Route::get('events', [EventController::class, 'index'])->name('events');

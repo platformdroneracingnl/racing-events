@@ -1,13 +1,10 @@
 @extends('layouts.auth.master-without-nav')
 
 @section('title')
-    Reset Password
+    @lang('pages/reset.title')
 @endsection
 
 @section('content')
-    {{-- <div class="home-btn d-none d-sm-block">
-        <a href="{{ url('index') }}" class="text-dark"><i class="mdi mdi-home-variant h2"></i></a>
-    </div> --}}
     <div class="account-pages my-5  pt-sm-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -17,8 +14,8 @@
                             @include('layouts.auth.logo')
 
                             <div class="text-center mt-2">
-                                <h5 class="text-primary">Reset Password</h5>
-                                <p class="text-muted">Reset Password with PDRNL.</p>
+                                <h5 class="text-primary">@lang('pages/reset.title')</h5>
+                                <p class="text-muted">@lang('pages/reset.email_info')</p>
                             </div>
                             <div class="p-2 mt-4">
                                 @if (session('status'))
@@ -43,7 +40,7 @@
 
                                     <div class="mt-3 text-end">
                                         <button class="btn btn-primary w-sm waves-effect waves-light"
-                                            type="submit">Reset</button>
+                                            type="submit">@lang('pages/reset.button')</button>
                                     </div>
 
                                     <div class="mt-4 text-center">
@@ -58,8 +55,6 @@
                     </div>
                 </div>
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </div>
 @endsection
