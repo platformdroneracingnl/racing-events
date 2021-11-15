@@ -22,6 +22,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "mcamara/laravel-localization": "^1.6",
+        "mollie/laravel-mollie": "^2.0",
         "pragmarx/google2fa-laravel": "^2.0",
         "realrashid/sweet-alert": "^4.0",
         "simplesoftwareio/simple-qrcode": "^4.2",

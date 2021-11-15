@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Management;
 use App\Http\Controllers\Organizator;
 use App\Http\Controllers\Pilots;
+use App\Http\Controllers\Utils;
 
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\LoginSecurityController;
@@ -99,7 +100,7 @@ Route::group([
              */
             // Pilot
             Route::get('registrations', [Pilots\RegistrationController::class, 'myRegistrationsIndex'])->name('registrations.index');
-            Route::post('events/{event}/registration', [Pilots\RegistrationController::class, 'store'])->name('registration.event');
+            Route::post('events/{event}/register', [Pilots\RegistrationController::class, 'store'])->name('registration.event.store');
             // Organization
             Route::get('event/{event}/registrations', [Organizator\RegistrationController::class, 'index'])->name('organizator.event.registrations');
             Route::get('event/{event}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
@@ -142,6 +143,14 @@ Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function() {
         return redirect(URL()->previous());
     })->name('2faVerify')->middleware('2fa');
 });
+
+/**
+ * Mollie
+ */
+Route::get('/mollie-payment', [Utils\MollieController::class, 'preparePayment'])->name('mollie.payment');
+Route::get('/payment/{regID}', [Utils\MollieController::class, 'paymentHandler'])->name('payment.handle');
+Route::get('/payment/event/{paymentID}', [Utils\MollieController::class, 'checkPaymentStatus'])->name('payment.event');
+Route::post('webhooks/mollie', [Utils\MollieController::class, 'mollieHandle'])->name('webhooks.mollie');
 
 // Give 404 error if path not exists
 Route::get('{any}', [HomeController::class, 'index']);

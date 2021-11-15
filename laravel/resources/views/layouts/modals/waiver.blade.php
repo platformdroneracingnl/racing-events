@@ -5,7 +5,7 @@
 <div class="modal fade" id="regModal-{{ $event->id }}" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="{{ route('registration.event',$event->id) }}" method="POST" role="form" enctype="multipart/form-data">
+            <form action="{{ route('registration.event.store',$event->id) }}" method="POST" role="form" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="">{{ $event->name }}</h5>
