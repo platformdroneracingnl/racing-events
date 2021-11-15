@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Utils\GoogleCalendarController;
+use App\Http\Controllers\GoogleCalendarController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Organization;
