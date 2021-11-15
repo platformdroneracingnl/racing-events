@@ -126,7 +126,7 @@
                                                             </button>
                                                         </li>
                                                         <li class="list-inline-item">
-                                                            <button type="submit" class="btn px-2 text-danger" data-bs-toggle="modal" data-bs-target="#userModal-{{$item->reg_id}}" href="">
+                                                            <button type="button" class="btn px-2 text-danger" data-bs-toggle="modal" data-bs-target="#userModal-{{$item->reg_id}}" href="">
                                                                 <i class="uil uil-trash-alt font-size-18"></i>
                                                             </button>
                                                         </li>
@@ -233,7 +233,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p class="text-center">@lang('category/events.delete_registration', ['name' => $item->user->first()->name])</p>
+                            <p class="text-center">@lang('category/events.delete_registration', ['name' => $item->user->name])</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('button.cancel')</button>

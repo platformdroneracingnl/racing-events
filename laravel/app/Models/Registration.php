@@ -16,18 +16,18 @@ class Registration extends Model {
     protected $fillable = ['user_id', 'event_id', 'status_id', 'failsafe', 'vtx_power'];
 
     public function user() {
-        return $this->hasOne('App\Models\User', 'id', 'user_id');
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     public function event() {
-        return $this->hasOne('App\Models\Event', 'id', 'event_id');
+        return $this->hasOne(Event::class, 'id', 'event_id');
     }
 
     public function status() {
-        return $this->hasOne('App\Models\Status', 'id', 'status_id');
+        return $this->hasOne(Status::class, 'id', 'status_id');
     }
 
     public function waiver() {
-        return $this->hasOne('App\Models\Waiver', 'registration_id', 'reg_id');
+        return $this->hasOne(Waiver::class, 'registration_id', 'reg_id');
     }
 }

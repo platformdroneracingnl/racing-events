@@ -98,10 +98,10 @@
                                                 <h5 style="vertical-align:middle;margin-top: 4px;">
                                                     @if ($event->registration == 0 and $event->start_registration >= Carbon::today())
                                                         <!-- If registration is closed and start date -->
-                                                        <span class="badge bg-info">{{ __('Registration starts soon') }}</span>
+                                                        <span class="badge bg-soft-info">{{ __('Registration starts soon') }}</span>
                                                     @elseif ($event->registration == 1 and $event->end_registration >= Carbon::today())
                                                         <!-- If registration is open and today is before the end date -->
-                                                        <span class="badge bg-success">{{ __('Registration is open!') }}</span>
+                                                        <span class="badge bg-soft-success">{{ __('Registration is open') }}!</span>
                                                     @endif
                                                 </h5>
                                             </div>

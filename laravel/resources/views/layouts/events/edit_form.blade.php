@@ -81,17 +81,12 @@
                     <div class="col-12 col-md-3">
                         <div class="mb-3">
                             <label class="form-label" for="price">@lang('category/events.price') *</label>
-                            <input id="price" class="form-control input-mask text-start" value="{{ $event->price }}"
-                                data-inputmask="'alias': 'numeric', 'groupSeparator': ',', 'digits': 2, 'digitsOptional': false, 'prefix': '€ ', 'placeholder': '0'">
-                            <small id="eventPrice" class="form-text text-muted mt--2"><i class="fas fa-info-circle"></i> Bij leeglaten is het event gratis.</small>
-                        </div>
-                        {{-- <div class="mb-3">
                             <div class="input-group">
                                 <span class="input-group-text" id="currency">EUR</span>
-                                <input type="number" class="form-control" id="price" name="price" min="0.00" step="0.05" placeholder="0.00" required aria-describedby="currency">
+                                <input type="number" class="form-control" id="price" name="price" min="0.00" step="any" data-type="currency" value="{{ number_format($event->price, 2) }}" required aria-describedby="eventPrice">
                             </div>
-                            <small id="eventPrice" class="form-text text-muted mt--2"><i class="fas fa-info-circle"></i> Indien gratis vul een 0 in.</small>
-                        </div> --}}
+                            <small id="eventPrice" class="form-text text-muted mt--2"><i class="fas fa-info-circle"></i> Bij leeglaten is het event gratis.</small>
+                        </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div class="mb-3">

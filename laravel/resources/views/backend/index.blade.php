@@ -35,7 +35,7 @@
                         </div>
                         <div>
                             <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{ CountController::getTotalEvents() }}</span></h4>
-                            <p class="text-muted mb-0">Gehouden wedstrijden</p>
+                            <p class="text-muted mb-0">{{ __('Number of competitions') }}</p>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div>
                             <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{ CountController::getTotalUsers() }}</span></h4>
-                            <p class="text-muted mb-0">Aantal gebruikers</p>
+                            <p class="text-muted mb-0">{{ __('Number of active users') }}</p>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                         </div>
                         <div>
                             <h4 class="mb-1 mt-1"><span data-plugin="counterup">{{ CountController::getTotalRegistrations() }}</span></h4>
-                            <p class="text-muted mb-0">Aantal inschrijvingen</p>
+                            <p class="text-muted mb-0">{{ __('Number of entries') }}</p>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 {
     "Last 5 matches":"Laatste 5 wedstrijden",
     "View more competitions":"Bekijk meer wedstrijden",
-    "Number of competitions held":"Aantal gehouden wedstrijden",
+    "Number of competitions":"Gehouden wedstrijden",
     "Number of active users":"Aantal actieve gebruikers",
     "Number of entries":"Aantal inschrijvingen",
     "Registration completed":"Registratie doorlopen",
@@ -11,8 +11,8 @@
 
     "Number of registrations / Maximum number":"Aantal inschrijvingen / Maximale aantal",
     "Registration date has passed":"Inschrijvingsdatum is voorbij",
-    "Registration has yet to start":"Inschrijving moet nog beginnen",
-    "Registration already opened":"Inschrijving alvast geopend",
+    "Registration starts soon":"Inschrijving begint binnenkort",
+    "Registration is open":"Inschrijving is geopend",
 
     "Signed up":"Aangemeld",
     "Waiting for payment":"Wachten op betaling",
