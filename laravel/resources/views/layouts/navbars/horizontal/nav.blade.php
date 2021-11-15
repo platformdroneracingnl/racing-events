@@ -358,16 +358,6 @@
                                     <i class="fas fa-sliders-h me-2"></i> Management <div class="arrow-down"></div>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="topnav-management">
-                                    @can('user-list')
-                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.users.*') ? 'active' : '' }}" href="{{ route('management.users.index') }}">
-                                            @lang('menu.manage_users')
-                                        </a>
-                                    @endcan
-                                    @can('role-list')
-                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.roles.*') ? 'active' : '' }}" href="{{ route('management.roles.index') }}">
-                                            @lang('menu.manage_roles')
-                                        </a>
-                                    @endcan
                                     @if (auth()->user()->hasRole(['manager','supervisor']))
                                         @can('event-list')
                                             <a class="dropdown-item {{ Route::currentRouteNamed('management.events.*') ? 'active' : '' }}" href="{{ route('management.events.index') }}">
@@ -388,6 +378,17 @@
                                     @can('race_team-list')
                                         <a class="dropdown-item {{ Route::currentRouteNamed('management.race_teams.*') ? 'active' : '' }}" href="{{ route('management.race_teams.index') }}">
                                             @lang('menu.manage_race_teams')
+                                        </a>
+                                    @endcan
+                                    <hr>
+                                    @can('user-list')
+                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.users.*') ? 'active' : '' }}" href="{{ route('management.users.index') }}">
+                                            @lang('menu.manage_users')
+                                        </a>
+                                    @endcan
+                                    @can('role-list')
+                                        <a class="dropdown-item {{ Route::currentRouteNamed('management.roles.*') ? 'active' : '' }}" href="{{ route('management.roles.index') }}">
+                                            @lang('menu.manage_roles')
                                         </a>
                                     @endcan
                                 </div>

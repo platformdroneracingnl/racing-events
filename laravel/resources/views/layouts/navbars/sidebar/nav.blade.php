@@ -84,22 +84,6 @@
                     <!-- Heading -->
                     <li class="menu-title">PDRNL Supervisor</li>
 
-                    @can('user-list')
-                        <li>
-                            <a class="nav-link" href="{{ route('management.users.index') }}">
-                                <i class="uil-list-ul"></i>
-                                <span>@lang('menu.manage_users')</span>
-                            </a>
-                        </li>
-                    @endcan
-                    @can('role-list')
-                        <li>
-                            <a class="nav-link" href="{{ route('management.roles.index') }}">
-                                <i class="uil-list-ul"></i>
-                                <span>@lang('menu.manage_roles')</span>
-                            </a>
-                        </li>
-                    @endcan
                     @if (auth()->user()->hasRole(['manager','supervisor']))
                         @can('event-list')
                             <li>
@@ -131,6 +115,22 @@
                             <a class="nav-link" href="{{ route('management.race_teams.index') }}">
                                 <i class="uil-list-ul"></i>
                                 <span>@lang('menu.manage_race_teams')</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('user-list')
+                        <li>
+                            <a class="nav-link" href="{{ route('management.users.index') }}">
+                                <i class="uil-list-ul"></i>
+                                <span>@lang('menu.manage_users')</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('role-list')
+                        <li>
+                            <a class="nav-link" href="{{ route('management.roles.index') }}">
+                                <i class="uil-list-ul"></i>
+                                <span>@lang('menu.manage_roles')</span>
                             </a>
                         </li>
                     @endcan
