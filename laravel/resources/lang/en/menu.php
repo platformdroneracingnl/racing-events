@@ -13,10 +13,10 @@ return [
     
     'my_competitions' => 'My Competitions',
 
-    'manage_users' => 'Manage Users',
-    'manage_roles' => 'Manage Roles',
-    'manage_competitions' => 'Manage Competitions',
-    'manage_locations' => 'Manage Locations',
-    'manage_organizations' => 'Manage Organizations',
-    'manage_race_teams' => 'Manage Race Teams',
+    'manage_users' => 'Users',
+    'manage_roles' => 'Roles',
+    'manage_competitions' => 'Competitions',
+    'manage_locations' => 'Locations',
+    'manage_organizations' => 'Organizations',
+    'manage_race_teams' => 'Race Teams',
 ];

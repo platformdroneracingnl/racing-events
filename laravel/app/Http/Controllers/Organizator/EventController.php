@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Organizator;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GoogleCalendarController;
+use App\Http\Controllers\Utils\GoogleCalendarController;
 use Illuminate\Http\Request;
+use Jenssegers\Agent\Agent;
+use App\Models\Registration;
 use App\Models\Location;
 use App\Models\Event;
 use App\Models\User;
@@ -113,7 +115,7 @@ class EventController extends Controller
         $price_total = ($event->price * $pending_reg);
         $price_subtotal = ($event->price * $complete_reg);
 
-        return view('organizator.events.show',compact('event', 'agent', 'complete_reg', 'pending_reg', 'price_total', 'price_subtotal'));
+        return view('backend.organizator.events.show',compact('event', 'agent', 'complete_reg', 'pending_reg', 'price_total', 'price_subtotal'));
     }
 
     /**

@@ -33,10 +33,10 @@ class NewEventRegistration extends Mailable
 
     public function determineReplyEmail() {
         // If user didn't give up overrule email
-        if ($this->event[0]->email == null) {
-            return $this->user[0]->email;
+        if ($this->event->email == null) {
+            return $this->user->email;
         } else {
-            return $this->event[0]->email;
+            return $this->event->email;
         }
     }
 
@@ -48,7 +48,7 @@ class NewEventRegistration extends Mailable
     public function build()
     {
         return $this->markdown('emails.event_registration')
-                    ->subject('Inschrijving wedstrijd: '.$this->event[0]->name)
-                    ->replyTo(NewEventRegistration::determineReplyEmail(), $this->user[0]->name);
+                    ->subject('Inschrijving wedstrijd: '.$this->event->name)
+                    ->replyTo(NewEventRegistration::determineReplyEmail(), $this->user->name);
     }
 }

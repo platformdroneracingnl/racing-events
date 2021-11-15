@@ -20,6 +20,7 @@
 <script type="application/javascript" src="{{ URL::asset('/assets/js/app.min.js')}}"></script>
 
 <!-- Own scripts -->
+<script type="application/javascript" src="{{ asset('pdrnl')}}/js/price.js"></script>
 <script type="application/javascript" src="{{ asset('pdrnl')}}/js/language.js"></script>
 
 @yield('script-bottom')

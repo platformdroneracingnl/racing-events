@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utils;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Spatie\GoogleCalendar\Event;
+use Illuminate\Http\Request;
 use DB;
 
 class GoogleCalendarController extends Controller {

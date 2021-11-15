@@ -5,7 +5,7 @@
 @endsection
 
 @php
-    use App\Http\Controllers\MollieController;
+    use App\Http\Controllers\Utils\MollieController;
     use Carbon\Carbon;
 @endphp
 
@@ -95,7 +95,10 @@
                                         <!-- Payment -->
                                         <td>
                                             @if ($registration->status_id == 2 and $registration->payment_id != null)
-                                                <a class="btn btn-sm btn-info" href="{{ route('payment.event', ['paymentID' => $registration->payment_id]) }}">{{ __('Pay registration') }}</a><i class="fas fa-info-circle" data-toggle="tooltip" data-placement="right" title="Verloopt {{ MollieController::checkPaymentExpire($registration->payment_id) }}"></i>
+                                                <div class="text-center">
+                                                    <a class="btn btn-sm btn-info" href="{{ route('payment.event', ['paymentID' => $registration->payment_id]) }}">{{ __('Pay registration') }}</a>
+                                                    <br><span class="text-muted">Verloopt {{ MollieController::checkPaymentExpire($registration->payment_id) }}!</span>
+                                                </div>
                                             @elseif ($registration->status_id == 3 and $registration->event->price > 0)
                                                 <h5 class="mb-0"><span class="badge bg-soft-success">{{ __('You paid') }}</span></h5>
                                             @elseif ($registration->status_id == 3 and $registration->event->price == 0)
