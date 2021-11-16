@@ -1,5 +1,9 @@
 @extends('layouts.backend.master')
 
+@section('title')
+    {{ __('Payment open') }}
+@endsection
+
 @section('content')
     <div class="container mt--8 pb-5">
         <div class="row justify-content-center">
