@@ -89,7 +89,7 @@ Route::group([
             // Organizator
             // Events
             Route::resource('organizator/events', Organizator\EventController::class, ['names' => 'organizator.events']);
-            Route::post('event/{registration}/destroy', [Organizator\EventController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
+            Route::post('event/{registration}/destroy', [Organizator\EventController::class, 'destroy'])->name('organizator.registration.destroy');
 
             // Waivers
 			Route::resource('organizator/waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
