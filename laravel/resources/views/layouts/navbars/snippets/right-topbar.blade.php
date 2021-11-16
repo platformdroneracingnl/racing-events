@@ -37,12 +37,14 @@
                         <span>Documentation</span>
                     </a>
                 </div>
-                <div class="col">
-                    <a class="dropdown-icon-item" href="{{ route('event.scan') }}">
-                        <i class="mdi mdi-qrcode-scan fa-2x"></i>
-                        <span>Scan</span>
-                    </a>
-                </div>
+                @if(auth()->user()->hasRole(['organizer','manager','supervisor']))
+                    <div class="col">
+                        <a class="dropdown-icon-item" href="{{ route('event.scan') }}">
+                            <i class="mdi mdi-qrcode-scan fa-2x"></i>
+                            <span>Scan</span>
+                        </a>
+                    </div>
+                @endif
                 <div class="col">
                     <a class="dropdown-icon-item" href="#">
                         <i class="mdi mdi-github fa-2x"></i>
@@ -149,26 +151,26 @@
         <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item d-block right-bar-toggle disabled">
+            <i class="uil uil-info-circle font-size-15 align-middle me-1 text-muted"></i>
+            <span class="align-middle font-size-1">@version('compact')</span>
+        </a>
+        <hr class="dropdown-divider">
         <!-- Profile -->
         <a class="dropdown-item" href="{{ route('profile.show') }}">
             <i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i>
-            <span class="align-middle">@lang('translation.View_Profile')</span>
+            <span class="align-middle">@lang('category/profile.my_profile')</span>
         </a>
         <a class="dropdown-item" href="{{ route('layout') }}">
             <i class="mdi mdi-view-dashboard-variant-outline font-size-18 align-middle text-muted me-1"></i>
-            <span class="align-middle">Change layout</span>
+            <span class="align-middle">@lang('button.change_layout')</span>
         </a>
-        {{-- <a class="dropdown-item" href="#"><i class="uil uil-wallet font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle">@lang('translation.My_Wallet')</span></a> --}}
         <!-- Settings -->
         <a class="dropdown-item d-block right-bar-toggle" href="#">
             <i class="uil uil-cog font-size-18 align-middle me-1 text-muted"></i>
-            <span class="align-middle">@lang('translation.Settings')</span>
-            <span class="badge bg-soft-success rounded-pill mt-1 ms-2">03</span>
+            <span class="align-middle">@lang('button.settings')</span>
+            {{-- <span class="badge bg-soft-success rounded-pill mt-1 ms-2">03</span> --}}
         </a>
-        {{-- <a class="dropdown-item" href="#">
-            <i class="uil uil-lock-alt font-size-18 align-middle me-1 text-muted"></i>
-            <span class="align-middle">@lang('translation.Lock_screen')</span>
-        </a> --}}
         <hr class="dropdown-divider">
         <!-- Log out -->
         <a class="dropdown-item logout-form" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

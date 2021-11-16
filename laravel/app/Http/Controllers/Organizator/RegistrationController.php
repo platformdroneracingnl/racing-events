@@ -45,6 +45,18 @@ class RegistrationController extends Controller
     }
 
     /**
+     * Destroy a drone pilot registration
+     */
+    public function destroy(Registration $registration) {
+        try {
+            $registration->delete();
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+    }
+
+    /**
      * Browser QR Code scan page
      */
     public function scan() {
