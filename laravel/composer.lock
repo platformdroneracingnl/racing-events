@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a395ab8592d9e4ebf0a4fad508ac5d46",
+    "content-hash": "5bf2fd71406ea023f59b6639eff54422",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1745,6 +1745,69 @@
                 }
             ],
             "time": "2021-10-03T14:17:12+00:00"
+        },
+        {
+            "name": "j2nlab/laravel-simple-version",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/J2Nlab/laravel-simple-version.git",
+                "reference": "49b78cb3c3bfd32a83caa6a87085a5dc560959e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/J2Nlab/laravel-simple-version/zipball/49b78cb3c3bfd32a83caa6a87085a5dc560959e3",
+                "reference": "49b78cb3c3bfd32a83caa6a87085a5dc560959e3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^6.0|^7.0|^8.0",
+                "illuminate/view": "^6.0|^7.0|^8.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "laravel/framework": "^6.0|^7.0",
+                "orchestra/testbench": "^4.0|^5.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "J2Nlab\\SimpleVersion\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "J2Nlab\\SimpleVersion\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "J2N",
+                    "email": "dev@j2nlab.com"
+                }
+            ],
+            "description": "Manage easily your Laravel app version",
+            "homepage": "https://github.com/J2Nlab/laravel-simple-version",
+            "keywords": [
+                "laravel",
+                "version",
+                "versioning"
+            ],
+            "support": {
+                "issues": "https://github.com/J2Nlab/laravel-simple-version/issues",
+                "source": "https://github.com/J2Nlab/laravel-simple-version/tree/v1.2"
+            },
+            "time": "2021-04-01T12:19:30+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",

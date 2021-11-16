@@ -25,4 +25,6 @@ return [
     'generate_2fa_key' => 'Genereer een Geheime Sleutel',
     'mark_read' => 'Markeer als gelezen',
     'mark_all_read' => 'Markeer alles gelezen',
+    'settings' => 'Instellingen',
+    'change_layout' => 'Verander layout',
 ];

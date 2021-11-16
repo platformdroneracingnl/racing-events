@@ -24,4 +24,6 @@ return [
     'generate_2fa_key' => 'Generate Secret Key',
     'mark_read' => 'Mark as read',
     'mark_all_read' => 'Mark everything as read',
+    'settings' => 'Settings',
+    'change_layout' => 'Change layout',
 ];
