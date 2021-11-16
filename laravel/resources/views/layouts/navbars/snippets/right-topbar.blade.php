@@ -37,12 +37,14 @@
                         <span>Documentation</span>
                     </a>
                 </div>
-                <div class="col">
-                    <a class="dropdown-icon-item" href="{{ route('event.scan') }}">
-                        <i class="mdi mdi-qrcode-scan fa-2x"></i>
-                        <span>Scan</span>
-                    </a>
-                </div>
+                @if(auth()->user()->hasRole(['organizer','manager','supervisor']))
+                    <div class="col">
+                        <a class="dropdown-icon-item" href="{{ route('event.scan') }}">
+                            <i class="mdi mdi-qrcode-scan fa-2x"></i>
+                            <span>Scan</span>
+                        </a>
+                    </div>
+                @endif
                 <div class="col">
                     <a class="dropdown-icon-item" href="#">
                         <i class="mdi mdi-github fa-2x"></i>
