@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3">
-                @php echo date("Y"); @endphp © <a href="https://platformdroneracing.nl">PDRNL</a> - All rights reserved.
+                @php echo date("Y"); @endphp © <a href="https://platformdroneracing.nl">PDRNL</a> - @lang('pdrnl.rights').
             </div>
             <div class="col-sm-9">
                 <div class="text-sm-end d-none d-sm-block">
