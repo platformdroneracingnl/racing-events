@@ -107,9 +107,9 @@ Route::group([
             Route::patch('event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
             Route::patch('event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
             // Check-in
-            Route::get('event/{registration}/check-in', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
             Route::get('event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
-            Route::patch('event/{registration}/check-in/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
+            Route::get('event/check-in/{registration}', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
+            Route::patch('event/check-in/{registration}/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
 
             /**
              * Profile

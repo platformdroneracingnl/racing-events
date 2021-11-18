@@ -131,11 +131,11 @@
     </div>
     @foreach ($registrations->registrations as $registration)
         <!-- Modal -->
-        <div class="modal fade" id="Modal-{{$registration->reg_id}}" tabindex="-1" role="dialog" aria-labelledby="checkinModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="Modal-{{$registration->reg_id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="checkinModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="checkinModalLabel">Check-in</h3>
+                        <h3 class="modal-title" id="checkinModalLabel">{{ __('Check-in') }}</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -144,7 +144,18 @@
                                 <h4>{{ $registration->event->name }}</h4>
                             </div>
                             <div class="row mb-3">
-                                {!! QrCode::size(350)->style('round')->generate(route('event.check-in',[$registration->reg_id])); !!}
+                                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            {{ QrCode::size(350)->style('round')->generate(route('event.check-in',[$registration->reg_id])) }}
+                                            <div class="text-muted">Use for mobile scanning</div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            {{ QrCode::size(350)->style('round')->generate($registration->reg_id) }}
+                                            <div class="text-muted">{{ $registration->reg_id }}</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 @if ($registration->failsafe == 1 and $registration->vtx_power == 1 and $registration->status_id == 3)
