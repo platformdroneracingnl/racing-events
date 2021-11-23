@@ -28,7 +28,7 @@
                             <div class="form-inline float-md-end">
                                 <div class="search-box">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control rounded bg-light border-0"
+                                        <input id="searchbox" type="text" class="form-control rounded bg-light border-0"
                                             placeholder="{{ __('Search') }}...">
                                         <i class="mdi mdi-magnify search-icon"></i>
                                     </div>
@@ -36,9 +36,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Body -->
+                    <div class="row">
+                        <p class="card-title-desc">In deze tabel vind je alle wedstrijden waar je je voor hebt aangemeld. Op de wedstrijddag laat je de QR Code zien aan de organisator voor de check-in.</p>
+                    </div>
+
                     <!-- Table -->
                     <div class="table-responsive mb-4">
-                        <table class="table table-centered align-middle table-nowrap">
+                        <table class="table table-centered align-middle table-nowrap" id="registrationTable">
                             <thead>
                                 <tr>
                                     <th scope="col">Nr.</th>
@@ -174,4 +180,11 @@
             </div>
         </div>
     @endforeach
+@endsection
+
+@section('script')
+    <script src="{{ asset('pdrnl')}}/js/dataTables/pilot.registrations.js"></script>
+    <script>
+        var locale = {!! json_encode($lang) !!};
+    </script>
 @endsection

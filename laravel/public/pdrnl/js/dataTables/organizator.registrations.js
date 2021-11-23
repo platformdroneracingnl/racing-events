@@ -21,10 +21,7 @@ $(document).ready( function () {
             url: lang,
         },
         columnDefs: [
-            {
-                "orderable": false,
-                "targets": [0,1,10]
-            }
+            {orderable: false, targets: [0,1,10]},
         ],
         // select: {
         //     style: 'multi'

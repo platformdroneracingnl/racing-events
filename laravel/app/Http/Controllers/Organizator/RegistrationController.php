@@ -24,16 +24,16 @@ class RegistrationController extends Controller
      * @return \Illuminate\Http\Response
      */
     function __construct() {
-        $this->middleware('permission:event-list|event-create|event-edit|event-delete|event-registration|event-checkin', ['only' => ['registrations','exportPDF']]);
+        $this->middleware('permission:event-list|event-create|event-edit|event-delete|event-registration|event-checkin', ['only' => ['eventRegistrations','exportPDF']]);
         $this->middleware('permission:event-delete', ['only' => ['destroyRegistration']]);
         $this->middleware('permission:event-registration', ['only' => ['changeMultipleRegistration','updateRegistration']]);
         $this->middleware('permission:event-checkin', ['only' => ['checkin','updateCheckin','scan']]);
     }
 
     /**
-     * Get list of drone pilots
+     * Get list registrations from specific event
      */
-    public function index($eventID) {
+    public function eventRegistrations($eventID) {
         $lang = App::getLocale();
         // $agent = new Agent();
         $result = Registration::with('user')->get()->where('event_id', $eventID);
@@ -47,7 +47,7 @@ class RegistrationController extends Controller
     /**
      * Destroy a drone pilot registration
      */
-    public function destroy(Registration $registration) {
+    public function destroyRegistration(Registration $registration) {
         try {
             $registration->delete();
             return redirect()->back();

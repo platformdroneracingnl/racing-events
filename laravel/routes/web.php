@@ -66,7 +66,6 @@ Route::group([
                 auth()->user()->unreadNotifications->markAsRead();
                 return redirect()->back();
             })->name('markRead');
-
             // Mark specific notification as read
             Route::get('notifications', [NotificationsController::class, 'index'])->name('notify.index');
             Route::get('notifications/remove', [NotificationsController::class, 'removeAll'])->name('notify.removeAll');
@@ -86,30 +85,30 @@ Route::group([
 			Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);
 			Route::resource('management/raceteams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
 
-            // Organizator
+            /**
+             * Organizator
+             */
             // Events
             Route::resource('organizator/events', Organizator\EventController::class, ['names' => 'organizator.events']);
-            Route::post('event/{registration}/destroy', [Organizator\EventController::class, 'destroy'])->name('organizator.registration.destroy');
-
             // Waivers
 			Route::resource('organizator/waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
-            Route::get('event/{waiver}/export', [Organizator\WaiverController::class, 'exportPDF'])->name('organizator.waiver.export');
+            Route::get('organizator/event/{waiver}/export', [Organizator\WaiverController::class, 'exportPDF'])->name('organizator.waiver.export');
+            // Registrations
+            Route::get('organizator/event/{event}/registrations', [Organizator\RegistrationController::class, 'eventRegistrations'])->name('organizator.event.registrations');
+            Route::get('organizator/event/{event}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
+            Route::patch('organizator/event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
+            Route::patch('organizator/event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
+            Route::post('organizator/event/{registration}/destroy', [Organizator\RegistrationController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
+            // Check-in
+            Route::get('organizator/event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
+            Route::get('organizator/event/check-in/{registration}', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
+            Route::patch('organizator/event/check-in/{registration}/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
 
             /**
-             * Registrations
+             * Pilots
              */
-            // Pilot
             Route::get('registrations', [Pilots\RegistrationController::class, 'myRegistrationsIndex'])->name('registrations.index');
             Route::post('events/{event}/register', [Pilots\RegistrationController::class, 'store'])->name('registration.event.store');
-            // Organization
-            Route::get('event/{event}/registrations', [Organizator\RegistrationController::class, 'index'])->name('organizator.event.registrations');
-            Route::get('event/{event}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
-            Route::patch('event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
-            Route::patch('event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
-            // Check-in
-            Route::get('event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
-            Route::get('event/check-in/{registration}', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
-            Route::patch('event/check-in/{registration}/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
 
             /**
              * Profile

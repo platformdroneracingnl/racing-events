@@ -12,6 +12,7 @@ use App\Models\Waiver;
 use App\Models\Event;
 use App\Models\User;
 use Auth;
+use App;
 
 class RegistrationController extends Controller
 {
@@ -20,9 +21,9 @@ class RegistrationController extends Controller
      * Get all the registrations only for specific pilot
      */
     public function myRegistrationsIndex() {
+        $lang = App::getLocale();
         $registrations = User::with('registrations')->find(Auth::user()->id);
-        return view('backend.pilots.registrations')
-            ->with('registrations', $registrations);
+        return view('backend.pilots.registrations.index', compact('lang','registrations'));
     }
 
     /**

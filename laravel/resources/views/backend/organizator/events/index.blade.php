@@ -43,7 +43,7 @@
             <tbody>
                 @foreach ($events->events as $event)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <th scope="row">{{ $loop->iteration }}</th>
                         <td>{{ $event->name }}</td>
                         <td>{{ $event->date->format('d-m-Y') }}</td>
                         <td>{{ $event->start_registration->format('d-m-Y') }}</td>
@@ -54,32 +54,32 @@
                         <!-- Online -->
                         <td>
                             @if ($event->online == 1)
-                                <span class="badge bg-success">{{ __('Online') }}</span>
+                                <h5 class="mb-0"><span class="badge bg-soft-success">{{ __('Online') }}</span></h5>
                             @else
-                                <span class="badge bg-danger">{{ __('Offline') }}</span>
+                                <h5 class="mb-0"><span class="badge bg-soft-danger">{{ __('Offline') }}</span></h5>
                             @endif
                         </td>
                         <td>
                             @if ($event->registration == 1)
-                                <span class="badge bg-success">@lang('category/events.opened')</span>
+                                <h5 class="mb-0"><span class="badge bg-soft-success">@lang('category/events.opened')</span></h5>
                             @else
-                                <span class="badge bg-danger">@lang('category/events.closed')</span>
+                                <h5 class="mb-0"><span class="badge bg-soft-danger">@lang('category/events.closed')</span></h5>
                             @endif
                         </td>
                         <!-- Waitlist -->
                         <td>
                             @if ($event->waitlist == 1)
-                                <span class="badge bg-success">@lang('category/events.in_use')</span>
+                                <h5 class="mb-0"><span class="badge bg-soft-success">@lang('category/events.in_use')</span></h5>
                             @else
-                                <span class="badge bg-danger">@lang('category/events.not_use')</span>
+                                <h5 class="mb-0"><span class="badge bg-soft-danger">@lang('category/events.not_use')</span></h5>
                             @endif
                         </td>
                         <!-- Mollie Payments -->
                         <td>
                             @if ($event->mollie_payments == 1)
-                                <span class="badge bg-success">@lang('category/events.mollie_payments')</span>
+                                <h5 class="mb-0"><span class="badge bg-soft-info">@lang('category/events.mollie_payments')</span></h5>
                             @else
-                                <span class="badge bg-info">@lang('category/events.own_administration')</span>
+                                <h5 class="mb-0"><span class="badge bg-soft-warning">@lang('category/events.own_administration')</span></h5>
                             @endif
                         </td>
                         <td>
