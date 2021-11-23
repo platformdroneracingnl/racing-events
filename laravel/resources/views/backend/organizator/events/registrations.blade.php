@@ -118,6 +118,7 @@
                                                         @endif
                                                     </h5>
                                                 </td>
+                                                <!-- Options -->
                                                 <td>
                                                     <ul class="list-inline mb-0">
                                                         <li class="list-inline-item">

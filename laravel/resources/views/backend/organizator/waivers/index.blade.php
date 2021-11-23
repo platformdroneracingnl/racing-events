@@ -59,7 +59,7 @@
                                 <tbody>
                                     @foreach ($result as $waiver)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $waiver->user->name }}</td>
                                             <td>{{ $waiver->user->pilot_name }}</td>
                                             <td>{{ $waiver->user->email }}</td>
