@@ -52,7 +52,7 @@
                                     <tr>
                                         <th scope="col">Nr.</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Options</th>
+                                        <th scope="col">@lang('button.options')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
