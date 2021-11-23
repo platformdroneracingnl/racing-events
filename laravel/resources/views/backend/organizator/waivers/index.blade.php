@@ -45,10 +45,10 @@
                     <div class="row">
                         <div class="table-responsive">
                             <table id="waiverTable" class="table align-middle table-hover nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead class="table-light">
+                                <thead>
                                     <tr>
                                         <th scope="col">Nr.</th>
-                                        <th scope="col">@lang('category/users.name')</th>
+                                        <th scope="col">@lang('category/profile.name')</th>
                                         <th scope="col">@lang('category/profile.pilot_name')</th>
                                         <th scope="col">E-mail</th>
                                         <th scope="col">@lang('category/events.competition')</th>
@@ -82,7 +82,7 @@
 
 @section('script')
     <script src="{{ asset('pdrnl')}}/js/sweetalerts/event.js"></script>
-    <script src="{{ asset('pdrnl')}}/js/dataTables/waivers.js"></script>
+    <script src="{{ asset('pdrnl')}}/js/dataTables/organizator.waivers.js"></script>
     <script>
         var locale = {!! json_encode($lang) !!};
     </script>
