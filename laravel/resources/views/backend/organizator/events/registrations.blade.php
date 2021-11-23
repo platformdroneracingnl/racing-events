@@ -229,7 +229,7 @@
                     <form action="{{ route('organizator.registration.destroy',$item->reg_id) }}" method="POST" role="form" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
-                            <h5 class="modal-title" id="userRegistrationDelete">{{ __('Verwijder registratie') }}</h5>
+                            <h5 class="modal-title" id="userRegistrationDelete">{{ __('Remove registration') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -251,7 +251,7 @@
 @section('script')
     <script src="{{ URL::asset('/assets/libs/select2/select2.min.js') }}"></script>
     <script src="{{ asset('pdrnl')}}/js/auto-refresh.js"></script>
-    <script src="{{ asset('pdrnl')}}/js/dataTables/registrations-organizator.js"></script>
+    <script src="{{ asset('pdrnl')}}/js/dataTables/organizator.registrations.js"></script>
     <script type="text/javascript">
         var locale = {!! json_encode($lang) !!};
     </script>

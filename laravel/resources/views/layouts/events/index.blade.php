@@ -45,7 +45,7 @@
 
 @section('script')
     <script src="{{ asset('pdrnl')}}/js/sweetalerts/event.js"></script>
-    <script src="{{ asset('pdrnl')}}/js/dataTables/events.management.js"></script>
+    <script src="{{ asset('pdrnl')}}/js/dataTables/management.events.js"></script>
     <script>
         var locale = {!! json_encode($lang) !!};
     </script>

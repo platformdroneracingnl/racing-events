@@ -41,8 +41,7 @@
 
                     <!-- Body -->
                     <div class="row">
-                        <p class="card-title-desc">Beheer alle gebruikers die aangemeld zijn op het platform
-                        </p>
+                        <p class="card-title-desc">Beheer alle gebruikers die aangemeld zijn op het platform</p>
                     </div>
 
                     <!-- Table -->
@@ -52,14 +51,14 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Nr.</th>
-                                        <th scope="col">Name</th>
+                                        <th scope="col">@lang('category/profile.name')</th>
                                         <th scope="col">E-mail</th>
                                         <th scope="col">Organization</th>
                                         <th scope="col">Race team</th>
                                         <th scope="col">Roles</th>
                                         <th scope="col">Member since</th>
                                         <th scope="col">Suspended until</th>
-                                        <th scope="col">Options</th>
+                                        <th scope="col">@lang('button.options')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -190,7 +189,7 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('pdrnl')}}/js/dataTables/users-management.js"></script>
+    <script src="{{ asset('pdrnl')}}/js/dataTables/management.users.js"></script>
     <script src="{{ asset('pdrnl')}}/js/sweetalerts/user.js"></script>
     <script>
         var locale = {!! json_encode($lang) !!};
