@@ -27,6 +27,7 @@
         "pragmarx/google2fa-laravel": "^2.0",
         "realrashid/sweet-alert": "^4.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-backup": "^7.7",
         "spatie/laravel-google-calendar": "^3.4",
         "spatie/laravel-permission": "^5.1",
         "willvincent/feeds": "^2.2"
