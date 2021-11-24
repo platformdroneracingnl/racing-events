@@ -64,22 +64,8 @@
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>
                                             <h5 class="mb-0">
-                                                <!-- Registered -->
-                                                @if ($registration->status_id == 1)
-                                                    <span class="badge bg-soft-primary">{{ __($registration->status->name) }}</span>
-                                                <!-- Waiting for payment -->
-                                                @elseif ($registration->status_id == 2)
-                                                    <span class="badge bg-soft-info">{{ __($registration->status->name) }}</span>
-                                                <!-- Waitlist -->
-                                                @elseif($registration->status_id == 4)
-                                                    <span class="badge bg-soft-info">{{ __($registration->status->name) }}</span>
-                                                <!-- Signed up -->
-                                                @elseif($registration->status_id == 3)
-                                                    <span class="badge bg-soft-success">{{ __($registration->status->name) }}</span>
-                                                <!-- Canceled -->
-                                                @else
-                                                    <span class="badge bg-soft-danger">{{ __($registration->status->name) }}</span>
-                                                @endif
+                                                <!-- Registration status -->
+                                                @include('backend.snippets.registration-status')
                                             </h5>
                                         </td>
                                         <td>
