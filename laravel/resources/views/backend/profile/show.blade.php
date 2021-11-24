@@ -45,7 +45,7 @@
                             <img src="@if(!empty(auth()->user()->image)) {{ asset('storage') }}/images/profiles/{{auth()->user()->image}} @else {{ asset('pdrnl') }}/img/default.png @endif" alt="Your profile image" class="avatar-xxl rounded-circle img-thumbnail">
                         </div>
                         <!-- User info -->
-                        <h4 class="mt-3 mb-1">{{ auth()->user()->name }} @if(!empty($countryCode->code)) / {{ $countryCode->code}} @endif </h4>
+                        <h4 class="mt-3 mb-1">{{ auth()->user()->name }} @if(!empty(auth()->user()->countries)) / {{ auth()->user()->countries->code}} @endif </h4>
                         <p class="text-muted">{{ auth()->user()->pilot_name }}</p>
 
                         @if(!empty(auth()->user()->getRoleNames()))
@@ -74,19 +74,19 @@
                         <div class="table-responsive mt-4">
                             <div>
                                 <p class="mb-1">Name :</p>
-                                <h5 class="font-size-16">Marcus</h5>
+                                <h5 class="font-size-16">{{ auth()->user()->name }}</h5>
                             </div>
                             <div class="mt-4">
                                 <p class="mb-1">Mobile :</p>
-                                <h5 class="font-size-16">012-234-5678</h5>
+                                <h5 class="font-size-16">{{ auth()->user()->phone }}</h5>
                             </div>
                             <div class="mt-4">
                                 <p class="mb-1">E-mail :</p>
-                                <h5 class="font-size-16">marcus@minible.com</h5>
+                                <h5 class="font-size-16">{{ auth()->user()->email }}</h5>
                             </div>
                             <div class="mt-4">
-                                <p class="mb-1">Location :</p>
-                                <h5 class="font-size-16">California, United States</h5>
+                                <p class="mb-1">Country :</p>
+                                <h5 class="font-size-16">{{ auth()->user()->countries->name }}</h5>
                             </div>
 
                         </div>

@@ -66,53 +66,36 @@
                                         </tr>
                                     </thead>
                                     <tbody id="check">
-                                        @foreach ($registrations as $item)
+                                        @foreach ($registrations as $registration)
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" name="registrations[]" value="{{ $item->reg_id }}">
+                                                    <input type="checkbox" name="registrations[]" value="{{ $registration->reg_id }}">
                                                 </td>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <!-- User -->
-                                                <td>{{ $item->user->name }}</td>
+                                                <td>{{ $registration->user->name }}</td>
                                                 <!-- Country -->
-                                                <td> @if(!empty($item->user->countries->name)) {{$item->user->countries->name}} @endif </td>
+                                                <td> @if(!empty($registration->user->countries->name)) {{$registration->user->countries->name}} @endif </td>
                                                 <!-- Pilot name -->
-                                                <td>{{ $item->user->pilot_name }}</td>
-                                                <td>{{ $item->user->race_team }}</td>
+                                                <td>{{ $registration->user->pilot_name }}</td>
+                                                <td>{{ $registration->user->race_team }}</td>
                                                 <!-- Email -->
-                                                <td>{{ $item->user->email }}</td>
+                                                <td>{{ $registration->user->email }}</td>
                                                 <!-- Registration date -->
-                                                <td>{{ $item->created_at->format('d-m-Y H:i') }}</td>
+                                                <td>{{ $registration->created_at->format('d-m-Y H:i') }}</td>
                                                 <!-- Status -->
                                                 <td>
                                                     <h5 class="mb-0">
-                                                        <!-- Registered -->
-                                                        @if ($item->status_id == 1)
-                                                            <span class="badge bg-soft-primary">{{ __($item->status->name) }}</span>
-                                                        <!-- Waiting for payment -->
-                                                        @elseif ($item->status_id == 2)
-                                                            <span class="badge bg-soft-info">{{ __($item->status->name) }}</span>
-                                                        <!-- Waitlist -->
-                                                        @elseif($item->status_id == 4)
-                                                            <span class="badge bg-soft-info">{{ __($item->status->name) }}</span>
-                                                        <!-- Signed up -->
-                                                        @elseif($item->status_id == 3)
-                                                            <span class="badge bg-soft-success">{{ __($item->status->name) }}</span>
-                                                        <!-- Refunded -->
-                                                        @elseif($item->status_id == 6)
-                                                            <span class="badge bg-soft-warning">{{ __($item->status->name) }}</span>
-                                                        <!-- Canceled -->
-                                                        @else
-                                                            <span class="badge bg-soft-danger">{{ __($item->status->name) }}</span>
-                                                        @endif
+                                                        <!-- Registration status -->
+                                                        @include('backend.snippets.registration-status')
                                                     </h5>
                                                 </td>
                                                 <!-- Check-in -->
                                                 <td>
                                                     <h5 class="mb-0">
-                                                        @if ($item->vtx_power and $item->failsafe == 1)
+                                                        @if ($registration->vtx_power and $registration->failsafe == 1)
                                                             <span class="badge bg-soft-success">{{ __('Ready to fly!') }}</span>
-                                                        @elseif(($item->vtx_power == 0 or $item->failsafe == 0) and $item->status_id == 3)
+                                                        @elseif(($registration->vtx_power == 0 or $registration->failsafe == 0) and $registration->status_id == 3)
                                                             <span class="badge bg-soft-warning">{{ __('Still have to check in') }}</span>
                                                         @else
                                                         @endif
@@ -122,12 +105,12 @@
                                                 <td>
                                                     <ul class="list-inline mb-0">
                                                         <li class="list-inline-item">
-                                                            <button type="button" class="btn px-2 text-primary" data-bs-toggle="modal" data-bs-target="#regModal-{{$item->reg_id}}" href="">
+                                                            <button type="button" class="btn px-2 text-primary" data-bs-toggle="modal" data-bs-target="#regModal-{{$registration->reg_id}}" href="">
                                                                 <i class="uil uil-pen font-size-18"></i>
                                                             </button>
                                                         </li>
                                                         <li class="list-inline-item">
-                                                            <button type="button" class="btn px-2 text-danger" data-bs-toggle="modal" data-bs-target="#userModal-{{$item->reg_id}}" href="">
+                                                            <button type="button" class="btn px-2 text-danger" data-bs-toggle="modal" data-bs-target="#userModal-{{$registration->reg_id}}" href="">
                                                                 <i class="uil uil-trash-alt font-size-18"></i>
                                                             </button>
                                                         </li>
@@ -163,12 +146,12 @@
             </div>
         </div>
     </div>
-    @foreach ($registrations as $item)
+    @foreach ($registrations as $registration)
         <!-- Change event registration for a user -->
-        <div class="modal fade" id="regModal-{{$item->reg_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="regModal-{{$registration->reg_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ route('event.registration.update',$item->reg_id)}}" method="POST" enctype="multipart/form-data" role="form">
+                    <form action="{{ route('event.registration.update',$registration->reg_id)}}" method="POST" enctype="multipart/form-data" role="form">
                         @csrf
                         @method('patch')
                         <div class="modal-header">
@@ -181,7 +164,7 @@
                                 <strong>{{ __('Registration status') }}:</strong><br>
                                 <select class="form-select" name="status_id" id="status_id" required>
                                     @foreach ($registrationStatus as $status)
-                                        <option value="{{$status->id}}" {{$status->id == $item->status_id ? 'selected' : ''}}>{{ __($status->name) }}</option>
+                                        <option value="{{$status->id}}" {{$status->id == $registration->status_id ? 'selected' : ''}}>{{ __($status->name) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -195,7 +178,7 @@
                                         <div class="text-center">
                                             <h5>{{ __('Failsafe') }}</h5>
                                             <div class="square-switch-xxl">
-                                                <input type="checkbox" id="inlineCheckbox1" name="failsafe" switch="bool" {{ $item->failsafe == 1 ? 'checked' : '' }}/>
+                                                <input type="checkbox" id="inlineCheckbox1" name="failsafe" switch="bool" {{ $registration->failsafe == 1 ? 'checked' : '' }}/>
                                                 <label for="inlineCheckbox1" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Disapproved') }}"></label>
                                             </div>
                                         </div>
@@ -206,7 +189,7 @@
                                         <div class="text-center">
                                             <h5>{{ __('VTX vermogen') }}</h5>
                                             <div class="square-switch-xxl">
-                                                <input type="checkbox" id="inlineCheckbox2" name="vtx_power" switch="bool" {{ $item->vtx_power == 1 ? 'checked' : '' }}/>
+                                                <input type="checkbox" id="inlineCheckbox2" name="vtx_power" switch="bool" {{ $registration->vtx_power == 1 ? 'checked' : '' }}/>
                                                 <label for="inlineCheckbox2" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Disapproved') }}"></label>
                                             </div>
                                         </div>
@@ -224,17 +207,17 @@
         </div>
 
         <!-- Delete a user -->
-        <div class="modal fade" id="userModal-{{$item->reg_id}}" tabindex="-1" role="dialog" aria-labelledby="userRegistrationDelete" aria-hidden="true">
+        <div class="modal fade" id="userModal-{{$registration->reg_id}}" tabindex="-1" role="dialog" aria-labelledby="userRegistrationDelete" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{ route('organizator.registration.destroy',$item->reg_id) }}" method="POST" role="form" enctype="multipart/form-data">
+                    <form action="{{ route('organizator.registration.destroy',$registration->reg_id) }}" method="POST" role="form" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
                             <h5 class="modal-title" id="userRegistrationDelete">{{ __('Remove registration') }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p class="text-center">@lang('category/events.delete_registration', ['name' => $item->user->name])</p>
+                            <p class="text-center">@lang('category/events.delete_registration', ['name' => $registration->user->name])</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('button.cancel')</button>

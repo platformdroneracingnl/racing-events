@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
+use App\Models\Registration;
 use App\Models\Event;
 use Carbon\Carbon;
 use Auth;
@@ -26,7 +27,8 @@ class DashboardController extends Controller
             ->get()
             ->where('online', 1)
             ->where('date', '>=', Carbon::today());
-        return view('backend.index', compact('events', 'agent'));
+        $registrations = Registration::where('user_id', Auth::user()->id)->take(8)->get();
+        return view('backend.index', compact('events', 'agent', 'registrations'));
     }
 
     /*Language Translation*/

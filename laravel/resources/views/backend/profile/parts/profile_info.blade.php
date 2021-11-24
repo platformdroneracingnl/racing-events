@@ -1,33 +1,20 @@
 <div>
     <div>
-        <h5 class="font-size-16 mb-4">Experience</h5>
-
+        <h5 class="font-size-16 mb-4">Deelgenomen wedstrijden</h5>
         <ul class="activity-feed mb-0 ps-2">
-            <li class="feed-item">
-                <div class="feed-item-list">
-                    <p class="text-muted mb-1">2019 - 2020</p>
-                    <h5 class="font-size-16">UI/UX Designer</h5>
-                    <p>Abc Company</p>
-                    <p class="text-muted">To achieve this, it would be necessary to have uniform
-                        grammar, pronunciation and more common words. If several languages coalesce,
-                        the grammar of the resulting language is more simple and regular than that
-                        of the individual</p>
-                </div>
-            </li>
-            <li class="feed-item">
-                <div class="feed-item-list">
-                    <p class="text-muted mb-1">2017 - 2019</p>
-                    <h5 class="font-size-16">Graphic Designer</h5>
-                    <p>xyz Company</p>
-                    <p class="text-muted">It will be as simple as occidental in fact, it will be
-                        Occidental. To an English person, it will seem like simplified English, as a
-                        skeptical Cambridge friend of mine told me what Occidental </p>
-                </div>
-            </li>
+            @foreach ($registrations->take(5) as $registration)
+                <li class="feed-item">
+                    <div class="feed-item-list">
+                        <p class="text-muted mb-1">{{ $registration->event->date->format('d-m-Y') }}</p>
+                        <h5 class="font-size-16">{{ $registration->event->name }}</h5>
+                        <p>{{ $registration->event->location->name }}</p>
+                    </div>
+                </li>
+            @endforeach
         </ul>
     </div>
 
-    <div>
+    {{-- <div>
         <h5 class="font-size-16 mb-4">Projects</h5>
 
         <div class="table-responsive">
@@ -165,5 +152,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> --}}
 </div>
