@@ -29,8 +29,6 @@ class ProfileController extends Controller
         $user = Auth::user();
         $lang = App::getLocale();
 
-        // Get country code from user
-        $countryCode = Country::all()->where('id', $user->country)->first();
         // Get organization related to user
         $organization = Organization::with('user')->find($user->organization);
         // Calculate age of user
@@ -64,7 +62,6 @@ class ProfileController extends Controller
         $countries = Country::all();
         return view('backend.profile.show', compact('lang','data'))
             ->with('countries', $countries)
-            ->with('countryCode', $countryCode)
             ->with('organization', $organization)
             ->with('age', $user_age)
             ->with('registrations', $registrations);
