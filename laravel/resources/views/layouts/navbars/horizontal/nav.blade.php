@@ -13,7 +13,7 @@
             <!-- App Search-->
             <form class="app-search d-none d-lg-block">
                 <div class="position-relative">
-                    <input type="text" class="form-control" placeholder="@lang('translation.Search')...">
+                    <input type="text" class="form-control" placeholder="{{ __('Search') }}...">
                     <span class="uil-search"></span>
                 </div>
             </form>
@@ -30,7 +30,7 @@
                     <form class="p-3">
                         <div class="form-group m-0">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="@lang('translation.Search')..." aria-label="Recipient's username">
+                                <input type="text" class="form-control" placeholder="{{ __('Search') }}..." aria-label="Recipient's username">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
                                 </div>
