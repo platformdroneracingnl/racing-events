@@ -47,27 +47,34 @@ class PermissionTableSeeder extends Seeder
             'registration-edit',
         ];
 
-        // Maak alle permission aan from the list
+        // Create all permission based on the list above
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
 
-        // Supervisor
-        $supervisor = Role::create(['name' => 'supervisor'])
-            ->givePermissionTo(Permission::all());
+        /**
+         * Supervisor is defined in AuthServiceProvider
+         */
+        Role::create(['name' => 'supervisor']);
 
-        // Manager
+        /**
+         * Manager
+         */
         $manager = Role::create(['name' => 'manager'])
             ->givePermissionTo(['user-list','role-list','organization-list','organization-create','organization-edit','organization-delete',
             'location-list','location-create','location-edit','location-delete','event-list','event-create','event-edit','event-delete','event-registration',
             'event-checkin', 'race_team-list', 'race_team-create', 'race_team-edit', 'race_team-delete','registration-signup','registration-edit']);
 
-        // Organizer
+        /**
+         * Organizer
+         */
         $organizer = Role::create(['name' => 'organizer'])
             ->givePermissionTo(['organization-list','location-list','location-create','location-edit','location-delete','event-list','event-create',
             'event-edit','event-delete','event-registration','event-checkin','registration-signup','registration-edit']);
 
-        // Racer
+        /**
+         * Racer
+         */
         $racer = Role::create(['name' => 'racer'])
             ->givePermissionTo(['registration-signup','registration-edit']);
 
