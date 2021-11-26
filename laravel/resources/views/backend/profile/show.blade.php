@@ -84,11 +84,14 @@
                                 <p class="mb-1">E-mail :</p>
                                 <h5 class="font-size-16">{{ auth()->user()->email }}</h5>
                             </div>
-                            <div class="mt-4">
-                                <p class="mb-1">Country :</p>
-                                <h5 class="font-size-16">{{ auth()->user()->countries->name }}</h5>
-                            </div>
-
+                            @if(auth()->user()->country))
+                                <div class="mt-4">
+                                    <p class="mb-1">Country :</p>
+                                    <h5 class="font-size-16">
+                                        {{ auth()->user()->countries->name }}
+                                    </h5>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
