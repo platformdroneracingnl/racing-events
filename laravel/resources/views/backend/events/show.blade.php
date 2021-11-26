@@ -13,7 +13,7 @@
         <div class="col-lg-12">
             <div class="card shadow">
                 <div class="card-body">
-                    <div class="row mb-3">
+                    <div class="row">
                         <!-- Header -->
                         <div class="col-12 col-md-6">
                             <h3 class="mb-0">{{$event->name}}</h3>
@@ -35,6 +35,15 @@
                             <a class="btn btn-secondary btn-on-mobile ms-1" href="{{ url()->previous() }}"><i class="mdi mdi-arrow-left me-2"></i> @lang('button.back')</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card shadow">
+                <img src="@if(!empty($event->image)) {{ asset('storage') }}/images/events/{{$event->image}} @else {{ asset('pdrnl') }}/img/image-placeholder.jpg @endif" class="card-img-top" alt="Event illustration image">
+                <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <div class="pdrnl-card-profile-stats d-flex {{ $agent->isMobile() ? 'flex-column' : 'flex-row' }} justify-content-center">
@@ -92,14 +101,18 @@
                                 {!! $event->description !!}
                             </div>
                         </div>
-                        <!-- Adress -->
-                        <div class="col-12 col-sm-12 col-md-12">
-                            <strong>{{ __('Navigation address') }}:</strong><br>
-                            {{ $event->location->street }} {{ $event->location->house_number }}, {{ $event->location->zip_code }} {{ $event->location->city }}
-                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card shadow">
                 @include('backend.snippets.google-maps', ['latitude' => $event->location->latitude, 'longitude' => $event->location->longitude])
+                <div class="card-footer">
+                    <!-- Adress -->
+                    <b><label for="eventAddress" class="form-label">{{ __('Navigation address') }}</label></b><br>
+                    {{ $event->location->street }} {{ $event->location->house_number }}, {{ $event->location->zip_code }} {{ $event->location->city }}
+                </div>
             </div>
         </div>
     </div>
