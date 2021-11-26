@@ -226,14 +226,14 @@
         <div id="visual-contact-collapse" class="collapse" data-bs-parent="#event-accordion">
             <div class="row">
                 <!-- Location image -->
-                <img id="img-upload" src="@if(!empty($event->image)) {{ asset('storage') }}/images/events/{{$event->image}} @else {{ asset('pdrnl') }}/img/image-placeholder.jpg @endif" alt="Your location image" style="object-fit: cover; object-position: center; height: 300px;">
+                <img id="img-upload" src="@if(!empty($event->image)) {{ asset('storage') }}/images/events/{{$event->image}} @else {{ asset('pdrnl') }}/img/image-placeholder.jpg @endif" alt="Your event image" style="object-fit: cover; object-position: center; height: 500px;">
                 <input type="hidden" name="oldImage" value="{{$event->image}}">
             </div>
             <div class="p-4 border-top">
                 <div class="row text-center">
                     <div class="mb-3">
                         <p class="text-muted">
-                            {{ __('Upload an image of the location here. The preview only shows a part of the image, this is not the final view everywhere on the platform.') }}
+                            {{ __('Upload an image of the event here. The preview only shows a part of the image, this is not the final view everywhere on the platform.') }}
                         </p>
                     </div>
                     <div class="row justify-content-center">
