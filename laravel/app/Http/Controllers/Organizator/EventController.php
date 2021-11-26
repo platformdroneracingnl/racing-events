@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Organizator;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Utils\GoogleCalendarController;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 use App\Models\Registration;
@@ -12,6 +13,7 @@ use App\Models\Event;
 use App\Models\User;
 use App;
 use Auth;
+use Image;
 
 class EventController extends Controller
 {
@@ -79,6 +81,20 @@ class EventController extends Controller
         $event->description             = $request->input('description');
         $event->docs_link               = $request->input('docs_link');
 
+        // Save the uploaded image
+        if($request->has('image')) {
+            $image = strtolower($request->input('name'));
+            $filename = str_replace(' ','', $image. '-' .time(). '.' .'png');
+            $storage_image = Image::make($request->image)->resize(null, 1080, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $storage_image->stream();
+
+            // Save image file in storage folder
+            Storage::disk('local')->put('public/images/events/' . $filename, $storage_image, 'public');
+            $event->image = $filename;
+        }
+
         // No price for event means free, turn mollie always off!
         if ($event->price == null || 0) {
             $event->price = 0;
@@ -138,11 +154,33 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event) {
 
+        // Valide input
+        request()->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,svg',
+        ]);
+
         $online          = $this->setBoolean($request->input('online'));
         $registration    = $this->setBoolean($request->input('registration'));
         $waitlist        = $this->setBoolean($request->input('waitlist'));
         $mollie_payments = $this->setBoolean($request->input('mollie_payments'));
         $google_calendar = $this->setBoolean($request->input('google_calendar'));
+
+        if($request->has('image')) {
+            // Remove old image if exist
+            $this->deleteOldImage('events', $request->input('oldImage'));
+
+            // Save the new uploaded image
+            $image = strtolower($request->input('name'));
+            $filename = str_replace(' ','', $image. '-' .time(). '.' .'png');
+            $storage_image = Image::make($request->image)->resize(null, 1080, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $storage_image->stream();
+
+            // Save image file in storage folder
+            Storage::disk('local')->put('public/images/events/' . $filename, $storage_image, 'public');
+            $event->update(['image' => $filename]);
+        }
 
         // No price for event means free, turn mollie always off!
         if ($event->price == null || 0) {
