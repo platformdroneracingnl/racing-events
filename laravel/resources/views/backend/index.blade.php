@@ -202,13 +202,13 @@
                             </div>
                         </div>
                     </div>
-                    <h4 class="card-title mb-4">Recente Aanmeldingen</h4>
+                    <h4 class="card-title mb-4">Recente Inschrijvingen</h4>
 
                     <div data-simplebar style="max-height: 336px;">
                         <div class="table-responsive">
                             <table class="table table-borderless table-centered table-nowrap">
                                 <tbody>
-                                    @foreach ($registrations as $registration)
+                                    @forelse ($registrations as $registration)
                                         <tr>
                                             <td style="width: 20px;"><img
                                                     src="{{ URL::asset('/assets/images/users/avatar-4.jpg') }}"
@@ -239,7 +239,13 @@
                                                     @endif
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <div class="text-center">
+                                                <span>Je hebt geen inschrijvingen voor wedstrijden</span>
+                                            </div>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

@@ -4,14 +4,19 @@ namespace App\Http\Controllers\Organizator;
 
 use App\Http\Controllers\Controller;
 use App\Notifications\ChangeEventRegistration;
+
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+
 use App\Models\Registration;
 use App\Models\Organization;
 use App\Models\Country;
 use App\Models\Status;
 use app\Models\User;
 use App\Models\Event;
+
 use Auth;
 use PDF;
 use App;
@@ -33,7 +38,8 @@ class RegistrationController extends Controller
     /**
      * Get list registrations from specific event
      */
-    public function eventRegistrations($eventID) {
+    public function eventRegistrations($eventID): View
+    {
         $lang = App::getLocale();
         // $agent = new Agent();
         $result = Registration::with('user')->get()->where('event_id', $eventID);
@@ -59,14 +65,16 @@ class RegistrationController extends Controller
     /**
      * Browser QR Code scan page
      */
-    public function scan() {
+    public function scan(): View
+    {
         return view('backend.organizator.scan');
     }
 
     /**
      * Check-in of drone pilots
      */
-    public function checkin($registrationID) {
+    public function checkin($registrationID): View
+    {
         $registration = Registration::where('reg_id', $registrationID)->get()->first();
 
         if(Auth::user()->id == $registration->event->user_id) {
@@ -178,7 +186,8 @@ class RegistrationController extends Controller
     /**
      * Count functie per event
      */
-    public static function countRegistrations($eventID) {
+    public static function countRegistrations($eventID)
+    {
         $registrations = Registration::where('event_id',$eventID)->count();
         return $registrations;
     }
@@ -186,7 +195,8 @@ class RegistrationController extends Controller
     /**
      * Check is user has already a registration for this competiion
      */
-    public static function checkRegistration($eventID) {
+    public static function checkRegistration($eventID)
+    {
         $registration = Registration::all()->where('event_id',$eventID)->where('user_id',Auth::user()->id)->count();
         if($registration < 1) {
             return false;
