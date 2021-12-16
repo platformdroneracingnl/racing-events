@@ -14,7 +14,6 @@ return [
   "Apps"=> "Apps",
   "Calendar"=> "Calendar",
   "Chat"=> "Chat",
-  "Ecommerce"=> "Ecommerce",
   "Products"=> "Products",
   "Product_Detail"=> "Product Detail",
   "Orders"=> "Orders",

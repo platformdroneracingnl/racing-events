@@ -141,22 +141,6 @@
                                         <a href="email-read" class="dropdown-item">@lang('translation.Read_Email')</a>
                                     </div>
                                 </div>
-                                <div class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-ecommerce"
-                                        role="button">
-                                        @lang('translation.Ecommerce') <div class="arrow-down"></div>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="topnav-ecommerce">
-                                        <a href="ecommerce-products" class="dropdown-item">@lang('translation.Products')</a>
-                                        <a href="ecommerce-product-detail" class="dropdown-item">@lang('translation.Product_Detail')</a>
-                                        <a href="ecommerce-orders" class="dropdown-item">@lang('translation.Orders')</a>
-                                        <a href="ecommerce-customers" class="dropdown-item">@lang('translation.Customers')</a>
-                                        <a href="ecommerce-cart" class="dropdown-item">@lang('translation.Cart')</a>
-                                        <a href="ecommerce-checkout" class="dropdown-item">@lang('translation.Checkout')</a>
-                                        <a href="ecommerce-shops" class="dropdown-item">@lang('translation.Shops')</a>
-                                        <a href="ecommerce-add-product" class="dropdown-item">@lang('translation.Add_Product')</a>
-                                    </div>
-                                </div>
 
                                 <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-invoice"
@@ -228,19 +212,6 @@
                                         <a href="charts-flot" class="dropdown-item">@lang('translation.Flot')</a>
                                         <a href="charts-knob" class="dropdown-item">@lang('translation.Jquery_Knob')</a>
                                         <a href="charts-sparkline" class="dropdown-item">@lang('translation.Sparkline')</a>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-icons"
-                                        role="button">
-                                        @lang('translation.Icons') <div class="arrow-down"></div>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="topnav-icons">
-                                        <a href="icons-unicons" class="dropdown-item">@lang('translation.Unicons')</a>
-                                        <a href="icons-boxicons" class="dropdown-item">@lang('translation.Boxicons')</a>
-                                        <a href="icons-materialdesign" class="dropdown-item">@lang('translation.Material_Design')</a>
-                                        <a href="icons-dripicons" class="dropdown-item">@lang('translation.Dripicons')</a>
-                                        <a href="icons-fontawesome" class="dropdown-item">@lang('translation.Font_Awesome')</a>
                                     </div>
                                 </div>
                                 <div class="dropdown">

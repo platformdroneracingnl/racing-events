@@ -14,7 +14,6 @@ return [
   "Apps"=> "Apps",
   "Calendar"=> "Kalender",
   "Chat"=> "Plaudern",
-  "Ecommerce"=> "E-Commerce",
   "Products"=> "Produkte",
   "Product_Detail"=> "Produktdetail",
   "Orders"=> "Aufträge",
