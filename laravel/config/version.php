@@ -3,7 +3,7 @@
 return array (
     'major' => 0,
     'minor' => 3,
-    'patch' => 1,
+    'patch' => 3,
     'build' => 'dev',
     'commit' => false,
 );
