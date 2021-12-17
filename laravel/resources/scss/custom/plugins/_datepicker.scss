@@ -3,30 +3,6 @@
 // Datepicker
 //
 
-[dir="rtl"]{
-  .datepicker {
-    right: 0 !important;
-    left: auto;
-  }
-}
-
-[dir="rtl"]{
-  .bootstrap-timepicker-widget{
-    right: 0 !important;
-    left: auto;
-    
-  }
-
-  .timepicker-orient-top{
-    top: $input-height !important;
-  }
-
-  .timepicker-orient-bottom{
-    top: auto !important;
-    bottom: $input-height !important;
-  }
-}
-
 .datepicker {
   border: 1px solid $border-color;
   padding: 8px;

@@ -119,14 +119,3 @@
         padding: 8px 16px;
     }
 }
-
-// RTL
-[dir="rtl"]{
-    .fc-header-toolbar {
-        direction: ltr !important;
-    }
-
-    .fc-toolbar>*>:not(:first-child) {
-        margin-left: .75em;
-    }
-}
