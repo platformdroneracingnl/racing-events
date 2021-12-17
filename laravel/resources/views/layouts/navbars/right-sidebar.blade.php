@@ -33,16 +33,7 @@
                 <input type="checkbox" class="form-check-input theme-choice" id="dark-mode-switch" data-bsStyle="{{ URL::asset('/assets/css/bootstrap-dark.min.css') }}" data-appStyle="{{ URL::asset('/assets/css/app-dark.min.css') }}" />
                 <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
             </div>
-    
-            {{-- <div class="mb-2">
-                <img src="{{ URL::asset('/assets/images/layouts/layout-3.jpg') }}" class="img-fluid img-thumbnail" alt="">
-            </div>
-            <div class="form-check form-switch mb-5">
-                <input type="checkbox" class="form-check-input theme-choice" id="rtl-mode-switch" data-appStyle="{{ URL::asset('/assets/css/app.rtl.css') }}" />
-                <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
-            </div> --}}
 
-            
         </div>
 
     </div> <!-- end slimscroll-menu-->

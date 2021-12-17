@@ -90,7 +90,6 @@
         "table-edits": "^0.0.3",
         "tinymce": "^5.10.2",
         "toastr": "^2.1.4",
-        "waypoints": "^4.0.1",
-        "webpack-rtl-plugin": "^2.0.0"
+        "waypoints": "^4.0.1"
     }
 }

@@ -29,13 +29,13 @@ task('deploy', [
     'artisan:config:cache',
     'artisan:migrate',
     'npm:install',
-    'npm:run:prod',
+    'npm:run:dev',
     'deploy:publish',
 ]);
 
-task('npm:run:prod', function () {
+task('npm:run:dev', function () {
     cd('{{release_or_current_path}}');
-    run('npm run prod');
+    run('npm run dev');
 });
 
 after('deploy:failed', 'deploy:unlock', 'slack:notify:failure');

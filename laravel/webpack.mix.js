@@ -1,6 +1,5 @@
 const mix = require('laravel-mix');
 const lodash = require("lodash");
-const WebpackRTLPlugin = require('webpack-rtl-plugin');
 const folder = {
     src: "resources/", // source files
     dist: "public/", // build files
@@ -176,12 +175,6 @@ const folder = {
     mix.sass('resources/scss/icons.scss', folder.dist_assets + "css").options({processCssUrls: false}).minify(folder.dist_assets + "css/icons.css");
     mix.sass('resources/scss/app.scss', folder.dist_assets + "css").options({processCssUrls: false}).minify(folder.dist_assets + "css/app.css");
     mix.sass('resources/scss/app-dark.scss', folder.dist_assets + "css").options({processCssUrls: false}).minify(folder.dist_assets + "css/app-dark.css");
-
-    mix.webpackConfig({
-        plugins: [
-            new WebpackRTLPlugin()
-        ]
-    });
 
     //copying demo pages related assets
     var app_pages_assets = {

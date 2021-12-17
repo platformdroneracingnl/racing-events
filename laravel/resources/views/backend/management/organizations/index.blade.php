@@ -32,7 +32,6 @@
                                     <div class="position-relative">
                                         <input type="text" class="form-control search rounded bg-light border-0"
                                             placeholder="{{ __('Search') }}...">
-                                        <i class="mdi mdi-magnify search-icon"></i>
                                     </div>
                                 </div>
                             </div>
