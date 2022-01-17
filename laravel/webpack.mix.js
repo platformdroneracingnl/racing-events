@@ -161,6 +161,8 @@ const folder = {
     mix.copyDirectory("./node_modules/tinymce", folder.dist_assets + "/libs/tinymce");
     mix.copyDirectory("./node_modules/leaflet/dist/images", folder.dist_assets + "/libs/leaflet/images");
     mix.copyDirectory("./node_modules/bootstrap-editable/img", folder.dist_assets + "/libs/img");
+    mix.copy("./node_modules/@fortawesome/fontawesome-free/webfonts", folder.dist_assets + "/webfonts");
+    mix.copy("./node_modules/@mdi/font/fonts", folder.dist_assets + "/fonts");
 
     // copy all fonts
     var out = folder.dist_assets + "fonts";

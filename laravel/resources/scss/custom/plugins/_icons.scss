@@ -2,8 +2,21 @@
 // icons.scss
 //
 
-@import "icons/materialdesignicons";
+// @import "icons/materialdesignicons";
+// Material Design Icons
+@import "~@mdi/font/scss/materialdesignicons";
+
+// Boxicons
 @import "icons/boxicons";
-@import "icons/fontawesome-all";
+
+// Dripicons
 @import "icons/dripicons";
+
+// Unicons
 @import "icons/unicons";
+
+// Font-Awesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
