@@ -42,7 +42,7 @@ You can start developing in 2 ways:
 How to start with this Laravel Docker template:
 
 1. Clone the repository
-2. Create a `.env` file and make an symbolik link
+2. Create a `.env` file and make an symbolic link
 
 ```bash
 cp ./laravel/.env.example ./laravel/.env
@@ -71,6 +71,11 @@ ln -s laravel/.env .env
 cd laravel && composer install && php artisan key:generate && cd ..
 ```
 
+6. Create an symbolic link to for the storage folder
+```bash
+cd laracel && php artisan storage:link && cd ..
+```
+
 ## Run
 
 When you have done the getting started part, it's time to start the docker containers.
@@ -85,6 +90,25 @@ After this only do a Laravel migration to the database and you are ready!
 cd laravel && php artisan migrate
 ```
 </details>
+
+## Tools
+
+### Create storage symlink
+
+When you create a symlink according to the laravel command (`php artisan storage:link`) it will create a static link and
+cause problems in the docker container. It's best to run the following command to get the same result:
+
+```bash
+cd public && ln -s ../storage/app/public storage
+```
+
+### Create a backup
+
+To make a backup of the application, run the command below.
+
+```bash
+php artisan backup:run
+```
 
 ## Contributing
 
@@ -117,7 +141,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[maintenance-shield]: https://img.shields.io/maintenance/yes/2021.svg?style=for-the-badge
+[maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg?style=for-the-badge
 [contributors-shield]: https://img.shields.io/github/contributors/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
 [contributors-url]: https://github.com/platformdroneracingnl/race-event-registration/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
