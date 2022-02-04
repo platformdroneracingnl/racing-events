@@ -25,7 +25,7 @@
     },
     "dependencies": {
         "@chenfengyuan/datepicker": "^1.0.9",
-        "@ckeditor/ckeditor5-build-classic": "^31.1.0",
+        "@ckeditor/ckeditor5-build-classic": "^32.0.0",
         "@curiosityx/bootstrap-session-timeout": "^1.0.0",
         "@fortawesome/fontawesome-free": "^5.15.4",
         "@fullcalendar/bootstrap": "^5.10.1",
