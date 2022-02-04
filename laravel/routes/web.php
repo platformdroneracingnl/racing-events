@@ -32,6 +32,18 @@ Route::get('/phpinfo', function() {
     return phpinfo();
 });
 
+Route::get('old', function() {
+    return view('frontend-old.welcome');
+});
+
+Route::get('old/contact', function() {
+    return view('frontend-old.contact');
+});
+
+Route::get('old/events', function() {
+    return view('frontend-old.events');
+});
+
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],

@@ -118,7 +118,7 @@ const folder = {
                 "./node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css"]
             },
             {"name": "jquery-ui-dist", "assets": ["./node_modules/jquery-ui-dist/jquery-ui.min.js"]},
-            {"name": "inputmask", "assets": ["./node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js"]},
+            {"name": "inputmask", "assets": ["./node_modules/inputmask/dist/jquery.inputmask.min.js"]},
             {"name": "ckeditor", "assets": ["./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"]},
             {"name": "table-edits", "assets": ["./node_modules/table-edits/build/table-edits.min.js"]},
             {"name": "flot-curvedLines", "assets": ["./node_modules/flot.curvedlines/curvedLines.js"]},
@@ -161,6 +161,8 @@ const folder = {
     mix.copyDirectory("./node_modules/tinymce", folder.dist_assets + "/libs/tinymce");
     mix.copyDirectory("./node_modules/leaflet/dist/images", folder.dist_assets + "/libs/leaflet/images");
     mix.copyDirectory("./node_modules/bootstrap-editable/img", folder.dist_assets + "/libs/img");
+    mix.copy("./node_modules/@fortawesome/fontawesome-free/webfonts", folder.dist_assets + "/webfonts");
+    mix.copy("./node_modules/@mdi/font/fonts", folder.dist_assets + "/fonts");
 
     // copy all fonts
     var out = folder.dist_assets + "fonts";
@@ -196,6 +198,7 @@ const folder = {
             folder.src + "js/pages/form-wizard.init.js",
             folder.src + "js/pages/form-xeditable.init.js",
             folder.src + "js/pages/gmaps.init.js",
+            folder.src + "js/pages/ico-landing.init.js",
             folder.src + "js/pages/jquery-knob.init.js",
             folder.src + "js/pages/leaflet-us-states.js",
             folder.src + "js/pages/leaflet-map.init.js",

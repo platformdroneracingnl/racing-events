@@ -24,6 +24,6 @@ class HomeController extends Controller
 
     public function root()
     {
-        return view('frontend.welcome');
+        return view('frontend.home');
     }
 }

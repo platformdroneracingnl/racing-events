@@ -8,7 +8,7 @@
 
 @section('body')
 
-    <body data-layout="horizontal" data-topbar="colored" data-layout-size="boxed">
+<body data-layout="horizontal" data-topbar="colored" data-layout-size="boxed">
     @show
 
     @include('sweetalert::alert')

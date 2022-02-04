@@ -109,7 +109,6 @@
             <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
                 <div class="collapse navbar-collapse" id="topnav-menu-content">
                     <ul class="navbar-nav">
-
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteNamed('root') ? 'active' : '' }}" href="{{ route('root')}}">
                                 <i class="fas fa-home me-2"></i>

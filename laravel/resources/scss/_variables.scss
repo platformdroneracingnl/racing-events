@@ -575,9 +575,11 @@ $blockquote-footer-color:     $gray-600;
 $blockquote-footer-font-size: $small-font-size;
 
 $hr-margin-y:                 $spacer;
-$hr-color:                    rgba($black, .1);
+$hr-color:                    inherit;
+$hr-bg-color:                 currentColor;
+$hr-border-width:             0;
 $hr-height:                   $border-width;
-$hr-opacity:                  .5;
+$hr-opacity:                  .2;
 
 $legend-margin-bottom:        .5rem;
 $legend-font-size:            1.5rem;
