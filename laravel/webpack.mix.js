@@ -118,7 +118,7 @@ const folder = {
                 "./node_modules/jquery-bar-rating/dist/themes/fontawesome-stars.css"]
             },
             {"name": "jquery-ui-dist", "assets": ["./node_modules/jquery-ui-dist/jquery-ui.min.js"]},
-            {"name": "inputmask", "assets": ["./node_modules/inputmask/dist/min/jquery.inputmask.bundle.min.js"]},
+            {"name": "inputmask", "assets": ["./node_modules/inputmask/dist/jquery.inputmask.min.js"]},
             {"name": "ckeditor", "assets": ["./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"]},
             {"name": "table-edits", "assets": ["./node_modules/table-edits/build/table-edits.min.js"]},
             {"name": "flot-curvedLines", "assets": ["./node_modules/flot.curvedlines/curvedLines.js"]},
@@ -198,6 +198,7 @@ const folder = {
             folder.src + "js/pages/form-wizard.init.js",
             folder.src + "js/pages/form-xeditable.init.js",
             folder.src + "js/pages/gmaps.init.js",
+            folder.src + "js/pages/ico-landing.init.js",
             folder.src + "js/pages/jquery-knob.init.js",
             folder.src + "js/pages/leaflet-us-states.js",
             folder.src + "js/pages/leaflet-map.init.js",
