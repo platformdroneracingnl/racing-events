@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="col text-center">
-                    <div class="my-2 ms-lg-2">
+                    <div class="my-2">
                         <a href="{{ route('register') }}" class="btn btn-outline-warning w-xs">@lang('auth.register')</a>
                     </div>
                 </div>
