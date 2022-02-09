@@ -88,7 +88,7 @@
         "select2": "^4.0.10",
         "simplebar": "^5.3.6",
         "spectrum-colorpicker2": "^2.0.5",
-        "sweetalert2": "^11.3.10",
+        "sweetalert2": "^11.4.0",
         "table-edits": "^0.0.3",
         "tinymce": "^5.10.3",
         "toastr": "^2.1.4",
