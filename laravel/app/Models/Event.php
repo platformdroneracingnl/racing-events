@@ -33,8 +33,11 @@ class Event extends Model
         'location_id',
         'image',
     ];
-
-    protected $dates = ['start_registration', 'end_registration', 'date'];
+    protected $casts = [
+        'start_registration' => 'datetime',
+        'end_registration' => 'datetime',
+        'date' => 'datetime',
+    ];
 
     public function location()
     {

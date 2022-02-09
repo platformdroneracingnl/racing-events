@@ -42,15 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'date_of_birth',
-        'suspended_until',
-    ];
+
 
     /**
      * The attributes that should be cast to native types.
@@ -58,8 +50,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+        'date_of_birth' => 'datetime',
+        'suspended_until' => 'datetime',
+        'email_verified_at' => 'datetime',    ];
 
     /**
      * Relationships
