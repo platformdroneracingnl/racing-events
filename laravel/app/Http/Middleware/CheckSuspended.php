@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CheckSuspended
 {
@@ -15,8 +15,8 @@ class CheckSuspended
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
-
+    public function handle($request, Closure $next)
+    {
         if (auth()->check() && auth()->user()->suspended_until && now()->lessThan(auth()->user()->suspended_until)) {
             $suspended_days = now()->diffInDays(auth()->user()->suspended_until);
             auth()->logout();

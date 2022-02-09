@@ -25,7 +25,7 @@ return [
     'register_account_info' => 'Create a new account using the form below',
 
     'logout' => 'Logout',
-    
+
     'name' => 'Name',
     'password' => 'Password',
     'password_confirm' => 'Confirm password',

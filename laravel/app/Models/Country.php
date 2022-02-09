@@ -14,7 +14,8 @@ class Country extends Model
     /**
      * Relationships
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
     }
 }

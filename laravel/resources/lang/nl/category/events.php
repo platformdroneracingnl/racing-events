@@ -22,9 +22,9 @@ return [
     'price' => 'Prijs',
     'competition_info' => 'Wedstrijd info',
 
-    # Status labels
+    // Status labels
     'new' => 'Nieuw',
-    'full' => 'VOL', 
+    'full' => 'VOL',
     'closed' => 'Gesloten',
     'opened' => 'Geopend',
     'in_use' => 'In gebruik',
@@ -32,17 +32,17 @@ return [
     'mollie_payments' => 'Mollie betalingen',
     'own_administration' => 'Eigen administratie',
 
-    # Event show
+    // Event show
     'register' => 'Inschrijven',
     'general' => 'Algemeen',
     'description' => 'Beschrijving',
     'organizer' => 'Organisator',
 
-    # Registrations - pilot
+    // Registrations - pilot
     'qr_code_text' => 'Laat deze QR code scannen<br> bij de organisator tijdens check-in',
     'delete_registration' => 'Weet je zeker dat je de registratie van <br><strong>:name</strong> wilt verwijderen?',
 
-    # Waiver - event registration
+    // Waiver - event registration
     'waiver' => 'Afstandsverklaring',
     'waivers' => 'Afstandsverklaringen',
     'signed_by' => 'Is getekend door',

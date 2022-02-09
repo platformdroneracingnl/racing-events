@@ -2,21 +2,23 @@
 
 namespace App\Mail;
 
+use App\Models\Event;
+use App\Models\Organization;
+use App\Models\Registration;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Registration;
-use App\Models\Event;
-use App\Models\User;
-use App\Models\Organization;
 
 class NewEventRegistration extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $registration;
+
     public $event;
+
     public $organization;
 
     /**
@@ -24,14 +26,16 @@ class NewEventRegistration extends Mailable
      *
      * @return void
      */
-    public function __construct($registration, $event, $organization, $user) {
+    public function __construct($registration, $event, $organization, $user)
+    {
         $this->registration = $registration;
         $this->event = $event;
         $this->organization = $organization;
         $this->user = $user;
     }
 
-    public function determineReplyEmail() {
+    public function determineReplyEmail()
+    {
         // If user didn't give up overrule email
         if ($this->event->email == null) {
             return $this->user->email;
@@ -49,6 +53,6 @@ class NewEventRegistration extends Mailable
     {
         return $this->markdown('emails.event_registration')
                     ->subject('Inschrijving wedstrijd: '.$this->event->name)
-                    ->replyTo(NewEventRegistration::determineReplyEmail(), $this->user->name);
+                    ->replyTo(self::determineReplyEmail(), $this->user->name);
     }
 }

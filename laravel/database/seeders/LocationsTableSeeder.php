@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use DB;
+use Illuminate\Database\Seeder;
 
 class LocationsTableSeeder extends Seeder
 {
@@ -25,7 +25,7 @@ class LocationsTableSeeder extends Seeder
             'country'       => 151,
             'category'      => 'indoor',
             'latitude'      => '52.634736318304604',
-            'longitude'     => '4.716487583680192'
+            'longitude'     => '4.716487583680192',
         ]);
 
         DB::table('locations')->insert([
@@ -39,7 +39,7 @@ class LocationsTableSeeder extends Seeder
             'country'       => 151,
             'category'      => 'indoor',
             'latitude'      => '52.1712372',
-            'longitude'     => '4.4107497'
+            'longitude'     => '4.4107497',
         ]);
     }
 }

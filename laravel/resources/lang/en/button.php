@@ -1,7 +1,7 @@
 <?php
 
 return [
-    # Buttons
+    // Buttons
     'options' => 'Options',
     'more_info' => 'More info',
     'back' => 'Back',

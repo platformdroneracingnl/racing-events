@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers\Pilots;
 
+use App;
 use App\Http\Controllers\Controller;
+use App\Models\Event;
+use App\Models\Organization;
+use App\Models\Registration;
+use App\Models\User;
+use App\Models\Waiver;
+use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Mollie\Laravel\Facades\Mollie;
-use Illuminate\Http\Request;
-use App\Models\Registration;
-use App\Models\Organization;
-use App\Models\Waiver;
-use App\Models\Event;
-use App\Models\User;
-use Auth;
-use App;
 
 class RegistrationController extends Controller
 {
-
     /**
      * Get all the registrations only for specific pilot
      */
-    public function myRegistrationsIndex() {
+    public function myRegistrationsIndex()
+    {
         $lang = App::getLocale();
         $registrations = User::with('registrations')->find(Auth::user()->id);
-        return view('backend.pilots.registrations.index', compact('lang','registrations'));
+
+        return view('backend.pilots.registrations.index', compact('lang', 'registrations'));
     }
 
     /**
@@ -33,31 +34,32 @@ class RegistrationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Event $event) {
+    public function store(Request $request, Event $event)
+    {
         // Create new registration
         $registration = new Registration();
-        $registration->reg_id       = uniqid();
-        $registration->event_id     = $event->id;
-        $registration->user_id      = Auth::user()->id;
+        $registration->reg_id = uniqid();
+        $registration->event_id = $event->id;
+        $registration->user_id = Auth::user()->id;
 
         // Create new waiver record
         $waiver = new Waiver();
-        $waiver->user_id            = $registration->user_id;
-        $waiver->event_id           = $event->id;
-        $waiver->registration_id    = $registration->reg_id;
-        $waiver->option_1           = $this->setBoolean($request->input('waiver-opt1'));
-        $waiver->option_2           = $this->setBoolean($request->input('waiver-opt2'));
-        $waiver->option_3           = $this->setBoolean($request->input('waiver-opt3'));
+        $waiver->user_id = $registration->user_id;
+        $waiver->event_id = $event->id;
+        $waiver->registration_id = $registration->reg_id;
+        $waiver->option_1 = $this->setBoolean($request->input('waiver-opt1'));
+        $waiver->option_2 = $this->setBoolean($request->input('waiver-opt2'));
+        $waiver->option_3 = $this->setBoolean($request->input('waiver-opt3'));
 
         // Get some database rows
         $organization = Organization::where('id', '=', $event->organization_id)->get();
         $user = User::where('id', '=', $event->user_id)->get();
 
         // Determine status of registration
-        if($this->countRegistrations($event->id) < $event->max_registrations and $event->price == 0) {
+        if ($this->countRegistrations($event->id) < $event->max_registrations and $event->price == 0) {
             $registration->status_id = 3;
             $waitlist = false;
-        } elseif($this->countRegistrations($event->id) < $event->max_registrations) {
+        } elseif ($this->countRegistrations($event->id) < $event->max_registrations) {
             $registration->status_id = 2;
             $waitlist = false;
         } else {
@@ -83,10 +85,12 @@ class RegistrationController extends Controller
 
         try {
             if (Registration::where(['user_id' => $registration->user_id, 'event_id' => $registration->event_id])->exists()) {
-                alert()->error(trans('sweetalert.already-signed-up-title'),trans('sweetalert.already-signed-up-text'));
+                alert()->error(trans('sweetalert.already-signed-up-title'), trans('sweetalert.already-signed-up-text'));
+
                 return redirect()->back();
             } elseif (empty(Auth::user()->country) or empty(Auth::user()->pilot_name)) {
-                alert()->error(trans('sweetalert.error-signed-up-title'),trans('sweetalert.error-signed-up-text'))->autoClose(10000);
+                alert()->error(trans('sweetalert.error-signed-up-title'), trans('sweetalert.error-signed-up-text'))->autoClose(10000);
+
                 return redirect()->back();
             } else {
                 // Save registration and waiver
@@ -94,18 +98,20 @@ class RegistrationController extends Controller
                 $waiver->save();
 
                 // Show Sweetalert, but wich one?
-                if($waitlist == true) {
+                if ($waitlist == true) {
                     // Show waitlist alert
-                    alert()->success(trans('sweetalert.waitlist-title'),trans('sweetalert.waitlist-text'));
+                    alert()->success(trans('sweetalert.waitlist-title'), trans('sweetalert.waitlist-text'));
+
                     return redirect()->route('dashboard');
                 } elseif ($event->mollie_payments == 1) {
                     // redirect customer to Mollie checkout page
                     return redirect($payment->getCheckoutUrl(), 303);
                 } else {
                     // Show normal alert
-                    alert()->success(trans('sweetalert.success-signed-up-title'),trans('sweetalert.success-signed-up-text'));
+                    alert()->success(trans('sweetalert.success-signed-up-title'), trans('sweetalert.success-signed-up-text'));
                     // Send email to pilot
                     Mail::to(Auth::user()->email)->send(new NewEventRegistration($registration, $event, $organization, $user));
+
                     return redirect()->route('dashboard');
                 }
             }
@@ -117,8 +123,10 @@ class RegistrationController extends Controller
     /**
      * Count functie per event
      */
-    public static function countRegistrations($eventID) {
-        $registrations = Registration::where('event_id',$eventID)->count();
+    public static function countRegistrations($eventID)
+    {
+        $registrations = Registration::where('event_id', $eventID)->count();
+
         return $registrations;
     }
 }

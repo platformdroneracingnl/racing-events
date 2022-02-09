@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Internetcode\LaravelUserSettings\Traits\HasSettingsTrait;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -64,31 +64,38 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Relationships
      */
-    public function countries() {
+    public function countries()
+    {
         return $this->hasOne(Country::class, 'id', 'country');
     }
 
-    public function organization() {
+    public function organization()
+    {
         return $this->hasOne(Organization::class, 'id', 'organization_id');
     }
 
-    public function race_team() {
+    public function race_team()
+    {
         return $this->hasOne(RaceTeam::class, 'id', 'race_team_id');
     }
 
-    public function registrations() {
+    public function registrations()
+    {
         return $this->hasMany('App\Models\Registration')->orderBy('created_at', 'DESC');
     }
 
-    public function events() {
+    public function events()
+    {
         return $this->hasMany(Event::class);
     }
 
-    public function loginSecurity() {
+    public function loginSecurity()
+    {
         return $this->hasOne('App\Models\LoginSecurity');
     }
 
-    public function waivers() {
+    public function waivers()
+    {
         return $this->hasMany(Waiver::class);
     }
 }

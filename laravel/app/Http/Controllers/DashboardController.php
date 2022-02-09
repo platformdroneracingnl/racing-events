@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use App\Models\Registration;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
-use App\Models\Registration;
-use App\Models\Event;
-use Carbon\Carbon;
-use Auth;
 
 class DashboardController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         // $user = Auth::user();
         // $user->setSetting('layout_sidebar', true);
         // $user->setSetting('layout_horizontal', false);
@@ -28,6 +29,7 @@ class DashboardController extends Controller
             ->where('online', 1)
             ->where('date', '>=', Carbon::today());
         $registrations = Registration::where('user_id', Auth::user()->id)->take(8)->get();
+
         return view('backend.index', compact('events', 'agent', 'registrations'));
     }
 
@@ -47,7 +49,8 @@ class DashboardController extends Controller
     /**
      * Change the layout
      */
-    public function changeLayout() {
+    public function changeLayout()
+    {
         $user = Auth::user();
         if ($user->setting('layout_sidebar')) {
             $user->setSetting('layout_sidebar', false);
@@ -55,6 +58,7 @@ class DashboardController extends Controller
             $user->setSetting('layout_sidebar', true);
         }
         $user->save();
+
         return redirect()->back();
     }
 }

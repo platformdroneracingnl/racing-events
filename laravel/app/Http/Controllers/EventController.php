@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App;
+use App\Models\Event;
+use App\Models\Location;
+use App\Models\User;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
-use App\Models\Location;
-Use App\Models\Event;
-use App\Models\User;
-use Carbon\Carbon;
-use Auth;
-use App;
 
-class EventController extends Controller {
-
+class EventController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         // If event is allowed to be visible and until the day of the match
         $lang = App::getLocale();
         $events = Event::orderBy('date', 'asc')
@@ -26,7 +27,7 @@ class EventController extends Controller {
             ->where('online', 1)
             ->where('date', '>=', Carbon::today());
         if (Auth::check()) {
-            return view('backend.events.index', compact('events','lang'));
+            return view('backend.events.index', compact('events', 'lang'));
         } else {
             return view('frontend.events', compact('events'));
         }
@@ -38,17 +39,18 @@ class EventController extends Controller {
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event) {
+    public function show(Event $event)
+    {
         $lang = App::getLocale();
         $agent = new Agent();
 
         // Determine who the organisator is (person or organization)
-        if(empty($event->organization_id)) {
+        if (empty($event->organization_id)) {
             $finalOrganizator = $event->user->name;
         } else {
             $finalOrganizator = $event->organization->name;
         }
 
-        return view('backend.events.show',compact('event','lang','agent','finalOrganizator'));
+        return view('backend.events.show', compact('event', 'lang', 'agent', 'finalOrganizator'));
     }
 }

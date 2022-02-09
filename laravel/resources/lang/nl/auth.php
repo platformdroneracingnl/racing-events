@@ -25,7 +25,7 @@ return [
     'register_account_info' => 'Maak middels onderstaand formulier een nieuw account aan',
 
     'logout' => 'Uitloggen',
-    
+
     'name' => 'Naam',
     'password' => 'Wachtwoord',
     'password_confirm' => 'Wachtwoord bevestigen',

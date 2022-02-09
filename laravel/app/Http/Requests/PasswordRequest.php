@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Rules\CurrentPasswordCheckRule;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
 class PasswordRequest extends FormRequest
 {
@@ -25,7 +25,7 @@ class PasswordRequest extends FormRequest
      */
     public function rules()
     {
-        $this->redirect = url()->previous() . '#changepassword';
+        $this->redirect = url()->previous().'#changepassword';
 
         return [
             'old_password' => ['required', new CurrentPasswordCheckRule],

@@ -10,7 +10,7 @@ return [
     'news' => 'News',
 
     'my_registrations' => 'My Registrations',
-    
+
     'my_competitions' => 'My Competitions',
 
     'manage_users' => 'Users',

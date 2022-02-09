@@ -21,7 +21,7 @@ return [
     'price' => 'Price',
     'competition_info' => 'Competition info',
 
-    # Status labels
+    // Status labels
     'new' => 'New',
     'full' => 'FULL',
     'closed' => 'Closed',
@@ -31,17 +31,17 @@ return [
     'mollie_payments' => 'Mollie payments',
     'own_administration' => 'Own administration',
 
-    # Event show
+    // Event show
     'register' => 'Register',
     'general' => 'General',
     'description' => 'Description',
     'organizer' => 'Organizer',
 
-    # Registrations - pilot
+    // Registrations - pilot
     'qr_code_text' => 'Have this QR code scanned<br> at the organizer during check-in',
     'delete_registration' => 'Are you sure you want to delete the registration of <br><strong>:name</strong>?',
 
-    # Waiver - event registration
+    // Waiver - event registration
     'waiver' => 'Waiver',
     'waivers' => 'Waivers',
     'signed_by' => 'Is signed by',

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Management;
 
+use App;
 use App\Http\Controllers\Controller;
-use App\Notifications\ChangeUserAccount;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use App\Models\Organization;
 use App\Models\RaceTeam;
 use App\Models\User;
-use App;
+use App\Notifications\ChangeUserAccount;
 use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -21,10 +21,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct() {
-        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:user-create', ['only' => ['create','store']]);
-        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+    public function __construct()
+    {
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
 
@@ -34,12 +35,13 @@ class UserController extends Controller
      * @param  \App\Models\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $lang = App::getLocale();
         $organization = Organization::with('user');
-        $data = User::orderBy('id','desc')->get();
+        $data = User::orderBy('id', 'desc')->get();
 
-        return view('backend.management.users.index', compact('data','lang','organization'));
+        return view('backend.management.users.index', compact('data', 'lang', 'organization'));
     }
 
     /**
@@ -47,11 +49,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         $organizations = Organization::all();
         $raceTeams = Raceteam::all();
-        $roles = Role::pluck('name','name')->all();
-        return view('backend.management.users.create', compact('roles','organizations','raceTeams'));
+        $roles = Role::pluck('name', 'name')->all();
+
+        return view('backend.management.users.create', compact('roles', 'organizations', 'raceTeams'));
     }
 
     /**
@@ -60,12 +64,13 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
         ]);
 
         $input = $request->all();
@@ -88,7 +93,8 @@ class UserController extends Controller
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user) {
+    public function show(User $user)
+    {
         return view('backend.management.users.show', compact('user'));
     }
 
@@ -98,12 +104,13 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user) {
+    public function edit(User $user)
+    {
         $organizations = Organization::all();
         $raceTeams = RaceTeam::all();
         $roles = Role::pluck('name')->all();
 
-        return view('backend.management.users.edit', compact('user','roles','organizations','raceTeams'));
+        return view('backend.management.users.edit', compact('user', 'roles', 'organizations', 'raceTeams'));
     }
 
     /**
@@ -113,32 +120,32 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user) {
-
+    public function update(Request $request, User $user)
+    {
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
         ]);
 
         $input = $request->all();
-        if(!empty($input['password'])) {
+        if (! empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
-            $input = Arr::except($input,array('password'));
+            $input = Arr::except($input, ['password']);
         }
 
         $user->update($input);
 
-        DB::table('model_has_roles')->where('model_id',$user->id)->delete();
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
         $user->assignRole($request->input('roles'));
 
         // Send user a notification that profile has been changed
         $user->notify(new ChangeUserAccount(route('profile.show')));
 
         return redirect()->route('management.users.index')
-            ->with('success','Gebruiker succesvol aangepast');
+            ->with('success', 'Gebruiker succesvol aangepast');
     }
 
     /**
@@ -147,21 +154,24 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user) {
+    public function destroy(User $user)
+    {
         // Remove profile image and account
         $this->deleteOldImage('profiles', $user->image);
         $user->delete();
+
         return redirect()->route('management.users.index')
-            ->with('success','Gebruiker succesvol verwijderd');
+            ->with('success', 'Gebruiker succesvol verwijderd');
     }
 
     /**
      * Suspend a user
-     * 
+     *
      * @param \App\Models\User  $user
      * @param  \Illuminate\Http\Request  $request
      */
-    public function suspendUser(Request $request, User $user) {
+    public function suspendUser(Request $request, User $user)
+    {
         $input = $request->all();
 
         if ($request == null) {
@@ -172,6 +182,7 @@ class UserController extends Controller
             // Suspend a user with date value
             $user->update($input);
         }
+
         return redirect()->back();
     }
 }

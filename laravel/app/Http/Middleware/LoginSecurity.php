@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Support\Google2FAAuthenticator;
+use Closure;
 
-class LoginSecurity {
-
+class LoginSecurity
+{
     /**
      * Handle an incoming request.
      *
@@ -14,8 +14,8 @@ class LoginSecurity {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next) {
-
+    public function handle($request, Closure $next)
+    {
         $authenticator = app(Google2FAAuthenticator::class)->boot($request);
 
         if ($authenticator->isAuthenticated()) {

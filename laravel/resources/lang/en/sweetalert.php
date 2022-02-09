@@ -1,7 +1,7 @@
 <?php
 
 return [
-    # Event
+    // Event
     'already-signed-up-title' => 'Oh oh!',
     'already-signed-up-text' => 'You are already registered for this competition.',
     'error-signed-up-title' => 'Oh oh!',
@@ -11,7 +11,7 @@ return [
     'waitlist-title' => 'Just a little more patience',
     'waitlist-text' => 'Since the competition is already full, you are now on the waiting list. When space becomes available, you will be informed by email.',
 
-    # Profile
+    // Profile
     'profile_change_title' => 'Adjusted!',
     'profile_change_text' => 'Your profile has been updated with the latest changes.',
     'password_change_title' => 'Alright!',
@@ -19,7 +19,7 @@ return [
     'profile_delete_title' => 'See you!',
     'profile_delete_text' => 'Your profile has been deleted, but we secretly hope to see you again.',
 
-    # Registration - Check-in
+    // Registration - Check-in
     'success_check_in_title' => 'Success!',
     'success_check_in_text' => 'The check-in for the pilot has been completed, good luck with the race!',
     'error_check_in_title' => 'Not yet finalized!',

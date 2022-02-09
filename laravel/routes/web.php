@@ -1,20 +1,18 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginSecurityController;
 use App\Http\Controllers\Management;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\Organizator;
 use App\Http\Controllers\Pilots;
-use App\Http\Controllers\Utils;
-
-use App\Http\Controllers\NotificationsController;
-use App\Http\Controllers\LoginSecurityController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\Utils;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,29 +25,28 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-
-Route::get('/phpinfo', function() {
+Route::get('/phpinfo', function () {
     return phpinfo();
 });
 
-Route::get('old', function() {
+Route::get('old', function () {
     return view('frontend-old.welcome');
 });
 
-Route::get('old/contact', function() {
+Route::get('old/contact', function () {
     return view('frontend-old.contact');
 });
 
-Route::get('old/events', function() {
+Route::get('old/events', function () {
     return view('frontend-old.events');
 });
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']],
-    function() {
+    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], ],
+    function () {
         // Include Fortify routes for localization
-        require(base_path('vendor/laravel/fortify/routes/routes.php'));
+        require base_path('vendor/laravel/fortify/routes/routes.php');
 
         // Routes that do not require login
         Route::get('/', [HomeController::class, 'root'])->name('root')->middleware('guest');
@@ -57,7 +54,7 @@ Route::group([
         Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
         // Routes that requires account login
-        Route::group(['middleware' => ['auth', '2fa', 'verified']], function() {
+        Route::group(['middleware' => ['auth', '2fa', 'verified']], function () {
             // Dashboard
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
             Route::get('news', [NewsController::class, 'index'])->name('news');
@@ -74,8 +71,9 @@ Route::group([
              * Notifications
              */
             // Mark notifications as read
-            Route::get('markAsRead', function() {
+            Route::get('markAsRead', function () {
                 auth()->user()->unreadNotifications->markAsRead();
+
                 return redirect()->back();
             })->name('markRead');
             // Mark specific notification as read
@@ -90,12 +88,12 @@ Route::group([
              * Management
              */
             Route::resource('management/roles', Management\RoleController::class, ['names' => 'management.roles']);
-			Route::resource('management/users', Management\UserController::class, ['names' => 'management.users']);
+            Route::resource('management/users', Management\UserController::class, ['names' => 'management.users']);
             Route::patch('management/user/{user}/suspend', [Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
             Route::resource('management/events', Management\EventController::class, ['names' => 'management.events']);
             Route::resource('management/organizations', Management\OrganizationController::class, ['names' => 'management.organizations']);
-			Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);
-			Route::resource('management/raceteams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
+            Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);
+            Route::resource('management/raceteams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
 
             /**
              * Organizator
@@ -103,7 +101,7 @@ Route::group([
             // Events
             Route::resource('organizator/events', Organizator\EventController::class, ['names' => 'organizator.events']);
             // Waivers
-			Route::resource('organizator/waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
+            Route::resource('organizator/waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
             Route::get('organizator/event/{waiver}/export', [Organizator\WaiverController::class, 'exportPDF'])->name('organizator.waiver.export');
             // Registrations
             Route::get('organizator/event/{event}/registrations', [Organizator\RegistrationController::class, 'eventRegistrations'])->name('organizator.event.registrations');
@@ -125,31 +123,32 @@ Route::group([
             /**
              * Profile
              */
-			Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
-			Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
-			Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+            Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+            Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+            Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
             Route::post('profile/avatar', [ProfileController::class, 'storeAvatar'])->name('profile.avatar');
-			Route::delete('profile/{user}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
+            Route::delete('profile/{user}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
         });
     }
 );
 
-Route::get('/register-retry', function(){
+Route::get('/register-retry', function () {
     // Chrome F12 Headers - my_first_application_session=eyJpdiI6ImNnRH...
-    Cookie::queue(Cookie::forget(strtolower(str_replace(' ', '_', config('app.name'))) . '_session'));
+    Cookie::queue(Cookie::forget(strtolower(str_replace(' ', '_', config('app.name'))).'_session'));
+
     return redirect('/');
 });
 
 /**
  * 2FA Security
  */
-Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function() {
-	// Route::get('/','LoginSecurityController@show2faForm');
+Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function () {
+    // Route::get('/','LoginSecurityController@show2faForm');
     Route::post('/generateSecret', [LoginSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');
     Route::post('/enable2fa', [LoginSecurityController::class, 'enable2fa'])->name('enable2fa');
-	Route::post('/disable2fa', [LoginSecurityController::class, 'disable2fa'])->name('disable2fa');
-	
-	// 2fa middleware
+    Route::post('/disable2fa', [LoginSecurityController::class, 'disable2fa'])->name('disable2fa');
+
+    // 2fa middleware
     Route::post('/verify', function () {
         return redirect(URL()->previous());
     })->name('2faVerify')->middleware('2fa');

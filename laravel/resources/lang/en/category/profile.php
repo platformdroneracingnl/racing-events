@@ -1,7 +1,7 @@
 <?php
 
 return [
-    # Profile
+    // Profile
     'my_profile' => 'My profile',
     'year' => 'Years',
     'age' => 'age',

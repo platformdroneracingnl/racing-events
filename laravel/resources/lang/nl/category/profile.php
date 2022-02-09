@@ -1,7 +1,7 @@
 <?php
 
 return [
-    # Profile
+    // Profile
     'my_profile' => 'Mijn profiel',
     'year' => 'Jaar',
     'age' => 'leeftijd',
@@ -21,7 +21,7 @@ return [
     'photo' => 'Profielfoto',
     'upload_photo' => 'Upload een profielfoto',
 
-    # 2FA
+    // 2FA
     '2fa_verify_title' => 'Twee-factor-authenticatie (2FA)',
     '2fa_verify_message' => 'Twee-factor-authenticatie (2FA) versterkt de toegangsbeveiliging door twee methoden (ook wel factoren genoemd) te vereisen om uw identiteit te verifiëren. Tweefactorauthenticatie beschermt tegen phishing, social engineering en brute force-aanvallen met wachtwoorden en beveiligt uw logins tegen aanvallers die misbruik maken van zwakke of gestolen inloggegevens.',
     'security_code' => 'Beveiligingscode',

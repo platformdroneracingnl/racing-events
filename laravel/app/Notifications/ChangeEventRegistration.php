@@ -12,7 +12,9 @@ class ChangeEventRegistration extends Notification
     use Queueable;
 
     protected $url;
+
     protected $event;
+
     protected $status;
 
     /**
