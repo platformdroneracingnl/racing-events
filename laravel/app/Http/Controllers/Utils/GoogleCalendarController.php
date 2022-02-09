@@ -34,7 +34,6 @@ class GoogleCalendarController extends Controller
         $eventId = $event->save();
         // Add ID to table
         DB::table('events')->where('id', $competition->id)->update(['google_calendar_id' => $eventId->id]);
-
     }
 
     /**
@@ -48,7 +47,6 @@ class GoogleCalendarController extends Controller
         $event->endDate = $competition->date;
         $event->description = $competition->description;
         $event->save();
-
     }
 
     /**
@@ -60,6 +58,5 @@ class GoogleCalendarController extends Controller
         $event->delete();
         // Delete ID from table
         DB::table('events')->where('id', $competition->id)->update(['google_calendar_id' => null]);
-
     }
 }

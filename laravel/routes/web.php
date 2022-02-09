@@ -42,91 +42,91 @@ Route::get('old/events', function () {
 });
 
 Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath')->group(function () {
-        // Include Fortify routes for localization
-        require base_path('vendor/laravel/fortify/routes/routes.php');
+    // Include Fortify routes for localization
+    require base_path('vendor/laravel/fortify/routes/routes.php');
 
-        // Routes that do not require login
-        Route::get('/', [HomeController::class, 'root'])->name('root')->middleware('guest');
-        Route::get('events', [EventController::class, 'index'])->name('events');
-        Route::get('contact', [ContactController::class, 'index'])->name('contact');
+    // Routes that do not require login
+    Route::get('/', [HomeController::class, 'root'])->name('root')->middleware('guest');
+    Route::get('events', [EventController::class, 'index'])->name('events');
+    Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
-        // Routes that requires account login
-        Route::middleware('auth', '2fa', 'verified')->group(function () {
-            // Dashboard
-            Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-            Route::get('news', [NewsController::class, 'index'])->name('news');
+    // Routes that requires account login
+    Route::middleware('auth', '2fa', 'verified')->group(function () {
+        // Dashboard
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('news', [NewsController::class, 'index'])->name('news');
 
-            /**
-             * Events
-             */
-            Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
+        /**
+         * Events
+         */
+        Route::get('events/{event}', [EventController::class, 'show'])->name('events.show');
 
-            // Change layout
-            Route::get('layout', [DashboardController::class, 'changeLayout'])->name('layout');
+        // Change layout
+        Route::get('layout', [DashboardController::class, 'changeLayout'])->name('layout');
 
-            /**
-             * Notifications
-             */
-            // Mark notifications as read
-            Route::get('markAsRead', function () {
-                auth()->user()->unreadNotifications->markAsRead();
+        /**
+         * Notifications
+         */
+        // Mark notifications as read
+        Route::get('markAsRead', function () {
+            auth()->user()->unreadNotifications->markAsRead();
 
-                return redirect()->back();
-            })->name('markRead');
-            // Mark specific notification as read
-            Route::get('notifications', [NotificationsController::class, 'index'])->name('notify.index');
-            Route::get('notifications/remove', [NotificationsController::class, 'removeAll'])->name('notify.removeAll');
-            Route::get('notifications/readall', [NotificationsController::class, 'readAll'])->name('notify.readAll');
-            Route::delete('notification/remove/{id}', [NotificationsController::class, 'remove'])->name('notify.remove');
-            Route::get('notification/show/{id}', [NotificationsController::class, 'show'])->name('notify.show');
-            Route::get('notification/read/{id}', [NotificationsController::class, 'read'])->name('notify.read');
+            return redirect()->back();
+        })->name('markRead');
+        // Mark specific notification as read
+        Route::get('notifications', [NotificationsController::class, 'index'])->name('notify.index');
+        Route::get('notifications/remove', [NotificationsController::class, 'removeAll'])->name('notify.removeAll');
+        Route::get('notifications/readall', [NotificationsController::class, 'readAll'])->name('notify.readAll');
+        Route::delete('notification/remove/{id}', [NotificationsController::class, 'remove'])->name('notify.remove');
+        Route::get('notification/show/{id}', [NotificationsController::class, 'show'])->name('notify.show');
+        Route::get('notification/read/{id}', [NotificationsController::class, 'read'])->name('notify.read');
 
-            /**
-             * Management
-             */
-            Route::resource('management/roles', Management\RoleController::class, ['names' => 'management.roles']);
-            Route::resource('management/users', Management\UserController::class, ['names' => 'management.users']);
-            Route::patch('management/user/{user}/suspend', [Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
-            Route::resource('management/events', Management\EventController::class, ['names' => 'management.events']);
-            Route::resource('management/organizations', Management\OrganizationController::class, ['names' => 'management.organizations']);
-            Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);
-            Route::resource('management/raceteams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
+        /**
+         * Management
+         */
+        Route::resource('management/roles', Management\RoleController::class, ['names' => 'management.roles']);
+        Route::resource('management/users', Management\UserController::class, ['names' => 'management.users']);
+        Route::patch('management/user/{user}/suspend', [Management\UserController::class, 'suspendUser'])->name('management.suspend_user');
+        Route::resource('management/events', Management\EventController::class, ['names' => 'management.events']);
+        Route::resource('management/organizations', Management\OrganizationController::class, ['names' => 'management.organizations']);
+        Route::resource('management/locations', Management\LocationController::class, ['names' => 'management.locations']);
+        Route::resource('management/raceteams', Management\RaceTeamController::class, ['names' => 'management.race_teams']);
 
-            /**
-             * Organizator
-             */
-            // Events
-            Route::resource('organizator/events', Organizator\EventController::class, ['names' => 'organizator.events']);
-            // Waivers
-            Route::resource('organizator/waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
-            Route::get('organizator/event/{waiver}/export', [Organizator\WaiverController::class, 'exportPDF'])->name('organizator.waiver.export');
-            // Registrations
-            Route::get('organizator/event/{event}/registrations', [Organizator\RegistrationController::class, 'eventRegistrations'])->name('organizator.event.registrations');
-            Route::get('organizator/event/{event}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
-            Route::patch('organizator/event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
-            Route::patch('organizator/event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
-            Route::post('organizator/event/{registration}/destroy', [Organizator\RegistrationController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
-            // Check-in
-            Route::get('organizator/event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
-            Route::get('organizator/event/check-in/{registration}', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
-            Route::patch('organizator/event/check-in/{registration}/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
+        /**
+         * Organizator
+         */
+        // Events
+        Route::resource('organizator/events', Organizator\EventController::class, ['names' => 'organizator.events']);
+        // Waivers
+        Route::resource('organizator/waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
+        Route::get('organizator/event/{waiver}/export', [Organizator\WaiverController::class, 'exportPDF'])->name('organizator.waiver.export');
+        // Registrations
+        Route::get('organizator/event/{event}/registrations', [Organizator\RegistrationController::class, 'eventRegistrations'])->name('organizator.event.registrations');
+        Route::get('organizator/event/{event}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
+        Route::patch('organizator/event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
+        Route::patch('organizator/event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
+        Route::post('organizator/event/{registration}/destroy', [Organizator\RegistrationController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
+        // Check-in
+        Route::get('organizator/event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
+        Route::get('organizator/event/check-in/{registration}', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
+        Route::patch('organizator/event/check-in/{registration}/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
 
-            /**
-             * Pilots
-             */
-            Route::get('registrations', [Pilots\RegistrationController::class, 'myRegistrationsIndex'])->name('registrations.index');
-            Route::post('events/{event}/register', [Pilots\RegistrationController::class, 'store'])->name('registration.event.store');
+        /**
+         * Pilots
+         */
+        Route::get('registrations', [Pilots\RegistrationController::class, 'myRegistrationsIndex'])->name('registrations.index');
+        Route::post('events/{event}/register', [Pilots\RegistrationController::class, 'store'])->name('registration.event.store');
 
-            /**
-             * Profile
-             */
-            Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
-            Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
-            Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
-            Route::post('profile/avatar', [ProfileController::class, 'storeAvatar'])->name('profile.avatar');
-            Route::delete('profile/{user}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
-        });
-    }
+        /**
+         * Profile
+         */
+        Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+        Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::put('profile/password', [ProfileController::class, 'password'])->name('profile.password');
+        Route::post('profile/avatar', [ProfileController::class, 'storeAvatar'])->name('profile.avatar');
+        Route::delete('profile/{user}/destroy', [ProfileController::class, 'destroyUser'])->name('profile.destroy');
+    });
+}
 );
 
 Route::get('/register-retry', function () {

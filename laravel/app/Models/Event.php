@@ -33,6 +33,7 @@ class Event extends Model
         'location_id',
         'image',
     ];
+
     protected $casts = [
         'start_registration' => 'datetime',
         'end_registration' => 'datetime',
