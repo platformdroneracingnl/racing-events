@@ -18,6 +18,6 @@ class Location extends Model
     // Relation with event table
     public function event()
     {
-        return $this->belongsTo('App\Models\Event');
+        return $this->belongsTo(\App\Models\Event::class);
     }
 }

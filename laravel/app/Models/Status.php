@@ -14,6 +14,6 @@ class Status extends Model
     // Relation with registration table
     public function registration()
     {
-        return $this->belongsTo('App\Models\Registration');
+        return $this->belongsTo(\App\Models\Registration::class);
     }
 }

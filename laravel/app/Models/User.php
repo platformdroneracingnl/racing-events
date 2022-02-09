@@ -81,7 +81,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function registrations()
     {
-        return $this->hasMany('App\Models\Registration')->orderBy('created_at', 'DESC');
+        return $this->hasMany(\App\Models\Registration::class)->orderBy('created_at', 'DESC');
     }
 
     public function events()
@@ -91,7 +91,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function loginSecurity()
     {
-        return $this->hasOne('App\Models\LoginSecurity');
+        return $this->hasOne(\App\Models\LoginSecurity::class);
     }
 
     public function waivers()
