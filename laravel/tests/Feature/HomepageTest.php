@@ -18,7 +18,8 @@ class HomepageTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        // 302 Because of language redirect
+        $response->assertStatus(302);
         $response->assertViewIs('frontend.home');
     }
 }
