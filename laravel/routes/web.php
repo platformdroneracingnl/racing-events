@@ -41,10 +41,7 @@ Route::get('old/events', function () {
     return view('frontend-old.events');
 });
 
-Route::group([
-    'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], ],
-    function () {
+Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath')->group(function () {
         // Include Fortify routes for localization
         require base_path('vendor/laravel/fortify/routes/routes.php');
 
@@ -54,7 +51,7 @@ Route::group([
         Route::get('contact', [ContactController::class, 'index'])->name('contact');
 
         // Routes that requires account login
-        Route::group(['middleware' => ['auth', '2fa', 'verified']], function () {
+        Route::middleware('auth', '2fa', 'verified')->group(function () {
             // Dashboard
             Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
             Route::get('news', [NewsController::class, 'index'])->name('news');
@@ -142,7 +139,7 @@ Route::get('/register-retry', function () {
 /**
  * 2FA Security
  */
-Route::group(['prefix' => '2fa', 'middleware' => 'auth'], function () {
+Route::prefix('2fa')->middleware('auth')->group(function () {
     // Route::get('/','LoginSecurityController@show2faForm');
     Route::post('/generateSecret', [LoginSecurityController::class, 'generate2faSecret'])->name('generate2faSecret');
     Route::post('/enable2fa', [LoginSecurityController::class, 'enable2fa'])->name('enable2fa');
