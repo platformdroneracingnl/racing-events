@@ -26,11 +26,12 @@ return [
 
     'logout' => 'Uitloggen',
 
-    'name' => 'Naam',
-    'password' => 'Wachtwoord',
-    'password_confirm' => 'Wachtwoord bevestigen',
-    'agreement' => 'Ik ga akkoord met',
+    'label_name' => 'Naam',
+    'label_password' => 'Wachtwoord',
+    'label_password_confirm' => 'Wachtwoord bevestigen',
+    'label_agreement' => 'Ik ga akkoord met',
 
     'failed'   => 'Deze combinatie van e-mailadres en wachtwoord is niet geldig.',
+    'password' => 'Het opgegeven wachtwoord is onjuist.',
     'throttle' => 'Te veel mislukte loginpogingen. Probeer het over :seconds seconden nogmaals.',
 ];

@@ -26,12 +26,13 @@ return [
 
     'logout' => 'Logout',
 
-    'name' => 'Name',
-    'password' => 'Password',
-    'password_confirm' => 'Confirm password',
-    'agreement' => 'I agree with',
+    'label_name' => 'Name',
+    'label_password' => 'Password',
+    'label_password_confirm' => 'Confirm password',
+    'label_agreement' => 'I agree with',
 
     'failed' => 'These credentials do not match our records.',
+    'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

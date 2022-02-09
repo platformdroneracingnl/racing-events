@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="mb-3">
-                            <label class="form-label" for="name">@lang('auth.name') *</label>
+                            <label class="form-label" for="name">@lang('auth.label_name') *</label>
                             <input class="form-control" id="name" type="text" name="name" value="{{ $event->name }}" placeholder="Name" required>
                         </div>
                     </div>
