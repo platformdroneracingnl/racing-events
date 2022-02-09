@@ -13,8 +13,9 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     // Translate on/off to 1/0
-    function setBoolean($value) {
-        if ($value == "on") {
+    public function setBoolean($value)
+    {
+        if ($value == 'on') {
             return 1;
         } else {
             return 0;
@@ -24,8 +25,8 @@ class Controller extends BaseController
     /**
      * Remove old profile image from user
      */
-    protected function deleteOldImage($type, $oldImage) {
-
+    protected function deleteOldImage($type, $oldImage)
+    {
         if ($type == 'user-avatar') {
             if (auth()->user()->image) {
                 Storage::disk('local')->delete('public/images/profiles/'.auth()->user()->image);

@@ -10,6 +10,7 @@ class RaceTeam extends Model
     use HasFactory;
 
     protected $table = 'race_teams';
+
     protected $fillable = [
         'name',
         'image',
@@ -19,7 +20,8 @@ class RaceTeam extends Model
     /**
      * Relationships
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

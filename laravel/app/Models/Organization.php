@@ -10,6 +10,7 @@ class Organization extends Model
     use HasFactory;
 
     protected $table = 'organizations';
+
     protected $fillable = [
         'name', 'short_name', 'image',
     ];
@@ -17,7 +18,8 @@ class Organization extends Model
     /**
      * Relationships
      */
-    public function user() {
+    public function user()
+    {
         return $this->hasMany(User::class);
     }
 }

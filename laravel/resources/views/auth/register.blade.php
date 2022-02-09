@@ -27,7 +27,7 @@
 
                                     <!-- Name -->
                                     <div class="mb-3">
-                                        <label class="form-label" for="name">@lang('auth.name')</label>
+                                        <label class="form-label" for="name">@lang('auth.label_name')</label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             name="name" value="{{ old('name') }}" id="name"
                                             placeholder="Enter name">
@@ -52,7 +52,7 @@
 
                                     <!-- Password -->
                                     <div class="mb-3">
-                                        <label class="form-label" for="userpassword">@lang('auth.password')</label>
+                                        <label class="form-label" for="userpassword">@lang('auth.label_password')</label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
                                             name="password" id="userpassword" placeholder="Enter password">
                                         @error('password')
@@ -63,7 +63,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label" for="password_confirmation">@lang('auth.password_confirm')</label>
+                                        <label class="form-label" for="password_confirmation">@lang('auth.label_password_confirm')</label>
                                         <input type="password"
                                             class="form-control @error('password_confirmation') is-invalid @enderror"
                                             name="password_confirmation" id="password_confirmation"
@@ -78,7 +78,7 @@
 
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="auth-terms-condition-check">
-                                        <label class="form-check-label" for="auth-terms-condition-check">@lang('auth.agreement') <a
+                                        <label class="form-check-label" for="auth-terms-condition-check">@lang('auth.label_agreement') <a
                                                 href="javascript: void(0);">{{ __('Privacy statement') }}</a></label>
                                     </div>
 

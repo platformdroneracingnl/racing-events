@@ -39,7 +39,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="password">@lang('auth.password')</label>
+                                        <label for="password">@lang('auth.label_password')</label>
                                         <input id="password" type="password"
                                             class="form-control @error('password') is-invalid @enderror" name="password"
                                             required autocomplete="new-password">
@@ -52,7 +52,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="password-confirm">@lang('auth.password_confirm')</label>
+                                        <label for="password-confirm">@lang('auth.label_password_confirm')</label>
                                         <input id="password-confirm" type="password" class="form-control"
                                             name="password_confirmation" required autocomplete="new-password">
                                     </div>

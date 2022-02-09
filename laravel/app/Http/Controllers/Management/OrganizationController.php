@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Management;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
-use App\Models\Organization;
-use Image;
-use File;
 use App;
+use App\Http\Controllers\Controller;
+use App\Models\Organization;
+use File;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Image;
 
 class OrganizationController extends Controller
 {
@@ -17,10 +17,11 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct() {
-        $this->middleware('permission:organization-list|organization-create|organization-edit|organization-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:organization-create', ['only' => ['create','store']]);
-        $this->middleware('permission:organization-edit', ['only' => ['edit','update']]);
+    public function __construct()
+    {
+        $this->middleware('permission:organization-list|organization-create|organization-edit|organization-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:organization-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:organization-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:organization-delete', ['only' => ['destroy']]);
     }
 
@@ -29,10 +30,12 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $lang = App::getLocale();
-        $organizations = Organization::orderBy('id','ASC')->get();
-        return view('backend.management.organizations.index', compact('organizations','lang'));
+        $organizations = Organization::orderBy('id', 'ASC')->get();
+
+        return view('backend.management.organizations.index', compact('organizations', 'lang'));
     }
 
     /**
@@ -40,8 +43,10 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         $organization = Organization::get();
+
         return view('backend.management.organizations.create');
     }
 
@@ -51,7 +56,8 @@ class OrganizationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         // Valide input
         request()->validate([
@@ -59,27 +65,28 @@ class OrganizationController extends Controller
         ]);
 
         $organization = new Organization();
-        $organization->name         = $request->input('name');
-        $organization->short_name   = $request->input('short_name');
+        $organization->name = $request->input('name');
+        $organization->short_name = $request->input('short_name');
 
         // Save the uploaded image
-        if($request->has('image')) {
+        if ($request->has('image')) {
             $image = strtolower($request->input('name'));
-            $filename = str_replace(' ','', $image. '-' .time(). '.' .'png');
-            $storage_image = Image::make($request->image)->resize(null, 200, function($constraint) {
+            $filename = str_replace(' ', '', $image.'-'.time().'.'.'png');
+            $storage_image = Image::make($request->image)->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $storage_image->stream();
 
             // Save image file in storage folder
-            Storage::disk('local')->put('public/images/organizations/' . $filename, $storage_image, 'public');
+            Storage::disk('local')->put('public/images/organizations/'.$filename, $storage_image, 'public');
             $organization->image = $filename;
         }
 
         try {
             $organization->save();
+
             return redirect()->route('management.organizations.index')
-                ->with('success','Organisatie succesvol aangemaakt');
+                ->with('success', 'Organisatie succesvol aangemaakt');
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -91,7 +98,8 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function show(Organization $organization) {
+    public function show(Organization $organization)
+    {
         return view('backend.management.organizations.show', compact('organization'));
     }
 
@@ -101,7 +109,8 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organization $organization) {
+    public function edit(Organization $organization)
+    {
         return view('backend.management.organizations.edit', compact('organization'));
     }
 
@@ -112,33 +121,34 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organization $organization) {
-        if($request->has('image')) {
+    public function update(Request $request, Organization $organization)
+    {
+        if ($request->has('image')) {
             // Remove old image if exist
             $this->deleteOldImage('organizations', $request->input('oldImage'));
 
             // Save the new uploaded image
             $image = strtolower($request->input('name'));
-            $filename = str_replace(' ','', $image. '-' .time(). '.' .'png');
-            $storage_image = Image::make($request->image)->resize(null, 200, function($constraint) {
+            $filename = str_replace(' ', '', $image.'-'.time().'.'.'png');
+            $storage_image = Image::make($request->image)->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $storage_image->stream();
 
             // Save image file in storage folder
-            Storage::disk('local')->put('public/images/organizations/' . $filename, $storage_image, 'public');
+            Storage::disk('local')->put('public/images/organizations/'.$filename, $storage_image, 'public');
             $organization->update(['image' => $filename]);
         }
 
         try {
             // Save the rest of the form
-            $organization->update($request->except(['_token','_method','image']));
+            $organization->update($request->except(['_token', '_method', 'image']));
         } catch (\Throwable $th) {
             dd($th);
         }
 
         return redirect()->route('management.organizations.index')
-                ->with('success','Organisatie succesvol bijgewerkt');
+                ->with('success', 'Organisatie succesvol bijgewerkt');
     }
 
     /**
@@ -147,12 +157,13 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organization $organization) {
+    public function destroy(Organization $organization)
+    {
         // Remove old image if exist
         $this->deleteOldImage('organizations', $organization->image);
         $organization->delete();
 
         return redirect()->route('management.organizations.index')
-            ->with('success','Organisatie succesvol verwijderd');
+            ->with('success', 'Organisatie succesvol verwijderd');
     }
 }

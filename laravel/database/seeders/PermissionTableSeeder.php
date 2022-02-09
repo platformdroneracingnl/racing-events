@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionTableSeeder extends Seeder
 {
@@ -15,7 +15,6 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-
         $permissions = [
             'user-list',
             'user-create',
@@ -61,22 +60,22 @@ class PermissionTableSeeder extends Seeder
          * Manager
          */
         $manager = Role::create(['name' => 'manager'])
-            ->givePermissionTo(['user-list','role-list','organization-list','organization-create','organization-edit','organization-delete',
-            'location-list','location-create','location-edit','location-delete','event-list','event-create','event-edit','event-delete','event-registration',
-            'event-checkin', 'race_team-list', 'race_team-create', 'race_team-edit', 'race_team-delete','registration-signup','registration-edit']);
+            ->givePermissionTo(['user-list', 'role-list', 'organization-list', 'organization-create', 'organization-edit', 'organization-delete',
+                'location-list', 'location-create', 'location-edit', 'location-delete', 'event-list', 'event-create', 'event-edit', 'event-delete', 'event-registration',
+                'event-checkin', 'race_team-list', 'race_team-create', 'race_team-edit', 'race_team-delete', 'registration-signup', 'registration-edit', ]);
 
         /**
          * Organizer
          */
         $organizer = Role::create(['name' => 'organizer'])
-            ->givePermissionTo(['organization-list','location-list','location-create','location-edit','location-delete','event-list','event-create',
-            'event-edit','event-delete','event-registration','event-checkin','registration-signup','registration-edit']);
+            ->givePermissionTo(['organization-list', 'location-list', 'location-create', 'location-edit', 'location-delete', 'event-list', 'event-create',
+                'event-edit', 'event-delete', 'event-registration', 'event-checkin', 'registration-signup', 'registration-edit', ]);
 
         /**
          * Racer
          */
         $racer = Role::create(['name' => 'racer'])
-            ->givePermissionTo(['registration-signup','registration-edit']);
+            ->givePermissionTo(['registration-signup', 'registration-edit']);
 
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();

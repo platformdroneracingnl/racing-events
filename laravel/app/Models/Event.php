@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-// use Laravel\Scout\Searchable;
 use App\Models\Location;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model {
-
+class Event extends Model
+{
     use HasFactory;
     // use Searchable;
 
@@ -34,21 +34,29 @@ class Event extends Model {
         'image',
     ];
 
-    protected $dates = ['start_registration','end_registration','date'];
+    protected $casts = [
+        'start_registration' => 'datetime',
+        'end_registration' => 'datetime',
+        'date' => 'datetime',
+    ];
 
-    public function location() {
+    public function location()
+    {
         return $this->hasOne(Location::class, 'id', 'location_id');
     }
 
-    public function registration() {
+    public function registration()
+    {
         return $this->hasMany(Registration::class);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function organization() {
+    public function organization()
+    {
         return $this->hasOne(Organization::class, 'id', 'organization_id');
     }
 
@@ -56,8 +64,9 @@ class Event extends Model {
      * Get the index name for the model.
      *
      * @return string
-    */
-    public function searchableAs() {
+     */
+    public function searchableAs()
+    {
         return 'events';
     }
 
@@ -66,7 +75,8 @@ class Event extends Model {
      *
      * @return array
      */
-    public function toSearchableArray() {
+    public function toSearchableArray()
+    {
         $array = $this->toArray();
 
         $data = [
