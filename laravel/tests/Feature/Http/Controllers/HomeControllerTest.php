@@ -27,7 +27,7 @@ class HomeControllerTest extends TestCase
     }
 
     /**
-     * @test
+     * @test - Frontend
      */
     public function root_returns_an_ok_response()
     {
