@@ -121,7 +121,7 @@ jobs:
         env:
           DB_CONNECTION: mysql_testing
           DB_DATABASE: db_test_laravel
-          DB_PORT: 33306
+          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           DB_USER: laravel_user
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: php artisan migrate
@@ -135,7 +135,7 @@ jobs:
         env:
           DB_CONNECTION: mysql_testing
           DB_DATABASE: db_test_laravel
-          DB_PORT: 33306
+          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           DB_USER: laravel_user
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: vendor/bin/phpunit --testdox

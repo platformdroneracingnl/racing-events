@@ -18,6 +18,7 @@ class LocationControllerTest extends TestCase
      */
     public function create_returns_an_ok_response()
     {
+        $this->seed(CountriesTableSeeder::class);
         $countries = \App\Models\Country::factory()->times(3)->create();
 
         $response = $this->get(route('management.locations.create'));
@@ -34,6 +35,7 @@ class LocationControllerTest extends TestCase
      */
     public function destroy_returns_an_ok_response()
     {
+        $this->seed(CountriesTableSeeder::class);
         $location = \App\Models\Location::factory()->create();
 
         $response = $this->delete(route('management.locations.destroy', [$location]));
@@ -49,8 +51,9 @@ class LocationControllerTest extends TestCase
      */
     public function edit_returns_an_ok_response()
     {
+        $this->seed(CountriesTableSeeder::class);
         $location = \App\Models\Location::factory()->create();
-        $countries = \App\Models\Country::factory()->times(3)->create();
+        $countries = \App\Models\Country::all();
 
         $response = $this->get(route('management.locations.edit', [$location]));
 
@@ -67,6 +70,7 @@ class LocationControllerTest extends TestCase
      */
     public function index_returns_an_ok_response()
     {
+        $this->seed(CountriesTableSeeder::class);
         $locations = \App\Models\Location::factory()->times(3)->create();
 
         $response = $this->get(route('management.locations.index'));
@@ -84,6 +88,7 @@ class LocationControllerTest extends TestCase
      */
     public function show_returns_an_ok_response()
     {
+        $this->seed(CountriesTableSeeder::class);
         $location = \App\Models\Location::factory()->create();
 
         $response = $this->get(route('management.locations.show', [$location]));
@@ -114,6 +119,7 @@ class LocationControllerTest extends TestCase
      */
     public function update_returns_an_ok_response()
     {
+        $this->seed(CountriesTableSeeder::class);
         $location = \App\Models\Location::factory()->create();
 
         $response = $this->put(route('management.locations.update', [$location]), [
