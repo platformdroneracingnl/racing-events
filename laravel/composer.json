@@ -39,8 +39,7 @@
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0",
-        "jasonmccreary/laravel-test-assertions": "^2.0",
-        "laravel-shift/factory-generator": "dev-master"
+        "jasonmccreary/laravel-test-assertions": "^2.0"
     },
     "config": {
         "optimize-autoloader": true,
