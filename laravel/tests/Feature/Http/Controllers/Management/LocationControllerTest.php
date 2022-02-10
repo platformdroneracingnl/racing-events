@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers\Management;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Database\Seeders\CountriesTableSeeder;
 use Tests\TestCase;
 
 /**

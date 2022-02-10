@@ -18,7 +18,7 @@ class ContactControllerTest extends TestCase
     {
         $response = $this->get(route('contact'));
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
         $response->assertViewIs('frontend.contact');
 
         // TODO: perform additional assertions
