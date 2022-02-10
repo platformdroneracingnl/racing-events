@@ -31,13 +31,13 @@ class HomeControllerTest extends TestCase
      */
     public function root_returns_an_ok_response()
     {
+        $this->refreshApplicationWithLocale('en');
+
         $response = $this->get(route('root'));
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
         $response->assertViewIs('frontend.home');
 
         // TODO: perform additional assertions
     }
-
-    // test cases...
 }
