@@ -14,8 +14,10 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
+        $this->refreshApplicationWithLocale('en');
+
         $response = $this->get('/');
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
     }
 }

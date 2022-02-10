@@ -16,8 +16,7 @@ class ContactControllerTest extends TestCase
      */
     public function index_returns_an_ok_response()
     {
-        $this->withoutExceptionHandling();
-        $this->refreshApplicationWithLocale('nl');
+        $this->refreshApplicationWithLocale('en');
 
         $response = $this->get(route('contact'));
 
