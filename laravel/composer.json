@@ -39,7 +39,8 @@
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0",
-        "jasonmccreary/laravel-test-assertions": "^2.0"
+        "jasonmccreary/laravel-test-assertions": "^2.0",
+        "laravel-shift/factory-generator": "dev-master"
     },
     "config": {
         "optimize-autoloader": true,
@@ -91,7 +92,7 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/laravel-shift/feeds.git"
+            "url": "https://github.com/laravel-shift/feeds"
         }
     ]
 }

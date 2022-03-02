@@ -3,12 +3,17 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Location;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Location>
- */
 class LocationFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Location::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,16 +22,16 @@ class LocationFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'house_number' => $this->faker->randomNumber(3, false),
-            'street' => $this->faker->word(),
-            'zip_code' => '1111 DD',
-            'city'  => $this->faker->word(),
-            'province' => 'Province',
+            'category' => $this->faker->word,
+            'city' => $this->faker->city,
             'country' => 151,
-            'category' => $this->faker->word(),
-            'latitude' => $this->faker->latitude(),
-            'longitude' => $this->faker->longitude()
+            'latitude' => $this->faker->latitude,
+            'longitude' => $this->faker->longitude,
+            'name' => $this->faker->name,
+            'province' => $this->faker->word,
+            'street' => $this->faker->word,
+            'zip_code' => $this->faker->postcode,
+            'event_id' => \App\Models\Event::factory(),
         ];
     }
 }

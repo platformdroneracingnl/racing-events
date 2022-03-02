@@ -3,17 +3,16 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\Organization;
 
-class UserFactory extends Factory
+class OrganizationFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Organization::class;
 
     /**
      * Define the model's default state.
@@ -23,10 +22,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'email' => $this->faker->unique()->email,
             'name' => $this->faker->name,
-            'password' => Hash::make('password'),
-            'settings' => $this->faker->randomNumber,
         ];
     }
 }
