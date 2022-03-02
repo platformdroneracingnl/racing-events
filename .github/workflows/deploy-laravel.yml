@@ -12,7 +12,7 @@ jobs:
     env:
       FOLDER: ./laravel
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
       - name: Laravel PHPunit test
         working-directory: ${{env.FOLDER}}
         run: |
@@ -27,7 +27,7 @@ jobs:
       FOLDER: ./laravel
     needs: phpunit
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v3
       - name: Setup PHP
         uses: shivammathur/setup-php@master
         with:
