@@ -164,7 +164,7 @@
                                 <strong>{{ __('Registration status') }}:</strong><br>
                                 <select class="form-select" name="status_id" id="status_id" required>
                                     @foreach ($registrationStatus as $status)
-                                        <option value="{{$status->id}}" {{$status->id == $registration->status_id ? 'selected' : ''}}>{{ __($status->name) }}</option>
+                                        <option value="{{$status->id}}" @selected($status->id == $registration->status_id)>{{ __($status->name) }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -178,7 +178,7 @@
                                         <div class="text-center">
                                             <h5>{{ __('Failsafe') }}</h5>
                                             <div class="square-switch-xxl">
-                                                <input type="checkbox" id="inlineCheckbox1" name="failsafe" switch="bool" {{ $registration->failsafe == 1 ? 'checked' : '' }}/>
+                                                <input type="checkbox" id="inlineCheckbox1" name="failsafe" switch="bool" @checked($registration->failsafe == 1) />
                                                 <label for="inlineCheckbox1" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Disapproved') }}"></label>
                                             </div>
                                         </div>
@@ -189,7 +189,7 @@
                                         <div class="text-center">
                                             <h5>{{ __('VTX vermogen') }}</h5>
                                             <div class="square-switch-xxl">
-                                                <input type="checkbox" id="inlineCheckbox2" name="vtx_power" switch="bool" {{ $registration->vtx_power == 1 ? 'checked' : '' }}/>
+                                                <input type="checkbox" id="inlineCheckbox2" name="vtx_power" switch="bool" @checked($registration->vtx_power == 1) />
                                                 <label for="inlineCheckbox2" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Disapproved') }}"></label>
                                             </div>
                                         </div>

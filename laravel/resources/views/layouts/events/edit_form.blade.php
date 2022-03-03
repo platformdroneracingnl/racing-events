@@ -46,7 +46,7 @@
                             <select class="select2 form-select" name="location_id" id="location" required>
                                 <option value="" disabled selected>--- {{__('Choose a location')}} ---</option>
                                 @foreach ($locations as $location)
-                                    <option value="{{$location->id}}" {{$event->location_id == $location->id ? 'selected' : '' }}>{{$location->name}}</option>
+                                    <option value="{{$location->id}}" @selected($event->location_id == $location->id)>{{$location->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -56,9 +56,9 @@
                             <label class="form-label" for="category">@lang('category/events.category') *</label>
                             <select class="form-select" name="category" id="category" required>
                                 <option value="" disabled selected>--- {{__('Choose a category')}} ---</option>
-                                <option value="training" {{$event->category == "training"  ? 'selected' : ''}}>Training</option>
-                                <option value="ranking" {{$event->category == "ranking"  ? 'selected' : ''}}>Ranking</option>
-                                <option value="fun-race" {{$event->category == "fun-race"  ? 'selected' : ''}}>Fun Race</option>
+                                <option value="training" @selected($event->category == 'training')>Training</option>
+                                <option value="ranking" @selected($event->category == 'ranking')>Ranking</option>
+                                <option value="fun-race" @selected($event->category == 'fun-race')>Fun Race</option>
                             </select>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                         <!-- Online -->
                         <div class="mb-3">
                             <div class="square-switch">
-                                <input type="checkbox" id="inlineCheckbox1" name="online" switch="bool" {{ $event->online == 1 ? 'checked' : '' }}/>
+                                <input type="checkbox" id="inlineCheckbox1" name="online" switch="bool" @checked($event->online == 1) />
                                 <label for="inlineCheckbox1" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
                             <label for="inlineCheckbox1" class="form-check-label">{{ __('Competition visible') }}?</label><br>
@@ -149,7 +149,7 @@
                         <!-- Registration -->
                         <div class="mb-3">
                             <div class="square-switch">
-                                <input type="checkbox" id="inlineCheckbox2" name="registration" switch="bool" {{ $event->registration == 1 ? 'checked' : '' }}/>
+                                <input type="checkbox" id="inlineCheckbox2" name="registration" switch="bool" @checked($event->registration == 1) />
                                 <label for="inlineCheckbox2" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
                             <label for="inlineCheckbox2" class="form-check-label">{{ __('Registration open') }}?</label><br>
@@ -162,7 +162,7 @@
                         <!-- Waitlist -->
                         <div class="mb-3">
                             <div class="square-switch">
-                                <input type="checkbox" id="inlineCheckbox3" name="waitlist" switch="bool" {{ $event->waitlist == 1 ? 'checked' : '' }}/>
+                                <input type="checkbox" id="inlineCheckbox3" name="waitlist" switch="bool" @checked($event->waitlist == 1) />
                                 <label for="inlineCheckbox3" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
                             <label for="inlineCheckbox3" class="form-check-label">{{ __('Waiting list allowed') }}?</label><br>
@@ -173,7 +173,7 @@
                         <!-- Payments -->
                         <div class="mb-3">
                             <div class="square-switch">
-                                <input type="checkbox" id="inlineCheckbox4" name="mollie_payments" switch="bool" {{ $event->mollie_payments == 1 ? 'checked' : ''}}/>
+                                <input type="checkbox" id="inlineCheckbox4" name="mollie_payments" switch="bool" @checked($event->mollie_payments == 1) />
                                 <label for="inlineCheckbox4" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
                             <label for="inlineCheckbox4" class="form-check-label">{{ __('Payments via Mollie') }}?</label><br>
@@ -186,7 +186,7 @@
                         <!-- Google Calendar -->
                         <div class="mb-">
                             <div class="square-switch">
-                                <input type="checkbox" id="inlineCheckbox5" name="google_calendar" switch="bool" {{ $event->google_calendar == 1 ? 'checked' : '' }}/>
+                                <input type="checkbox" id="inlineCheckbox5" name="google_calendar" switch="bool" @checked($event->google_calendar == 1) />
                                 <label for="inlineCheckbox5" data-on-label="{{ __('Yes') }}" data-off-label="{{ __('No') }}"></label>
                             </div>
                             <label for="inlineCheckbox5" class="form-check-label">{{ __('Google Calendar') }}?</label><br>

@@ -70,9 +70,9 @@
                                     <label class="form-label" for="organization">Organisatie</label>
                                     <select class="custom-select form-select" name="organization_id" id="organization">
                                         <option value="option_select" disabled selected>--- {{__('Kies een organisatie')}} ---</option>
-                                        <option value="" {{$user->organization == null  ? 'selected' : ''}}>{{__('Geen organisatie')}}</option>
+                                        <option value="" @selected($user->organization == null)>{{__('Geen organisatie')}}</option>
                                         @foreach ($organizations as $organization)
-                                            <option value="{{$organization->id}}" {{$user->organization_id == $organization->id  ? 'selected' : ''}}>{{$organization->name}}</option>
+                                            <option value="{{$organization->id}}" @selected($user->organization_id == $organization->id)>{{$organization->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -83,9 +83,9 @@
                                     <label class="form-label" for="race_team">Race Team</label>
                                     <select class="custom-select form-select" name="race_team_id" id="race_team">
                                         <option value="option_select" disabled selected>--- {{__('Kies een race team')}} ---</option>
-                                        <option value="" {{$user->race_team == null  ? 'selected' : ''}}>{{__('Geen race team')}}</option>
+                                        <option value="" @selected($user->race_team == null)>{{__('Geen race team')}}</option>
                                         @foreach ($raceTeams as $team)
-                                            <option value="{{$team->id}}" {{$user->race_team_id == $team->id  ? 'selected' : ''}}>{{$team->name}}</option>
+                                            <option value="{{$team->id}}" @selected($user->race_team_id == $team->id)>{{$team->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -112,7 +112,7 @@
                                     <label class="form-label" for="roles">Rol *</label>
                                     <select class="select2 form-select select2-multiple" multiple="multiple" id="roles" name="roles[]" required data-placeholder="Choose ...">
                                         @foreach ($roles as $key => $role)
-                                            <option value="{{ $role }}" {{ $user->getRoleNames()->contains($role) ? 'selected' : '' }}>{{ $role }}</option>
+                                            <option value="{{ $role }}" @selected($user->getRoleNames()->contains($role))>{{ $role }}</option>
                                         @endforeach
                                     </select>
                                 </div>

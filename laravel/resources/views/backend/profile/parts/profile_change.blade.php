@@ -54,7 +54,7 @@
                     <select name="country" id="input-country" class="form-select {{ $errors->has('country') ? ' is-invalid' : '' }}">
                         <option value="option_select" disabled selected>--- {{__('Choose a country')}} ---</option>
                         @foreach ($countries as $country)
-                            <option value="{{$country->id}}" {{auth()->user()->country == $country->id  ? 'selected' : ''}}>{{$country->name}}</option>
+                            <option value="{{$country->id}}" @selected(auth()->user()->country == $country->id)>{{$country->name}}</option>
                         @endforeach
                     </select>
                 </div>

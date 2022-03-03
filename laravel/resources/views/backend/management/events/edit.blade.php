@@ -57,7 +57,7 @@
                                     <select class="select2 form-select" id="user" name="user_id" required>
                                         <option value="" disabled selected>--- {{__('Kies een gebruiker')}} ---</option>
                                         @foreach ($users as $user)
-                                            <option value="{{$user->id}}" {{$event->user_id == $user->id ? 'selected' : ''}}>{{$user->name}}</option>
+                                            <option value="{{$user->id}}" @selected($event->user_id == $user->id)>{{$user->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -68,7 +68,7 @@
                                     <select class="select2 form-select" id="organization" name="organization_id" required>
                                         <option value="" disabled selected>--- {{__('Kies een organisator')}} ---</option>
                                         @foreach ($organizations as $organization)
-                                            <option value="{{$organization->id}}" {{$event->organization_id == $organization->id ? 'selected' : ''}}>{{$organization->name}}</option>
+                                            <option value="{{$organization->id}}" @selected($event->organization_id == $organization->id)>{{$organization->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>

@@ -48,7 +48,7 @@
                                     <div class="list-group">
                                         @foreach ($permission as $value)
                                             <label class="list-group-item">
-                                                <input class="form-check-input me-1" {{ in_array($value->id, $rolePermissions) ? 'checked' : '' }} type="checkbox" name="permission[]" value="{{ $value->id }}">
+                                                <input class="form-check-input me-1" @checked(in_array($value->id, $rolePermissions)) type="checkbox" name="permission[]" value="{{ $value->id }}">
                                                 {{ $value->name }}
                                             </label>
                                         @endforeach
