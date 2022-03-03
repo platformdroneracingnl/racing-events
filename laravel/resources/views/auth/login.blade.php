@@ -66,7 +66,7 @@
 
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="auth-remember-check"
-                                            name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            name="remember" @checked(old('remember'))>
                                         <label class="form-check-label" for="auth-remember-check">@lang('auth.remember_me')</label>
                                     </div>
 

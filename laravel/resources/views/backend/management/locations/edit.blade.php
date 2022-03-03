@@ -150,7 +150,7 @@
                                         <select name="country" id="input-country" class="select2 form-control {{ $errors->has('country') ? ' is-invalid' : '' }}" required>
                                             <option value="" disabled selected>--- {{__('Kies een land')}} ---</option>
                                             @foreach ($countries as $country)
-                                                <option value="{{$country->id}}" {{$location->country == $country->id ? 'selected' : ''}}>{{$country->name}}</option>
+                                                <option value="{{$country->id}}" @selected($location->country == $country->id) >{{$country->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
