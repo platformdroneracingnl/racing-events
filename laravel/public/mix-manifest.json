@@ -112,8 +112,6 @@
     "/assets/libs/tinymce/README.md": "/assets/libs/tinymce/README.md",
     "/assets/libs/tinymce/bower.json": "/assets/libs/tinymce/bower.json",
     "/assets/libs/tinymce/composer.json": "/assets/libs/tinymce/composer.json",
-    "/assets/libs/tinymce/jquery.tinymce.js": "/assets/libs/tinymce/jquery.tinymce.js",
-    "/assets/libs/tinymce/jquery.tinymce.min.js": "/assets/libs/tinymce/jquery.tinymce.min.js",
     "/assets/libs/tinymce/license.txt": "/assets/libs/tinymce/license.txt",
     "/assets/libs/tinymce/package.json": "/assets/libs/tinymce/package.json",
     "/assets/libs/tinymce/tinymce.d.ts": "/assets/libs/tinymce/tinymce.d.ts",
