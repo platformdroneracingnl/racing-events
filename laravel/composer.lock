@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe357e85643ad8bacc98d298805f84eb",
+    "content-hash": "3d0e52a4e868dbec2b00b0e3268bc04d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9033,16 +9033,16 @@
         },
         {
             "name": "willvincent/feeds",
-            "version": "dev-l9-compatibility",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel-shift/feeds.git",
-                "reference": "cb3110061caf842de68eac8aa466a5cc8523ea68"
+                "url": "https://github.com/willvincent/feeds.git",
+                "reference": "ac46ca2b3337a12846c71afab970d947de0ff32c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-shift/feeds/zipball/cb3110061caf842de68eac8aa466a5cc8523ea68",
-                "reference": "cb3110061caf842de68eac8aa466a5cc8523ea68",
+                "url": "https://api.github.com/repos/willvincent/feeds/zipball/ac46ca2b3337a12846c71afab970d947de0ff32c",
+                "reference": "ac46ca2b3337a12846c71afab970d947de0ff32c",
                 "shasum": ""
             },
             "require": {
@@ -9067,6 +9067,7 @@
                     "willvincent\\Feeds\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -9078,9 +9079,10 @@
             ],
             "description": "Laravel 5 Service Provider for the SimplePie library",
             "support": {
-                "source": "https://github.com/laravel-shift/feeds/tree/l9-compatibility"
+                "issues": "https://github.com/willvincent/feeds/issues",
+                "source": "https://github.com/willvincent/feeds/tree/v2.3.0"
             },
-            "time": "2022-02-05T13:50:42+00:00"
+            "time": "2022-03-08T17:42:52+00:00"
         }
     ],
     "packages-dev": [
@@ -12238,7 +12240,6 @@
     "stability-flags": {
         "deployer/deployer": 20,
         "j2nlab/laravel-simple-version": 20,
-        "willvincent/feeds": 20,
         "laravel-shift/factory-generator": 20
     },
     "prefer-stable": true,
