@@ -75,7 +75,7 @@ class ProfileController extends Controller
      * @param  \App\Http\Requests\ProfileRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(ProfileRequest $request)
+    public function updateProfile(ProfileRequest $request)
     {
         // Save your date of birth
         if ($request->input('date_of_birth') != null) {
@@ -101,7 +101,7 @@ class ProfileController extends Controller
      * @param  \App\Http\Requests\PasswordRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function password(PasswordRequest $request)
+    public function updatePassword(PasswordRequest $request)
     {
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
