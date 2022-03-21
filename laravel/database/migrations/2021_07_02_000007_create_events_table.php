@@ -14,14 +14,14 @@ return new class extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('organization_id')->unsigned()->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('organization_id')->nullable()->constrained('organizations');
             $table->string('email')->nullable();
             $table->string('name');
             $table->string('category');
             $table->date('date');
             $table->bigInteger('max_registrations');
-            $table->bigInteger('location_id')->unsigned();
+            $table->foreignId('location_id')->constrained('locations');
             $table->dateTime('start_registration');
             $table->dateTime('end_registration');
             $table->float('price', 5, 2);
@@ -35,17 +35,6 @@ return new class extends Migration {
             $table->string('google_calendar_id')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-            $table->foreign('location_id')
-                ->references('id')
-                ->on('locations');
-            $table->foreign('organization_id')
-                ->references('id')
-                ->on('organizations');
         });
     }
 

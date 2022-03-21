@@ -20,17 +20,13 @@ return new class extends Migration {
             $table->string('zip_code');
             $table->string('city');
             $table->string('province');
-            $table->bigInteger('country')->unsigned();
+            $table->foreignId('country_id')->constrained('countries');
             $table->string('category');
             $table->string('latitude');
             $table->string('longitude');
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
-
-            $table->foreign('country')
-                ->references('id')
-                ->on('countries');
         });
     }
 
