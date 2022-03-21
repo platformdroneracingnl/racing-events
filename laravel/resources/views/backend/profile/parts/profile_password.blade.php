@@ -1,7 +1,7 @@
 <h5 class="font-size-16 mb-3">@lang('category/profile.change_pass')</h5>
 
 <!-- Form -->
-<form method="post" action="{{ route('profile.password') }}" autocomplete="off">
+<form method="post" action="{{ route('profile.password.update') }}" autocomplete="off">
     @csrf
     @method('put')
 
