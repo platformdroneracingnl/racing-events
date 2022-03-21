@@ -12,7 +12,7 @@ class Location extends Model
     protected $table = 'locations';
 
     protected $fillable = [
-        'latitude', 'longitude', 'name', 'street', 'house_number', 'zip_code', 'city', 'province', 'country', 'category', 'image', 'description',
+        'latitude', 'longitude', 'name', 'street', 'house_number', 'zip_code', 'city', 'province', 'country_id', 'category', 'image', 'description',
     ];
 
     // Relation with event table

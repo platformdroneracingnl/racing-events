@@ -75,7 +75,7 @@ class LocationController extends Controller
         $location->zip_code = $request->input('zip_code');
         $location->city = $request->input('city');
         $location->province = $request->input('province');
-        $location->country = $request->input('country');
+        $location->country_id = $request->input('country');
         $location->category = $request->input('category');
         $location->description = $request->input('description');
 
