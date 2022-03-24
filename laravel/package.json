@@ -89,7 +89,7 @@
         "spectrum-colorpicker2": "^2.0.5",
         "sweetalert2": "^11.4.6",
         "table-edits": "^0.0.3",
-        "tinymce": "^6.0.0",
+        "tinymce": "^6.0.1",
         "toastr": "^2.1.4",
         "waypoints": "^4.0.1"
     }
