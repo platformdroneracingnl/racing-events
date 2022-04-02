@@ -162,7 +162,7 @@ jobs:
         run: composer install
 
       - name: Run Deployment
-        uses: deployphp/action@master
+        uses: deployphp/action@v1
         env:
           APP_HOST: ${{ secrets.APP_HOST }}
           APP_DEPLOY_PATH: ${{ secrets.APP_DEPLOY_PATH }}
@@ -173,7 +173,6 @@ jobs:
             private-key: ${{ secrets.SSH_PRIVATE_KEY }}
             known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
             dep: deploy
-            deployer-version: '7.0.0-rc.8'
 
       # - name: Setup Deployer
       #   uses: atymic/deployer-php-action@master
