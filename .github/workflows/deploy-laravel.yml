@@ -170,4 +170,4 @@ jobs:
           APP_DEPLOY_USER: ${{ secrets.APP_DEPLOY_USER }}
           APP_SLACK_WEBHOOK: ${{ secrets.APP_SLACK_WEBHOOK }}
           RELEASE_VERSION: ${{ github.event.release.tag_name }}
-        run: php vendor/bin/dep deploy -v
+        run: php vendor/bin/deployer.phar deploy -v
