@@ -160,9 +160,10 @@ jobs:
       - name: Composer install
         working-directory: ${{env.FOLDER}}
         run: composer install
+
       - name: Run Deployment
-        working-directory: ${{env.FOLDER}}
         uses: deployphp/action@master
+        working-directory: ${{env.FOLDER}}
         env:
           APP_HOST: ${{ secrets.APP_HOST }}
           APP_DEPLOY_PATH: ${{ secrets.APP_DEPLOY_PATH }}
