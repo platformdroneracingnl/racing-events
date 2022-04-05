@@ -6,6 +6,8 @@ require 'recipe/laravel.php';
 require 'contrib/slack.php';
 require 'contrib/npm.php';
 
+putenv( 'DEPLOYER_ROOT=.' );
+
 set('application', 'PDRNL - Racing events');
 set('ssh_multiplexing', true); // Speed up deployment
 set('repository', 'git@github.com:platformdroneracingnl/race-event-registration.git');
