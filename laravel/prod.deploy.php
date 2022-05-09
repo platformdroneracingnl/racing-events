@@ -6,22 +6,20 @@ require 'recipe/laravel.php';
 require 'contrib/slack.php';
 require 'contrib/npm.php';
 
-putenv( 'DEPLOYER_ROOT=.' );
-
 set('application', 'PDRNL - Racing events');
 set('ssh_multiplexing', true); // Speed up deployment
 set('repository', 'git@github.com:platformdroneracingnl/race-event-registration.git');
 
-set('slack_webhook', env('APP_SLACK_WEBHOOK'));
-set('release', env('RELEASE_VERSION'));
+set('slack_webhook', getenv('APP_SLACK_WEBHOOK'));
+set('release', getenv('RELEASE_VERSION'));
 set('slack_success_text', 'Version *{{release}}* has just been successfully deployed on the live server.');
 set('slack_failure_text', 'The deployment failed, check the build logs to see what went wrong.');
 
 host('prod')
-    ->set('remote_user', env('APP_DEPLOY_USER'))
-    ->set('hostname', env('APP_HOST'))
+    ->set('remote_user', getenv('APP_DEPLOY_USER'))
+    ->set('hostname', getenv('APP_HOST'))
     ->set('sub_directory', 'laravel')
-    ->set('deploy_path', env('APP_DEPLOY_PATH'));
+    ->set('deploy_path', getenv('APP_DEPLOY_PATH'));
 
 task('deploy', [
     'deploy:prepare',
