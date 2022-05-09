@@ -135,18 +135,8 @@
                                 <h4>{{ $registration->event->name }}</h4>
                             </div>
                             <div class="row mb-3">
-                                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            {{ QrCode::size(350)->style('round')->generate(route('event.check-in',[$registration->reg_id])) }}
-                                            <div class="text-muted">Use for mobile scanning</div>
-                                        </div>
-                                        <div class="carousel-item">
-                                            {{ QrCode::size(350)->style('round')->generate($registration->reg_id) }}
-                                            <div class="text-muted">{{ $registration->reg_id }}</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{ QrCode::size(350)->style('round')->generate($registration->reg_id) }}
+                                <div class="text-muted">{{ $registration->reg_id }}</div>
                             </div>
                             <div class="row mb-2">
                                 @if ($registration->failsafe == 1 and $registration->vtx_power == 1 and $registration->status_id == 3)

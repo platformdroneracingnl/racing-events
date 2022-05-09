@@ -10,8 +10,8 @@
         @slot('title') {{ __('Check-in') }} @endslot
     @endcomponent
 
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-7">
             <div class="card shadow">
                 <!-- Header -->
                 <div class="card-header border-0">
@@ -31,7 +31,7 @@
                             <img src="@if(!empty($registration->user->image)) {{ asset('storage') }}/images/profiles/{{$registration->user->image}} @else {{ asset('pdrnl') }}/img/default.png @endif" alt="Your profile image" class="avatar-xxxl rounded-circle img-thumbnail">
                             <!-- User info -->
                             <h4 class="mt-3 mb-1">
-                                {{ $registration->user->name }} @if(!empty($registration->user->country)) / {{ $registration->user->countries->code }} @endif
+                                {{ $registration->user->name }} @if(!empty($registration->user->country_id)) / {{ $registration->user->countries->code }} @endif
                             </h4>
                             <p class="text-muted">{{ $registration->user->pilot_name }}</p>
                             <div class="h3 mt-4">
@@ -45,7 +45,8 @@
                             <p class="text-muted">
                                 <strong>Lid sinds:</strong> {{ date('d-m-Y', strtotime($registration->user->created_at)) }} <br>
                                 <strong>Telefoonnummer:</strong> {{ $registration->user->phonenumber }} <br>
-                                <strong>E-mail:</strong> {{ $registration->user->email }}
+                                <strong>E-mail:</strong> {{ $registration->user->email }} <br>
+                                <strong>Aangemeld op:</strong> {{ $registration->created_at->format('d-m-Y H:i') }}
                             </p>
                         </div>
                     </div>
@@ -64,7 +65,7 @@
                                         <h5>{{ __('Failsafe') }}</h5>
                                         <div class="square-switch-xxl">
                                             <input type="checkbox" id="inlineCheckbox1" name="failsafe" switch="bool" @checked($registration->failsafe == 1) />
-                                            <label for="inlineCheckbox1" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Disapproved') }}"></label>
+                                            <label for="inlineCheckbox1" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Rejected') }}"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +76,7 @@
                                         <h5>{{ __('VTX vermogen') }}</h5>
                                         <div class="square-switch-xxl">
                                             <input type="checkbox" id="inlineCheckbox2" name="vtx_power" switch="bool" @checked($registration->vtx_power == 1) />
-                                            <label for="inlineCheckbox2" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Disapproved') }}"></label>
+                                            <label for="inlineCheckbox2" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Rejected') }}"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +84,8 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">@lang('button.save')</button>
+                                <button type="submit" class="btn btn-primary btn-on-mobile">@lang('button.save')</button>
+                                <a href="{{ route("event.scan") }}" class="ms-2 btn btn-info btn-on-mobile">Opnieuw scannen</a>
                             </div>
                         </div>
                     </form>
