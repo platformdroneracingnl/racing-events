@@ -1,9 +1,9 @@
 name: PDRNL - Deploy
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   release:
     types:
       - published
@@ -154,9 +154,11 @@ jobs:
         with:
           php-version: 8.0
           extensions: mbstring, bcmath
+
       - name: Setup the deployment file
         working-directory: ${{env.FOLDER}}
         run: mv prod.deploy.php deploy.php
+
       - name: Composer install
         working-directory: ${{env.FOLDER}}
         run: composer install
@@ -166,6 +168,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+
       - name: Run Deployment
         working-directory: ${{env.FOLDER}}
         env:
@@ -175,16 +178,3 @@ jobs:
           APP_SLACK_WEBHOOK: ${{ secrets.APP_SLACK_WEBHOOK }}
           RELEASE_VERSION: ${{ github.event.release.tag_name }}
         run: php vendor/bin/deployer.phar deploy -v
-
-      # - name: Run Deployment
-      #   uses: deployphp/action@v1
-      #   env:
-      #     APP_HOST: ${{ secrets.APP_HOST }}
-      #     APP_DEPLOY_PATH: ${{ secrets.APP_DEPLOY_PATH }}
-      #     APP_DEPLOY_USER: ${{ secrets.APP_DEPLOY_USER }}
-      #     APP_SLACK_WEBHOOK: ${{ secrets.APP_SLACK_WEBHOOK }}
-      #     RELEASE_VERSION: ${{ github.event.release.tag_name }}
-      #   with:
-      #       private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #       known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
-      #       dep: deploy
