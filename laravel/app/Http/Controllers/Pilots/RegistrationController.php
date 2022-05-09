@@ -12,6 +12,7 @@ use App\Models\Waiver;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 use Mollie\Laravel\Facades\Mollie;
 
 class RegistrationController extends Controller
@@ -56,14 +57,14 @@ class RegistrationController extends Controller
         $user = User::where('id', '=', $event->user_id)->get();
 
         // Determine status of registration
-        if ($this->countRegistrations($event->id) < $event->max_registrations and $event->price == 0) {
+        if ($this->countRegistrations($event->id) < $event->max_registrations && $event->price == 0) {
             $registration->status_id = 3;
             $waitlist = false;
         } elseif ($this->countRegistrations($event->id) < $event->max_registrations) {
             $registration->status_id = 2;
             $waitlist = false;
         } else {
-            $waittlist = true;
+            $waitlist = true;
             $registration->status_id = 4;
         }
 
@@ -88,7 +89,7 @@ class RegistrationController extends Controller
                 alert()->error(trans('sweetalert.already-signed-up-title'), trans('sweetalert.already-signed-up-text'));
 
                 return redirect()->back();
-            } elseif (empty(Auth::user()->country) or empty(Auth::user()->pilot_name)) {
+            } elseif (empty(Auth::user()->country_id) || empty(Auth::user()->pilot_name)) {
                 alert()->error(trans('sweetalert.error-signed-up-title'), trans('sweetalert.error-signed-up-text'))->autoClose(10000);
 
                 return redirect()->back();
@@ -98,7 +99,7 @@ class RegistrationController extends Controller
                 $waiver->save();
 
                 // Show Sweetalert, but wich one?
-                if ($waitlist == true) {
+                if ($waitlist) {
                     // Show waitlist alert
                     alert()->success(trans('sweetalert.waitlist-title'), trans('sweetalert.waitlist-text'));
 
@@ -125,8 +126,6 @@ class RegistrationController extends Controller
      */
     public static function countRegistrations($eventID)
     {
-        $registrations = Registration::where('event_id', $eventID)->count();
-
-        return $registrations;
+        return Registration::where('event_id', $eventID)->count();
     }
 }
