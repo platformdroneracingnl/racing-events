@@ -117,11 +117,11 @@ Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeS
             Route::patch('event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
             Route::post('event/{registration}/destroy', [Organizator\RegistrationController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
 
-            // Check-in
-            Route::get('event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
-            Route::get('event/check-in/{registration}', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
-            Route::patch('event/check-in/{registration}/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
         });
+        // Check-in
+        Route::get('event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
+        Route::get('event/check-in/{registration}', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');
+        Route::patch('event/check-in/{registration}/update', [Organizator\RegistrationController::class, 'updateCheckin'])->name('event.check-in.update');
 
         /**
          * Pilots

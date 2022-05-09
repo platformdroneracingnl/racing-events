@@ -80,10 +80,10 @@
                 <div class="row">
                     <div class="col-12 col-md-3">
                         <div class="mb-3">
-                            <label class="form-label" for="price">@lang('category/events.price') *</label>
+                            <label class="form-label" for="price">@lang('category/events.price')</label>
                             <div class="input-group">
                                 <span class="input-group-text" id="currency">EUR</span>
-                                <input type="number" class="form-control" id="price" name="price" min="0.00" step="any" data-type="currency" value="{{ number_format($event->price, 2) }}" required aria-describedby="eventPrice">
+                                <input type="number" class="form-control" id="price" name="price" min="0.00" step="any" data-type="currency" value="{{ number_format($event->price, 2) }}" aria-describedby="eventPrice">
                             </div>
                             <small id="eventPrice" class="form-text text-muted mt--2"><i class="fas fa-info-circle"></i> Bij leeglaten is het event gratis.</small>
                         </div>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Organizator;
 
 use App;
 use App\Http\Controllers\Controller;
-use App\Models\Country;
 use App\Models\Event;
 use App\Models\Organization;
 use App\Models\Registration;
@@ -98,7 +97,7 @@ class RegistrationController extends Controller
         try {
             // En nu de rest updaten mocht dat nodig zijn
             // $registration->update($request->except(['failsafe','vtx_power','_token','_method']));
-            if ($failsafe and $vtx_power == 1) {
+            if ($failsafe && $vtx_power == 1) {
                 alert()->success(trans('sweetalert.success_check_in_title'), trans('sweetalert.success_check_in_text'));
             } else {
                 alert()->warning(trans('sweetalert.error_check_in_title'), trans('sweetalert.error_check_in_text'));
@@ -195,9 +194,7 @@ class RegistrationController extends Controller
      */
     public static function countRegistrations($eventID)
     {
-        $registrations = Registration::where('event_id', $eventID)->count();
-
-        return $registrations;
+        return Registration::where('event_id', $eventID)->count();
     }
 
     /**
@@ -208,8 +205,7 @@ class RegistrationController extends Controller
         $registration = Registration::all()->where('event_id', $eventID)->where('user_id', Auth::user()->id)->count();
         if ($registration < 1) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 }

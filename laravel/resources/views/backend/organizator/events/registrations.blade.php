@@ -179,7 +179,7 @@
                                             <h5>{{ __('Failsafe') }}</h5>
                                             <div class="square-switch-xxl">
                                                 <input type="checkbox" id="inlineCheckbox1" name="failsafe" switch="bool" @checked($registration->failsafe == 1) />
-                                                <label for="inlineCheckbox1" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Disapproved') }}"></label>
+                                                <label for="inlineCheckbox1" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Rejected') }}"></label>
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +190,7 @@
                                             <h5>{{ __('VTX vermogen') }}</h5>
                                             <div class="square-switch-xxl">
                                                 <input type="checkbox" id="inlineCheckbox2" name="vtx_power" switch="bool" @checked($registration->vtx_power == 1) />
-                                                <label for="inlineCheckbox2" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Disapproved') }}"></label>
+                                                <label for="inlineCheckbox2" data-on-label="{{ __('Approved') }}" data-off-label="{{ __('Rejected') }}"></label>
                                             </div>
                                         </div>
                                     </div>

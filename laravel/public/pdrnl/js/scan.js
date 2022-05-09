@@ -1,11 +1,12 @@
 function onScanSuccess(decodedText, decodedResult) {
     // console.log(`Code scanned = ${decodedText}`, decodedResult);
-    $(location).attr('href', decodedText);
+    // $(location).attr('href', decodedText);
+    validateCode(decodedText);
 }
 
 function webcamScan() {
     var html5QrcodeScanner = new Html5QrcodeScanner(
-    "qr-reader", { fps: 10, qrbox: 270 });
+    "qr-reader", { fps: 10, qrbox: 300 });
     html5QrcodeScanner.render(onScanSuccess);
 }
 
@@ -16,9 +17,12 @@ $('#closeAlert').on('click', function() {
 
 $('#scanForm').submit(function(e){
     e.preventDefault();
-    var barcode = $('#scanInput').val();
-    var url = '/event/check-in/'+barcode;
+    let barcode = $('#scanInput').val();
+    validateCode(barcode);
+});
 
+function validateCode(input_barcode) {
+    var url = '/event/check-in/'+input_barcode;
     $.ajax({
         type: 'GET',
         url: url,
@@ -28,37 +32,10 @@ $('#scanForm').submit(function(e){
         error: function(jqXhr){
             if( jqXhr.status === 500 )
                 $(AlertMsg).text("De registratie komt niet voor in de database.");
-                $(AlertMsg).addClass("show");
-                $(AlertMsg).show();
             if( jqXhr.status === 404 )
-                $(AlertMsg).text("De verkeerde QR code is gescand!");
-                $(AlertMsg).addClass("show");
-                $(AlertMsg).show();
+                $(AlertMsg).text("Er is wat mis gegaan, vraag hulp aan de beheerder.");
+            $(AlertMsg).addClass("show");
+            $(AlertMsg).show();
         },
     });
-});
-
-// let inputStart, inputStop;
-// $("#scanInput")[0].onpaste = e => e.preventDefault();
-// // handle a key value being entered by either keyboard or scanner
-// var lastInput
-
-// let checkValidity = () => {
-//     if ($("#scanInput").val().length < 10) {
-//         $("#scanInput").val('')
-//     }
-//     timeout = false
-//     // var barcode = $("#scanInput").val();
-//     // $(location).attr('href', barcode);
-// }
-
-// let timeout = false
-// $("#scanInput").keypress(function (e) {
-//     if (performance.now() - lastInput > 500) {
-//         $("#scanInput").val('')
-//     }
-//     lastInput = performance.now();
-//     if (!timeout) {
-//         timeout = setTimeout(checkValidity, 200)
-//     }
-// });
+}
