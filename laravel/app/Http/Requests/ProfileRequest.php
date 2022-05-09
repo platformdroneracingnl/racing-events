@@ -31,7 +31,7 @@ class ProfileRequest extends FormRequest
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique((new User)->getTable())->ignore(auth()->id())],
             'pilot_name' => ['required'],
-            'country' => ['required'],
+            'country_id' => ['required'],
         ];
     }
 }

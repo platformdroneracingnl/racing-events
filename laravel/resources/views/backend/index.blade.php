@@ -71,7 +71,7 @@
         @endif
 
         <div class="col-md-6 col-xl-3">
-            @if (empty(auth()->user()->country) or empty(auth()->user()->pilot_name))
+            @if (empty(auth()->user()->country_id) or empty(auth()->user()->pilot_name))
                 <a href="{{ route('profile.show', '#changeprofile') }}">
                     <div class="card bg-danger">
                         <div class="card-body">

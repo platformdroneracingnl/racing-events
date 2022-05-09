@@ -24,7 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'pilot_name',
         'date_of_birth',
-        'country',
+        'country_id',
         'phonenumber',
         'image',
         'organization_id',
@@ -50,14 +50,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'date_of_birth' => 'datetime',
         'suspended_until' => 'datetime',
-        'email_verified_at' => 'datetime',    ];
+        'email_verified_at' => 'datetime',];
 
     /**
      * Relationships
      */
     public function countries()
     {
-        return $this->hasOne(Country::class, 'id', 'country');
+        return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
     public function organization()

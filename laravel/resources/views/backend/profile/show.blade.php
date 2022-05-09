@@ -10,7 +10,7 @@
         @slot('title') Profile @endslot
     @endcomponent
 
-    @if (empty(auth()->user()->country) or empty(auth()->user()->pilot_name))
+    @if (empty(auth()->user()->country_id) or empty(auth()->user()->pilot_name))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             @lang('category/profile.not_complete')
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -84,7 +84,7 @@
                                 <p class="mb-1">E-mail :</p>
                                 <h5 class="font-size-16">{{ auth()->user()->email }}</h5>
                             </div>
-                            @if(auth()->user()->country))
+                            @if(auth()->user()->country_id))
                                 <div class="mt-4">
                                     <p class="mb-1">Country :</p>
                                     <h5 class="font-size-16">

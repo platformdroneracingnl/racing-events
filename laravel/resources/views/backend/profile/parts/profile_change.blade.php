@@ -49,12 +49,12 @@
             </div>
             <div class="col-12 col-md-6">
                 {{-- Country --}}
-                <div class="mb-3 {{ $errors->has('country') ? ' has-danger' : '' }}">
+                <div class="mb-3 {{ $errors->has('country_id') ? ' has-danger' : '' }}">
                     <label class="form-select-label" for="input-country">@lang('category/profile.country') *</label>
-                    <select name="country" id="input-country" class="form-select {{ $errors->has('country') ? ' is-invalid' : '' }}">
+                    <select name="country_id" id="input-country" class="form-select {{ $errors->has('country_id') ? ' is-invalid' : '' }}">
                         <option value="option_select" disabled selected>--- {{__('Choose a country')}} ---</option>
                         @foreach ($countries as $country)
-                            <option value="{{$country->id}}" @selected(auth()->user()->country == $country->id)>{{$country->name}}</option>
+                            <option value="{{$country->id}}" @selected(auth()->user()->country_id == $country->id)>{{$country->name}}</option>
                         @endforeach
                     </select>
                 </div>
