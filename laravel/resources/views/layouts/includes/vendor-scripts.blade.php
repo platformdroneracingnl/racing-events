@@ -13,6 +13,7 @@
 <script type="application/javascript" src="{{ URL::asset('/assets/libs/leaflet/leaflet.min.js')}}"></script>
 <script type="application/javascript" src="{{ URL::asset('/assets/libs/leaflet.locatecontrol/leaflet.locatecontrol.min.js')}}"></script>
 <script type="application/javascript" src="{{ URL::asset('/assets/libs/html5-qrcode/html5-qrcode.min.js')}}"></script>
+<script type="application/javascript" src="{{ URL::asset('/assets/libs/swiper/swiper.min.js')}}"></script>
 
 @yield('script')
 
