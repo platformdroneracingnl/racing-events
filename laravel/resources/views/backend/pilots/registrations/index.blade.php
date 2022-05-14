@@ -135,8 +135,20 @@
                                 <h4>{{ $registration->event->name }}</h4>
                             </div>
                             <div class="row mb-3">
-                                {{ QrCode::size(350)->style('round')->generate($registration->reg_id) }}
-                                <div class="text-muted">{{ $registration->reg_id }}</div>
+                                <div class="swiper">
+                                    <!-- Additional required wrapper -->
+                                    <div class="swiper-wrapper">
+                                        <!-- Slides -->
+                                        <div class="swiper-slide">
+                                            <div class="text-muted">{{ $registration->reg_id }}</div>
+                                            {{ QrCode::size(350)->style('round')->generate($registration->reg_id) }}
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="text-muted">Use for mobile scanning</div>
+                                            {{ QrCode::size(350)->style('round')->generate(route('event.check-in',[$registration->reg_id])) }}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row mb-2">
                                 @if ($registration->failsafe == 1 and $registration->vtx_power == 1 and $registration->status_id == 3)
@@ -161,5 +173,11 @@
     <script src="{{ asset('pdrnl')}}/js/dataTables/pilot.registrations.js"></script>
     <script>
         var locale = {!! json_encode($lang) !!};
+    </script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            speed: 400,
+            spaceBetween: 100,
+        });
     </script>
 @endsection

@@ -108,6 +108,8 @@
     "/assets/libs/litepicker/litepicker.min.js": "/assets/libs/litepicker/litepicker.min.js",
     "/assets/libs/litepicker/litepicker.min.css": "/assets/libs/litepicker/litepicker.min.css",
     "/assets/libs/html5-qrcode/html5-qrcode.min.js": "/assets/libs/html5-qrcode/html5-qrcode.min.js",
+    "/assets/libs/swiper/swiper.min.js": "/assets/libs/swiper/swiper.min.js",
+    "/assets/libs/swiper/swiper.min.css": "/assets/libs/swiper/swiper.min.css",
     "/assets/libs/tinymce/CHANGELOG.md": "/assets/libs/tinymce/CHANGELOG.md",
     "/assets/libs/tinymce/README.md": "/assets/libs/tinymce/README.md",
     "/assets/libs/tinymce/bower.json": "/assets/libs/tinymce/bower.json",

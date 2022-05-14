@@ -17,3 +17,6 @@
 <!-- Leaflet -->
 <link href="{{ URL::asset('/assets/libs/leaflet/leaflet.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('/assets/libs/leaflet.locatecontrol/leaflet.locatecontrol.min.css') }}" rel="stylesheet" type="text/css" />
+
+<!-- Swiper -->
+<link href="{{ URL::asset('/assets/libs/swiper/swiper.min.css') }}" rel="stylesheet" type="text/css">

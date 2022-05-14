@@ -127,6 +127,7 @@ const folder = {
             {"name": "datepicker", "assets": ["./node_modules/@chenfengyuan/datepicker/dist/datepicker.min.js","./node_modules/@chenfengyuan/datepicker/dist/datepicker.min.css"]},
             {"name": "litepicker", "assets": ["./node_modules/litepicker/dist/bundle.js", "./node_modules/litepicker/dist/css/litepicker.css"]},
             {"name": "html5-qrcode", "assets": ["./node_modules/html5-qrcode/html5-qrcode.min.js"]},
+            {"name": "swiper", "assets": ["./node_modules/swiper/swiper-bundle.min.js", "./node_modules/swiper/swiper-bundle.min.css"]},
         ]
     };
 
