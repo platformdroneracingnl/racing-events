@@ -83,9 +83,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 text-center">
+                            <div class="col-12 text-center">
                                 <button type="submit" class="btn btn-primary btn-on-mobile">@lang('button.save')</button>
-                                <a href="{{ route("event.scan") }}" class="ms-2 btn btn-info btn-on-mobile">Opnieuw scannen</a>
+                                <a href="{{ route("event.scan") }}" class="btn btn-info btn-on-mobile">Opnieuw scannen</a>
                             </div>
                         </div>
                     </form>
