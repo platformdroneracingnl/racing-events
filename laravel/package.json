@@ -31,7 +31,7 @@
         "@fullcalendar/core": "^5.11.0",
         "@fullcalendar/daygrid": "^5.11.3",
         "@fullcalendar/interaction": "^5.11.3",
-        "@fullcalendar/timegrid": "^5.11.0",
+        "@fullcalendar/timegrid": "^5.11.3",
         "@mdi/font": "^6.7.96",
         "admin-resources": "git+https://github.com/themesbrand/admin-resources#master",
         "apexcharts": "^3.35.5",
