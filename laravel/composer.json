@@ -11,7 +11,7 @@
         "php": "^7.3|^8.0",
         "barryvdh/laravel-dompdf": "^1.0.0",
         "deployer/deployer": "^7.0",
-        "fruitcake/laravel-cors": "^2.0.5",
+        "fruitcake/laravel-cors": "^3.0.0",
         "guzzlehttp/guzzle": "^7.3",
         "internetcode/laravel-user-settings": "^1.0",
         "intervention/image": "^2.7",
