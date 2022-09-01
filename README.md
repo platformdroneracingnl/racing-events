@@ -142,15 +142,15 @@ SOFTWARE.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg?style=for-the-badge
-[contributors-shield]: https://img.shields.io/github/contributors/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
-[contributors-url]: https://github.com/platformdroneracingnl/race-event-registration/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
-[forks-url]: https://github.com/platformdroneracingnl/race-event-registration/network/members
-[stars-shield]: https://img.shields.io/github/stars/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
-[stars-url]: https://github.com/platformdroneracingnl/race-event-registration/stargazers
-[issues-shield]: https://img.shields.io/github/issues/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
-[issues-url]: https://github.com/platformdroneracingnl/race-event-registration/issues
-[license-shield]: https://img.shields.io/github/license/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
-[commits-shield]: https://img.shields.io/github/commit-activity/y/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
-[commits]: https://github.com/platformdroneracingnl/race-event-registration/commits/master
-[last-commit-shield]: https://img.shields.io/github/last-commit/platformdroneracingnl/race-event-registration.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/platformdroneracingnl/racing-events.svg?style=for-the-badge
+[contributors-url]: https://github.com/platformdroneracingnl/racing-events/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/platformdroneracingnl/racing-events.svg?style=for-the-badge
+[forks-url]: https://github.com/platformdroneracingnl/racing-events/network/members
+[stars-shield]: https://img.shields.io/github/stars/platformdroneracingnl/racing-events.svg?style=for-the-badge
+[stars-url]: https://github.com/platformdroneracingnl/racing-events/stargazers
+[issues-shield]: https://img.shields.io/github/issues/platformdroneracingnl/racing-events.svg?style=for-the-badge
+[issues-url]: https://github.com/platformdroneracingnl/racing-events/issues
+[license-shield]: https://img.shields.io/github/license/platformdroneracingnl/racing-events.svg?style=for-the-badge
+[commits-shield]: https://img.shields.io/github/commit-activity/y/platformdroneracingnl/racing-events.svg?style=for-the-badge
+[commits]: https://github.com/platformdroneracingnl/racing-events/commits/master
+[last-commit-shield]: https://img.shields.io/github/last-commit/platformdroneracingnl/racing-events.svg?style=for-the-badge
