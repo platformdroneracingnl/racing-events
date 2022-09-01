@@ -8,7 +8,7 @@ require 'contrib/npm.php';
 
 set('application', 'PDRNL - Racing events');
 set('ssh_multiplexing', true); // Speed up deployment
-set('repository', 'git@github.com:platformdroneracingnl/race-event-registration.git');
+set('repository', 'git@github.com:platformdroneracingnl/racing-events.git');
 
 set('slack_webhook', getenv('APP_SLACK_WEBHOOK'));
 set('release', getenv('RELEASE_VERSION'));
