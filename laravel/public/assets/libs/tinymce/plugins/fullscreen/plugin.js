@@ -1,5 +1,5 @@
 /**
- * TinyMCE version 6.0.2 (2022-04-27)
+ * TinyMCE version 6.1.2 (2022-07-29)
  */
 
 (function () {
@@ -904,6 +904,7 @@
 
     const fireFullscreenStateChanged = (editor, state) => {
       editor.dispatch('FullscreenStateChanged', { state });
+      editor.dispatch('ResizeEditor');
     };
 
     const option = name => editor => editor.options.get(name);
