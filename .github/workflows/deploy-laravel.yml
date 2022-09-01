@@ -9,6 +9,7 @@ on:
       - published
 
 jobs:
+  # Test before deployment
   phpunit:
     name: "🧹 Laravel PHPUnit (PHP: ${{ matrix.php-versions }} - Laravel: ${{ matrix.laravel }} - ${{ matrix.operating-system}})"
     runs-on: ${{ matrix.operating-system }}
@@ -142,6 +143,7 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: vendor/bin/phpunit --testdox
   deploy:
+    # When tests are successful, deploy to production
     name: 🚀 Deploy to production
     runs-on: ubuntu-latest
     env:
@@ -152,6 +154,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@2.21.2
         with:
+          # Should be the same as the live server version
           php-version: 8.0
           extensions: mbstring, bcmath
 
