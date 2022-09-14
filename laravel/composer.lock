@@ -2946,27 +2946,28 @@
         },
         {
             "name": "mollie/laravel-mollie",
-            "version": "v2.19.1",
+            "version": "v2.19.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mollie/laravel-mollie.git",
-                "reference": "605d1f6038bf112ed88aecdbb10b1fbd8f49ee7e"
+                "reference": "c96fda1b0e91fbaff738cd0ffc46cef464735905"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/605d1f6038bf112ed88aecdbb10b1fbd8f49ee7e",
-                "reference": "605d1f6038bf112ed88aecdbb10b1fbd8f49ee7e",
+                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/c96fda1b0e91fbaff738cd0ffc46cef464735905",
+                "reference": "c96fda1b0e91fbaff738cd0ffc46cef464735905",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "illuminate/support": "^8.0|^9.0",
                 "mollie/mollie-api-php": "^2.40",
-                "php": "^7.3|^8.0"
+                "php": "^7.3|^8.0",
+                "symfony/finder": "^5.0|6.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.0",
                 "graham-campbell/testbench": "^5.0",
+                "laravel/pint": "^1.1",
                 "laravel/socialite": "^5.0",
                 "mockery/mockery": "^1.0",
                 "phpunit/phpunit": "^9.0"
@@ -3038,22 +3039,22 @@
             ],
             "support": {
                 "issues": "https://github.com/mollie/laravel-mollie/issues",
-                "source": "https://github.com/mollie/laravel-mollie/tree/v2.19.1"
+                "source": "https://github.com/mollie/laravel-mollie/tree/v2.19.2"
             },
-            "time": "2022-07-11T13:29:47+00:00"
+            "time": "2022-09-13T10:09:46+00:00"
         },
         {
             "name": "mollie/mollie-api-php",
-            "version": "v2.45.0",
+            "version": "v2.46.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mollie/mollie-api-php.git",
-                "reference": "43ae5471967a47b34752b6b3a229038a05034527"
+                "reference": "343e55d65cfe07ac1e68e141682a971a10b3bae4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/43ae5471967a47b34752b6b3a229038a05034527",
-                "reference": "43ae5471967a47b34752b6b3a229038a05034527",
+                "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/343e55d65cfe07ac1e68e141682a971a10b3bae4",
+                "reference": "343e55d65cfe07ac1e68e141682a971a10b3bae4",
                 "shasum": ""
             },
             "require": {
@@ -3130,9 +3131,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mollie/mollie-api-php/issues",
-                "source": "https://github.com/mollie/mollie-api-php/tree/v2.45.0"
+                "source": "https://github.com/mollie/mollie-api-php/tree/v2.46.0"
             },
-            "time": "2022-07-11T15:03:39+00:00"
+            "time": "2022-09-01T10:45:39+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6176,16 +6177,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v6.0.11",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "09cb683ba5720385ea6966e5e06be2a34f2568b1"
+                "reference": "07debda41a4d32d33e59e6ab302af1701e15f173"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/09cb683ba5720385ea6966e5e06be2a34f2568b1",
-                "reference": "09cb683ba5720385ea6966e5e06be2a34f2568b1",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/07debda41a4d32d33e59e6ab302af1701e15f173",
+                "reference": "07debda41a4d32d33e59e6ab302af1701e15f173",
                 "shasum": ""
             },
             "require": {
@@ -6217,7 +6218,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v6.0.11"
+                "source": "https://github.com/symfony/finder/tree/v6.0.0"
             },
             "funding": [
                 {
@@ -6233,7 +6234,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-29T07:39:48+00:00"
+            "time": "2021-11-28T15:34:37+00:00"
         },
         {
             "name": "symfony/http-foundation",
