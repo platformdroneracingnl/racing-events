@@ -26,7 +26,7 @@ A centralized competition registration platform where all drone racing pilots ca
 
 ## Requirements
 
-- [Docker](https://www.docker.com) (and docker-compose)
+- [Docker](https://www.docker.com) (and docker-compose v2.x)
 - [Composer](https://getcomposer.org)
 - [Nginx proxy manager](https://nginxproxymanager.com) (optional)
 
@@ -81,7 +81,7 @@ cd laracel && php artisan storage:link && cd ..
 When you have done the getting started part, it's time to start the docker containers.
 
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 After this only do a Laravel migration to the database and you are ready!
