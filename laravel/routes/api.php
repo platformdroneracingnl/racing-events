@@ -13,7 +13,38 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+$namespaceApiV1 = 'App\Http\Controllers\Api\V1';
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+/**
+ * API v1
+ */
+Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function() {
+    /**
+     * Routes for authentication
+     */
+    Route::controller(AuthController::class)->group(function() {
+        Route::post('register', 'register');
+        Route::post('login', 'login');
+        Route::middleware('auth:sanctum')->group(function() {
+            Route::post('logout', 'logout')->name('logout');
+            Route::get('user', 'authenticatedUser')->name('user');
+        });
+    });
+
+    /**
+     * Protected routes
+     */
+    Route::middleware('auth:sanctum')->group(function() {
+        Route::apiResource('events', EventController::class)->names('events');
+    });
+});
+
+
+/**
+ * Fallback function
+ * Keep this at the end of the file
+ */
+Route::fallback(function(){
+    return response()->json([
+        'message' => 'Page Not Found. If error persists, contact info@platformdroneracing.nl'], 404);
 });
