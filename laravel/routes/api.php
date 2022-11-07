@@ -24,7 +24,7 @@ Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function() {
      */
     Route::controller(AuthController::class)->group(function() {
         Route::post('register', 'register');
-        Route::post('login', 'login');
+        Route::post('login', 'login')->name('login');
         Route::middleware('auth:sanctum')->group(function() {
             Route::post('logout', 'logout')->name('logout');
             Route::get('user', 'authenticatedUser')->name('user');
