@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pilots;
 
 use App;
 use App\Http\Controllers\Controller;
+use App\Mail\NewEventRegistration;
 use App\Models\Event;
 use App\Models\Organization;
 use App\Models\Registration;
