@@ -147,10 +147,10 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="input-country">Land *</label>
-                                        <select name="country" id="input-country" class="select2 form-control {{ $errors->has('country') ? ' is-invalid' : '' }}" required>
+                                        <select name="country_id" id="input-country" class="select2 form-control {{ $errors->has('country') ? ' is-invalid' : '' }}" required>
                                             <option value="" disabled selected>--- {{__('Kies een land')}} ---</option>
                                             @foreach ($countries as $country)
-                                                <option value="{{$country->id}}" @selected($location->country == $country->id) >{{$country->name}}</option>
+                                                <option value="{{$country->id}}" @selected($location->country_id == $country->id) >{{$country->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
