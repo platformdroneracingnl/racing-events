@@ -4,7 +4,7 @@ namespace App\Http\Resources\V1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EventResource extends JsonResource
+class Event extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,10 +20,12 @@ class EventResource extends JsonResource
             'category' => $this->category,
             'date' => $this->date,
             'maxRegistrations' => $this->max_registrations,
-            'location' => $this->location,
+            'location' => new Location($this->location),
             'startRegistration' => $this->start_registration,
             'endRegistration' => $this->end_registration,
-            'price' => $this->price,
+            'price' => number_format($this->price, 2, '.', ' '),
+            'visible' => $this->online,
+            'image' => $this->image,
         ];
     }
 }

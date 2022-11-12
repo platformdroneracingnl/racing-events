@@ -212,7 +212,7 @@ class EventController extends Controller
                 GoogleCalendarController::deleteCalendarEvent($event);
             } else {
                 // Update Google Event
-                GoogleCalendarController::changeCalendarEvent($event);
+                // GoogleCalendarController::changeCalendarEvent($event);
             }
         } catch (\Throwable $th) {
             dd($th);

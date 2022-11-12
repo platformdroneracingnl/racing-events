@@ -112,6 +112,7 @@ class RegistrationController extends Controller
                     // Show normal alert
                     alert()->success(trans('sweetalert.success-signed-up-title'), trans('sweetalert.success-signed-up-text'));
                     // Send email to pilot
+                    // TODO: What if event email is empty?
                     Mail::to(Auth::user()->email)->send(new NewEventRegistration($registration, $event, $organization, $user));
 
                     return redirect()->route('dashboard');

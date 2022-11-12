@@ -41,7 +41,7 @@ class EventController extends BaseController
     public function show(Event $event)
     {
         if (is_null($event)) {
-            return $this->sendError('Product not found.');
+            return $this->sendError('Event not found.');
         }
         return $this->sendResponse(new EventResource($event), 'Event retrieved successfully.');
     }
