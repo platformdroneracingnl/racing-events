@@ -37,6 +37,7 @@ Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function() {
     Route::middleware('auth:sanctum')->group(function() {
         Route::apiResource('events', EventController::class)->names('events');
         Route::apiResource('registrations', RegistrationController::class)->names('registrations');
+        Route::apiResource('locations', LocationController::class)->names('locations');
     });
 });
 

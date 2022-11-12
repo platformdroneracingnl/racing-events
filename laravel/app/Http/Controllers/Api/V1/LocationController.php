@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\Event;
+use App\Models\Location;
 use App\Http\Controllers\Api\V1\BaseController;
-use App\Http\Resources\V1\Event as EventResource;
-use App\Http\Resources\V1\EventCollection;
+use App\Http\Resources\V1\Location as LocationResource;
+use App\Http\Resources\V1\LocationCollection;
 use Illuminate\Http\Request;
 
-class EventController extends BaseController
+class LocationController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class EventController extends BaseController
      */
     public function index()
     {
-        $events = Event::all();
-        return $this->sendResponse(new EventCollection($events), 'All events retrieved successfully.');
+        $locations = Location::all();
+        return $this->sendResponse(new LocationCollection($locations), 'All locations retrieved successfully.');
     }
 
     /**
@@ -27,7 +27,7 @@ class EventController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEventRequest $request)
+    public function store(StoreLocationRequest $request)
     {
         //
     }
@@ -38,12 +38,12 @@ class EventController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Location $location)
     {
-        if (is_null($event)) {
-            return $this->sendError('Event not found.');
+        if (is_null($location)) {
+            return $this->sendError('Location not found.');
         }
-        return $this->sendResponse(new EventResource($event), 'Event retrieved successfully.');
+        return $this->sendResponse(new LocationResource($location), 'Location retrieved successfully.');
     }
 
     /**
