@@ -151,6 +151,15 @@ Route::get('/register-retry', function () {
     return redirect('/');
 });
 
+// Get images from storage
+Route::get('/images/{type}/{file}', [ function ($type, $file) {
+    $path = storage_path('app/public/images/'.$type.'/'.$file);
+    if (file_exists($path)) {
+        return response()->file($path, array('Content-Type' => 'image/png'));
+    }
+    abort(404);
+}]);
+
 /**
  * 2FA Security
  */
