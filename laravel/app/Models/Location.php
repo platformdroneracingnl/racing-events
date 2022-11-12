@@ -20,4 +20,10 @@ class Location extends Model
     {
         return $this->belongsTo(\App\Models\Event::class);
     }
+
+    // Relation with country table
+    public function country()
+    {
+        return $this->belongsTo(\App\Models\Country::class);
+    }
 }
