@@ -4,13 +4,13 @@
         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         @switch(LaravelLocalization::getCurrentLocale())
             @case('de')
-                <img src="{{ URL::asset('/assets/images/flags/de.png')}}" alt="Header Language" height="16"> <span class="align-middle">Deutsch</span>
+                <img src="{{ URL::asset('/assets/images/flags/de.png')}}" alt="Header Language" height="16"> <span class="align-middle"></span>
             @break
             @case('nl')
-                <img src="{{ URL::asset('/assets/images/flags/nl.png')}}" alt="Header Language" height="16"> <span class="align-middle">Nederlands</span>
+                <img src="{{ URL::asset('/assets/images/flags/nl.png')}}" alt="Header Language" height="16"> <span class="align-middle"></span>
             @break
             @default
-                <img src="{{ URL::asset('/assets/images/flags/en.png')}}" alt="Header Language" height="16"> <span class="align-middle">English</span>
+                <img src="{{ URL::asset('/assets/images/flags/en.png')}}" alt="Header Language" height="16"> <span class="align-middle"></span>
         @endswitch
     </button>
     <div class="dropdown-menu dropdown-menu-end">
