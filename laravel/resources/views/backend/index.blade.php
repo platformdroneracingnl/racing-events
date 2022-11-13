@@ -188,7 +188,7 @@
         <div class="col-xl-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="float-end">
+                    <!-- <div class="float-end">
                         <div class="dropdown">
                             <a class=" dropdown-toggle" href="#" id="dropdownMenuButton2" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -201,7 +201,7 @@
                                 <a class="dropdown-item" href="#">Join Date</a>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <h4 class="card-title mb-4">Recente Inschrijvingen</h4>
 
                     <div data-simplebar style="max-height: 336px;">
@@ -241,8 +241,8 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <div class="text-center">
-                                                <span>Je hebt geen inschrijvingen voor wedstrijden</span>
+                                            <div class="alert alert-warning text-center" role="alert">
+                                                Je hebt geen inschrijvingen voor wedstrijden
                                             </div>
                                         </tr>
                                     @endforelse
