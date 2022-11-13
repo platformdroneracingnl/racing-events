@@ -24,9 +24,9 @@ class EventController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:event-list|event-create|event-edit|event-delete|event-registration|event-checkin', ['only' => ['index', 'show', 'registrations', 'exportPDF']]);
+        $this->middleware('permission:event-read|event-create|event-update|event-delete|event-registration|event-checkin', ['only' => ['index', 'show', 'registrations', 'exportPDF']]);
         $this->middleware('permission:event-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:event-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:event-update', ['only' => ['edit', 'update']]);
         $this->middleware('permission:event-delete', ['only' => ['destroy']]);
     }
 

@@ -26,7 +26,7 @@ class RegistrationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:event-list|event-create|event-edit|event-delete|event-registration|event-checkin', ['only' => ['eventRegistrations', 'exportPDF']]);
+        $this->middleware('permission:event-read|event-create|event-update|event-delete|event-registration|event-checkin', ['only' => ['eventRegistrations', 'exportPDF']]);
         $this->middleware('permission:event-delete', ['only' => ['destroyRegistration']]);
         $this->middleware('permission:event-registration', ['only' => ['changeMultipleRegistration', 'updateRegistration']]);
         $this->middleware('permission:event-checkin', ['only' => ['checkin', 'updateCheckin', 'scan']]);

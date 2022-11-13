@@ -78,7 +78,7 @@
                                     <div class="btn-group" role="group">
                                         @csrf
                                         @method('DELETE')
-                                        @can('location-edit')
+                                        @can('location-update')
                                             <a type="button" href="{{ route('management.locations.edit', $location->id) }}" class="btn btn-outline-light text-truncate">
                                                 <i class="uil uil-pen me-1"></i> @lang('button.edit')
                                             </a>

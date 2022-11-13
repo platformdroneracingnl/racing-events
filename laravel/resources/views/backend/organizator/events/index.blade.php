@@ -97,7 +97,7 @@
                                             <i class="uil uil-users-alt font-size-18"></i>
                                         </a>
                                     </li>
-                                    @can('event-edit')
+                                    @can('event-update')
                                         <li class="list-inline-item">
                                             <a type="button" class="btn px-2 text-primary" href="{{ route('organizator.events.edit', $event->id) }}">
                                                 <i class="uil uil-pen font-size-18"></i>

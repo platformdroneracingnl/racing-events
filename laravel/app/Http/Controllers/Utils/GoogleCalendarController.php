@@ -17,7 +17,7 @@ class GoogleCalendarController extends Controller
     public function __construct()
     {
         $this->middleware('permission:event-create', ['only' => ['createCalendarEvent']]);
-        $this->middleware('permission:event-edit', ['only' => ['changeCalendarEvent']]);
+        $this->middleware('permission:event-update', ['only' => ['changeCalendarEvent']]);
         $this->middleware('permission:event-delete', ['only' => ['deleteCalendarEvent']]);
     }
 

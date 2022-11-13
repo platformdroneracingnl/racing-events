@@ -328,34 +328,34 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="topnav-management">
                                     @if (auth()->user()->hasRole(['manager','supervisor']))
-                                        @can('event-list')
+                                        @can('event-read')
                                             <a class="dropdown-item {{ Route::currentRouteNamed('management.events.*') ? 'active' : '' }}" href="{{ route('management.events.index') }}">
                                                 @lang('menu.manage_competitions')
                                             </a>
                                         @endcan
                                     @endif
-                                    @can('location-list')
+                                    @can('location-read')
                                         <a class="dropdown-item {{ Route::currentRouteNamed('management.locations.*') ? 'active' : '' }}" href="{{ route('management.locations.index') }}">
                                             @lang('menu.manage_locations')
                                         </a>
                                     @endcan
-                                    @can('organization-list')
+                                    @can('organization-read')
                                         <a class="dropdown-item {{ Route::currentRouteNamed('management.organizations.*') ? 'active' : '' }}" href="{{ route('management.organizations.index') }}">
                                             @lang('menu.manage_organizations')
                                         </a>
                                     @endcan
-                                    @can('race_team-list')
+                                    @can('race_team-read')
                                         <a class="dropdown-item {{ Route::currentRouteNamed('management.race_teams.*') ? 'active' : '' }}" href="{{ route('management.race_teams.index') }}">
                                             @lang('menu.manage_race_teams')
                                         </a>
                                     @endcan
-                                    <hr>
-                                    @can('user-list')
+                                    <div class="dropdown-divider"></div>
+                                    @can('user-read')
                                         <a class="dropdown-item {{ Route::currentRouteNamed('management.users.*') ? 'active' : '' }}" href="{{ route('management.users.index') }}">
                                             @lang('menu.manage_users')
                                         </a>
                                     @endcan
-                                    @can('role-list')
+                                    @can('role-read')
                                         <a class="dropdown-item {{ Route::currentRouteNamed('management.roles.*') ? 'active' : '' }}" href="{{ route('management.roles.index') }}">
                                             @lang('menu.manage_roles')
                                         </a>
