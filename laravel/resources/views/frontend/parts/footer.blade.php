@@ -59,7 +59,7 @@
         <hr class="footer-border my-5">
 
         <div class="row">
-            <img src="{{ URL::asset('/pdrnl/img/brand/logo-white.svg') }}" alt="" height="25">
+            <img src="{{ URL::asset('/pdrnl/img/brand/pdrnl_white_color.png') }}" alt="" height="25">
             <div class="col-lg-6">
                 <p class="mb-2">
                     @php echo date("Y"); @endphp © <a href="https://platformdroneracing.nl">PDRNL</a> - @lang('pdrnl.rights').
