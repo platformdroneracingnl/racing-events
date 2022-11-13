@@ -3,8 +3,8 @@
         <div class="d-flex">
             <!-- Brand logo -->
             <a class="navbar-logo" href="{{ route('root') }}">
-                <img src="{{ URL::asset('/pdrnl/img/brand/logo-dark.svg') }}" alt="Company logo" height="25" class="logo logo-dark">
-                <img src="{{ URL::asset('/pdrnl/img/brand/logo-white.svg') }}" alt="Company logo" height="25" class="logo logo-light">
+                <img src="{{ URL::asset('/pdrnl/img/brand/pdrnl_dark_color.png') }}" alt="Company logo" height="25" class="logo logo-dark">
+                <img src="{{ URL::asset('/pdrnl/img/brand/pdrnl_white_color.png') }}" alt="Company logo" height="25" class="logo logo-light">
             </a>
         </div>
         <div class="d-flex">

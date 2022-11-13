@@ -52,7 +52,7 @@
                 <li>
                     <a href="{{ route('registrations.index') }}" class="waves-effect">
                         <i class="uil-sign-in-alt"></i>
-                        <span class="badge rounded-pill bg-warning float-end">New</span>
+                        {{-- <span class="badge rounded-pill bg-warning float-end">New</span> --}}
                         <span>@lang('menu.my_registrations')</span>
                     </a>
                 </li>
@@ -82,7 +82,7 @@
                     <!-- Divider -->
                     <hr class="my-1">
                     <!-- Heading -->
-                    <li class="menu-title">PDRNL Supervisor</li>
+                    <li class="menu-title">Supervisor</li>
 
                     @if (auth()->user()->hasRole(['manager','supervisor']))
                         @can('event-list')

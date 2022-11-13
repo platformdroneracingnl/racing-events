@@ -9,7 +9,7 @@
         <div class="text-center mt-7 mb-7">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-6">
-                    <img src="{{ asset('pdrnl') }}/img/brand/pdrnl-black.png" alt="Company logo" style="width: 80%; margin-bottom: 20px;">
+                    <img src="{{ asset('pdrnl') }}/img/brand/pdrnl_dark_color.png" alt="Company logo" style="width: 80%; margin-bottom: 20px;">
                     <h2>@lang('pdrnl.welcome')</h2>
                 </div>
             </div>
