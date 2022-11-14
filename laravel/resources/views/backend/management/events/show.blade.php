@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="text-end">
-                                @can('event-edit')
+                                @can('event-update')
                                     <a href="{{ route('management.events.edit',$event->id) }}" class="me-1 btn btn-warning waves-effect waves-light btn-on-mobile">
                                         <i class="uil uil-pen me-1"></i> @lang('button.edit')
                                     </a>

@@ -85,7 +85,7 @@
                     <li class="menu-title">Supervisor</li>
 
                     @if (auth()->user()->hasRole(['manager','supervisor']))
-                        @can('event-list')
+                        @can('event-read')
                             <li>
                                 <a class="nav-link" href="{{ route('management.events.index') }}">
                                     <i class="uil-list-ul"></i>
@@ -94,7 +94,7 @@
                             </li>
                         @endcan
                     @endif
-                    @can('location-list')
+                    @can('location-read')
                         <li>
                             <a class="nav-link" href="{{ route('management.locations.index') }}">
                                 <i class="uil-list-ul"></i>
@@ -102,7 +102,7 @@
                             </a>
                         </li>
                     @endcan
-                    @can('organization-list')
+                    @can('organization-read')
                         <li>
                             <a class="nav-link" href="{{ route('management.organizations.index') }}">
                                 <i class="uil-list-ul"></i>
@@ -110,7 +110,7 @@
                             </a>
                         </li>
                     @endcan
-                    @can('race_team-list')
+                    @can('race_team-read')
                         <li>
                             <a class="nav-link" href="{{ route('management.race_teams.index') }}">
                                 <i class="uil-list-ul"></i>
@@ -118,7 +118,7 @@
                             </a>
                         </li>
                     @endcan
-                    @can('user-list')
+                    @can('user-read')
                         <li>
                             <a class="nav-link" href="{{ route('management.users.index') }}">
                                 <i class="uil-list-ul"></i>
@@ -126,7 +126,7 @@
                             </a>
                         </li>
                     @endcan
-                    @can('role-list')
+                    @can('role-read')
                         <li>
                             <a class="nav-link" href="{{ route('management.roles.index') }}">
                                 <i class="uil-list-ul"></i>

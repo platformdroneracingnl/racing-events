@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="text-end">
-                                @can('location-edit')
+                                @can('location-update')
                                     
                                 @endcan
                                 <a href="{{ route('management.locations.index') }}" class="btn btn-secondary waves-effect waves-light btn-on-mobile">

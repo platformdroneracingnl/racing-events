@@ -19,9 +19,9 @@ class OrganizationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:organization-list|organization-create|organization-edit|organization-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:organization-read|organization-create|organization-update|organization-delete', ['only' => ['index', 'show']]);
         $this->middleware('permission:organization-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:organization-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:organization-update', ['only' => ['edit', 'update']]);
         $this->middleware('permission:organization-delete', ['only' => ['destroy']]);
     }
 

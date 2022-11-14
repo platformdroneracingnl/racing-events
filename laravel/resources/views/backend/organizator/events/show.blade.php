@@ -74,7 +74,7 @@
                             <div class="text-end">
                                 <a class="btn btn-info btn-on-mobile ms-1" href="{{ route('event.scan') }}"><i class="fas fa-qrcode"></i> Scan</a>
                                 <a class="btn btn-info btn-on-mobile ms-1" href="{{ route('organizator.event.registrations',$event->id) }}"><i class="uil uil-users-alt me-1"></i> @lang('button.attendees')</a>
-                                @can('event-edit')
+                                @can('event-update')
                                     <a class="btn btn-warning btn-on-mobile ms-1" href="{{ route('organizator.events.edit', $event->id) }}"><i class="uil uil-pen me-1"></i> @lang('button.edit')</a>
                                 @endcan
                                 <a class="btn btn-secondary btn-on-mobile ms-1" href="{{ route('organizator.events.index') }}"><i class="mdi mdi-arrow-left me-2"></i> @lang('button.back')</a>

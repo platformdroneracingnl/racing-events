@@ -69,7 +69,7 @@
                                                             <i class="uil uil-info-circle font-size-18"></i>
                                                         </a>
                                                     </li>
-                                                    @can('role-edit')
+                                                    @can('role-update')
                                                         <li class="list-inline-item">
                                                             <a type="button" class="btn px-2 text-primary" href="{{ route('management.roles.edit', $role->id) }}">
                                                                 <i class="uil uil-pen font-size-18"></i>

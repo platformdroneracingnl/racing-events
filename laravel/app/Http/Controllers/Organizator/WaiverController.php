@@ -18,7 +18,7 @@ class WaiverController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:event-list|event-create|event-edit|event-delete|event-registration|event-checkin', ['only' => ['index', 'exportPDF']]);
+        $this->middleware('permission:event-read|event-create|event-update|event-delete|event-registration|event-checkin', ['only' => ['index', 'exportPDF']]);
     }
 
     /**

@@ -21,9 +21,9 @@ class LocationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:location-list|location-create|location-edit|location-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:location-read|location-create|location-update|location-delete', ['only' => ['index', 'show']]);
         $this->middleware('permission:location-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:location-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:location-update', ['only' => ['edit', 'update']]);
         $this->middleware('permission:location-delete', ['only' => ['destroy']]);
     }
 

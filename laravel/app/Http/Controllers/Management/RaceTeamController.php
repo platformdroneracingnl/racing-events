@@ -19,9 +19,9 @@ class RaceTeamController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:race_team-list|raceteam-create|raceteam-edit|raceteam-delete', ['only' => ['index', 'show']]);
+        $this->middleware('permission:race_team-read|raceteam-create|raceteam-edit|raceteam-delete', ['only' => ['index', 'show']]);
         $this->middleware('permission:race_team-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:race_team-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:race_team-update', ['only' => ['edit', 'update']]);
         $this->middleware('permission:race_team-delete', ['only' => ['destroy']]);
     }
 

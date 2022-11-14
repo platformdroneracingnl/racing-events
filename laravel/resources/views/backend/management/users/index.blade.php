@@ -106,7 +106,7 @@
                                                             </a>
                                                         </li>
                                                         <!-- Edit -->
-                                                        @can('user-edit')
+                                                        @can('user-update')
                                                             <li class="list-inline-item">
                                                                 <a type="button" class="btn px-2 text-primary" href="{{ route('management.users.edit',$user->id) }}">
                                                                     <i class="uil uil-pen font-size-18"></i>

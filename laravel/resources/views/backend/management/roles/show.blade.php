@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="text-end">
-                                @can('role-edit')
+                                @can('role-update')
                                     <a href="{{ route('management.roles.edit',$role->id) }}" class="me-1 btn btn-warning waves-effect waves-light btn-on-mobile">
                                         <i class="mdi mdi-pencil-outline me-2"></i> @lang('button.edit') {{ __('role') }}
                                     </a>
