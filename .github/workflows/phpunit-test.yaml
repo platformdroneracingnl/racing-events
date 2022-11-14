@@ -131,9 +131,6 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: php artisan migrate
 
-      - name: PHP Version
-        run: php --version
-
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         working-directory: ${{env.FOLDER}}
         # Set environment

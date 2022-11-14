@@ -53,6 +53,11 @@ jobs:
         with:
           node-version: '16.x'
 
+      - name: Show PHP and NPM version
+        run: |
+          npm --version
+          php --version
+
       - name: Cache node_modules directory
         uses: actions/cache@v3
         id: node_modules-cache
@@ -128,9 +133,6 @@ jobs:
           DB_USER: laravel_user
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: php artisan migrate
-
-      - name: PHP Version
-        run: php --version
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         working-directory: ${{env.FOLDER}}
