@@ -110,6 +110,20 @@ To make a backup of the application, run the command below.
 php artisan backup:run
 ```
 
+### Run tests
+
+Run the migrations to the test sqlite database. You may have to create a database.sqlite file before running the migrations.
+
+```bash
+php artisan migrate:fresh --env=testing
+```
+
+Test the application.
+
+```bash
+php artisan test
+```
+
 ## Contributing
 
 Would you like to contribute to the development of this project? Then read the prepared [contribution guidelines](CONTRIBUTING.md) and go ahead!

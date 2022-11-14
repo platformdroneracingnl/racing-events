@@ -1,5 +1,6 @@
 # Files
 .env
+*.sqlite
 
 # Folders
 mysql/data

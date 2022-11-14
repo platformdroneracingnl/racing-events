@@ -99,7 +99,7 @@ jobs:
       - name: Copy ENV Laravel Configuration for CI
         working-directory: ${{env.FOLDER}}
         run: |
-          php -r "file_exists('.env') || copy('.env.ci', '.env');"
+          php -r "file_exists('.env') || copy('.env.testing', '.env');"
 
       - name: Install Laravel Dependencies
         working-directory: ${{env.FOLDER}}
@@ -122,9 +122,9 @@ jobs:
         working-directory: ${{env.FOLDER}}
         # Set environment
         env:
-          DB_CONNECTION: mysql_testing
+          DB_CONNECTION: mysql
           DB_DATABASE: db_test_laravel
-          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USER: laravel_user
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: php artisan migrate
@@ -136,9 +136,9 @@ jobs:
         working-directory: ${{env.FOLDER}}
         # Set environment
         env:
-          DB_CONNECTION: mysql_testing
+          DB_CONNECTION: mysql
           DB_DATABASE: db_test_laravel
-          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USER: laravel_user
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: vendor/bin/phpunit --testdox
