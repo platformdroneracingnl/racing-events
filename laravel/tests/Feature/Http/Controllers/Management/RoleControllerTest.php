@@ -12,7 +12,7 @@ use App\Traits\FeatureTestTrait;
  */
 class RoleControllerTest extends TestCase
 {
-    use FeatureTestTrait;
+    use RefreshDatabase, FeatureTestTrait;
 
     /**
      * INDEX VIEW
