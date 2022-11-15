@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 use App\Models\RaceTeam;
 
 class RaceTeamFactory extends Factory
@@ -23,6 +25,7 @@ class RaceTeamFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'image' => UploadedFile::fake()->image('avatar.jpg'),
         ];
     }
 }
