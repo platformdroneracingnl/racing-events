@@ -10,6 +10,9 @@ use App\Models\RaceTeam;
 use App\Models\Organization;
 use App\Traits\FeatureTestTrait;
 
+/**
+ * @see \App\Http\Controllers\Management\UserController
+ */
 class UserControllerTest extends TestCase
 {
     use RefreshDatabase, FeatureTestTrait;
