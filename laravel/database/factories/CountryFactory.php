@@ -24,7 +24,6 @@ class CountryFactory extends Factory
         return [
             'code' => $this->faker->word,
             'name' => $this->faker->name,
-            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

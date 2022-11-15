@@ -16,8 +16,6 @@ class ContactControllerTest extends TestCase
      */
     public function index_returns_an_ok_response()
     {
-        $this->refreshApplicationWithLocale('en');
-
         $response = $this->get(route('contact'));
 
         $response->assertStatus(200);
@@ -25,6 +23,4 @@ class ContactControllerTest extends TestCase
 
         // TODO: perform additional assertions
     }
-
-    // test cases...
 }

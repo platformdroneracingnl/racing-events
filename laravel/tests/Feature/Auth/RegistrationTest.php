@@ -13,8 +13,6 @@ class RegistrationTest extends TestCase
 
     public function test_registration_screen_can_be_rendered()
     {
-        $this->refreshApplicationWithLocale('en');
-
         $response = $this->get(route('register'));
         $response->assertStatus(200);
     }

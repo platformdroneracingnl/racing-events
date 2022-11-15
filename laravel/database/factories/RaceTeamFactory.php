@@ -23,7 +23,6 @@ class RaceTeamFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

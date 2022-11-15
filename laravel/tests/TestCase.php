@@ -2,25 +2,42 @@
 
 namespace Tests;
 
+use App\Models\User;
 use JMac\Testing\Traits\AdditionalAssertions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Mcamara\LaravelLocalization\LaravelLocalization;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, AdditionalAssertions, RefreshDatabase;
 
-    protected function refreshApplicationWithLocale($locale)
+    public User $pilot;
+
+    public User $organizer;
+
+    public User $manager;
+
+    public User $supervisor;
+
+    protected function setUp(): void
     {
-        self::tearDown();
-        putenv(LaravelLocalization::ENV_ROUTE_KEY . '=' . $locale);
-        self::setUp();
+        parent::setUp();
+
+        $this->artisan('db:seed', ['--class' => 'PermissionTableSeeder']);
+
+        $this->pilot = $this->createUser('racer');
+        $this->organizer = $this->createUser('organizer');
+        $this->manager = $this->createUser('manager');
+        $this->supervisor = $this->createUser('supervisor');
     }
 
-    protected function tearDown() : void
+    /**
+     * Private functions to create a user.
+     */
+    private function createUser($user_type): User
     {
-        putenv(LaravelLocalization::ENV_ROUTE_KEY);
-        parent::tearDown();
+        $user = User::factory()->create();
+
+        return $user->assignRole($user_type);
     }
 }

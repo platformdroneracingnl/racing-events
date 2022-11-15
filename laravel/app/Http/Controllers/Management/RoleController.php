@@ -16,25 +16,33 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('permission:role-read|role-create|role-update|role-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:role-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:role-update', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
+        // Check if user has required permission
+        $this->authorize('role-read');
+
         $lang = App::getLocale();
         $roles = Role::orderBy('id', 'ASC')->get();
 
         return view('backend.management.roles.index', compact('roles', 'lang'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Role $role)
+    {
+        // Check if user has required permission
+        $this->authorize('role-read');
+
+        $rolePermissions = Permission::join('role_has_permissions', 'role_has_permissions.permission_id', '=', 'permissions.id')
+            ->where('role_has_permissions.role_id', $role->id)
+            ->get();
+
+        return view('backend.management.roles.show', compact('role', 'rolePermissions'));
     }
 
     /**
@@ -44,8 +52,10 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permission = Permission::get();
+        // Check if user has required permission
+        $this->authorize('role-create');
 
+        $permission = Permission::get();
         return view('backend.management.roles.create', compact('permission'));
     }
 
@@ -57,6 +67,9 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if user has required permission
+        $this->authorize('role-create');
+
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
@@ -70,21 +83,6 @@ class RoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Role $role)
-    {
-        $rolePermissions = Permission::join('role_has_permissions', 'role_has_permissions.permission_id', '=', 'permissions.id')
-            ->where('role_has_permissions.role_id', $role->id)
-            ->get();
-
-        return view('backend.management.roles.show', compact('role', 'rolePermissions'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Role  $role
@@ -92,6 +90,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        // Check if user has required permission
+        $this->authorize('role-update');
+
         $permission = Permission::get();
         $rolePermissions = DB::table('role_has_permissions')->where('role_has_permissions.role_id', $role->id)
             ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
@@ -109,6 +110,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        // Check if user has required permission
+        $this->authorize('role-update');
+
         $this->validate($request, [
             'name' => 'required',
             'permission' => 'required',
@@ -131,8 +135,10 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('roles')->where('id', $id)->delete();
+        // Check if user has required permission
+        $this->authorize('role-delete');
 
+        DB::table('roles')->where('id', $id)->delete();
         return redirect()->route('management.roles.index')
             ->with('success', 'Rol is succesvol verwijderd');
     }

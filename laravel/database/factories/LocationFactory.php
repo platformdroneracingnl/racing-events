@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Location;
+use App\Models\Event;
+use App\Models\Country;
 
 class LocationFactory extends Factory
 {
@@ -22,16 +24,15 @@ class LocationFactory extends Factory
     public function definition()
     {
         return [
-            'category' => $this->faker->word,
-            'city' => $this->faker->city,
-            'country' => 151,
-            'latitude' => $this->faker->latitude,
-            'longitude' => $this->faker->longitude,
             'name' => $this->faker->name,
-            'province' => $this->faker->word,
             'street' => $this->faker->word,
             'zip_code' => $this->faker->postcode,
-            'event_id' => \App\Models\Event::factory(),
+            'city' => $this->faker->city,
+            'province' => $this->faker->word,
+            'country_id' => Country::factory(),
+            'category' => $this->faker->word,
+            'latitude' => $this->faker->latitude,
+            'longitude' => $this->faker->longitude,
         ];
     }
 }

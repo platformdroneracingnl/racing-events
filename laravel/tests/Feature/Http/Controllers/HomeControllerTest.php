@@ -31,8 +31,6 @@ class HomeControllerTest extends TestCase
      */
     public function root_returns_an_ok_response()
     {
-        $this->refreshApplicationWithLocale('en');
-
         $response = $this->get(route('root'));
 
         $response->assertStatus(200);

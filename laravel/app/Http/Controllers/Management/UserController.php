@@ -23,10 +23,11 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:user-read|user-create|user-update|user-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:user-update', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:user-read|user-create|user-update|user-delete', ['only' => ['index', 'show']]);
+        // $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        // $this->middleware('permission:user-update', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->authorizeResource(User::class, 'user');
     }
 
     /**
@@ -38,6 +39,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $lang = App::getLocale();
+
         $organization = Organization::with('user');
         $data = User::orderBy('id', 'desc')->get();
 
@@ -172,6 +174,7 @@ class UserController extends Controller
      */
     public function suspendUser(Request $request, User $user)
     {
+        $this->authorize('suspend', User::class);
         $input = $request->all();
 
         if ($request == null) {
