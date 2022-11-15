@@ -20,9 +20,9 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_organizations_cannot_be_accessed_by_unauthorized_users()
+    public function test_view_all_organizations_cannot_be_accessed_by_pilot_users()
     {
-        $this->unauthorized_user()->get(route('management.organizations.index'))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.organizations.index'))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -34,7 +34,7 @@ class OrganizationControllerTest extends TestCase
      */
     public function test_view_all_organizations_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['organization-read'])->get(route('management.organizations.index'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.organizations.index'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.organizations.index');
@@ -48,11 +48,11 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_organization_cannot_be_accessed_by_unauthorized_users()
+    public function test_show_organization_cannot_be_accessed_by_pilot_users()
     {
         $organization = Organization::factory()->create();
 
-        $this->unauthorized_user()->get(route('management.organizations.show', $organization->id))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.organizations.show', $organization->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -66,7 +66,7 @@ class OrganizationControllerTest extends TestCase
     {
         $organization = Organization::factory()->create();
 
-        $response = $this->authorized_user(['organization-read'])->get(route('management.organizations.show', $organization->id))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.organizations.show', $organization->id))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.organizations.show');
@@ -79,9 +79,9 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_organization_cannot_be_accessed_by_unauthorized_users()
+    public function test_create_organization_cannot_be_accessed_by_pilot_users()
     {
-        $this->unauthorized_user()->get(route('management.organizations.create'))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.organizations.create'))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -93,7 +93,7 @@ class OrganizationControllerTest extends TestCase
      */
     public function test_create_organization_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['organization-create'])->get(route('management.organizations.create'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.organizations.create'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.organizations.create');
@@ -105,11 +105,11 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_organization_cannot_by_unauthorized_users()
+    public function test_store_new_organization_cannot_by_pilot_users()
     {
         $organization = Organization::factory()->make();
 
-        $this->unauthorized_user()->post(route('management.organizations.store'), $organization->toArray())->assertForbidden();
+        $this->actingAs($this->pilot)->post(route('management.organizations.store'), $organization->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -123,7 +123,7 @@ class OrganizationControllerTest extends TestCase
     {
         $organization = Organization::factory()->make();
 
-        $response = $this->authorized_user(['organization-create'])->post(route('management.organizations.store'), $organization->toArray())->assertRedirect();
+        $response = $this->actingAs($this->manager)->post(route('management.organizations.store'), $organization->toArray())->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');
@@ -138,11 +138,11 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_organization_cannot_be_accessed_by_unauthorized_users()
+    public function test_edit_organization_cannot_be_accessed_by_pilot_users()
     {
         $organization = Organization::factory()->create();
 
-        $this->unauthorized_user()->get(route('management.organizations.edit', $organization->id))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.organizations.edit', $organization->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -156,7 +156,7 @@ class OrganizationControllerTest extends TestCase
     {
         $organization = Organization::factory()->create();
 
-        $response = $this->authorized_user(['organization-update'])->get(route('management.organizations.edit', $organization->id))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.organizations.edit', $organization->id))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.organizations.edit');
@@ -169,11 +169,11 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_organization_cannot_by_unauthorized_users()
+    public function test_update_organization_cannot_by_pilot_users()
     {
         $organization = Organization::factory()->create();
 
-        $this->unauthorized_user()->put(route('management.organizations.update', $organization->id), $organization->toArray())->assertForbidden();
+        $this->actingAs($this->pilot)->put(route('management.organizations.update', $organization->id), $organization->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -187,7 +187,7 @@ class OrganizationControllerTest extends TestCase
     {
         $organization = Organization::factory()->create();
 
-        $response = $this->authorized_user(['organization-update'])->put(route('management.organizations.update', $organization->id), $organization->toArray())->assertRedirect();
+        $response = $this->actingAs($this->manager)->put(route('management.organizations.update', $organization->id), $organization->toArray())->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');
@@ -202,11 +202,11 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_organization_cannot_by_unauthorized_users()
+    public function test_destroy_organization_cannot_by_pilot_users()
     {
         $organization = Organization::factory()->create();
 
-        $this->unauthorized_user()->delete(route('management.organizations.destroy', $organization->id))->assertForbidden();
+        $this->actingAs($this->pilot)->delete(route('management.organizations.destroy', $organization->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -220,7 +220,7 @@ class OrganizationControllerTest extends TestCase
     {
         $organization = Organization::factory()->create();
 
-        $response = $this->authorized_user(['organization-delete'])->delete(route('management.organizations.destroy', $organization->id))->assertRedirect();
+        $response = $this->actingAs($this->manager)->delete(route('management.organizations.destroy', $organization->id))->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');

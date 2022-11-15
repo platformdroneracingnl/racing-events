@@ -21,9 +21,9 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_locations_cannot_be_accessed_by_unauthorized_users()
+    public function test_view_all_locations_cannot_be_accessed_by_pilot_users()
     {
-        $this->unauthorized_user()->get(route('management.locations.index'))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.locations.index'))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -35,7 +35,7 @@ class LocationControllerTest extends TestCase
      */
     public function test_view_all_locations_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['location-read'])->get(route('management.locations.index'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.locations.index'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.locations.index');
@@ -49,11 +49,11 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_location_cannot_be_accessed_by_unauthorized_users()
+    public function test_show_location_cannot_be_accessed_by_pilot_users()
     {
         $location = Location::factory()->create();
 
-        $this->unauthorized_user()->get(route('management.locations.show', $location->id))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.locations.show', $location->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -67,7 +67,7 @@ class LocationControllerTest extends TestCase
     {
         $location = Location::factory()->create();
 
-        $response = $this->authorized_user(['location-read'])->get(route('management.locations.show', $location->id))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.locations.show', $location->id))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.locations.show');
@@ -80,9 +80,9 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_location_cannot_be_accessed_by_unauthorized_users()
+    public function test_create_location_cannot_be_accessed_by_pilot_users()
     {
-        $this->unauthorized_user()->get(route('management.locations.create'))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.locations.create'))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -94,7 +94,7 @@ class LocationControllerTest extends TestCase
      */
     public function test_create_location_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['location-create'])->get(route('management.locations.create'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.locations.create'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.locations.create');
@@ -107,11 +107,11 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_location_cannot_by_unauthorized_users()
+    public function test_store_new_location_cannot_by_pilot_users()
     {
         $location = Location::factory()->make();
 
-        $this->unauthorized_user()->post(route('management.locations.store'), $location->toArray())->assertForbidden();
+        $this->actingAs($this->pilot)->post(route('management.locations.store'), $location->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -125,7 +125,7 @@ class LocationControllerTest extends TestCase
     {
         $location = Location::factory()->make();
 
-        $response = $this->authorized_user(['location-create'])->post(route('management.locations.store'), $location->toArray())->assertRedirect();
+        $response = $this->actingAs($this->manager)->post(route('management.locations.store'), $location->toArray())->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');
@@ -138,11 +138,11 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_location_cannot_be_accessed_by_unauthorized_users()
+    public function test_edit_location_cannot_be_accessed_by_pilot_users()
     {
         $location = Location::factory()->create();
 
-        $this->unauthorized_user()->get(route('management.locations.edit', $location->id))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.locations.edit', $location->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -156,7 +156,7 @@ class LocationControllerTest extends TestCase
     {
         $location = Location::factory()->create();
 
-        $response = $this->authorized_user(['location-update'])->get(route('management.locations.edit', $location->id))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.locations.edit', $location->id))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.locations.edit');
@@ -170,11 +170,11 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_location_cannot_by_unauthorized_users()
+    public function test_update_location_cannot_by_pilot_users()
     {
         $location = Location::factory()->create();
 
-        $this->unauthorized_user()->put(route('management.locations.update', $location->id), $location->toArray())->assertForbidden();
+        $this->actingAs($this->pilot)->put(route('management.locations.update', $location->id), $location->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -188,7 +188,7 @@ class LocationControllerTest extends TestCase
     {
         $location = Location::factory()->create();
 
-        $response = $this->authorized_user(['location-update'])->put(route('management.locations.update', $location->id), $location->toArray())->assertRedirect();
+        $response = $this->actingAs($this->manager)->put(route('management.locations.update', $location->id), $location->toArray())->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');
@@ -208,11 +208,11 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_location_cannot_by_unauthorized_users()
+    public function test_destroy_location_cannot_by_pilot_users()
     {
         $location = Location::factory()->create();
 
-        $this->unauthorized_user()->delete(route('management.locations.destroy', $location->id))->assertForbidden();
+        $this->actingAs($this->pilot)->delete(route('management.locations.destroy', $location->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -226,7 +226,7 @@ class LocationControllerTest extends TestCase
     {
         $location = Location::factory()->create();
 
-        $response = $this->authorized_user(['location-delete'])->delete(route('management.locations.destroy', $location->id))->assertRedirect();
+        $response = $this->actingAs($this->manager)->delete(route('management.locations.destroy', $location->id))->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');
