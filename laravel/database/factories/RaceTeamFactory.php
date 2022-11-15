@@ -25,7 +25,7 @@ class RaceTeamFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'image' => UploadedFile::fake()->image('avatar.jpg'),
+            'image' => UploadedFile::fake()->image('raceteam.png'),
         ];
     }
 }
