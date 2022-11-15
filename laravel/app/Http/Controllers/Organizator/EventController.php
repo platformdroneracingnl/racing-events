@@ -24,10 +24,11 @@ class EventController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:event-read|event-create|event-update|event-delete|event-registration|event-checkin', ['only' => ['index', 'show', 'registrations', 'exportPDF']]);
-        $this->middleware('permission:event-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:event-update', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:event-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:event-read|event-create|event-update|event-delete|event-registration|event-checkin', ['only' => ['index', 'show']]);
+        // $this->middleware('permission:event-create', ['only' => ['create', 'store']]);
+        // $this->middleware('permission:event-update', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:event-delete', ['only' => ['destroy']]);
+        $this->authorizeResource(Event::class, 'event');
     }
 
     /**
@@ -42,6 +43,27 @@ class EventController extends Controller
         $events = User::with('events')->find(Auth::user()->id);
 
         return view('backend.organizator.events.index', compact('events', 'lang'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Event  $event
+     * @return \Illuminate\Http\Response
+     */
+    // Show specific event
+    public function show(Event $event)
+    {
+        $agent = new Agent();
+        // All registrations with a status of 3
+        $complete_reg = Registration::with('user')->get()->where('event_id', $event->id)->where('status_id', 3)->count();
+        // All registrations that have everything except status 3
+        $pending_reg = Registration::with('user')->get()->where('event_id', $event->id)->count();
+        // Price calculation
+        $price_total = ($event->price * $pending_reg);
+        $price_subtotal = ($event->price * $complete_reg);
+
+        return view('backend.organizator.events.show', compact('event', 'agent', 'complete_reg', 'pending_reg', 'price_total', 'price_subtotal'));
     }
 
     /**
@@ -121,27 +143,6 @@ class EventController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
-     */
-    // Show specific event
-    public function show(Event $event)
-    {
-        $agent = new Agent();
-        // All registrations with a status of 3
-        $complete_reg = Registration::with('user')->get()->where('event_id', $event->id)->where('status_id', 3)->count();
-        // All registrations that have everything except status 3
-        $pending_reg = Registration::with('user')->get()->where('event_id', $event->id)->count();
-        // Price calculation
-        $price_total = ($event->price * $pending_reg);
-        $price_subtotal = ($event->price * $complete_reg);
-
-        return view('backend.organizator.events.show', compact('event', 'agent', 'complete_reg', 'pending_reg', 'price_total', 'price_subtotal'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Event  $event
@@ -203,16 +204,16 @@ class EventController extends Controller
         try {
             // En nu de rest updaten mocht dat nodig zijn
             $event->update($request->except(['online', 'registration', 'waitlist', 'mollie_payments', 'google_calendar', 'image']));
-            if ($google_calendar == 1 and $event->google_calendar_id == null) {
-                // Create new Google Event
-                GoogleCalendarController::createCalendarEvent($event);
-            } elseif ($google_calendar == 0 and $event->google_calendar_id != null) {
-                // Delete Google Event
-                GoogleCalendarController::deleteCalendarEvent($event);
-            } else {
-                // Update Google Event
-                // GoogleCalendarController::changeCalendarEvent($event);
-            }
+            // if ($google_calendar == 1 and $event->google_calendar_id == null) {
+            //     // Create new Google Event
+            //     GoogleCalendarController::createCalendarEvent($event);
+            // } elseif ($google_calendar == 0 and $event->google_calendar_id != null) {
+            //     // Delete Google Event
+            //     GoogleCalendarController::deleteCalendarEvent($event);
+            // } else {
+            //     // Update Google Event
+            //     GoogleCalendarController::changeCalendarEvent($event);
+            // }
         } catch (\Throwable $th) {
             dd($th);
         }

@@ -87,6 +87,7 @@ Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeS
 
         /**
          * Management
+         * ->middleware(['role:supervisor|manager'])
          */
         Route::prefix('management')->as('management.')->middleware(['role:supervisor|manager'])
             ->group(function () {
@@ -101,8 +102,9 @@ Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeS
 
         /**
          * Organizator
+         * ->middleware(['role:organizer|supervisor|manager'])
          */
-        Route::prefix('organizator')->middleware(['role:organizator|supervisor|manager'])
+        Route::prefix('organizator')->middleware(['role:organizer|supervisor|manager'])
             ->group(function () {
                 // Events
                 Route::resource('events', Organizator\EventController::class, ['names' => 'organizator.events']);
