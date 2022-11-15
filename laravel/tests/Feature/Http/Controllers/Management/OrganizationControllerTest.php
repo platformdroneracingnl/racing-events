@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Http\Controllers\Management;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\Organization;
 use App\Traits\FeatureTestTrait;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * @see \App\Http\Controllers\Management\OrganizationController
@@ -18,7 +17,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * INDEX
      * Assert that user cannot access the management organizations page.
-     * 
+     *
      * @test
      */
     public function test_view_all_organizations_cannot_be_accessed_by_unauthorized_users()
@@ -30,7 +29,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * INDEX
      * Assert that user can access the management organizations page.
-     * 
+     *
      * @test
      */
     public function test_view_all_organizations_can_be_accessed_by_authorized_users()
@@ -46,7 +45,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * VIEW / SHOW
      * Assert that user cannot access the specific organization page.
-     * 
+     *
      * @test
      */
     public function test_show_organization_cannot_be_accessed_by_unauthorized_users()
@@ -60,7 +59,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * VIEW / SHOW
      * Assert that user can access the specific organization page.
-     * 
+     *
      * @test
      */
     public function test_show_organization_can_be_accessed_by_authorized_users()
@@ -77,7 +76,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * CREATE
      * Assert that user cannot access the create organization page.
-     * 
+     *
      * @test
      */
     public function test_create_organization_cannot_be_accessed_by_unauthorized_users()
@@ -89,7 +88,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * CREATE
      * Assert that user can access the create organization page.
-     * 
+     *
      * @test
      */
     public function test_create_organization_can_be_accessed_by_authorized_users()
@@ -103,13 +102,13 @@ class OrganizationControllerTest extends TestCase
     /**
      * STORE
      * Assert that user cannot create a new organization.
-     * 
+     *
      * @test
      */
     public function test_store_new_organization_cannot_by_unauthorized_users()
     {
         $organization = Organization::factory()->make();
-        
+
         $this->unauthorized_user()->post(route('management.organizations.store'), $organization->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
@@ -117,7 +116,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * STORE
      * Assert that user can create a new organization.
-     * 
+     *
      * @test
      */
     public function test_store_new_organization_can_by_authorized_users()
@@ -136,7 +135,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user cannot access the edit organization page.
-     * 
+     *
      * @test
      */
     public function test_edit_organization_cannot_be_accessed_by_unauthorized_users()
@@ -150,7 +149,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user can access the edit organization page.
-     * 
+     *
      * @test
      */
     public function test_edit_organization_can_be_accessed_by_authorized_users()
@@ -167,13 +166,13 @@ class OrganizationControllerTest extends TestCase
     /**
      * UPDATE
      * Assert that user cannot update the organization.
-     * 
+     *
      * @test
      */
     public function test_update_organization_cannot_by_unauthorized_users()
     {
         $organization = Organization::factory()->create();
-        
+
         $this->unauthorized_user()->put(route('management.organizations.update', $organization->id), $organization->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
@@ -181,7 +180,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * UPDATE
      * Assert that user can update the organization.
-     * 
+     *
      * @test
      */
     public function test_update_organization_can_by_authorized_users()
@@ -200,13 +199,13 @@ class OrganizationControllerTest extends TestCase
     /**
      * DESTROY
      * Assert that user cannot delete the organization.
-     * 
+     *
      * @test
      */
     public function test_destroy_organization_cannot_by_unauthorized_users()
     {
         $organization = Organization::factory()->create();
-        
+
         $this->unauthorized_user()->delete(route('management.organizations.destroy', $organization->id))->assertForbidden();
         $this->assertAuthenticated();
     }
@@ -214,7 +213,7 @@ class OrganizationControllerTest extends TestCase
     /**
      * DESTROY
      * Assert that user can delete the organization.
-     * 
+     *
      * @test
      */
     public function test_destroy_organization_can_by_authorized_users()

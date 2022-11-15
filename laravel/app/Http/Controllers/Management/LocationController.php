@@ -72,7 +72,6 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-
         // Valide input
         request()->validate([
             'image' => 'image|mimes:jpeg,png,jpg,svg',
@@ -147,7 +146,6 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-
         // Valide input
         request()->validate([
             'image' => 'image|mimes:jpeg,png,jpg,svg',

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +17,14 @@ $namespaceApiV1 = 'App\Http\Controllers\Api\V1';
 /**
  * API v1
  */
-Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function() {
+Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function () {
     /**
      * Routes for authentication
      */
-    Route::controller(AuthController::class)->group(function() {
+    Route::controller(AuthController::class)->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login')->name('login');
-        Route::middleware('auth:sanctum')->group(function() {
+        Route::middleware('auth:sanctum')->group(function () {
             Route::post('logout', 'logout')->name('logout');
             Route::get('user', 'authenticatedUser')->name('user');
         });
@@ -34,19 +33,18 @@ Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function() {
     /**
      * Protected routes
      */
-    Route::middleware('auth:sanctum')->group(function() {
+    Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('events', EventController::class)->names('events');
         Route::apiResource('registrations', RegistrationController::class)->names('registrations');
         Route::apiResource('locations', LocationController::class)->names('locations');
     });
 });
 
-
 /**
  * Fallback function
  * Keep this at the end of the file
  */
-Route::fallback(function(){
+Route::fallback(function () {
     return response()->json([
-        'message' => 'Page Not Found. If error persists, contact info@platformdroneracing.nl'], 404);
+        'message' => 'Page Not Found. If error persists, contact info@platformdroneracing.nl', ], 404);
 });

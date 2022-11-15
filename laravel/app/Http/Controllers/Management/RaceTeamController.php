@@ -68,7 +68,6 @@ class RaceTeamController extends Controller
      */
     public function store(Request $request)
     {
-
         // Valide input
         request()->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',

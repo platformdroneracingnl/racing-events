@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Utils;
 use App\Http\Controllers\Controller;
 use App\Mail\NewEventRegistration;
 use App\Models\Event;
-use App\Models\Organization;
 use App\Models\Registration;
 use App\Models\User;
 use App\Notifications\RemoveEventRegistration;
@@ -26,7 +25,6 @@ class MollieController extends Controller
      */
     public function preparePayment()
     {
-
         // Onderstaand komt in de functie te hangen die een inschrijving opslaat....Wel nog VOOR dat de inschrijving word opgeslagen!
         $payment = Mollie::api()->payments()->create([
             'amount' => [

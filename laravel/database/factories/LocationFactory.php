@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Location;
-use App\Models\Event;
 use App\Models\Country;
+use App\Models\Location;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LocationFactory extends Factory
 {

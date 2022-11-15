@@ -56,6 +56,7 @@ class RoleController extends Controller
         $this->authorize('role-create');
 
         $permission = Permission::get();
+
         return view('backend.management.roles.create', compact('permission'));
     }
 
@@ -139,6 +140,7 @@ class RoleController extends Controller
         $this->authorize('role-delete');
 
         DB::table('roles')->where('id', $id)->delete();
+
         return redirect()->route('management.roles.index')
             ->with('success', 'Rol is succesvol verwijderd');
     }

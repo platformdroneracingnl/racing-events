@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\Location;
-use App\Http\Controllers\Api\V1\BaseController;
 use App\Http\Resources\V1\Location as LocationResource;
 use App\Http\Resources\V1\LocationCollection;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 class LocationController extends BaseController
@@ -18,6 +17,7 @@ class LocationController extends BaseController
     public function index()
     {
         $locations = Location::all();
+
         return $this->sendResponse(new LocationCollection($locations), 'All locations retrieved successfully.');
     }
 
@@ -43,6 +43,7 @@ class LocationController extends BaseController
         if (is_null($location)) {
             return $this->sendError('Location not found.');
         }
+
         return $this->sendResponse(new LocationResource($location), 'Location retrieved successfully.');
     }
 

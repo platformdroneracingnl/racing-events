@@ -2,13 +2,11 @@
 
 namespace Tests\Feature\Http\Controllers\Management;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Database\Seeders\CountriesTableSeeder;
-use Tests\TestCase;
 use App\Models\Country;
 use App\Models\Location;
 use App\Traits\FeatureTestTrait;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * @see \App\Http\Controllers\Management\LocationController
@@ -20,7 +18,7 @@ class LocationControllerTest extends TestCase
     /**
      * INDEX
      * Assert that user cannot access the management locations page.
-     * 
+     *
      * @test
      */
     public function test_view_all_locations_cannot_be_accessed_by_unauthorized_users()
@@ -32,7 +30,7 @@ class LocationControllerTest extends TestCase
     /**
      * INDEX
      * Assert that user can access the management locations page.
-     * 
+     *
      * @test
      */
     public function test_view_all_locations_can_be_accessed_by_authorized_users()
@@ -48,7 +46,7 @@ class LocationControllerTest extends TestCase
     /**
      * VIEW / SHOW
      * Assert that user cannot access the specific location page.
-     * 
+     *
      * @test
      */
     public function test_show_location_cannot_be_accessed_by_unauthorized_users()
@@ -62,7 +60,7 @@ class LocationControllerTest extends TestCase
     /**
      * VIEW / SHOW
      * Assert that user can access the specific location page.
-     * 
+     *
      * @test
      */
     public function test_show_location_can_be_accessed_by_authorized_users()
@@ -79,7 +77,7 @@ class LocationControllerTest extends TestCase
     /**
      * CREATE
      * Assert that user cannot access the create location page.
-     * 
+     *
      * @test
      */
     public function test_create_location_cannot_be_accessed_by_unauthorized_users()
@@ -91,7 +89,7 @@ class LocationControllerTest extends TestCase
     /**
      * CREATE
      * Assert that user can access the create location page.
-     * 
+     *
      * @test
      */
     public function test_create_location_can_be_accessed_by_authorized_users()
@@ -106,7 +104,7 @@ class LocationControllerTest extends TestCase
     /**
      * STORE
      * Assert that user cannot store a new location.
-     * 
+     *
      * @test
      */
     public function test_store_new_location_cannot_by_unauthorized_users()
@@ -120,7 +118,7 @@ class LocationControllerTest extends TestCase
     /**
      * STORE
      * Assert that user can store a new location.
-     * 
+     *
      * @test
      */
     public function test_store_new_location_can_by_authorized_users()
@@ -137,7 +135,7 @@ class LocationControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user cannot access the edit location page.
-     * 
+     *
      * @test
      */
     public function test_edit_location_cannot_be_accessed_by_unauthorized_users()
@@ -151,7 +149,7 @@ class LocationControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user can access the edit location page.
-     * 
+     *
      * @test
      */
     public function test_edit_location_can_be_accessed_by_authorized_users()
@@ -169,7 +167,7 @@ class LocationControllerTest extends TestCase
     /**
      * UPDATE
      * Assert that user cannot update a location.
-     * 
+     *
      * @test
      */
     public function test_update_location_cannot_by_unauthorized_users()
@@ -183,7 +181,7 @@ class LocationControllerTest extends TestCase
     /**
      * UPDATE
      * Assert that user can update a location.
-     * 
+     *
      * @test
      */
     public function test_update_location_can_by_authorized_users()
@@ -207,7 +205,7 @@ class LocationControllerTest extends TestCase
     /**
      * DESTROY
      * Assert that user cannot delete a location.
-     * 
+     *
      * @test
      */
     public function test_destroy_location_cannot_by_unauthorized_users()
@@ -221,7 +219,7 @@ class LocationControllerTest extends TestCase
     /**
      * DESTROY
      * Assert that user can delete a location.
-     * 
+     *
      * @test
      */
     public function test_destroy_location_can_by_authorized_users()

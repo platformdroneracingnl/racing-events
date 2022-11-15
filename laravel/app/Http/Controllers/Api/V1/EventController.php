@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\Event;
-use App\Http\Controllers\Api\V1\BaseController;
 use App\Http\Resources\V1\Event as EventResource;
 use App\Http\Resources\V1\EventCollection;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class EventController extends BaseController
@@ -18,6 +17,7 @@ class EventController extends BaseController
     public function index()
     {
         $events = Event::all();
+
         return $this->sendResponse(new EventCollection($events), 'All events retrieved successfully.');
     }
 
@@ -43,6 +43,7 @@ class EventController extends BaseController
         if (is_null($event)) {
             return $this->sendError('Event not found.');
         }
+
         return $this->sendResponse(new EventResource($event), 'Event retrieved successfully.');
     }
 

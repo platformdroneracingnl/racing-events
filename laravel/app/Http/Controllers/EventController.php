@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Models\Event;
-use App\Models\Location;
-use App\Models\User;
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 
 class EventController extends Controller

@@ -6,7 +6,6 @@ use App\Models\Event;
 use App\Models\Registration;
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 
 class DashboardController extends Controller

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\Registration;
-use App\Http\Controllers\Api\V1\BaseController;
-use App\Http\Resources\V1\Registration as RegistrationResource;
 use App\Http\Resources\V1\RegistrationCollection;
-use Illuminate\Http\Request;
+use App\Models\Registration;
 use Auth;
+use Illuminate\Http\Request;
 
 class RegistrationController extends BaseController
 {
@@ -19,6 +17,7 @@ class RegistrationController extends BaseController
     public function index()
     {
         $registrations = Registration::where('user_id', '=', Auth::user()->id)->get();
+
         return $this->sendResponse(new RegistrationCollection($registrations), 'All your registrations retrieved successfully.');
     }
 

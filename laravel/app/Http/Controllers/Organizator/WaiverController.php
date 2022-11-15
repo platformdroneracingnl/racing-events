@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Waiver;
 use Auth;
-use Illuminate\Http\Request;
 
 class WaiverController extends Controller
 {

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Rules\CurrentPasswordCheckRule;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PasswordRequest extends FormRequest

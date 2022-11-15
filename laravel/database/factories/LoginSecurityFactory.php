@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\LoginSecurity;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LoginSecurityFactory extends Factory
 {
@@ -23,7 +24,7 @@ class LoginSecurityFactory extends Factory
     {
         return [
             'google2fa_enable' => $this->faker->boolean,
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }
