@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Event;
+use App\Models\Country;
 
 class Location extends Model
 {
@@ -15,15 +17,19 @@ class Location extends Model
         'latitude', 'longitude', 'name', 'street', 'house_number', 'zip_code', 'city', 'province', 'country_id', 'category', 'image', 'description',
     ];
 
+    protected $casts = [
+        'date' => 'datetime',
+    ];
+
     // Relation with event table
     public function event()
     {
-        return $this->belongsTo(\App\Models\Event::class);
+        return $this->belongsTo(Event::class);
     }
 
     // Relation with country table
     public function country()
     {
-        return $this->belongsTo(\App\Models\Country::class);
+        return $this->belongsTo(Country::class);
     }
 }
