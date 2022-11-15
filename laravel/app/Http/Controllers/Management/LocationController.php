@@ -21,10 +21,11 @@ class LocationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:location-read|location-create|location-update|location-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:location-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:location-update', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:location-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:location-read|location-create|location-update|location-delete', ['only' => ['index', 'show']]);
+        // $this->middleware('permission:location-create', ['only' => ['create', 'store']]);
+        // $this->middleware('permission:location-update', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:location-delete', ['only' => ['destroy']]);
+        $this->authorizeResource(Location::class, 'location');
     }
 
     /**
@@ -38,6 +39,17 @@ class LocationController extends Controller
         $locations = Location::orderBy('name', 'ASC')->get();
 
         return view('backend.management.locations.index', compact('locations', 'lang'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Location $location)
+    {
+        return view('backend.management.locations.show', compact('location'));
     }
 
     /**
@@ -75,7 +87,7 @@ class LocationController extends Controller
         $location->zip_code = $request->input('zip_code');
         $location->city = $request->input('city');
         $location->province = $request->input('province');
-        $location->country_id = $request->input('country');
+        $location->country_id = $request->input('country_id');
         $location->category = $request->input('category');
         $location->description = $request->input('description');
 
@@ -105,17 +117,6 @@ class LocationController extends Controller
         } catch (\Throwable $th) {
             dd($th);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Location $location)
-    {
-        return view('backend.management.locations.show', compact('location'));
     }
 
     /**

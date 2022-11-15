@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 use App\Models\Organization;
 
 class OrganizationFactory extends Factory
@@ -23,6 +25,7 @@ class OrganizationFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'image' => UploadedFile::fake()->image('organization.png'),
         ];
     }
 }

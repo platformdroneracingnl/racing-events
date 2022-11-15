@@ -19,10 +19,11 @@ class RaceTeamController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('permission:race_team-read|raceteam-create|raceteam-edit|raceteam-delete', ['only' => ['index', 'show']]);
-        $this->middleware('permission:race_team-create', ['only' => ['create', 'store']]);
-        $this->middleware('permission:race_team-update', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:race_team-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:race_team-read|raceteam-create|raceteam-edit|raceteam-delete', ['only' => ['index', 'show']]);
+        // $this->middleware('permission:race_team-create', ['only' => ['create', 'store']]);
+        // $this->middleware('permission:race_team-update', ['only' => ['edit', 'update']]);
+        // $this->middleware('permission:race_team-delete', ['only' => ['destroy']]);
+        $this->authorizeResource(RaceTeam::class, 'raceteam');
     }
 
     /**
@@ -36,6 +37,17 @@ class RaceTeamController extends Controller
         $race_teams = RaceTeam::orderBy('name', 'ASC')->get();
 
         return view('backend.management.race_teams.index', compact('race_teams', 'lang'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Raceteam  $raceteam
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Raceteam $raceteam)
+    {
+        return view('backend.management.race_teams.show', compact('raceteam'));
     }
 
     /**
@@ -89,17 +101,6 @@ class RaceTeamController extends Controller
         } catch (\Throwable $th) {
             dd($th);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Raceteam $raceteam)
-    {
-        return view('backend.management.race_teams.show', compact('raceteam'));
     }
 
     /**
