@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Http\Controllers\Organizator;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 use App\Models\Event;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * @see \App\Http\Controllers\Organizator\EventController
