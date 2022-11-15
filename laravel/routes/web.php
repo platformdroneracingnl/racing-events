@@ -88,7 +88,7 @@ Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeS
         /**
          * Management
          */
-        Route::prefix('management')->as('management.')
+        Route::prefix('management')->as('management.')->middleware(['role:supervisor|manager'])
             ->group(function () {
                 Route::resource('roles', Management\RoleController::class)->names('roles');
                 Route::resource('users', Management\UserController::class)->names('users');
@@ -102,21 +102,22 @@ Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeS
         /**
          * Organizator
          */
-        Route::prefix('organizator')->group(function () {
-            // Events
-            Route::resource('events', Organizator\EventController::class, ['names' => 'organizator.events']);
+        Route::prefix('organizator')->middleware(['role:organizator|supervisor|manager'])
+            ->group(function () {
+                // Events
+                Route::resource('events', Organizator\EventController::class, ['names' => 'organizator.events']);
 
-            // Waivers
-            Route::resource('waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
-            Route::get('event/{waiver}/export', [Organizator\WaiverController::class, 'exportPDF'])->name('organizator.waiver.export');
+                // Waivers
+                Route::resource('waivers', Organizator\WaiverController::class, ['names' => 'organizator.waivers']);
+                Route::get('event/{waiver}/export', [Organizator\WaiverController::class, 'exportPDF'])->name('organizator.waiver.export');
 
-            // Registrations
-            Route::get('event/{event}/registrations', [Organizator\RegistrationController::class, 'eventRegistrations'])->name('organizator.event.registrations');
-            Route::get('event/{event}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
-            Route::patch('event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
-            Route::patch('event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
-            Route::post('event/{registration}/destroy', [Organizator\RegistrationController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
-        });
+                // Registrations
+                Route::get('event/{event}/registrations', [Organizator\RegistrationController::class, 'eventRegistrations'])->name('organizator.event.registrations');
+                Route::get('event/{event}/registrations/export', [Organizator\RegistrationController::class, 'exportPDF'])->name('organizator.event.export');
+                Route::patch('event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
+                Route::patch('event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
+                Route::post('event/{registration}/destroy', [Organizator\RegistrationController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
+            });
         // Check-in
         Route::get('event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
         Route::get('event/check-in/{registration}', [Organizator\RegistrationController::class, 'checkin'])->name('event.check-in');

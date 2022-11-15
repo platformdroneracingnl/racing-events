@@ -45,7 +45,7 @@ class EventController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the page for creating a new event.
      *
      * @return \Illuminate\Http\Response
      */
