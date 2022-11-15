@@ -7,6 +7,7 @@
 <!-- PROJECT SHIELDS -->
 ![Project Maintenance][maintenance-shield]
 [![License][license-shield]](LICENSE.md)
+[![codecov][codecov-shield]][codecov-url]
 
 [![GitHub Activity][commits-shield]][commits]
 [![GitHub Last Commit][last-commit-shield]][commits]
@@ -158,6 +159,8 @@ SOFTWARE.
 [maintenance-shield]: https://img.shields.io/maintenance/yes/2022.svg?style=for-the-badge
 [contributors-shield]: https://img.shields.io/github/contributors/platformdroneracingnl/racing-events.svg?style=for-the-badge
 [contributors-url]: https://github.com/platformdroneracingnl/racing-events/graphs/contributors
+[codecov-shield]: https://codecov.io/gh/platformdroneracingnl/racing-events/branch/main/graph/badge.svg?token=RIU5PT9TPI
+[codecov-url]: https://codecov.io/gh/platformdroneracingnl/racing-events
 [forks-shield]: https://img.shields.io/github/forks/platformdroneracingnl/racing-events.svg?style=for-the-badge
 [forks-url]: https://github.com/platformdroneracingnl/racing-events/network/members
 [stars-shield]: https://img.shields.io/github/stars/platformdroneracingnl/racing-events.svg?style=for-the-badge
