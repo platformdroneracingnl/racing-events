@@ -114,7 +114,10 @@ class RoleControllerTest extends TestCase
      */
     public function test_edit_role_cannot_be_accessed_by_unauthorized_users()
     {
-        $this->unauthorized_user()->get(route('management.roles.edit', ['role' => 1]))->assertForbidden();
+        $response = $this->unauthorized_user()->get(route('management.roles.edit', 1));
+
+        $this->assertAuthenticated();
+        $response->assertForbidden();
     }
 
     /**
@@ -132,7 +135,6 @@ class RoleControllerTest extends TestCase
         $response->assertViewIs('backend.management.roles.edit');
         $response->assertViewHas('role');
         $response->assertViewHas('permission');
-        $response->assertViewHas('rolePermissions');
     }
 
     /**
@@ -143,9 +145,9 @@ class RoleControllerTest extends TestCase
      */
     public function test_update_role_cannot_be_accessed_by_unauthorized_users()
     {
-        $this->unauthorized_user()->put('/management/roles/3', [
+        $this->unauthorized_user()->put(route('management.roles.update', ['role' => 1]), [
             'name' => 'test',
-            'permission' => 'test',
+            'permission' => 'user-read',
         ])->assertForbidden();
     }
 
@@ -157,13 +159,17 @@ class RoleControllerTest extends TestCase
      */
     public function test_update_role_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['role-update'])->put('/management/roles/3', [
+        $response = $this->authorized_user(['role-update'])->put(route('management.roles.update', ['role' => 1]), [
             'name' => 'test',
             'permission' => 'role-read',
         ])->assertRedirect(route('management.roles.index'));
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');
+
+        $this->assertDatabaseHas('roles', [
+            'name' => 'test',
+        ]);
     }
 
     /**
