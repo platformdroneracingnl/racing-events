@@ -148,4 +148,46 @@ class UserControllerTest extends TestCase
 
         // TODO: perform additional assertions
     }
+
+    /**
+     * SUSPEND
+     * Assert that user cannot suspend a user.
+     *
+     * @test
+     */
+    public function test_suspend_user_cannot_be_suspended_by_unauthorized_users()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->unauthorized_user()->patch(route('management.suspend_user', $user));
+
+        $this->assertAuthenticated();
+        $response->assertStatus(403);
+        $this->assertDatabaseHas('users', [
+            'email' => $user->email,
+            'suspended_until' => null,
+        ]);
+    }
+
+    /**
+     * SUSPEND
+     * Assert that user can suspend a user.
+     *
+     * @test
+     */
+    public function test_suspend_user_can_be_suspended_by_authorized_users()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->authorized_user(['user-delete'])->patch(route('management.suspend_user', $user), [
+            'suspended_until' => '2021-01-01',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertStatus(302);
+        $this->assertDatabaseHas('users', [
+            'email' => $user->email,
+            'suspended_until' => '2021-01-01 00:00:00',
+        ]);
+    }
 }

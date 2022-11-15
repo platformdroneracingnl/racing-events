@@ -174,6 +174,7 @@ class UserController extends Controller
      */
     public function suspendUser(Request $request, User $user)
     {
+        $this->authorize('suspend', User::class);
         $input = $request->all();
 
         if ($request == null) {
