@@ -18,10 +18,7 @@ class EventPolicy
      */
     public function viewAny(User $user)
     {
-        // For index method in controller
-        if ($user->hasPermissionTo('event-read')) {
-            return true;
-        }
+        return $user->hasPermissionTo('event-read');
     }
 
     /**
@@ -33,9 +30,20 @@ class EventPolicy
      */
     public function view(User $user, Event $event)
     {
-        // For show method in controller
-        if ($user->hasPermissionTo('event-read')) {
-            return true;
+        if ($user->hasRole('organizer')) {
+            if ($user->id === $event->user_id and $user->hasPermissionTo('event-read')) {
+                return true;
+            }
+        } elseif ($user->hasRole('supervisor')) {
+            if ($user->hasPermissionTo('event-read')) {
+                return true;
+            }
+        } elseif ($user->hasRole('manager')) {
+            if ($user->hasPermissionTo('event-read')) {
+                return true;
+            }
+        } else {
+            return false;
         }
     }
 
@@ -61,8 +69,20 @@ class EventPolicy
      */
     public function update(User $user, Event $event)
     {
-        if ($user->hasPermissionTo('event-update')) {
-            return true;
+        if ($user->hasRole('organizer')) {
+            if ($user->id === $event->user_id and $user->hasPermissionTo('event-update')) {
+                return true;
+            }
+        } elseif ($user->hasRole('supervisor')) {
+            if ($user->hasPermissionTo('event-update')) {
+                return true;
+            }
+        } elseif ($user->hasRole('manager')) {
+            if ($user->hasPermissionTo('event-update')) {
+                return true;
+            }
+        } else {
+            return false;
         }
     }
 
@@ -75,8 +95,20 @@ class EventPolicy
      */
     public function delete(User $user, Event $event)
     {
-        if ($user->hasPermissionTo('event-delete')) {
-            return true;
+        if ($user->hasRole('organizer')) {
+            if ($user->id === $event->user_id and $user->hasPermissionTo('event-delete')) {
+                return true;
+            }
+        } elseif ($user->hasRole('supervisor')) {
+            if ($user->hasPermissionTo('event-delete')) {
+                return true;
+            }
+        } elseif ($user->hasRole('manager')) {
+            if ($user->hasPermissionTo('event-delete')) {
+                return true;
+            }
+        } else {
+            return false;
         }
     }
 
@@ -102,5 +134,19 @@ class EventPolicy
     public function forceDelete(User $user, Event $event)
     {
         //
+    }
+
+    public function registration(User $user, Event $event)
+    {
+        if ($user->id === $event->user_id || $user->hasPermissionTo('event-registrations')) {
+            return true;
+        }
+    }
+
+    public function checkin(User $user, Event $event)
+    {
+        if ($user->id === $event->user_id || $user->hasPermissionTo('event-checkin')) {
+            return true;
+        }
     }
 }
