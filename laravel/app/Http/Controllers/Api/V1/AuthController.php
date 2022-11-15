@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Controllers\Api\V1\BaseController;
+use App\Http\Resources\V1\User as UserResource;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
-use App\Http\Resources\V1\User as UserResource;
-use Auth;
 use Validator;
 
 class AuthController extends BaseController
@@ -27,7 +26,7 @@ class AuthController extends BaseController
             'device_name' => 'string',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
 
@@ -57,11 +56,11 @@ class AuthController extends BaseController
             'device_name' => 'string',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors(), 422);
         }
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $token = $request->device_name ?? 'pdrnl-token';
             $success['token'] = $user->createToken($token)->plainTextToken;
@@ -69,7 +68,7 @@ class AuthController extends BaseController
 
             return $this->sendResponse($success, 'User login successfully.', 200);
         } else {
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised'], 401);
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised'], 401);
         }
     }
 
@@ -89,7 +88,7 @@ class AuthController extends BaseController
             // $user()->currentAccessToken()->delete();
             return $this->sendResponse([], 'User logged out successfully.');
         } else {
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised'], 401);
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised'], 401);
         }
     }
 
@@ -98,6 +97,6 @@ class AuthController extends BaseController
      */
     public function authenticatedUser(Request $request)
     {
-        return $this->sendResponse( new UserResource(Auth::user()), 'User info retrieved successfully.');
+        return $this->sendResponse(new UserResource(Auth::user()), 'User info retrieved successfully.');
     }
 }

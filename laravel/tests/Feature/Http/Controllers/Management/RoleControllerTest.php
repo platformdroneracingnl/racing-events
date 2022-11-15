@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\Http\Controllers\Management;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Traits\FeatureTestTrait;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * @see \App\Http\Controllers\Management\RoleController
@@ -120,7 +119,7 @@ class RoleControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user can edit a role.
-     * 
+     *
      * @test
      */
     // public function test_edit_role_can_be_accessed_by_authorized_users()
@@ -170,7 +169,7 @@ class RoleControllerTest extends TestCase
     /**
      * DESTROY
      * Assert that user cannot delete a role.
-     * 
+     *
      * @test
      */
     public function test_destroy_role_cannot_be_accessed_by_unauthorized_users()
@@ -182,7 +181,7 @@ class RoleControllerTest extends TestCase
     /**
      * DESTROY
      * Assert that user can delete a role.
-     * 
+     *
      * @test
      */
     public function test_destroy_role_can_be_accessed_by_authorized_users()

@@ -116,7 +116,6 @@ Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeS
             Route::patch('event/{registration}/update', [Organizator\RegistrationController::class, 'updateRegistration'])->name('event.registration.update');
             Route::patch('event/registrations/change-all', [Organizator\RegistrationController::class, 'changeMultipleRegistration'])->name('event.registrations.update-all');
             Route::post('event/{registration}/destroy', [Organizator\RegistrationController::class, 'destroyRegistration'])->name('organizator.registration.destroy');
-
         });
         // Check-in
         Route::get('event/scan', [Organizator\RegistrationController::class, 'scan'])->name('event.scan');
@@ -148,14 +147,15 @@ Route::prefix(LaravelLocalization::setLocale())->middleware('localize', 'localeS
 Route::get('/register-retry', function () {
     // Chrome F12 Headers - my_first_application_session=eyJpdiI6ImNnRH...
     Cookie::queue(Cookie::forget(strtolower(str_replace(' ', '_', config('app.name'))).'_session'));
+
     return redirect('/');
 });
 
 // Get images from storage
-Route::get('/images/{type}/{file}', [ function ($type, $file) {
+Route::get('/images/{type}/{file}', [function ($type, $file) {
     $path = storage_path('app/public/images/'.$type.'/'.$file);
     if (file_exists($path)) {
-        return response()->file($path, array('Content-Type' => 'image/png'));
+        return response()->file($path, ['Content-Type' => 'image/png']);
     }
     abort(404);
 }]);

@@ -2,11 +2,10 @@
 
 namespace Tests\Feature\Http\Controllers\Management;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\RaceTeam;
 use App\Traits\FeatureTestTrait;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * @see \App\Http\Controllers\Management\RaceTeamController
@@ -18,7 +17,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * INDEX
      * Assert that user cannot access the management raceteam page.
-     * 
+     *
      * @test
      */
     public function test_view_all_raceteams_cannot_be_accessed_by_unauthorized_users()
@@ -30,7 +29,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * INDEX
      * Assert that user can access the management raceteam page.
-     * 
+     *
      * @test
      */
     public function test_view_all_raceteams_can_be_accessed_by_authorized_users()
@@ -46,7 +45,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * VIEW / SHOW
      * Assert that user cannot access the specific raceteam page.
-     * 
+     *
      * @test
      */
     public function test_show_raceteam_cannot_be_accessed_by_unauthorized_users()
@@ -60,7 +59,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * VIEW / SHOW
      * Assert that user can access the specific raceteam page.
-     * 
+     *
      * @test
      */
     public function test_show_raceteam_can_be_accessed_by_authorized_users()
@@ -77,7 +76,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * CREATE
      * Assert that user cannot access the create raceteam page.
-     * 
+     *
      * @test
      */
     public function test_create_raceteam_cannot_be_accessed_by_unauthorized_users()
@@ -89,7 +88,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * CREATE
      * Assert that user can access the create raceteam page.
-     * 
+     *
      * @test
      */
     public function test_create_raceteam_can_be_accessed_by_authorized_users()
@@ -103,7 +102,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * STORE
      * Assert that user cannot store a new raceteam.
-     * 
+     *
      * @test
      */
     public function test_store_new_raceteam_cannot_by_unauthorized_users()
@@ -117,7 +116,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * STORE
      * Assert that user can store a new raceteam.
-     * 
+     *
      * @test
      */
     public function test_store_new_raceteam_can_by_authorized_users()
@@ -136,7 +135,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user cannot access the edit raceteam page.
-     * 
+     *
      * @test
      */
     public function test_edit_raceteam_cannot_be_accessed_by_unauthorized_users()
@@ -150,7 +149,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user can access the edit raceteam page.
-     * 
+     *
      * @test
      */
     public function test_edit_raceteam_can_be_accessed_by_authorized_users()
@@ -160,13 +159,12 @@ class RaceTeamControllerTest extends TestCase
         $response = $this->authorized_user(['race_team-update'])->get(route('management.race_teams.edit', $raceteam->id))->assertOk();
 
         $this->assertAuthenticated();
-        
     }
 
     /**
      * UPDATE
      * Assert that user cannot update the raceteam.
-     * 
+     *
      * @test
      */
     public function test_update_raceteam_cannot_by_unauthorized_users()
@@ -180,7 +178,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * UPDATE
      * Assert that user can update the raceteam.
-     * 
+     *
      * @test
      */
     public function test_update_raceteam_can_by_authorized_users()
@@ -197,7 +195,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * DESTROY / DELETE
      * Assert that user cannot delete the raceteam.
-     * 
+     *
      * @test
      */
     public function test_destroy_raceteam_cannot_by_unauthorized_users()
@@ -211,7 +209,7 @@ class RaceTeamControllerTest extends TestCase
     /**
      * DESTROY / DELETE
      * Assert that user can delete the raceteam.
-     * 
+     *
      * @test
      */
     public function test_destroy_raceteam_can_by_authorized_users()

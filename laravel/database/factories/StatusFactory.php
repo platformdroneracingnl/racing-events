@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Registration;
 use App\Models\Status;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StatusFactory extends Factory
 {
@@ -23,7 +24,7 @@ class StatusFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'registration_reg_id' => \App\Models\Registration::factory(),
+            'registration_reg_id' => Registration::factory(),
         ];
     }
 }

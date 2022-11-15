@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Utils;
 
 use App\Http\Controllers\Controller;
 use DB;
-use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event;
 
 class GoogleCalendarController extends Controller

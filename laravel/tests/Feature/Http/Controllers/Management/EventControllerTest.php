@@ -2,15 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers\Management;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Event;
-use App\Models\RaceTeam;
-use App\Models\Organization;
 use App\Models\Location;
+use App\Models\Organization;
+use App\Models\User;
 use App\Traits\FeatureTestTrait;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * @see \App\Http\Controllers\Management\EventController
@@ -22,7 +20,7 @@ class EventControllerTest extends TestCase
     /**
      * INDEX
      * Assert that user cannot access the management events page.
-     * 
+     *
      * @test
      */
     public function test_view_all_events_cannot_be_accessed_by_unauthorized_users()
@@ -34,7 +32,7 @@ class EventControllerTest extends TestCase
     /**
      * INDEX
      * Assert that user can access the management events page.
-     * 
+     *
      * @test
      */
     public function test_view_all_events_can_be_accessed_by_authorized_users()
@@ -49,7 +47,7 @@ class EventControllerTest extends TestCase
     /**
      * VIEW / SHOW
      * Assert that user cannot access the specific event page.
-     * 
+     *
      * @test
      */
     public function test_show_event_cannot_be_accessed_by_unauthorized_users()
@@ -63,7 +61,7 @@ class EventControllerTest extends TestCase
     /**
      * VIEW / SHOW
      * Assert that user can access the specific event page.
-     * 
+     *
      * @test
      */
     public function test_show_event_can_be_accessed_by_authorized_users()
@@ -80,7 +78,7 @@ class EventControllerTest extends TestCase
     /**
      * CREATE
      * Assert that user cannot access the create event page.
-     * 
+     *
      * @test
      */
     public function test_create_event_cannot_be_accessed_by_unauthorized_users()
@@ -92,7 +90,7 @@ class EventControllerTest extends TestCase
     /**
      * CREATE
      * Assert that user can access the create event page.
-     * 
+     *
      * @test
      */
     public function test_create_event_can_be_accessed_by_authorized_users()
@@ -112,7 +110,7 @@ class EventControllerTest extends TestCase
     /**
      * STORE
      * Assert that user cannot store a new event.
-     * 
+     *
      * @test
      */
     public function test_store_new_event_cannot_by_unauthorized_users()
@@ -126,7 +124,7 @@ class EventControllerTest extends TestCase
     /**
      * STORE
      * Assert that user can store a new event.
-     * 
+     *
      * @test
      */
     // public function test_store_new_event_can_by_authorized_users()
@@ -143,7 +141,7 @@ class EventControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user cannot access the edit event page.
-     * 
+     *
      * @test
      */
     public function test_edit_event_cannot_be_accessed_by_unauthorized_users()
@@ -157,7 +155,7 @@ class EventControllerTest extends TestCase
     /**
      * EDIT
      * Assert that user can access the edit event page.
-     * 
+     *
      * @test
      */
     public function test_edit_event_can_be_accessed_by_authorized_users()
@@ -177,7 +175,7 @@ class EventControllerTest extends TestCase
     /**
      * UPDATE
      * Assert that user cannot update an event.
-     * 
+     *
      * @test
      */
     public function test_update_event_cannot_by_unauthorized_users()
@@ -192,7 +190,7 @@ class EventControllerTest extends TestCase
     /**
      * UPDATE
      * Assert that user can update an event.
-     * 
+     *
      * @test
      */
     // public function test_update_event_can_by_authorized_users()
@@ -210,7 +208,7 @@ class EventControllerTest extends TestCase
     /**
      * DELETE / DESTROY
      * Assert that user cannot delete an event.
-     * 
+     *
      * @test
      */
     public function test_delete_event_cannot_by_unauthorized_users()
@@ -224,7 +222,7 @@ class EventControllerTest extends TestCase
     /**
      * DELETE / DESTROY
      * Assert that user can delete an event.
-     * 
+     *
      * @test
      */
     public function test_delete_event_can_by_authorized_users()

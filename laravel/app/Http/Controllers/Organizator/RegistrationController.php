@@ -5,14 +5,12 @@ namespace App\Http\Controllers\Organizator;
 use App;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
-use App\Models\Organization;
 use App\Models\Registration;
 use App\Models\Status;
 use app\Models\User;
 use App\Notifications\ChangeEventRegistration;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 use PDF;
@@ -206,6 +204,7 @@ class RegistrationController extends Controller
         if ($registration < 1) {
             return false;
         }
+
         return true;
     }
 }

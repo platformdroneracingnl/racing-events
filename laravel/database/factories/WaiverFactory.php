@@ -2,8 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Event;
+use App\Models\Registration;
+use App\Models\User;
 use App\Models\Waiver;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WaiverFactory extends Factory
 {
@@ -22,13 +25,13 @@ class WaiverFactory extends Factory
     public function definition()
     {
         return [
-            'event_id' => \App\Models\Event::factory(),
+            'event_id' => Event::factory(),
             'option_1' => $this->faker->boolean,
             'option_2' => $this->faker->boolean,
             'option_3' => $this->faker->boolean,
-            'registration_id' => \App\Models\Registration::factory(),
-            'user_id' => \App\Models\User::factory(),
-            'registration_reg_id' => \App\Models\Registration::factory(),
+            'registration_id' => Registration::factory(),
+            'user_id' => User::factory(),
+            'registration_reg_id' => Registration::factory(),
         ];
     }
 }

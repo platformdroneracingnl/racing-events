@@ -92,7 +92,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  User $user
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -169,7 +169,7 @@ class UserController extends Controller
     /**
      * Suspend a user
      *
-     * @param \App\Models\User  $user
+     * @param  \App\Models\User  $user
      * @param  \Illuminate\Http\Request  $request
      */
     public function suspendUser(Request $request, User $user)

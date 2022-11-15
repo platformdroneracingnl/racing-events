@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Registration;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class CountController extends Controller
 {

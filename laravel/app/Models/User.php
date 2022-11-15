@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Internetcode\LaravelUserSettings\Traits\HasSettingsTrait;
-use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -51,7 +51,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'date_of_birth' => 'datetime',
         'suspended_until' => 'datetime',
-        'email_verified_at' => 'datetime',];
+        'email_verified_at' => 'datetime',
+    ];
 
     /**
      * Relationships
@@ -73,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function registrations()
     {
-        return $this->hasMany(\App\Models\Registration::class)->orderBy('created_at', 'DESC');
+        return $this->hasMany(Registration::class)->orderBy('created_at', 'DESC');
     }
 
     public function events()
@@ -83,7 +84,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function loginSecurity()
     {
-        return $this->hasOne(\App\Models\LoginSecurity::class);
+        return $this->hasOne(LoginSecurity::class);
     }
 
     public function waivers()

@@ -163,7 +163,6 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
-
         // Valide input
         request()->validate([
             'image' => 'image|mimes:jpeg,png,jpg,svg',
