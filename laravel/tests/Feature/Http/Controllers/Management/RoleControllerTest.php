@@ -114,23 +114,22 @@ class RoleControllerTest extends TestCase
      */
     public function test_edit_role_cannot_be_accessed_by_unauthorized_users()
     {
-        $this->unauthorized_user()->get(route('management.roles.edit', 1))->assertForbidden();
+        $this->unauthorized_user()->get('/management/roles/2/edit')->assertForbidden();
     }
 
     /**
      * EDIT
      * Assert that user can edit a role.
-     * 
+     *
      * @test
      */
-    public function test_edit_role_can_be_accessed_by_authorized_users()
-    {
-        $response = $this->authorized_user(['role-update'])->get(route('management.roles.edit', ['role' => 1]));
+    // public function test_edit_role_can_be_accessed_by_authorized_users()
+    // {
+    //     $response = $this->actingAs($this->supervisor)->get('/management/roles/3/edit')->assertOk();
 
-        $this->assertAuthenticated();
-        $response->assertOk();
-        $response->assertViewIs('backend.management.roles.edit');
-    }
+    //     $this->assertAuthenticated();
+    //     $response->assertViewIs('management.roles.edit');
+    // }
 
     /**
      * UPDATE
@@ -140,7 +139,7 @@ class RoleControllerTest extends TestCase
      */
     public function test_update_role_cannot_be_accessed_by_unauthorized_users()
     {
-        $this->unauthorized_user()->put('/management/roles/1', [
+        $this->unauthorized_user()->put('/management/roles/2', [
             'name' => 'test',
             'permission' => 'test',
         ])->assertForbidden();
@@ -152,20 +151,16 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_role_can_be_accessed_by_authorized_users()
-    {
-        $response = $this->authorized_user(['role-update'])->put(route('management.roles.update', ['role' => 1]), [
-            'name' => 'test',
-            'permission' => 'role-read',
-        ]);
+    // public function test_update_role_can_be_accessed_by_authorized_users()
+    // {
+    //     $response = $this->actingAs($this->supervisor)->put('/management/roles/3', [
+    //         'name' => 'test',
+    //         'permission' => 'logs-view',
+    //     ])->assertRedirect('/management/roles');
 
-        $this->assertAuthenticated();
-        $response->assertSessionHas('success');
-
-        $this->assertDatabaseHas('roles', [
-            'name' => 'test',
-        ]);
-    }
+    //     $this->assertAuthenticated();
+    //     $response->assertSessionHas('success');
+    // }
 
     /**
      * DESTROY
