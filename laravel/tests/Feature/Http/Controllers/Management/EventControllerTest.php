@@ -23,9 +23,9 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_events_cannot_be_accessed_by_unauthorized_users()
+    public function test_view_all_events_cannot_be_accessed_by_pilot_users()
     {
-        $this->unauthorized_user()->get(route('management.events.index'))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.events.index'))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -37,7 +37,7 @@ class EventControllerTest extends TestCase
      */
     public function test_view_all_events_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['event-read'])->get(route('management.events.index'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.events.index'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.events.index');
@@ -50,11 +50,11 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_event_cannot_be_accessed_by_unauthorized_users()
+    public function test_show_event_cannot_be_accessed_by_pilot_users()
     {
         $event = Event::factory()->create();
 
-        $this->unauthorized_user()->get(route('management.events.show', $event->id))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.events.show', $event->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -68,7 +68,7 @@ class EventControllerTest extends TestCase
     {
         $event = Event::factory()->create();
 
-        $response = $this->authorized_user(['event-read'])->get(route('management.events.show', [$event]))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.events.show', [$event]))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.events.show');
@@ -81,9 +81,9 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_event_cannot_be_accessed_by_unauthorized_users()
+    public function test_create_event_cannot_be_accessed_by_pilot_users()
     {
-        $this->unauthorized_user()->get(route('management.events.create'))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.events.create'))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -99,7 +99,7 @@ class EventControllerTest extends TestCase
         $organizations = Organization::factory()->count(3)->create();
         $locations = Location::factory()->count(3)->create();
 
-        $response = $this->authorized_user(['event-create'])->get(route('management.events.create'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.events.create'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.events.create');
@@ -113,11 +113,11 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_event_cannot_by_unauthorized_users()
+    public function test_store_new_event_cannot_by_pilot_users()
     {
         $event = Event::factory()->make();
 
-        $this->unauthorized_user()->post(route('management.events.store'), $event->toArray())->assertForbidden();
+        $this->actingAs($this->pilot)->post(route('management.events.store'), $event->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -144,11 +144,11 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_event_cannot_be_accessed_by_unauthorized_users()
+    public function test_edit_event_cannot_be_accessed_by_pilot_users()
     {
         $event = Event::factory()->create();
 
-        $this->unauthorized_user()->get(route('management.events.edit', $event->id))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.events.edit', $event->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -163,7 +163,7 @@ class EventControllerTest extends TestCase
         $event = Event::factory()->create();
         $organizations = Organization::factory()->count(3)->create();
 
-        $response = $this->authorized_user(['event-update'])->get(route('management.events.edit', $event->id));
+        $response = $this->actingAs($this->manager)->get(route('management.events.edit', $event->id));
 
         $response->assertOk();
         $response->assertViewIs('backend.management.events.edit');
@@ -178,12 +178,12 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_event_cannot_by_unauthorized_users()
+    public function test_update_event_cannot_by_pilot_users()
     {
         $event = Event::factory()->create();
         $event->name = 'Updated Event Name';
 
-        $this->unauthorized_user()->put(route('management.events.update', $event->id), $event->toArray())->assertForbidden();
+        $this->actingAs($this->pilot)->put(route('management.events.update', $event->id), $event->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -211,11 +211,11 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_delete_event_cannot_by_unauthorized_users()
+    public function test_delete_event_cannot_by_pilot_users()
     {
         $event = Event::factory()->create();
 
-        $this->unauthorized_user()->delete(route('management.events.destroy', $event->id))->assertForbidden();
+        $this->actingAs($this->pilot)->delete(route('management.events.destroy', $event->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -229,7 +229,7 @@ class EventControllerTest extends TestCase
     {
         $event = Event::factory()->create();
 
-        $response = $this->authorized_user(['event-delete'])->delete(route('management.events.destroy', $event->id))->assertRedirect();
+        $response = $this->actingAs($this->manager)->delete(route('management.events.destroy', $event->id))->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');

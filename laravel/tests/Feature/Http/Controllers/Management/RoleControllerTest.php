@@ -33,7 +33,7 @@ class RoleControllerTest extends TestCase
      */
     public function test_view_all_roles_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['role-read'])->get(route('management.roles.index'));
+        $response = $this->actingAs($this->manager)->get(route('management.roles.index'));
 
         $this->assertAuthenticated();
         $response->assertOk();
@@ -60,9 +60,9 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_role_can_be_accessed_by_authorized_users()
+    public function test_create_role_can_only_be_accessed_by_supervisor_users()
     {
-        $response = $this->authorized_user(['role-create'])->get(route('management.roles.create'));
+        $response = $this->actingAs($this->supervisor)->get(route('management.roles.create'));
 
         $this->assertAuthenticated();
         $response->assertOk();
@@ -90,9 +90,9 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_role_can_be_accessed_by_authorized_users()
+    public function test_store_role_can_only_be_accessed_by_supervisor_users()
     {
-        $response = $this->authorized_user(['role-create'])->post(route('management.roles.store'), [
+        $response = $this->actingAs($this->supervisor)->post(route('management.roles.store'), [
             'name' => 'test',
             'permission' => 'role-read',
         ])->assertRedirect(route('management.roles.index'));
@@ -184,9 +184,9 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_role_can_be_accessed_by_authorized_users()
+    public function test_destroy_role_can_only_be_accessed_by_supervisor_users()
     {
-        $response = $this->authorized_user(['role-delete'])->delete(route('management.roles.destroy', ['role' => 1]));
+        $response = $this->actingAs($this->supervisor)->delete(route('management.roles.destroy', ['role' => 1]));
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');

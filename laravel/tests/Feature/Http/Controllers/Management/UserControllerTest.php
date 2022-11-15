@@ -36,7 +36,7 @@ class UserControllerTest extends TestCase
      */
     public function test_view_all_users_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['user-read'])->get(route('management.users.index'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.users.index'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.users.index');
@@ -68,7 +68,7 @@ class UserControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->authorized_user(['user-read'])->get(route('management.users.show', [$user]));
+        $response = $this->actingAs($this->manager)->get(route('management.users.show', [$user]));
 
         $response->assertOk();
         $response->assertViewIs('backend.management.users.show');
@@ -93,11 +93,11 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_user_can_be_accessed_by_authorized_users()
+    public function test_create_user_can_only_be_accessed_by_supervisor_users()
     {
         $organizations = Organization::factory()->times(3)->create();
 
-        $response = $this->authorized_user(['user-create'])->get(route('management.users.create'));
+        $response = $this->actingAs($this->supervisor)->get(route('management.users.create'));
 
         $this->assertAuthenticated();
         $response->assertOk();
@@ -137,13 +137,13 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_user_can_be_accessed_by_authorized_users()
+    public function test_edit_user_can_only_be_accessed_by_supervisor_users()
     {
         $user = User::factory()->create();
         $organizations = Organization::factory()->times(3)->create();
         $raceTeams = RaceTeam::factory()->times(3)->create();
 
-        $response = $this->authorized_user(['user-update'])->get(route('management.users.edit', $user))->assertOk();
+        $response = $this->actingAs($this->supervisor)->get(route('management.users.edit', $user))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.users.edit');
@@ -179,11 +179,11 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_user_can_be_updated_by_authorized_users()
+    public function test_update_user_can_only_be_updated_by_supervisor_users()
     {
         $user = User::factory()->create();
 
-        $response = $this->authorized_user(['user-update'])->put(route('management.users.update', $user), [
+        $response = $this->actingAs($this->supervisor)->put(route('management.users.update', $user), [
             'name' => 'Test',
             'email' => 'test@test.com',
             'roles' => ['racer'],
@@ -221,11 +221,11 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_delete_user_can_be_deleted_by_authorized_users()
+    public function test_delete_user_can_only_be_deleted_by_supervisor_users()
     {
         $user = User::factory()->create();
 
-        $response = $this->authorized_user(['user-delete'])->delete(route('management.users.destroy', $user));
+        $response = $this->actingAs($this->supervisor)->delete(route('management.users.destroy', $user));
 
         $this->assertAuthenticated();
         $response->status(302);
@@ -260,11 +260,11 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_suspend_user_can_be_suspended_by_authorized_users()
+    public function test_suspend_user_can_only_be_suspended_by_supervisor_users()
     {
         $user = User::factory()->create();
 
-        $response = $this->authorized_user(['user-delete'])->patch(route('management.suspend_user', $user), [
+        $response = $this->actingAs($this->supervisor)->patch(route('management.suspend_user', $user), [
             'suspended_until' => '2021-01-01',
         ]);
 

@@ -20,9 +20,9 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_raceteams_cannot_be_accessed_by_unauthorized_users()
+    public function test_view_all_raceteams_cannot_be_accessed_by_pilot_users()
     {
-        $this->unauthorized_user()->get(route('management.race_teams.index'))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.race_teams.index'))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -34,7 +34,7 @@ class RaceTeamControllerTest extends TestCase
      */
     public function test_view_all_raceteams_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['race_team-read'])->get(route('management.race_teams.index'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.race_teams.index'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.race_teams.index');
@@ -48,11 +48,11 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_raceteam_cannot_be_accessed_by_unauthorized_users()
+    public function test_show_raceteam_cannot_be_accessed_by_pilot_users()
     {
         $raceteam = RaceTeam::factory()->create();
 
-        $this->unauthorized_user()->get(route('management.race_teams.show', $raceteam->id))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.race_teams.show', $raceteam->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -66,7 +66,7 @@ class RaceTeamControllerTest extends TestCase
     {
         $raceteam = RaceTeam::factory()->create();
 
-        $response = $this->authorized_user(['race_team-read'])->get(route('management.race_teams.show', $raceteam->id))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.race_teams.show', $raceteam->id))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.race_teams.show');
@@ -79,9 +79,9 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_raceteam_cannot_be_accessed_by_unauthorized_users()
+    public function test_create_raceteam_cannot_be_accessed_by_pilot_users()
     {
-        $this->unauthorized_user()->get(route('management.race_teams.create'))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.race_teams.create'))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -93,7 +93,7 @@ class RaceTeamControllerTest extends TestCase
      */
     public function test_create_raceteam_can_be_accessed_by_authorized_users()
     {
-        $response = $this->authorized_user(['race_team-create'])->get(route('management.race_teams.create'))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.race_teams.create'))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.race_teams.create');
@@ -105,11 +105,11 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_raceteam_cannot_by_unauthorized_users()
+    public function test_store_new_raceteam_cannot_by_pilot_users()
     {
         $raceteam = RaceTeam::factory()->make();
 
-        $this->unauthorized_user()->post(route('management.race_teams.store'), $raceteam->toArray())->assertForbidden();
+        $this->actingAs($this->pilot)->post(route('management.race_teams.store'), $raceteam->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -123,7 +123,7 @@ class RaceTeamControllerTest extends TestCase
     {
         $raceteam = RaceTeam::factory()->make();
 
-        $response = $this->authorized_user(['race_team-create'])->post(route('management.race_teams.store'), $raceteam->toArray())->assertRedirect();
+        $response = $this->actingAs($this->manager)->post(route('management.race_teams.store'), $raceteam->toArray())->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');
@@ -138,11 +138,11 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_raceteam_cannot_be_accessed_by_unauthorized_users()
+    public function test_edit_raceteam_cannot_be_accessed_by_pilot_users()
     {
         $raceteam = RaceTeam::factory()->create();
 
-        $this->unauthorized_user()->get(route('management.race_teams.edit', $raceteam->id))->assertForbidden();
+        $this->actingAs($this->pilot)->get(route('management.race_teams.edit', $raceteam->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -156,7 +156,7 @@ class RaceTeamControllerTest extends TestCase
     {
         $raceteam = RaceTeam::factory()->create();
 
-        $response = $this->authorized_user(['race_team-update'])->get(route('management.race_teams.edit', $raceteam->id))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.race_teams.edit', $raceteam->id))->assertOk();
 
         $this->assertAuthenticated();
     }
@@ -167,11 +167,11 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_raceteam_cannot_by_unauthorized_users()
+    public function test_update_raceteam_cannot_by_pilot_users()
     {
         $raceteam = RaceTeam::factory()->create();
 
-        $this->unauthorized_user()->put(route('management.race_teams.update', $raceteam->id), $raceteam->toArray())->assertForbidden();
+        $this->actingAs($this->pilot)->put(route('management.race_teams.update', $raceteam->id), $raceteam->toArray())->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -185,7 +185,7 @@ class RaceTeamControllerTest extends TestCase
     {
         $raceteam = RaceTeam::factory()->create();
 
-        $response = $this->authorized_user(['race_team-update'])->get(route('management.race_teams.edit', $raceteam->id))->assertOk();
+        $response = $this->actingAs($this->manager)->get(route('management.race_teams.edit', $raceteam->id))->assertOk();
 
         $this->assertAuthenticated();
         $response->assertViewIs('backend.management.race_teams.edit');
@@ -198,11 +198,11 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_raceteam_cannot_by_unauthorized_users()
+    public function test_destroy_raceteam_cannot_by_pilot_users()
     {
         $raceteam = RaceTeam::factory()->create();
 
-        $this->unauthorized_user()->delete(route('management.race_teams.destroy', $raceteam->id))->assertForbidden();
+        $this->actingAs($this->pilot)->delete(route('management.race_teams.destroy', $raceteam->id))->assertForbidden();
         $this->assertAuthenticated();
     }
 
@@ -216,7 +216,7 @@ class RaceTeamControllerTest extends TestCase
     {
         $raceteam = RaceTeam::factory()->create();
 
-        $response = $this->authorized_user(['race_team-delete'])->delete(route('management.race_teams.destroy', $raceteam->id))->assertRedirect();
+        $response = $this->actingAs($this->manager)->delete(route('management.race_teams.destroy', $raceteam->id))->assertRedirect();
 
         $this->assertAuthenticated();
         $response->assertSessionHas('success');
