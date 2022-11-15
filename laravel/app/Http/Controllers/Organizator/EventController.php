@@ -204,16 +204,16 @@ class EventController extends Controller
         try {
             // En nu de rest updaten mocht dat nodig zijn
             $event->update($request->except(['online', 'registration', 'waitlist', 'mollie_payments', 'google_calendar', 'image']));
-            if ($google_calendar == 1 and $event->google_calendar_id == null) {
-                // Create new Google Event
-                GoogleCalendarController::createCalendarEvent($event);
-            } elseif ($google_calendar == 0 and $event->google_calendar_id != null) {
-                // Delete Google Event
-                GoogleCalendarController::deleteCalendarEvent($event);
-            } else {
-                // Update Google Event
-                // GoogleCalendarController::changeCalendarEvent($event);
-            }
+            // if ($google_calendar == 1 and $event->google_calendar_id == null) {
+            //     // Create new Google Event
+            //     GoogleCalendarController::createCalendarEvent($event);
+            // } elseif ($google_calendar == 0 and $event->google_calendar_id != null) {
+            //     // Delete Google Event
+            //     GoogleCalendarController::deleteCalendarEvent($event);
+            // } else {
+            //     // Update Google Event
+            //     GoogleCalendarController::changeCalendarEvent($event);
+            // }
         } catch (\Throwable $th) {
             dd($th);
         }
