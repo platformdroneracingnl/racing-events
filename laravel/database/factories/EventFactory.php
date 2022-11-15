@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Event;
+use App\Models\User;
+use App\Models\Location;
 
 class EventFactory extends Factory
 {
@@ -27,15 +29,15 @@ class EventFactory extends Factory
             'description' => $this->faker->text,
             'end_registration' => $this->faker->dateTime,
             'google_calendar' => $this->faker->boolean,
-            'location_id' => \App\Models\Location::factory(),
+            'location_id' => Location::factory(),
             'max_registrations' => $this->faker->randomNumber,
             'mollie_payments' => $this->faker->boolean,
             'name' => $this->faker->name,
             'online' => $this->faker->boolean,
-            'price' => $this->faker->randomFloat,
+            'price' => $this->faker->numberBetween($min = 0, $max = 100),
             'registration' => $this->faker->boolean,
             'start_registration' => $this->faker->dateTime,
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => User::factory(),
             'waitlist' => $this->faker->boolean,
         ];
     }
