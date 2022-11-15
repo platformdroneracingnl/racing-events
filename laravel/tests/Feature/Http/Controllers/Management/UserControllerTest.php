@@ -109,6 +109,18 @@ class UserControllerTest extends TestCase
     }
 
     /**
+     * STORE
+     * Assert that user cannot store a new user.
+     *
+     * @test
+     */
+    public function test_store_user_cannot_be_accessed_by_unauthorized_users()
+    {
+        $this->unauthorized_user()->post(route('management.users.store'))->assertForbidden();
+        $this->assertAuthenticated();
+    }
+
+    /**
      * EDIT
      * Assert that user cannot access the edit user page.
      *
