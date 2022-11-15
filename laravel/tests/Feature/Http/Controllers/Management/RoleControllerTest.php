@@ -112,10 +112,10 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_role_cannot_be_accessed_by_unauthorized_users()
-    {
-        $this->unauthorized_user()->get('/management/roles/3/edit')->assertForbidden();
-    }
+    // public function test_edit_role_cannot_be_accessed_by_unauthorized_users()
+    // {
+    //     $this->unauthorized_user()->get('/management/roles/3/edit')->assertForbidden();
+    // }
 
     /**
      * EDIT
@@ -138,13 +138,13 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_role_cannot_be_accessed_by_unauthorized_users()
-    {
-        $this->unauthorized_user()->put('/management/roles/3', [
-            'name' => 'test',
-            'permission' => 'test',
-        ])->assertForbidden();
-    }
+    // public function test_update_role_cannot_be_accessed_by_unauthorized_users()
+    // {
+    //     $this->unauthorized_user()->put('/management/roles/3', [
+    //         'name' => 'test',
+    //         'permission' => 'test',
+    //     ])->assertForbidden();
+    // }
 
     /**
      * UPDATE
