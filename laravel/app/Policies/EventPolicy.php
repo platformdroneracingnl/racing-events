@@ -34,11 +34,7 @@ class EventPolicy
             if ($user->id === $event->user_id and $user->hasPermissionTo('event-read')) {
                 return true;
             }
-        } elseif ($user->hasRole('supervisor')) {
-            if ($user->hasPermissionTo('event-read')) {
-                return true;
-            }
-        } elseif ($user->hasRole('manager')) {
+        } elseif ($user->hasRole(['manager','supervisor'])) {
             if ($user->hasPermissionTo('event-read')) {
                 return true;
             }
@@ -73,11 +69,7 @@ class EventPolicy
             if ($user->id === $event->user_id and $user->hasPermissionTo('event-update')) {
                 return true;
             }
-        } elseif ($user->hasRole('supervisor')) {
-            if ($user->hasPermissionTo('event-update')) {
-                return true;
-            }
-        } elseif ($user->hasRole('manager')) {
+        } elseif ($user->hasRole(['manager', 'supervisor'])) {
             if ($user->hasPermissionTo('event-update')) {
                 return true;
             }
@@ -99,11 +91,7 @@ class EventPolicy
             if ($user->id === $event->user_id and $user->hasPermissionTo('event-delete')) {
                 return true;
             }
-        } elseif ($user->hasRole('supervisor')) {
-            if ($user->hasPermissionTo('event-delete')) {
-                return true;
-            }
-        } elseif ($user->hasRole('manager')) {
+        } elseif ($user->hasRole(['manager', 'supervisor'])) {
             if ($user->hasPermissionTo('event-delete')) {
                 return true;
             }
