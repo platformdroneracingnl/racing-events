@@ -26,7 +26,7 @@ const folder = {
             {"name": "node-waves", "assets": ["./node_modules/node-waves/dist/waves.js"]},
             {"name": "waypoints", "assets": ["./node_modules/waypoints/lib/jquery.waypoints.min.js"]},
             {"name": "select2", "assets": ["./node_modules/select2/dist/js/select2.min.js", "./node_modules/select2/dist/css/select2.min.css"]},
-            {"name": "chart-js", "assets": ["./node_modules/chart.js/dist/chart.min.js"]},
+            {"name": "chart-js", "assets": ["./node_modules/chart.js/dist/chart.umd.js"]},
             {"name": "apexcharts", "assets": ["./node_modules/apexcharts/dist/apexcharts.min.js"]},
             {
                 "name": "datatables", "assets": ["./node_modules/datatables.net/js/jquery.dataTables.min.js",
