@@ -22,19 +22,18 @@ class NewEventRegistration extends Mailable
      *
      * @return void
      */
-    public function __construct($registration, $event, $organization, $user)
+    public function __construct($registration, $event)
     {
         $this->registration = $registration;
         $this->event = $event;
-        $this->organization = $organization;
-        $this->user = $user;
+        $this->organization = $event->organization;
     }
 
     public function determineReplyEmail()
     {
-        // If user didn't give up overrule email
+        // If organizer didn't give up overrule email
         if ($this->event->email == null) {
-            return $this->user->email;
+            return $this->event->user->email;
         } else {
             return $this->event->email;
         }
@@ -49,6 +48,6 @@ class NewEventRegistration extends Mailable
     {
         return $this->markdown('emails.event_registration')
                     ->subject('Inschrijving wedstrijd: '.$this->event->name)
-                    ->replyTo(self::determineReplyEmail(), $this->user->name);
+                    ->replyTo(self::determineReplyEmail(), $this->event->user->name);
     }
 }

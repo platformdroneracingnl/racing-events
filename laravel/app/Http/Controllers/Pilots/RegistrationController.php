@@ -53,10 +53,6 @@ class RegistrationController extends Controller
         $waiver->option_2 = $this->setBoolean($request->input('waiver-opt2'));
         $waiver->option_3 = $this->setBoolean($request->input('waiver-opt3'));
 
-        // Get some database rows
-        $organization = Organization::where('id', '=', $event->organization_id)->get();
-        $user = User::where('id', '=', $event->user_id)->get();
-
         // Determine status of registration
         if ($this->countRegistrations($event->id) < $event->max_registrations && $event->price == 0) {
             $registration->status_id = 3;
@@ -112,8 +108,7 @@ class RegistrationController extends Controller
                     // Show normal alert
                     alert()->success(trans('sweetalert.success-signed-up-title'), trans('sweetalert.success-signed-up-text'));
                     // Send email to pilot
-                    // TODO: What if event email is empty?
-                    Mail::to(Auth::user()->email)->send(new NewEventRegistration($registration, $event, $organization, $user));
+                    Mail::to(Auth::user()->email)->send(new NewEventRegistration($registration, $event));
 
                     return redirect()->route('dashboard');
                 }

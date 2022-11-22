@@ -13,16 +13,16 @@ class Waiver extends Model
 
     public function registration()
     {
-        return $this->belongsTo(\App\Models\Registration::class);
+        return $this->belongsTo(Registration::class, 'registration_id', 'reg_id');
     }
 
     public function user()
     {
-        return $this->hasOne(\App\Models\User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function event()
     {
-        return $this->hasOne(\App\Models\Event::class, 'id', 'event_id');
+        return $this->belongsTo(Event::class, 'event_id', 'id');
     }
 }
