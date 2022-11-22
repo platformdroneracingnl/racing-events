@@ -74,6 +74,7 @@ class RegistrationController extends Controller
     {
         $registration = Registration::where('reg_id', $registrationID)->get()->first();
 
+        // Check if correct user is logged in
         if (Auth::user()->id == $registration->event->user_id) {
             return view('backend.organizator.events.checkin', compact('registration'));
         } else {
