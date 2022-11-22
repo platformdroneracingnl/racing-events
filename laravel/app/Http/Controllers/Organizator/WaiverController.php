@@ -29,8 +29,8 @@ class WaiverController extends Controller
 
         // Find all the waivers from all the events of a organizator
         $events = User::with('events')->find(Auth::user()->id)->events->pluck('id');
-        $result = Waiver::whereIn('event_id', $events)->get();
+        $waivers = Waiver::whereIn('event_id', $events)->get();
 
-        return view('backend.organizator.waivers.index', compact('result', 'lang'));
+        return view('backend.organizator.waivers.index', compact('waivers', 'lang'));
     }
 }
