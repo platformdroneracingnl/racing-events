@@ -157,11 +157,11 @@ class RoleControllerTest extends TestCase
         $response = $this->actingAs($this->supervisor)->patch(route('management.roles.update', ['role' => 1]), [
             'name' => 'test',
             'permission' => ['role-read'],
-        ])->assertRedirect(route('management.roles.index'));
+        ]);
 
         $this->assertAuthenticated();
+        $response->assertRedirect(route('management.roles.index'));
         $response->assertSessionHas('success');
-
         $this->assertDatabaseHas('roles', [
             'name' => 'test',
         ]);
