@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Management;
 
 use App;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreLocationRequest;
-use App\Http\Requests\UpdateLocationRequest;
+use App\Http\Requests\Management\StoreLocationRequest;
+use App\Http\Requests\Management\UpdateLocationRequest;
 use App\Models\Country;
 use App\Models\Location;
 use File;

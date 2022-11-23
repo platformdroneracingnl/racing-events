@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Management;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLocationRequest extends FormRequest
+class StoreLocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateLocationRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('location-update');
+        return $this->user()->can('location-create');
     }
 
     /**
