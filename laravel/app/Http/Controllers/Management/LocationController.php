@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Management;
 
 use App;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreLocationRequest;
+use App\Http\Requests\UpdateLocationRequest;
 use App\Models\Country;
 use App\Models\Location;
 use File;
@@ -67,36 +69,16 @@ class LocationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreLocationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLocationRequest $request)
     {
-        // Valide input
-        request()->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,svg',
-        ]);
-
-        $location = new Location();
-
-        // Basic information
-        $location->name = $request->input('name');
-        $location->street = $request->input('street');
-        $location->house_number = $request->input('house_number');
-        $location->zip_code = $request->input('zip_code');
-        $location->city = $request->input('city');
-        $location->province = $request->input('province');
-        $location->country_id = $request->input('country_id');
-        $location->category = $request->input('category');
-        $location->description = $request->input('description');
-
-        // Coordinates
-        $location->latitude = $request->input('latitude');
-        $location->longitude = $request->input('longitude');
+        $location = Location::create($request->validated());
 
         // Save the uploaded image
         if ($request->has('image')) {
-            $image = strtolower($request->input('name'));
+            $image = strtolower($request->validated('name'));
             $filename = str_replace(' ', '', $image.'-'.time().'.'.'png');
             $storage_image = Image::make($request->image)->resize(null, 600, function ($constraint) {
                 $constraint->aspectRatio();
@@ -140,23 +122,18 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateLocationRequest  $request
      * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Location $location)
+    public function update(UpdateLocationRequest $request, Location $location)
     {
-        // Valide input
-        request()->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,svg',
-        ]);
-
         if ($request->has('image')) {
             // Remove old image if exist
             $this->deleteOldImage('locations', $request->input('oldImage'));
 
             // Save the new uploaded image
-            $image = strtolower($request->input('name'));
+            $image = strtolower($request->validated('name'));
             $filename = str_replace(' ', '', $image.'-'.time().'.'.'png');
             $storage_image = Image::make($request->image)->resize(null, 600, function ($constraint) {
                 $constraint->aspectRatio();
