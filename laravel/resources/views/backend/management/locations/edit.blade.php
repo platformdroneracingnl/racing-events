@@ -104,15 +104,27 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="mb-3">
-                                    <label for="form_name">Naam *</label>
-                                    <input type="text" id="form_name" name="name" class="form-control" value="{{ $location->name }}" required>
+                                <div class="col-12 col-md-8">
+                                    <div class="mb-3">
+                                        <label for="form_name">{{ __('Name') }} *</label>
+                                        <input type="text" id="form_name" name="name" class="form-control" value="{{ $location->name }}" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <div class="mb-3">
+                                        <label for="form_category">Categorie *</label>
+                                        <select class="form-select" name="category" id="form_category" required>
+                                            <option value="" disabled selected>--- {{__('Choose a category')}} ---</option>
+                                            <option value="indoor" @selected($location->category == "indoor")>{{ __('Indoor') }}</option>
+                                            <option value="outdoor" @selected($location->category == "outdoor")>{{ __('Outdoor') }}</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 col-md-8">
                                     <div class="mb-3">
-                                        <label for="form_street">Straat *</label>
+                                        <label for="form_street">{{ __('Street') }} *</label>
                                         <input id="form_street" type="text" name="street" class="form-control" value="{{ $location->street }}" required>
                                     </div>
                                 </div>

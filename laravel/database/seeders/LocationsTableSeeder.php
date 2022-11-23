@@ -22,10 +22,12 @@ class LocationsTableSeeder extends Seeder
             'zip_code' => '1816 LE',
             'city' => 'Alkmaar',
             'province' => 'Noord-Holland',
-            'country_id' => 151,
+            'country_id' => 157,
             'category' => 'indoor',
             'latitude' => '52.634736318304604',
             'longitude' => '4.716487583680192',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
 
         DB::table('locations')->insert([
@@ -36,10 +38,12 @@ class LocationsTableSeeder extends Seeder
             'zip_code' => '2223 LG',
             'city' => 'Katwijk aan Zee',
             'province' => 'Zuid-Holland',
-            'country_id' => 151,
+            'country_id' => 157,
             'category' => 'indoor',
             'latitude' => '52.1712372',
             'longitude' => '4.4107497',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
     }
 }
