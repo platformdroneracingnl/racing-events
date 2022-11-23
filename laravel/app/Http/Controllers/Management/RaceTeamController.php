@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Management;
 
 use App;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Management\StoreRaceTeamRequest;
+use App\Http\Requests\Management\UpdateRaceTeamRequest;
 use App\Models\RaceTeam;
 use File;
 use Illuminate\Http\Request;
@@ -29,7 +31,8 @@ class RaceTeamController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -43,7 +46,7 @@ class RaceTeamController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Raceteam $raceteam)
     {
@@ -53,7 +56,7 @@ class RaceTeamController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -63,23 +66,16 @@ class RaceTeamController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\Management\StoreRaceTeamRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreRaceTeamRequest $request)
     {
-        // Valide input
-        request()->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
-        ]);
-
-        $race_team = new Raceteam();
-        $race_team->name = $request->input('name');
-        $race_team->description = $request->input('description');
+        $race_team = Raceteam::create($request->validated());
 
         // Save the uploaded image
         if ($request->has('image')) {
-            $image = strtolower($request->input('name'));
+            $image = strtolower($request->validated('name'));
             $filename = str_replace(' ', '', $image.'-'.time().'.'.'png');
             $store_image = Image::make($request->image)->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
@@ -106,7 +102,7 @@ class RaceTeamController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Raceteam $raceteam)
     {
@@ -116,18 +112,18 @@ class RaceTeamController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Management\UpdateRaceTeamRequest  $request
      * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Raceteam $raceteam)
+    public function update(UpdateRaceTeamRequest $request, Raceteam $raceteam)
     {
         if ($request->has('image')) {
             // Remove old image if exist
             $this->deleteOldImage('race_teams', $request->input('oldImage'));
 
             // Save the new uploaded image
-            $image = strtolower($request->input('name'));
+            $image = strtolower($request->validated('name'));
             $filename = str_replace(' ', '', $image.'-'.time().'.'.'png');
             $store_image = Image::make($request->image)->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
@@ -154,7 +150,7 @@ class RaceTeamController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Raceteam $raceteam)
     {

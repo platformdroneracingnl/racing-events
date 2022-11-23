@@ -75,7 +75,7 @@ class OrganizationController extends Controller
 
         // Save the uploaded image
         if ($request->has('image')) {
-            $image = strtolower($request->input('name'));
+            $image = strtolower($request->validated('name'));
             $filename = str_replace(' ', '', $image.'-'.time().'.'.'png');
             $storage_image = Image::make($request->image)->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
@@ -122,7 +122,7 @@ class OrganizationController extends Controller
             $this->deleteOldImage('organizations', $request->input('oldImage'));
 
             // Save the new uploaded image
-            $image = strtolower($request->input('name'));
+            $image = strtolower($request->validated('name'));
             $filename = str_replace(' ', '', $image.'-'.time().'.'.'png');
             $storage_image = Image::make($request->image)->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
