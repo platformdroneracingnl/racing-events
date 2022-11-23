@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Management;
 
 use App;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Management\StoreOrganizationRequest;
+use App\Http\Requests\Management\UpdateOrganizationRequest;
 use App\Models\Organization;
 use File;
 use Illuminate\Http\Request;
@@ -29,7 +31,8 @@ class OrganizationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -40,33 +43,35 @@ class OrganizationController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Organization  $organization
+     * @return \Illuminate\View\View
+     */
+    public function show(Organization $organization)
+    {
+        return view('backend.management.organizations.show', compact('organization'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
-        $organization = Organization::get();
-
         return view('backend.management.organizations.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\Management\StoreOrganizationRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreOrganizationRequest $request)
     {
-        // Valide input
-        request()->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048',
-        ]);
-
-        $organization = new Organization();
-        $organization->name = $request->input('name');
-        $organization->short_name = $request->input('short_name');
+        $organization = Organization::create($request->validated());
 
         // Save the uploaded image
         if ($request->has('image')) {
@@ -93,21 +98,10 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Organization  $organization
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Organization $organization)
-    {
-        return view('backend.management.organizations.show', compact('organization'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Organization  $organization
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Organization $organization)
     {
@@ -117,11 +111,11 @@ class OrganizationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Management\UpdateOrganizationRequest  $request
      * @param  \App\Models\Organization  $organization
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Organization $organization)
+    public function update(UpdateOrganizationRequest $request, Organization $organization)
     {
         if ($request->has('image')) {
             // Remove old image if exist
@@ -155,7 +149,7 @@ class OrganizationController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Organization  $organization
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Organization $organization)
     {
