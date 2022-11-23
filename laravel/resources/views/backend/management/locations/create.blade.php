@@ -60,13 +60,13 @@
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="form_latitude">Latitude *</label>
-                                        <input id="form_latitude" type="text" name="latitude" class="form-control" placeholder="{{__('Wordt automatisch ingevuld')}}" required readonly>
+                                        <input id="form_latitude" type="text" name="latitude" class="form-control" placeholder="{{__('Fills in automatically')}}" required readonly>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="mb-3">
                                         <label for="form_longitude">Longitude *</label>
-                                        <input id="form_longitude" type="text" name="longitude" class="form-control" placeholder="{{__('Wordt automatisch ingevuld')}}" required readonly>
+                                        <input id="form_longitude" type="text" name="longitude" class="form-control" placeholder="{{__('Fills in automatically')}}" required readonly>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     <div class="row">
                                         <div class="col-12 col-md-8">
                                             <div class="mb-3">
-                                                <label for="form_name">Naam *</label>
+                                                <label for="form_name">{{ __('Name') }} *</label>
                                                 <input type="text" id="form_name" name="name" class="form-control" required>
                                             </div>
                                         </div>
@@ -112,8 +112,8 @@
                                                 <label for="form_category">Categorie *</label>
                                                 <select class="form-select" name="category" id="form_category" required>
                                                     <option value="" disabled selected>--- {{__('Choose a category')}} ---</option>
-                                                    <option value="indoor">Indoor</option>
-                                                    <option value="outdoor">Outdoor</option>
+                                                    <option value="indoor">{{ __('Indoor') }}</option>
+                                                    <option value="outdoor">{{ __('Outdoor') }}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                     <div class="row">
                                         <div class="col-12 col-md-8">
                                             <div class="mb-3">
-                                                <label for="form_street">Straat *</label>
+                                                <label for="form_street">{{ __('Street') }} *</label>
                                                 <input id="form_street" type="text" name="street" class="form-control" required>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                                         </div>
                                         <div class="col-12 col-md-8">
                                             <div class="mb-3">
-                                                <label for="form_city">Stad *</label>
+                                                <label for="form_city">{{ __('City') }} *</label>
                                                 <input id="form_city" type="text" name="city" class="form-control" required>
                                             </div>
                                         </div>
@@ -149,13 +149,13 @@
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="mb-3">
-                                                <label for="form_province">Provincie *</label>
+                                                <label for="form_province">{{ __('Province') }} *</label>
                                                 <input id="form_province" type="text" name="province" class="form-control" required>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="mb-3">
-                                                <label for="input-country">Land *</label>
+                                                <label for="input-country">{{ __('Country') }} *</label>
                                                 <select name="country_id" id="input-country" class="select2 form-control {{ $errors->has('country') ? ' is-invalid' : '' }}" required>
                                                     <option value="" disabled selected>--- {{__('Kies een land')}} ---</option>
                                                     @foreach ($countries as $country)
