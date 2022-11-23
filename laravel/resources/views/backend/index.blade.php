@@ -271,7 +271,7 @@
                         </div>
                     </div>
 
-                    <h4 class="card-title mb-4">Recent Activity</h4>
+                    <h4 class="card-title mb-4">Racing Locations</h4>
 
                     <ol class="activity-feed mb-0 ps-2" data-simplebar style="max-height: 336px;">
                         <li class="feed-item">
