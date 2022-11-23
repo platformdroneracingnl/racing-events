@@ -24,7 +24,7 @@ class StoreRaceTeamRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:race_teams,name',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
         ];
