@@ -4,7 +4,7 @@ namespace App\Http\Requests\Management;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateOrganizationRequest extends FormRequest
+class UpdateRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateOrganizationRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('organization-update');
+        return $this->user()->can('role-update');
     }
 
     /**
@@ -24,9 +24,8 @@ class UpdateOrganizationRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:organizations,name,' . $this->route('organization')->id,
-            'short_name' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|unique:roles,name,' . $this->route('role')->id,
+            'permission' => 'required|array',
         ];
     }
 }

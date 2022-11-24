@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Management;
 
 use App;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Management\StoreRoleRequest;
+use App\Http\Requests\Management\UpdateRoleRequest;
 use DB;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
@@ -14,7 +16,8 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -31,7 +34,7 @@ class RoleController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Role $role)
     {
@@ -63,21 +66,16 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\Management\StoreRoleRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
         // Check if user has required permission
         $this->authorize('role-create');
 
-        $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
-        ]);
-
-        $role = Role::create(['name' => $request->input('name')]);
-        $role->syncPermissions($request->input('permission'));
+        $role = Role::create(['name' => $request->validated('name')]);
+        $role->syncPermissions($request->validated('permission'));
 
         return redirect()->route('management.roles.index')
             ->with('success', 'Rol is succesvol aangemaakt');
@@ -87,7 +85,7 @@ class RoleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Role $role)
     {
@@ -105,24 +103,17 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Management\UpdateRoleRequest  $request
      * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Role $role)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
         // Check if user has required permission
         $this->authorize('role-update');
 
-        $this->validate($request, [
-            'name' => 'required',
-            'permission' => 'required',
-        ]);
-
-        $role->name = $request->input('name');
-        $role->save();
-
-        $role->syncPermissions($request->input('permission'));
+        $role->update(['name' => $request->validated('name')]);
+        $role->syncPermissions($request->validated('permission'));
 
         return redirect()->route('management.roles.index')
             ->with('success', 'Rol is succesvol bijgewerkt');
@@ -132,7 +123,7 @@ class RoleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

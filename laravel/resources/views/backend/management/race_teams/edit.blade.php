@@ -10,6 +10,17 @@
         @slot('title') {{ __('Race teams') }} @endslot
     @endcomponent
 
+    @if (count($errors) > 0)
+        <div class="alert alert-danger" role="alert">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form action="{{route('management.race_teams.update', $raceteam->id)}}" method="POST" enctype="multipart/form-data" role="form">
         @csrf
         @method('patch')
