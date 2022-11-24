@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Management;
 
 use App;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Management\StoreUserRequest;
+use App\Http\Requests\Management\UpdateUserRequest;
 use App\Models\Organization;
 use App\Models\RaceTeam;
 use App\Models\User;
@@ -47,9 +49,20 @@ class UserController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\View\View
+     */
+    public function show(User $user)
+    {
+        return view('backend.management.users.show', compact('user'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -63,24 +76,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\Management\StoreUserRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required',
-        ]);
-
-        $input = $request->all();
+        $input = $request->validated();
         $input['password'] = Hash::make($input['password']);
 
         // Create and asign role
         $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        $user->assignRole($request->validated('roles'));
 
         // Mark email of user as verified
         $user->markEmailAsVerified();
@@ -90,21 +96,10 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        return view('backend.management.users.show', compact('user'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(User $user)
     {
@@ -118,30 +113,24 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \App\Http\Requests\Management\UpdateUserRequest  $request
      * @param  \App\Models\User  $user
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$user->id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required',
-        ]);
+        $input = $request->validated();
 
-        $input = $request->all();
+        // Update the password if it is not empty
         if (! empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, ['password']);
         }
-
         $user->update($input);
 
         DB::table('model_has_roles')->where('model_id', $user->id)->delete();
-        $user->assignRole($request->input('roles'));
+        $user->assignRole($request->validated('roles'));
 
         // Send user a notification that profile has been changed
         $user->notify(new ChangeUserAccount(route('profile.show')));
@@ -154,7 +143,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user)
     {
@@ -171,19 +160,20 @@ class UserController extends Controller
      *
      * @param  \App\Models\User  $user
      * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function suspendUser(Request $request, User $user)
     {
         $this->authorize('suspend', User::class);
-        $input = $request->all();
 
-        if ($request == null) {
+        if ($request->suspended_until == null) {
             // Unsuspend user with null value
-            $user->suspended_until = null;
-            $user->update();
+            $user->update(['suspended_until' => null]);
         } else {
             // Suspend a user with date value
-            $user->update($input);
+            $user->update([
+                'suspended_until' => $request->suspended_until,
+            ]);
         }
 
         return redirect()->back();
