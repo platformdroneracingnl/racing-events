@@ -3007,16 +3007,16 @@
         },
         {
             "name": "mollie/laravel-mollie",
-            "version": "v2.20.1",
+            "version": "v2.20.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mollie/laravel-mollie.git",
-                "reference": "c491c951ebd67961b18055a212d917b7ee1a6626"
+                "reference": "6faa93bb82845ff04b5544a8b0f4b7446006dfef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/c491c951ebd67961b18055a212d917b7ee1a6626",
-                "reference": "c491c951ebd67961b18055a212d917b7ee1a6626",
+                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/6faa93bb82845ff04b5544a8b0f4b7446006dfef",
+                "reference": "6faa93bb82845ff04b5544a8b0f4b7446006dfef",
                 "shasum": ""
             },
             "require": {
@@ -3100,9 +3100,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mollie/laravel-mollie/issues",
-                "source": "https://github.com/mollie/laravel-mollie/tree/v2.20.1"
+                "source": "https://github.com/mollie/laravel-mollie/tree/v2.20.2"
             },
-            "time": "2022-12-05T20:16:01+00:00"
+            "time": "2022-12-06T09:49:11+00:00"
         },
         {
             "name": "mollie/mollie-api-php",
