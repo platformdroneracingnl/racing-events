@@ -3007,23 +3007,23 @@
         },
         {
             "name": "mollie/laravel-mollie",
-            "version": "v2.20.2",
+            "version": "v2.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mollie/laravel-mollie.git",
-                "reference": "6faa93bb82845ff04b5544a8b0f4b7446006dfef"
+                "reference": "9ffd9441fdde5e5b0c6bac7be3c9536c7dea85ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/6faa93bb82845ff04b5544a8b0f4b7446006dfef",
-                "reference": "6faa93bb82845ff04b5544a8b0f4b7446006dfef",
+                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/9ffd9441fdde5e5b0c6bac7be3c9536c7dea85ca",
+                "reference": "9ffd9441fdde5e5b0c6bac7be3c9536c7dea85ca",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "illuminate/support": "^8.0|^9.0",
-                "mollie/mollie-api-php": "^2.40",
-                "php": "^7.3|^8.0"
+                "mollie/mollie-api-php": "^2.49",
+                "php": "^8.0"
             },
             "require-dev": {
                 "graham-campbell/testbench": "^5.0",
@@ -3100,22 +3100,22 @@
             ],
             "support": {
                 "issues": "https://github.com/mollie/laravel-mollie/issues",
-                "source": "https://github.com/mollie/laravel-mollie/tree/v2.20.2"
+                "source": "https://github.com/mollie/laravel-mollie/tree/v2.21.0"
             },
-            "time": "2022-12-06T09:49:11+00:00"
+            "time": "2022-12-13T13:19:42+00:00"
         },
         {
             "name": "mollie/mollie-api-php",
-            "version": "v2.48.0",
+            "version": "v2.49.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mollie/mollie-api-php.git",
-                "reference": "b15f8a14715ee740bec64e66a539527967abbf26"
+                "reference": "b5e4fd8581f91914a2f58e293bca4182722173df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/b15f8a14715ee740bec64e66a539527967abbf26",
-                "reference": "b15f8a14715ee740bec64e66a539527967abbf26",
+                "url": "https://api.github.com/repos/mollie/mollie-api-php/zipball/b5e4fd8581f91914a2f58e293bca4182722173df",
+                "reference": "b5e4fd8581f91914a2f58e293bca4182722173df",
                 "shasum": ""
             },
             "require": {
@@ -3192,9 +3192,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mollie/mollie-api-php/issues",
-                "source": "https://github.com/mollie/mollie-api-php/tree/v2.48.0"
+                "source": "https://github.com/mollie/mollie-api-php/tree/v2.49.0"
             },
-            "time": "2022-11-03T20:01:50+00:00"
+            "time": "2022-12-13T12:51:30+00:00"
         },
         {
             "name": "monolog/monolog",
