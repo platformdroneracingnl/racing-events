@@ -2092,16 +2092,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.43.0",
+            "version": "v9.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "011f2e1d49a11c22519a7899b46ddf3bc5b0f40b"
+                "reference": "60808a7d9acd53461fd69634c08fc7e0a99fbf98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/011f2e1d49a11c22519a7899b46ddf3bc5b0f40b",
-                "reference": "011f2e1d49a11c22519a7899b46ddf3bc5b0f40b",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/60808a7d9acd53461fd69634c08fc7e0a99fbf98",
+                "reference": "60808a7d9acd53461fd69634c08fc7e0a99fbf98",
                 "shasum": ""
             },
             "require": {
@@ -2274,7 +2274,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-12-06T14:26:07+00:00"
+            "time": "2022-12-15T14:56:36+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -3007,16 +3007,16 @@
         },
         {
             "name": "mollie/laravel-mollie",
-            "version": "v2.21.0",
+            "version": "v2.21.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mollie/laravel-mollie.git",
-                "reference": "9ffd9441fdde5e5b0c6bac7be3c9536c7dea85ca"
+                "reference": "5fa08188d67153c407f42b2004658b38ee4fa9aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/9ffd9441fdde5e5b0c6bac7be3c9536c7dea85ca",
-                "reference": "9ffd9441fdde5e5b0c6bac7be3c9536c7dea85ca",
+                "url": "https://api.github.com/repos/mollie/laravel-mollie/zipball/5fa08188d67153c407f42b2004658b38ee4fa9aa",
+                "reference": "5fa08188d67153c407f42b2004658b38ee4fa9aa",
                 "shasum": ""
             },
             "require": {
@@ -3100,9 +3100,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mollie/laravel-mollie/issues",
-                "source": "https://github.com/mollie/laravel-mollie/tree/v2.21.0"
+                "source": "https://github.com/mollie/laravel-mollie/tree/v2.21.1"
             },
-            "time": "2022-12-13T13:19:42+00:00"
+            "time": "2022-12-15T12:22:41+00:00"
         },
         {
             "name": "mollie/mollie-api-php",
