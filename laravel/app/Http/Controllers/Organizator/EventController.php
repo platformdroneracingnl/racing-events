@@ -32,11 +32,10 @@ class EventController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Shows list of all own made events.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    // Shows list of all own made events
     public function index()
     {
         $lang = App::getLocale();
@@ -49,7 +48,7 @@ class EventController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     // Show specific event
     public function show(Event $event)
@@ -69,7 +68,7 @@ class EventController extends Controller
     /**
      * Show the page for creating a new event.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
