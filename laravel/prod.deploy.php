@@ -17,6 +17,7 @@ set('slack_failure_text', 'The deployment failed, check the build logs to see wh
 
 host('prod')
     ->set('remote_user', getenv('APP_DEPLOY_USER'))
+    ->set('port', getenv('APP_DEPLOY_PORT'))
     ->set('hostname', getenv('APP_HOST'))
     ->set('sub_directory', 'laravel')
     ->set('deploy_path', getenv('APP_DEPLOY_PATH'));

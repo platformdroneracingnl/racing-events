@@ -1,9 +1,9 @@
 name: PDRNL - Deploy
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   release:
     types:
       - published
@@ -180,6 +180,7 @@ jobs:
           APP_HOST: ${{ secrets.APP_HOST }}
           APP_DEPLOY_PATH: ${{ secrets.APP_DEPLOY_PATH }}
           APP_DEPLOY_USER: ${{ secrets.APP_DEPLOY_USER }}
+          APP_DEPLOY_PORT: ${{ secrets.APP_DEPLOY_PORT }}
           APP_SLACK_WEBHOOK: ${{ secrets.APP_SLACK_WEBHOOK }}
           RELEASE_VERSION: ${{ github.event.release.tag_name }}
         run: php vendor/bin/dep deploy -v
