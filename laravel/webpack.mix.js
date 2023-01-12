@@ -75,7 +75,7 @@ const folder = {
             },
             {
                 "name": "fullcalendar", "assets": [
-                    "./node_modules/@fullcalendar/core/main.js",
+                    "./node_modules/@fullcalendar/core/index.global.js",
                     "./node_modules/@fullcalendar/bootstrap/main.js",
                     "./node_modules/@fullcalendar/daygrid/main.js",
                     "./node_modules/@fullcalendar/timegrid/main.js",
