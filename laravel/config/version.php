@@ -2,8 +2,8 @@
 
 return [
     'major' => 0,
-    'minor' => 4,
-    'patch' => 3,
+    'minor' => 5,
+    'patch' => 0,
     'build' => 'dev',
     'commit' => false,
 ];
