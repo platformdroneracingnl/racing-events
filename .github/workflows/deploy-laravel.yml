@@ -1,9 +1,9 @@
 name: PDRNL - Deploy
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   release:
     types:
       - published
@@ -51,7 +51,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
 
       - name: Show PHP and NPM version
         run: |
@@ -84,7 +84,7 @@ jobs:
       - name: Get composer cache directory
         id: composer-cache
         working-directory: ${{env.FOLDER}}
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache composer dependencies
         uses: actions/cache@v3
