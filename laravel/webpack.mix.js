@@ -79,7 +79,7 @@ const folder = {
                     "./node_modules/@fullcalendar/bootstrap/index.global.js",
                     "./node_modules/@fullcalendar/daygrid/main.js",
                     "./node_modules/@fullcalendar/timegrid/main.js",
-                    "./node_modules/@fullcalendar/interaction/main.js",
+                    "./node_modules/@fullcalendar/interaction/index.global.js",
                     "./node_modules/@fullcalendar/daygrid/main.css",
                     "./node_modules/@fullcalendar/timegrid/main.css"]
             },
