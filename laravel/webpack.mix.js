@@ -78,9 +78,8 @@ const folder = {
                     "./node_modules/@fullcalendar/core/index.global.js",
                     "./node_modules/@fullcalendar/bootstrap/index.global.js",
                     "./node_modules/@fullcalendar/daygrid/index.global.js",
-                    "./node_modules/@fullcalendar/timegrid/main.js",
-                    "./node_modules/@fullcalendar/interaction/index.global.js",
-                    "./node_modules/@fullcalendar/timegrid/main.css"]
+                    "./node_modules/@fullcalendar/timegrid/index.global.js",
+                    "./node_modules/@fullcalendar/interaction/index.global.js"]
             },
             {
                 "name": "jquery-vectormap", "assets": ["./node_modules/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js",
