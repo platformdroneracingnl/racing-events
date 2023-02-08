@@ -24,7 +24,7 @@ class UpdateRaceTeamRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:race_teams,name,' . $this->route('raceteam')->id,
+            'name' => 'required|string|unique:race_teams,name,'.$this->route('raceteam')->id,
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:2048',
         ];

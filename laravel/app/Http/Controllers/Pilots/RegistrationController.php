@@ -6,7 +6,6 @@ use App;
 use App\Http\Controllers\Controller;
 use App\Mail\NewEventRegistration;
 use App\Models\Event;
-use App\Models\Organization;
 use App\Models\Registration;
 use App\Models\User;
 use App\Models\Waiver;

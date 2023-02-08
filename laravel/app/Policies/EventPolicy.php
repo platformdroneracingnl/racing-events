@@ -34,7 +34,7 @@ class EventPolicy
             if ($user->id === $event->user_id and $user->hasPermissionTo('event-read')) {
                 return true;
             }
-        } elseif ($user->hasRole(['manager','supervisor'])) {
+        } elseif ($user->hasRole(['manager', 'supervisor'])) {
             if ($user->hasPermissionTo('event-read')) {
                 return true;
             }
