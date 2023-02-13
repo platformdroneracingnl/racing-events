@@ -17,7 +17,7 @@ $namespaceApiV1 = 'App\Http\Controllers\Api\V1';
 /**
  * API v1
  */
-Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function () {
+Route::prefix('v1')->as('api.')->group(function () {
     /**
      * Routes for authentication
      */
