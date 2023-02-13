@@ -16,7 +16,7 @@ class EventPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return $user->hasPermissionTo('event-read');
     }
@@ -28,7 +28,7 @@ class EventPolicy
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Event $event)
+    public function view(User $user, Event $event): bool
     {
         if ($user->hasRole('organizer')) {
             if ($user->id === $event->user_id and $user->hasPermissionTo('event-read')) {
@@ -49,7 +49,7 @@ class EventPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         if ($user->hasPermissionTo('event-create')) {
             return true;
@@ -63,7 +63,7 @@ class EventPolicy
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Event $event)
+    public function update(User $user, Event $event): bool
     {
         if ($user->hasRole('organizer')) {
             if ($user->id === $event->user_id and $user->hasPermissionTo('event-update')) {
@@ -85,7 +85,7 @@ class EventPolicy
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Event $event)
+    public function delete(User $user, Event $event): bool
     {
         if ($user->hasRole('organizer')) {
             if ($user->id === $event->user_id and $user->hasPermissionTo('event-delete')) {
@@ -107,7 +107,7 @@ class EventPolicy
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Event $event)
+    public function restore(User $user, Event $event): bool
     {
         //
     }
@@ -119,7 +119,7 @@ class EventPolicy
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Event $event)
+    public function forceDelete(User $user, Event $event): bool
     {
         //
     }

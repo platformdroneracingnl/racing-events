@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use App;
 use App\Models\Event;
 use Auth;
@@ -15,7 +16,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         // If event is allowed to be visible and until the day of the match
         $lang = App::getLocale();
@@ -36,7 +37,7 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Event $event): View
     {
         $lang = App::getLocale();
         $agent = new Agent();

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Organizator;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Utils\GoogleCalendarController;
@@ -36,7 +38,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(): View
     {
         $lang = App::getLocale();
         $events = User::with('events')->find(Auth::user()->id);
@@ -51,7 +53,7 @@ class EventController extends Controller
      * @return \Illuminate\View\View
      */
     // Show specific event
-    public function show(Event $event)
+    public function show(Event $event): View
     {
         $agent = new Agent();
         // All registrations with a status of 3
@@ -70,7 +72,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         $locations = Location::all();
 
@@ -83,7 +85,7 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         // Make new event object
         $event = new Event();
@@ -147,7 +149,7 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(Event $event): View
     {
         $locations = Location::all();
 
@@ -161,7 +163,7 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Event $event): RedirectResponse
     {
         // Valide input
         request()->validate([
@@ -227,7 +229,7 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Event $event): RedirectResponse
     {
         if ($event->google_calendar_id != null) {
             // Delete Google Event

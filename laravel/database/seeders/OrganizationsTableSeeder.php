@@ -12,7 +12,7 @@ class OrganizationsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::table('organizations')->insert([
             'id' => 1,

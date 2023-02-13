@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
 use Feeds;
 
 class NewsController extends Controller
@@ -11,7 +12,7 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $feed = Feeds::make(['https://platformdroneracing.nl/feed/'], 8, true); // if RSS Feed has invalid mime types, force to read
         $data = [

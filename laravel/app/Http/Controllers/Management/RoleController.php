@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Management;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreRoleRequest;
@@ -19,7 +21,7 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         // Check if user has required permission
         $this->authorize('role-read');
@@ -36,7 +38,7 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\View\View
      */
-    public function show(Role $role)
+    public function show(Role $role): View
     {
         // Check if user has required permission
         $this->authorize('role-read');
@@ -53,7 +55,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         // Check if user has required permission
         $this->authorize('role-create');
@@ -69,7 +71,7 @@ class RoleController extends Controller
      * @param  \App\Http\Requests\Management\StoreRoleRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRoleRequest $request)
+    public function store(StoreRoleRequest $request): RedirectResponse
     {
         // Check if user has required permission
         $this->authorize('role-create');
@@ -87,7 +89,7 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\View\View
      */
-    public function edit(Role $role)
+    public function edit(Role $role): View
     {
         // Check if user has required permission
         $this->authorize('role-update');
@@ -107,7 +109,7 @@ class RoleController extends Controller
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
         // Check if user has required permission
         $this->authorize('role-update');
@@ -125,7 +127,7 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): RedirectResponse
     {
         // Check if user has required permission
         $this->authorize('role-delete');

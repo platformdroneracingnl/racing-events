@@ -11,7 +11,7 @@ class UpdateRoleRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return $this->user()->can('role-update');
     }
@@ -21,7 +21,7 @@ class UpdateRoleRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|unique:roles,name,'.$this->route('role')->id,

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Management;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreOrganizationRequest;
@@ -34,7 +36,7 @@ class OrganizationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $lang = App::getLocale();
         $organizations = Organization::orderBy('id', 'ASC')->get();
@@ -48,7 +50,7 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\View\View
      */
-    public function show(Organization $organization)
+    public function show(Organization $organization): View
     {
         return view('backend.management.organizations.show', compact('organization'));
     }
@@ -58,7 +60,7 @@ class OrganizationController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         return view('backend.management.organizations.create');
     }
@@ -69,7 +71,7 @@ class OrganizationController extends Controller
      * @param  \App\Http\Requests\Management\StoreOrganizationRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreOrganizationRequest $request)
+    public function store(StoreOrganizationRequest $request): RedirectResponse
     {
         $organization = Organization::create($request->validated());
 
@@ -103,7 +105,7 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\View\View
      */
-    public function edit(Organization $organization)
+    public function edit(Organization $organization): View
     {
         return view('backend.management.organizations.edit', compact('organization'));
     }
@@ -115,7 +117,7 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateOrganizationRequest $request, Organization $organization)
+    public function update(UpdateOrganizationRequest $request, Organization $organization): RedirectResponse
     {
         if ($request->has('image')) {
             // Remove old image if exist
@@ -151,7 +153,7 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Organization $organization)
+    public function destroy(Organization $organization): RedirectResponse
     {
         // Remove old image if exist
         $this->deleteOldImage('organizations', $organization->image);

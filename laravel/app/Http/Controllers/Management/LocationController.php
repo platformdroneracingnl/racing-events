@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Management;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreLocationRequest;
@@ -36,7 +38,7 @@ class LocationController extends Controller
      * @param \Illuminate\Http\Response
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $lang = App::getLocale();
         $locations = Location::orderBy('name', 'ASC')->get();
@@ -50,7 +52,7 @@ class LocationController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\View\View
      */
-    public function show(Location $location)
+    public function show(Location $location): View
     {
         return view('backend.management.locations.show', compact('location'));
     }
@@ -60,7 +62,7 @@ class LocationController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         $countries = Country::get();
 
@@ -73,7 +75,7 @@ class LocationController extends Controller
      * @param  \App\Http\Requests\StoreLocationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLocationRequest $request)
+    public function store(StoreLocationRequest $request): RedirectResponse
     {
         $location = Location::create($request->validated());
 
@@ -107,7 +109,7 @@ class LocationController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\View\View
      */
-    public function edit(Location $location)
+    public function edit(Location $location): View
     {
         $countries = Country::get();
 
@@ -127,7 +129,7 @@ class LocationController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateLocationRequest $request, Location $location)
+    public function update(UpdateLocationRequest $request, Location $location): RedirectResponse
     {
         if ($request->has('image')) {
             // Remove old image if exist
@@ -162,7 +164,7 @@ class LocationController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Location $location)
+    public function destroy(Location $location): RedirectResponse
     {
         $this->deleteOldImage('locations', $location->image);
         $location->delete();

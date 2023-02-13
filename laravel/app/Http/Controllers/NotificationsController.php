@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use Auth;
 
 class NotificationsController extends Controller
@@ -12,7 +14,7 @@ class NotificationsController extends Controller
     }
 
     // Show all notification for user
-    public function index()
+    public function index(): View
     {
         $notifications = Auth::user()->notifications()->paginate(20);
 
@@ -20,7 +22,7 @@ class NotificationsController extends Controller
     }
 
     // Mark single notification as read
-    public function read($id)
+    public function read($id): RedirectResponse
     {
         $notification = auth()->user()->notifications()->where('id', $id)->first();
         if ($notification) {
@@ -31,7 +33,7 @@ class NotificationsController extends Controller
     }
 
     // Mark all unread notification as read
-    public function readAll()
+    public function readAll(): RedirectResponse
     {
         $notifications = Auth::user()->unreadNotifications;
         if ($notifications) {
@@ -42,7 +44,7 @@ class NotificationsController extends Controller
     }
 
     // Remove single notification from database
-    public function remove($id)
+    public function remove($id): RedirectResponse
     {
         $notification = auth()->user()->notifications()->where('id', $id)->first();
         if ($notification) {
@@ -53,7 +55,7 @@ class NotificationsController extends Controller
     }
 
     // Remove all notifications
-    public function removeAll()
+    public function removeAll(): RedirectResponse
     {
         $notifications = Auth::user()->notifications();
         if ($notifications) {
@@ -64,7 +66,7 @@ class NotificationsController extends Controller
     }
 
     // Go to link from notification
-    public function show($id)
+    public function show($id): RedirectResponse
     {
         $notification = auth()->user()->notifications()->where('id', $id)->first();
 

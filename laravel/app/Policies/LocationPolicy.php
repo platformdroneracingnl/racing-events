@@ -16,7 +16,7 @@ class LocationPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         // For index method in controller
         if ($user->hasPermissionTo('location-read')) {
@@ -31,7 +31,7 @@ class LocationPolicy
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Location $location)
+    public function view(User $user, Location $location): bool
     {
         // For show method in controller
         if ($user->hasPermissionTo('location-read')) {
@@ -45,7 +45,7 @@ class LocationPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         if ($user->hasPermissionTo('location-create')) {
             return true;
@@ -59,7 +59,7 @@ class LocationPolicy
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Location $location)
+    public function update(User $user, Location $location): bool
     {
         if ($user->hasPermissionTo('location-update')) {
             return true;
@@ -73,7 +73,7 @@ class LocationPolicy
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Location $location)
+    public function delete(User $user, Location $location): bool
     {
         if ($user->hasPermissionTo('location-delete')) {
             return true;
@@ -87,7 +87,7 @@ class LocationPolicy
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Location $location)
+    public function restore(User $user, Location $location): bool
     {
         //
     }
@@ -99,7 +99,7 @@ class LocationPolicy
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Location $location)
+    public function forceDelete(User $user, Location $location): bool
     {
         //
     }

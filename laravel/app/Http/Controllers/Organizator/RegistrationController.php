@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Organizator;
 
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
@@ -48,7 +49,7 @@ class RegistrationController extends Controller
     /**
      * Destroy a drone pilot registration
      */
-    public function destroyRegistration(Registration $registration)
+    public function destroyRegistration(Registration $registration): RedirectResponse
     {
         try {
             $registration->delete();
@@ -85,7 +86,7 @@ class RegistrationController extends Controller
     /**
      * Update the data during a checkin of the drone pilots with QR code
      */
-    public function updateCheckin(Request $request, Registration $registration)
+    public function updateCheckin(Request $request, Registration $registration): RedirectResponse
     {
         $failsafe = $this->setBoolean($request->input('failsafe'));
         $vtx_power = $this->setBoolean($request->input('vtx_power'));
@@ -111,7 +112,7 @@ class RegistrationController extends Controller
     /**
      * Update a user registration
      */
-    public function updateRegistration(Request $request, Registration $registration)
+    public function updateRegistration(Request $request, Registration $registration): RedirectResponse
     {
         $failsafe = $this->setBoolean($request->input('failsafe'));
         $vtx_power = $this->setBoolean($request->input('vtx_power'));
@@ -145,7 +146,7 @@ class RegistrationController extends Controller
     /**
      * Change a registration for multiple persons
      */
-    public function changeMultipleRegistration(Request $request)
+    public function changeMultipleRegistration(Request $request): RedirectResponse
     {
         // dd($request->all());
 
