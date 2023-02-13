@@ -23,7 +23,7 @@ class LoginSecurityFactory extends Factory
     public function definition()
     {
         return [
-            'google2fa_enable' => $this->faker->boolean,
+            'google2fa_enable' => $this->faker->boolean(),
             'user_id' => User::factory(),
         ];
     }

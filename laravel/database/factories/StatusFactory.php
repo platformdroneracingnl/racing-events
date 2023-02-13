@@ -23,7 +23,7 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->name(),
             'registration_reg_id' => Registration::factory(),
         ];
     }

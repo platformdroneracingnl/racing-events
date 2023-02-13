@@ -23,7 +23,7 @@ class RaceTeamFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->name(),
             'image' => UploadedFile::fake()->image('raceteam.png'),
         ];
     }
