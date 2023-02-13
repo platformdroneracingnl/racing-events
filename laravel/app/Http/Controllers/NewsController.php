@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use Feeds;
+use Illuminate\View\View;
 
 class NewsController extends Controller
 {

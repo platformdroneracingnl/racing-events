@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\ProfileRequest;
@@ -14,9 +12,11 @@ use App\Models\User;
 use Auth;
 use Carbon\Carbon;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 use PragmaRX\Google2FAQRCode\Google2FA;
 

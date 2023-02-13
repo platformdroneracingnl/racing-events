@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Registration;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RegistrationFactory extends Factory

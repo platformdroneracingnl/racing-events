@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Management;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreRaceTeamRequest;
 use App\Http\Requests\Management\UpdateRaceTeamRequest;
 use App\Models\RaceTeam;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 
 class RaceTeamController extends Controller

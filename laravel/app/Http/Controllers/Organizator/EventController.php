@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Organizator;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Utils\GoogleCalendarController;
@@ -12,8 +10,10 @@ use App\Models\Location;
 use App\Models\Registration;
 use App\Models\User;
 use Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 use Jenssegers\Agent\Agent;
 

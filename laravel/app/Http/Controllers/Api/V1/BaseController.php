@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 
 class BaseController extends Controller
 {

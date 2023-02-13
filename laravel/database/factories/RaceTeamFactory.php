@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\RaceTeam;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Http\UploadedFile;
 

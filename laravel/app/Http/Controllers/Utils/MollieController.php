@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Utils;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Mail\NewEventRegistration;
 use App\Models\Event;
@@ -12,10 +10,12 @@ use App\Models\User;
 use App\Notifications\RemoveEventRegistration;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\View\View;
 use Mollie\Laravel\Facades\Mollie;
 
 class MollieController extends Controller

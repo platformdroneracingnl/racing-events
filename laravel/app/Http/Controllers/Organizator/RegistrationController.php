@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Organizator;
 
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
@@ -11,6 +10,7 @@ use App\Models\Status;
 use app\Models\User;
 use App\Notifications\ChangeEventRegistration;
 use Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
