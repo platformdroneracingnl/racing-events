@@ -32,9 +32,6 @@ class RaceTeamController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
      */
     public function index(Request $request): View
     {
@@ -46,9 +43,6 @@ class RaceTeamController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\View\View
      */
     public function show(Raceteam $raceteam): View
     {
@@ -57,8 +51,6 @@ class RaceTeamController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function create(): View
     {
@@ -67,9 +59,6 @@ class RaceTeamController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Management\StoreRaceTeamRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRaceTeamRequest $request): RedirectResponse
     {
@@ -102,9 +91,6 @@ class RaceTeamController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\View\View
      */
     public function edit(Raceteam $raceteam): View
     {
@@ -113,10 +99,6 @@ class RaceTeamController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\Management\UpdateRaceTeamRequest  $request
-     * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateRaceTeamRequest $request, Raceteam $raceteam): RedirectResponse
     {
@@ -150,9 +132,6 @@ class RaceTeamController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Raceteam  $raceteam
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Raceteam $raceteam): RedirectResponse
     {

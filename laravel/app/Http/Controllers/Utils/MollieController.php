@@ -22,8 +22,6 @@ class MollieController extends Controller
 {
     /**
      * Redirect the user to the Payment Gateway.
-     *
-     * @return Response
      */
     public function preparePayment(): RedirectResponse
     {
@@ -46,8 +44,6 @@ class MollieController extends Controller
 
     /**
      * Page redirection after the payment
-     *
-     * @return Response
      */
     public function paymentHandler($regID): View
     {

@@ -35,8 +35,6 @@ class EventController extends Controller
 
     /**
      * Shows list of all own made events.
-     *
-     * @return \Illuminate\View\View
      */
     public function index(): View
     {
@@ -48,9 +46,6 @@ class EventController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Event  $event
-     * @return \Illuminate\View\View
      */
     // Show specific event
     public function show(Event $event): View
@@ -69,8 +64,6 @@ class EventController extends Controller
 
     /**
      * Show the page for creating a new event.
-     *
-     * @return \Illuminate\View\View
      */
     public function create(): View
     {
@@ -81,9 +74,6 @@ class EventController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request): RedirectResponse
     {
@@ -145,9 +135,6 @@ class EventController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
      */
     public function edit(Event $event): View
     {
@@ -158,10 +145,6 @@ class EventController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Event $event): RedirectResponse
     {
@@ -225,9 +208,6 @@ class EventController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Event $event): RedirectResponse
     {

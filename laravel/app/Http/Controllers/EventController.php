@@ -13,8 +13,6 @@ class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index(): View
     {
@@ -33,9 +31,6 @@ class EventController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Event  $event
-     * @return \Illuminate\Http\Response
      */
     public function show(Event $event): View
     {
