@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,16 +13,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-$namespaceApiV1 = 'App\Http\Controllers\Api\V1';
 
 /**
  * API v1
  */
-Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function () {
+Route::prefix('v1')->as('api.')->group(function () {
     /**
      * Routes for authentication
      */
-    Route::controller(AuthController::class)->group(function () {
+    Route::controller(V1\AuthController::class)->group(function () {
         Route::post('register', 'register');
         Route::post('login', 'login')->name('login');
         Route::middleware('auth:sanctum')->group(function () {
@@ -34,9 +34,9 @@ Route::prefix('v1')->as('api.')->namespace($namespaceApiV1)->group(function () {
      * Protected routes
      */
     Route::middleware('auth:sanctum')->group(function () {
-        Route::apiResource('events', EventController::class)->names('events');
-        Route::apiResource('registrations', RegistrationController::class)->names('registrations');
-        Route::apiResource('locations', LocationController::class)->names('locations');
+        Route::apiResource('events', V1\EventController::class)->names('events');
+        Route::apiResource('registrations', V1\RegistrationController::class)->names('registrations');
+        Route::apiResource('locations', V1\LocationController::class)->names('locations');
     });
 });
 

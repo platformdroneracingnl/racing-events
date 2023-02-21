@@ -23,7 +23,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_events_cannot_be_accessed_by_pilot_users()
+    public function test_view_all_events_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('management.events.index'))->assertForbidden();
         $this->assertAuthenticated();
@@ -35,7 +35,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_events_can_be_accessed_by_authorized_users()
+    public function test_view_all_events_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.events.index'))->assertOk();
 
@@ -50,7 +50,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_event_cannot_be_accessed_by_pilot_users()
+    public function test_show_event_cannot_be_accessed_by_pilot_users(): void
     {
         $event = Event::factory()->create();
 
@@ -64,7 +64,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_event_can_be_accessed_by_authorized_users()
+    public function test_show_event_can_be_accessed_by_authorized_users(): void
     {
         $event = Event::factory()->create();
 
@@ -81,7 +81,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_event_cannot_be_accessed_by_pilot_users()
+    public function test_create_event_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('management.events.create'))->assertForbidden();
         $this->assertAuthenticated();
@@ -93,7 +93,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_event_can_be_accessed_by_authorized_users()
+    public function test_create_event_can_be_accessed_by_authorized_users(): void
     {
         $user = User::factory()->create();
         $organizations = Organization::factory()->count(3)->create();
@@ -113,7 +113,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_event_cannot_by_pilot_users()
+    public function test_store_new_event_cannot_by_pilot_users(): void
     {
         $event = Event::factory()->make();
 
@@ -144,7 +144,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_event_cannot_be_accessed_by_pilot_users()
+    public function test_edit_event_cannot_be_accessed_by_pilot_users(): void
     {
         $event = Event::factory()->create();
 
@@ -158,7 +158,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_event_can_be_accessed_by_authorized_users()
+    public function test_edit_event_can_be_accessed_by_authorized_users(): void
     {
         $event = Event::factory()->create();
         $organizations = Organization::factory()->count(3)->create();
@@ -178,7 +178,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_event_cannot_by_pilot_users()
+    public function test_update_event_cannot_by_pilot_users(): void
     {
         $event = Event::factory()->create();
         $event->name = 'Updated Event Name';
@@ -211,7 +211,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_delete_event_cannot_by_pilot_users()
+    public function test_delete_event_cannot_by_pilot_users(): void
     {
         $event = Event::factory()->create();
 
@@ -225,7 +225,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_delete_event_can_by_authorized_users()
+    public function test_delete_event_can_by_authorized_users(): void
     {
         $event = Event::factory()->create();
 

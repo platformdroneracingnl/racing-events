@@ -9,8 +9,10 @@ use App\Http\Requests\Management\UpdateLocationRequest;
 use App\Models\Country;
 use App\Models\Location;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 use JavaScript;
 
@@ -34,9 +36,8 @@ class LocationController extends Controller
      * Display a listing of the resource.
      *
      * @param \Illuminate\Http\Response
-     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $lang = App::getLocale();
         $locations = Location::orderBy('name', 'ASC')->get();
@@ -46,20 +47,16 @@ class LocationController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function show(Location $location)
+    public function show(Location $location): View
     {
         return view('backend.management.locations.show', compact('location'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         $countries = Country::get();
 
@@ -68,11 +65,8 @@ class LocationController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreLocationRequest  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreLocationRequest $request)
+    public function store(StoreLocationRequest $request): RedirectResponse
     {
         $location = Location::create($request->validated());
 
@@ -102,10 +96,8 @@ class LocationController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function edit(Location $location)
+    public function edit(Location $location): View
     {
         $countries = Country::get();
 
@@ -120,11 +112,8 @@ class LocationController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateLocationRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateLocationRequest $request, Location $location)
+    public function update(UpdateLocationRequest $request, Location $location): RedirectResponse
     {
         if ($request->has('image')) {
             // Remove old image if exist
@@ -155,10 +144,8 @@ class LocationController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Location $location)
+    public function destroy(Location $location): RedirectResponse
     {
         $this->deleteOldImage('locations', $location->image);
         $location->delete();

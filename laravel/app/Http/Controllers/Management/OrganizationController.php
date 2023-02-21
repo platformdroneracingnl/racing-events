@@ -8,8 +8,10 @@ use App\Http\Requests\Management\StoreOrganizationRequest;
 use App\Http\Requests\Management\UpdateOrganizationRequest;
 use App\Models\Organization;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 
 class OrganizationController extends Controller
@@ -30,10 +32,8 @@ class OrganizationController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $lang = App::getLocale();
         $organizations = Organization::orderBy('id', 'ASC')->get();
@@ -43,30 +43,24 @@ class OrganizationController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function show(Organization $organization)
+    public function show(Organization $organization): View
     {
         return view('backend.management.organizations.show', compact('organization'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         return view('backend.management.organizations.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreOrganizationRequest $request)
+    public function store(StoreOrganizationRequest $request): RedirectResponse
     {
         $organization = Organization::create($request->validated());
 
@@ -96,20 +90,16 @@ class OrganizationController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function edit(Organization $organization)
+    public function edit(Organization $organization): View
     {
         return view('backend.management.organizations.edit', compact('organization'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateOrganizationRequest $request, Organization $organization)
+    public function update(UpdateOrganizationRequest $request, Organization $organization): RedirectResponse
     {
         if ($request->has('image')) {
             // Remove old image if exist
@@ -141,10 +131,8 @@ class OrganizationController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Organization $organization)
+    public function destroy(Organization $organization): RedirectResponse
     {
         // Remove old image if exist
         $this->deleteOldImage('organizations', $organization->image);

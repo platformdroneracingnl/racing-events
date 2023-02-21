@@ -12,9 +12,11 @@ use App\Models\User;
 use Auth;
 use Carbon\Carbon;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 use PragmaRX\Google2FAQRCode\Google2FA;
 
@@ -22,10 +24,8 @@ class ProfileController extends Controller
 {
     /**
      * Show the form for editing the profile.
-     *
-     * @return \Illuminate\View\View
      */
-    public function show()
+    public function show(): View
     {
         $user = Auth::user();
         $lang = App::getLocale();
@@ -71,10 +71,8 @@ class ProfileController extends Controller
 
     /**
      * Update the profile
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateProfile(ProfileRequest $request)
+    public function updateProfile(ProfileRequest $request): RedirectResponse
     {
         // Save your date of birth
         if ($request->input('date_of_birth') != null) {
@@ -96,10 +94,8 @@ class ProfileController extends Controller
 
     /**
      * Change the password
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function updatePassword(PasswordRequest $request)
+    public function updatePassword(PasswordRequest $request): RedirectResponse
     {
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
@@ -151,7 +147,7 @@ class ProfileController extends Controller
     /**
      * Remove user account
      */
-    public function destroyUser(User $user)
+    public function destroyUser(User $user): RedirectResponse
     {
         try {
             // Remove profile image and account

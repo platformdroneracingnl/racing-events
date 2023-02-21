@@ -20,7 +20,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_raceteams_cannot_be_accessed_by_pilot_users()
+    public function test_view_all_raceteams_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('management.race_teams.index'))->assertForbidden();
         $this->assertAuthenticated();
@@ -32,7 +32,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_raceteams_can_be_accessed_by_authorized_users()
+    public function test_view_all_raceteams_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.race_teams.index'))->assertOk();
 
@@ -48,7 +48,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_raceteam_cannot_be_accessed_by_pilot_users()
+    public function test_show_raceteam_cannot_be_accessed_by_pilot_users(): void
     {
         $raceteam = RaceTeam::factory()->create();
 
@@ -62,7 +62,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_raceteam_can_be_accessed_by_authorized_users()
+    public function test_show_raceteam_can_be_accessed_by_authorized_users(): void
     {
         $raceteam = RaceTeam::factory()->create();
 
@@ -79,7 +79,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_raceteam_cannot_be_accessed_by_pilot_users()
+    public function test_create_raceteam_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('management.race_teams.create'))->assertForbidden();
         $this->assertAuthenticated();
@@ -91,7 +91,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_raceteam_can_be_accessed_by_authorized_users()
+    public function test_create_raceteam_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.race_teams.create'))->assertOk();
 
@@ -105,7 +105,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_raceteam_cannot_by_pilot_users()
+    public function test_store_new_raceteam_cannot_by_pilot_users(): void
     {
         $raceteam = RaceTeam::factory()->make();
 
@@ -119,7 +119,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_raceteam_can_by_authorized_users()
+    public function test_store_new_raceteam_can_by_authorized_users(): void
     {
         $raceteam = RaceTeam::factory()->make();
 
@@ -138,7 +138,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_raceteam_cannot_be_accessed_by_pilot_users()
+    public function test_edit_raceteam_cannot_be_accessed_by_pilot_users(): void
     {
         $raceteam = RaceTeam::factory()->create();
 
@@ -152,7 +152,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_raceteam_can_be_accessed_by_authorized_users()
+    public function test_edit_raceteam_can_be_accessed_by_authorized_users(): void
     {
         $raceteam = RaceTeam::factory()->create();
 
@@ -167,7 +167,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_raceteam_cannot_by_pilot_users()
+    public function test_update_raceteam_cannot_by_pilot_users(): void
     {
         $raceteam = RaceTeam::factory()->create();
 
@@ -181,7 +181,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_raceteam_can_by_authorized_users()
+    public function test_update_raceteam_can_by_authorized_users(): void
     {
         $raceteam = RaceTeam::factory()->create();
 
@@ -198,7 +198,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_raceteam_cannot_by_pilot_users()
+    public function test_destroy_raceteam_cannot_by_pilot_users(): void
     {
         $raceteam = RaceTeam::factory()->create();
 
@@ -212,7 +212,7 @@ class RaceTeamControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_raceteam_can_by_authorized_users()
+    public function test_destroy_raceteam_can_by_authorized_users(): void
     {
         $raceteam = RaceTeam::factory()->create();
 

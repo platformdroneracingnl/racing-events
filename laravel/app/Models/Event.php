@@ -61,20 +61,16 @@ class Event extends Model
 
     /**
      * Get the index name for the model.
-     *
-     * @return string
      */
-    public function searchableAs()
+    public function searchableAs(): string
     {
         return 'events';
     }
 
     /**
      * Get the indexable data array for the model.
-     *
-     * @return array
      */
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         $array = $this->toArray();
 

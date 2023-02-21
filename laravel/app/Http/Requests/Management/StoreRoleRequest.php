@@ -8,10 +8,8 @@ class StoreRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return $this->user()->can('role-create');
     }
@@ -21,7 +19,7 @@ class StoreRoleRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|unique:roles,name',

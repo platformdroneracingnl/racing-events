@@ -8,10 +8,8 @@ class UpdateRaceTeamRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return $this->user()->can('race_team-update');
     }
@@ -21,7 +19,7 @@ class UpdateRaceTeamRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|string|unique:race_teams,name,'.$this->route('raceteam')->id,

@@ -10,20 +10,20 @@ use App\Models\User;
 use App\Notifications\RemoveEventRegistration;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\View\View;
 use Mollie\Laravel\Facades\Mollie;
 
 class MollieController extends Controller
 {
     /**
      * Redirect the user to the Payment Gateway.
-     *
-     * @return Response
      */
-    public function preparePayment()
+    public function preparePayment(): RedirectResponse
     {
         // Onderstaand komt in de functie te hangen die een inschrijving opslaat....Wel nog VOOR dat de inschrijving word opgeslagen!
         $payment = Mollie::api()->payments()->create([
@@ -44,10 +44,8 @@ class MollieController extends Controller
 
     /**
      * Page redirection after the payment
-     *
-     * @return Response
      */
-    public function paymentHandler($regID)
+    public function paymentHandler($regID): View
     {
         // Decrypt variable
         $regID = Crypt::decrypt($regID);
@@ -125,7 +123,7 @@ class MollieController extends Controller
     }
 
     // Check payment status
-    public function checkPaymentStatus($paymentID)
+    public function checkPaymentStatus($paymentID): RedirectResponse
     {
         // $paymentID = Crypt::decrypt($paymentID);
         $payment = Mollie::api()->payments()->get($paymentID);

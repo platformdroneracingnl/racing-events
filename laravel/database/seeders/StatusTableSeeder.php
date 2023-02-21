@@ -9,10 +9,8 @@ class StatusTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::table('registration_status')->insert([
             'id' => 1,

@@ -20,7 +20,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_organizations_cannot_be_accessed_by_pilot_users()
+    public function test_view_all_organizations_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('management.organizations.index'))->assertForbidden();
         $this->assertAuthenticated();
@@ -32,7 +32,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_organizations_can_be_accessed_by_authorized_users()
+    public function test_view_all_organizations_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.organizations.index'))->assertOk();
 
@@ -48,7 +48,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_organization_cannot_be_accessed_by_pilot_users()
+    public function test_show_organization_cannot_be_accessed_by_pilot_users(): void
     {
         $organization = Organization::factory()->create();
 
@@ -62,7 +62,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_organization_can_be_accessed_by_authorized_users()
+    public function test_show_organization_can_be_accessed_by_authorized_users(): void
     {
         $organization = Organization::factory()->create();
 
@@ -79,7 +79,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_organization_cannot_be_accessed_by_pilot_users()
+    public function test_create_organization_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('management.organizations.create'))->assertForbidden();
         $this->assertAuthenticated();
@@ -91,7 +91,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_organization_can_be_accessed_by_authorized_users()
+    public function test_create_organization_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.organizations.create'))->assertOk();
 
@@ -105,7 +105,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_organization_cannot_by_pilot_users()
+    public function test_store_new_organization_cannot_by_pilot_users(): void
     {
         $organization = Organization::factory()->make();
 
@@ -119,7 +119,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_organization_can_by_authorized_users()
+    public function test_store_new_organization_can_by_authorized_users(): void
     {
         $organization = Organization::factory()->make();
 
@@ -138,7 +138,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_organization_cannot_be_accessed_by_pilot_users()
+    public function test_edit_organization_cannot_be_accessed_by_pilot_users(): void
     {
         $organization = Organization::factory()->create();
 
@@ -152,7 +152,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_organization_can_be_accessed_by_authorized_users()
+    public function test_edit_organization_can_be_accessed_by_authorized_users(): void
     {
         $organization = Organization::factory()->create();
 
@@ -169,7 +169,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_organization_cannot_by_pilot_users()
+    public function test_update_organization_cannot_by_pilot_users(): void
     {
         $organization = Organization::factory()->create();
 
@@ -183,7 +183,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_organization_can_by_authorized_users()
+    public function test_update_organization_can_by_authorized_users(): void
     {
         $organization = Organization::factory()->create();
 
@@ -202,7 +202,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_organization_cannot_by_pilot_users()
+    public function test_destroy_organization_cannot_by_pilot_users(): void
     {
         $organization = Organization::factory()->create();
 
@@ -216,7 +216,7 @@ class OrganizationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_organization_can_by_authorized_users()
+    public function test_destroy_organization_can_by_authorized_users(): void
     {
         $organization = Organization::factory()->create();
 

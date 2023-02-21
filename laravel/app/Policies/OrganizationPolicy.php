@@ -15,7 +15,7 @@ class OrganizationPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         // For index method in controller
         if ($user->hasPermissionTo('organization-read')) {
@@ -28,7 +28,7 @@ class OrganizationPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Organization $organization)
+    public function view(User $user, Organization $organization): bool
     {
         // For show method in controller
         if ($user->hasPermissionTo('organization-read')) {
@@ -41,7 +41,7 @@ class OrganizationPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         if ($user->hasPermissionTo('organization-create')) {
             return true;
@@ -53,7 +53,7 @@ class OrganizationPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Organization $organization)
+    public function update(User $user, Organization $organization): bool
     {
         if ($user->hasPermissionTo('organization-update')) {
             return true;
@@ -65,7 +65,7 @@ class OrganizationPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Organization $organization)
+    public function delete(User $user, Organization $organization): bool
     {
         if ($user->hasPermissionTo('organization-delete')) {
             return true;
@@ -77,7 +77,7 @@ class OrganizationPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Organization $organization)
+    public function restore(User $user, Organization $organization): bool
     {
         //
     }
@@ -87,7 +87,7 @@ class OrganizationPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Organization $organization)
+    public function forceDelete(User $user, Organization $organization): bool
     {
         //
     }

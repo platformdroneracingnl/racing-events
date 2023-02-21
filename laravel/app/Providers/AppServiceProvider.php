@@ -8,10 +8,8 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         if ($this->app->environment('local') && config('clockwork.enable')) {
             $this->app->register(\Clockwork\Support\Laravel\ClockworkServiceProvider::class);
@@ -20,10 +18,8 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }

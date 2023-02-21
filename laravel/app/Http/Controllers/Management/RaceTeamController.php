@@ -8,8 +8,10 @@ use App\Http\Requests\Management\StoreRaceTeamRequest;
 use App\Http\Requests\Management\UpdateRaceTeamRequest;
 use App\Models\RaceTeam;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 
 class RaceTeamController extends Controller
@@ -30,10 +32,8 @@ class RaceTeamController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $lang = App::getLocale();
         $race_teams = RaceTeam::orderBy('name', 'ASC')->get();
@@ -43,30 +43,24 @@ class RaceTeamController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function show(Raceteam $raceteam)
+    public function show(Raceteam $raceteam): View
     {
         return view('backend.management.race_teams.show', compact('raceteam'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         return view('backend.management.race_teams.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRaceTeamRequest $request)
+    public function store(StoreRaceTeamRequest $request): RedirectResponse
     {
         $race_team = Raceteam::create($request->validated());
 
@@ -97,20 +91,16 @@ class RaceTeamController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
-    public function edit(Raceteam $raceteam)
+    public function edit(Raceteam $raceteam): View
     {
         return view('backend.management.race_teams.edit', compact('raceteam'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRaceTeamRequest $request, Raceteam $raceteam)
+    public function update(UpdateRaceTeamRequest $request, Raceteam $raceteam): RedirectResponse
     {
         if ($request->has('image')) {
             // Remove old image if exist
@@ -142,10 +132,8 @@ class RaceTeamController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Raceteam $raceteam)
+    public function destroy(Raceteam $raceteam): RedirectResponse
     {
         $this->deleteOldImage('race_teams', $raceteam->image);
         $raceteam->delete();

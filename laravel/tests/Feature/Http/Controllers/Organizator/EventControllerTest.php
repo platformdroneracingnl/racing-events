@@ -20,7 +20,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_events_cannot_be_accessed_by_pilot_users()
+    public function test_view_all_events_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('organizator.events.index'))->assertForbidden();
         $this->assertAuthenticated();
@@ -32,7 +32,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_events_can_be_accessed_by_authorized_users()
+    public function test_view_all_events_can_be_accessed_by_authorized_users(): void
     {
         $events = Event::factory([
             'user_id' => $this->organizer->id,
@@ -54,7 +54,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_event_cannot_be_accessed_by_pilot_users()
+    public function test_view_event_cannot_be_accessed_by_pilot_users(): void
     {
         $event = Event::factory([
             'user_id' => $this->organizer->id,
@@ -70,7 +70,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_event_can_be_accessed_by_authorized_users()
+    public function test_view_event_can_be_accessed_by_authorized_users(): void
     {
         $event = Event::factory([
             'user_id' => $this->organizer->id,
@@ -92,7 +92,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_event_cannot_be_accessed_by_pilot_users()
+    public function test_create_event_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('organizator.events.create'))->assertForbidden();
         $this->assertAuthenticated();
@@ -104,7 +104,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_event_can_be_accessed_by_authorized_users()
+    public function test_create_event_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->organizer)->get(route('organizator.events.create'))->assertOk();
 
@@ -118,7 +118,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_event_cannot_be_created_by_pilot_users()
+    public function test_event_cannot_be_created_by_pilot_users(): void
     {
         $event = Event::factory()->make();
 
@@ -151,7 +151,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_event_cannot_be_accessed_by_pilot_users()
+    public function test_edit_event_cannot_be_accessed_by_pilot_users(): void
     {
         $event = Event::factory()->create();
 
@@ -165,7 +165,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_event_can_be_accessed_by_authorized_users()
+    public function test_edit_event_can_be_accessed_by_authorized_users(): void
     {
         $event = Event::factory([
             'user_id' => $this->organizer->id,
@@ -187,7 +187,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_event_cannot_be_updated_by_pilot_users()
+    public function test_event_cannot_be_updated_by_pilot_users(): void
     {
         $event = Event::factory()->create();
 
@@ -201,7 +201,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_event_can_be_updated_by_authorized_users()
+    public function test_event_can_be_updated_by_authorized_users(): void
     {
         $event = Event::factory([
             'user_id' => $this->organizer->id,
@@ -226,7 +226,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_event_cannot_be_deleted_by_pilot_users()
+    public function test_event_cannot_be_deleted_by_pilot_users(): void
     {
         $event = Event::factory()->create();
 
@@ -240,7 +240,7 @@ class EventControllerTest extends TestCase
      *
      * @test
      */
-    public function test_event_can_be_deleted_by_authorized_users()
+    public function test_event_can_be_deleted_by_authorized_users(): void
     {
         $event = Event::factory([
             'user_id' => $this->organizer->id,

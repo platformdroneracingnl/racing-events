@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Waiver;
 use Auth;
+use Illuminate\View\View;
 
 class WaiverController extends Controller
 {
@@ -23,7 +24,7 @@ class WaiverController extends Controller
     /**
      * Index list
      */
-    public function index()
+    public function index(): View
     {
         $lang = App::getLocale();
 

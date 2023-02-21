@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LoginSecurity;
 use Auth;
 use Hash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use PragmaRX\Google2FAQRCode\Google2FA;
 
@@ -23,7 +24,7 @@ class LoginSecurityController extends Controller
     /**
      * Generate 2FA secret key
      */
-    public function generate2faSecret(Request $request)
+    public function generate2faSecret(Request $request): RedirectResponse
     {
         $user = Auth::user();
 
@@ -43,7 +44,7 @@ class LoginSecurityController extends Controller
     /**
      * Enable 2FA
      */
-    public function enable2fa(Request $request)
+    public function enable2fa(Request $request): RedirectResponse
     {
         $user = Auth::user();
         $google2fa = new Google2FA();
@@ -64,7 +65,7 @@ class LoginSecurityController extends Controller
     /**
      * Disable 2FA
      */
-    public function disable2fa(Request $request)
+    public function disable2fa(Request $request): RedirectResponse
     {
         if (! (Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches

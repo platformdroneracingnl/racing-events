@@ -10,9 +10,11 @@ use App\Models\Registration;
 use App\Models\User;
 use App\Models\Waiver;
 use Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 use Mollie\Laravel\Facades\Mollie;
 
 class RegistrationController extends Controller
@@ -20,7 +22,7 @@ class RegistrationController extends Controller
     /**
      * Get all the registrations only for specific pilot
      */
-    public function myRegistrationsIndex()
+    public function myRegistrationsIndex(): View
     {
         $lang = App::getLocale();
         $registrations = User::with('registrations')->find(Auth::user()->id);
@@ -30,10 +32,8 @@ class RegistrationController extends Controller
 
     /**
      * Store a newly created registration in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Event $event)
+    public function store(Request $request, Event $event): RedirectResponse
     {
         // Create new registration
         $registration = new Registration();
