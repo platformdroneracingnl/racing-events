@@ -16,7 +16,6 @@ class RoleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
@@ -66,7 +65,6 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Management\StoreRoleRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRoleRequest $request)
@@ -103,7 +101,6 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Management\UpdateRoleRequest  $request
      * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\RedirectResponse
      */

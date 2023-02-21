@@ -31,7 +31,6 @@ class OrganizationController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
@@ -45,7 +44,6 @@ class OrganizationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Organization  $organization
      * @return \Illuminate\View\View
      */
     public function show(Organization $organization)
@@ -66,7 +64,6 @@ class OrganizationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Management\StoreOrganizationRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreOrganizationRequest $request)
@@ -100,7 +97,6 @@ class OrganizationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Organization  $organization
      * @return \Illuminate\View\View
      */
     public function edit(Organization $organization)
@@ -111,8 +107,6 @@ class OrganizationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Management\UpdateOrganizationRequest  $request
-     * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateOrganizationRequest $request, Organization $organization)
@@ -148,7 +142,6 @@ class OrganizationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Organization $organization)
