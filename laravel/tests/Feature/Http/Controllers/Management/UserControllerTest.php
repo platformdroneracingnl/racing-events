@@ -22,7 +22,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_users_cannot_be_accessed_by_unauthorized_users()
+    public function test_view_all_users_cannot_be_accessed_by_unauthorized_users(): void
     {
         $this->unauthorized_user()->get(route('management.users.index'))->assertForbidden();
         $this->assertAuthenticated();
@@ -34,7 +34,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_users_can_be_accessed_by_authorized_users()
+    public function test_view_all_users_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.users.index'))->assertOk();
 
@@ -50,7 +50,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_user_cannot_be_accessed_by_unauthorized_users()
+    public function test_show_user_cannot_be_accessed_by_unauthorized_users(): void
     {
         $user = User::factory()->create();
 
@@ -64,7 +64,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_user_can_be_accessed_by_authorized_users()
+    public function test_show_user_can_be_accessed_by_authorized_users(): void
     {
         $user = User::factory()->create();
 
@@ -81,7 +81,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_user_cannot_be_accessed_by_unauthorized_users()
+    public function test_create_user_cannot_be_accessed_by_unauthorized_users(): void
     {
         $this->unauthorized_user()->get(route('management.users.create'))->assertForbidden();
         $this->assertAuthenticated();
@@ -93,7 +93,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_user_can_only_be_accessed_by_supervisor_users()
+    public function test_create_user_can_only_be_accessed_by_supervisor_users(): void
     {
         $organizations = Organization::factory()->times(3)->create();
 
@@ -113,7 +113,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_user_cannot_be_accessed_by_unauthorized_users()
+    public function test_store_user_cannot_be_accessed_by_unauthorized_users(): void
     {
         $this->unauthorized_user()->post(route('management.users.store'))->assertForbidden();
         $this->assertAuthenticated();
@@ -125,7 +125,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_user_cannot_be_accessed_by_unauthorized_users()
+    public function test_edit_user_cannot_be_accessed_by_unauthorized_users(): void
     {
         $user = User::factory()->create();
         $this->unauthorized_user()->get(route('management.users.edit', $user))->assertForbidden();
@@ -137,7 +137,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_user_can_only_be_accessed_by_supervisor_users()
+    public function test_edit_user_can_only_be_accessed_by_supervisor_users(): void
     {
         $user = User::factory()->create();
         $organizations = Organization::factory()->times(3)->create();
@@ -160,7 +160,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_user_cannot_be_updated_by_unauthorized_users()
+    public function test_update_user_cannot_be_updated_by_unauthorized_users(): void
     {
         $user = User::factory()->create();
 
@@ -179,7 +179,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_user_can_only_be_updated_by_supervisor_users()
+    public function test_update_user_can_only_be_updated_by_supervisor_users(): void
     {
         $user = User::factory()->create();
 
@@ -202,7 +202,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_delete_user_cannot_be_deleted_by_unauthorized_users()
+    public function test_delete_user_cannot_be_deleted_by_unauthorized_users(): void
     {
         $user = User::factory()->create();
 
@@ -221,7 +221,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_delete_user_can_only_be_deleted_by_supervisor_users()
+    public function test_delete_user_can_only_be_deleted_by_supervisor_users(): void
     {
         $user = User::factory()->create();
 
@@ -240,7 +240,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_suspend_user_cannot_be_suspended_by_unauthorized_users()
+    public function test_suspend_user_cannot_be_suspended_by_unauthorized_users(): void
     {
         $user = User::factory()->create();
 
@@ -260,7 +260,7 @@ class UserControllerTest extends TestCase
      *
      * @test
      */
-    public function test_suspend_user_can_only_be_suspended_by_supervisor_users()
+    public function test_suspend_user_can_only_be_suspended_by_supervisor_users(): void
     {
         $user = User::factory()->create();
 

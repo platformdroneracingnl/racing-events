@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Organizator;
 
+use Illuminate\View\View;
 use App;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -23,7 +24,7 @@ class WaiverController extends Controller
     /**
      * Index list
      */
-    public function index()
+    public function index(): View
     {
         $lang = App::getLocale();
 

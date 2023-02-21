@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Pilots;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Mail\NewEventRegistration;
@@ -20,7 +22,7 @@ class RegistrationController extends Controller
     /**
      * Get all the registrations only for specific pilot
      */
-    public function myRegistrationsIndex()
+    public function myRegistrationsIndex(): View
     {
         $lang = App::getLocale();
         $registrations = User::with('registrations')->find(Auth::user()->id);
@@ -33,7 +35,7 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Event $event)
+    public function store(Request $request, Event $event): RedirectResponse
     {
         // Create new registration
         $registration = new Registration();

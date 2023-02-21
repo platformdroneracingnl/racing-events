@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Event;
 use App\Models\Registration;
 use Auth;
@@ -10,7 +12,7 @@ use Jenssegers\Agent\Agent;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         // $user = Auth::user();
         // $user->setSetting('layout_sidebar', true);
@@ -48,7 +50,7 @@ class DashboardController extends Controller
     /**
      * Change the layout
      */
-    public function changeLayout()
+    public function changeLayout(): RedirectResponse
     {
         $user = Auth::user();
         if ($user->setting('layout_sidebar')) {

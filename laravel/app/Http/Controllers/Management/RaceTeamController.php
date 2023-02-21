@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Management;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreRaceTeamRequest;
@@ -33,7 +35,7 @@ class RaceTeamController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $lang = App::getLocale();
         $race_teams = RaceTeam::orderBy('name', 'ASC')->get();
@@ -46,7 +48,7 @@ class RaceTeamController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show(Raceteam $raceteam)
+    public function show(Raceteam $raceteam): View
     {
         return view('backend.management.race_teams.show', compact('raceteam'));
     }
@@ -56,7 +58,7 @@ class RaceTeamController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         return view('backend.management.race_teams.create');
     }
@@ -66,7 +68,7 @@ class RaceTeamController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRaceTeamRequest $request)
+    public function store(StoreRaceTeamRequest $request): RedirectResponse
     {
         $race_team = Raceteam::create($request->validated());
 
@@ -100,7 +102,7 @@ class RaceTeamController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit(Raceteam $raceteam)
+    public function edit(Raceteam $raceteam): View
     {
         return view('backend.management.race_teams.edit', compact('raceteam'));
     }
@@ -110,7 +112,7 @@ class RaceTeamController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRaceTeamRequest $request, Raceteam $raceteam)
+    public function update(UpdateRaceTeamRequest $request, Raceteam $raceteam): RedirectResponse
     {
         if ($request->has('image')) {
             // Remove old image if exist
@@ -145,7 +147,7 @@ class RaceTeamController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Raceteam $raceteam)
+    public function destroy(Raceteam $raceteam): RedirectResponse
     {
         $this->deleteOldImage('race_teams', $raceteam->image);
         $raceteam->delete();

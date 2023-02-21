@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +13,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index(Request $request): Renderable
     {
         if (view()->exists($request->path())) {
             return view($request->path());
@@ -20,7 +22,7 @@ class HomeController extends Controller
         return abort(404);
     }
 
-    public function root()
+    public function root(): View
     {
         return view('frontend.home');
     }

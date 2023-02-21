@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Management;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreUserRequest;
@@ -38,7 +40,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $lang = App::getLocale();
 
@@ -53,7 +55,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show(User $user)
+    public function show(User $user): View
     {
         return view('backend.management.users.show', compact('user'));
     }
@@ -63,7 +65,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): View
     {
         $organizations = Organization::all();
         $raceTeams = Raceteam::all();
@@ -77,7 +79,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): RedirectResponse
     {
         $input = $request->validated();
         $input['password'] = Hash::make($input['password']);
@@ -98,7 +100,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function edit(User $user)
+    public function edit(User $user): View
     {
         $organizations = Organization::all();
         $raceTeams = RaceTeam::all();
@@ -112,7 +114,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
         $input = $request->validated();
 
@@ -139,7 +141,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
         // Remove profile image and account
         $this->deleteOldImage('profiles', $user->image);
@@ -154,7 +156,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function suspendUser(Request $request, User $user)
+    public function suspendUser(Request $request, User $user): RedirectResponse
     {
         $this->authorize('suspend', User::class);
 

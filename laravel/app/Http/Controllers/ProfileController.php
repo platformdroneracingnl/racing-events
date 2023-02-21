@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\ProfileRequest;
@@ -25,7 +27,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show()
+    public function show(): View
     {
         $user = Auth::user();
         $lang = App::getLocale();
@@ -74,7 +76,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updateProfile(ProfileRequest $request)
+    public function updateProfile(ProfileRequest $request): RedirectResponse
     {
         // Save your date of birth
         if ($request->input('date_of_birth') != null) {
@@ -99,7 +101,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function updatePassword(PasswordRequest $request)
+    public function updatePassword(PasswordRequest $request): RedirectResponse
     {
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
@@ -151,7 +153,7 @@ class ProfileController extends Controller
     /**
      * Remove user account
      */
-    public function destroyUser(User $user)
+    public function destroyUser(User $user): RedirectResponse
     {
         try {
             // Remove profile image and account

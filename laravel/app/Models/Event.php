@@ -64,7 +64,7 @@ class Event extends Model
      *
      * @return string
      */
-    public function searchableAs()
+    public function searchableAs(): string
     {
         return 'events';
     }
@@ -74,7 +74,7 @@ class Event extends Model
      *
      * @return array
      */
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         $array = $this->toArray();
 

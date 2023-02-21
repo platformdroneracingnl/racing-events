@@ -12,7 +12,7 @@ class PasswordRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return auth()->check();
     }
@@ -22,7 +22,7 @@ class PasswordRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $this->redirect = url()->previous().'#changepassword';
 
@@ -38,7 +38,7 @@ class PasswordRequest extends FormRequest
      *
      * @return array
      */
-    public function attributes()
+    public function attributes(): array
     {
         return [
             'old_password' => __('current password'),

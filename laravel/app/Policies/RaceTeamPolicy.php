@@ -15,7 +15,7 @@ class RaceTeamPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         // For index method in controller
         if ($user->hasPermissionTo('race_team-read')) {
@@ -28,7 +28,7 @@ class RaceTeamPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, RaceTeam $raceTeam)
+    public function view(User $user, RaceTeam $raceTeam): bool
     {
         // For show method in controller
         if ($user->hasPermissionTo('race_team-read')) {
@@ -41,7 +41,7 @@ class RaceTeamPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         if ($user->hasPermissionTo('race_team-create')) {
             return true;
@@ -53,7 +53,7 @@ class RaceTeamPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, RaceTeam $raceTeam)
+    public function update(User $user, RaceTeam $raceTeam): bool
     {
         if ($user->hasPermissionTo('race_team-update')) {
             return true;
@@ -65,7 +65,7 @@ class RaceTeamPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, RaceTeam $raceTeam)
+    public function delete(User $user, RaceTeam $raceTeam): bool
     {
         if ($user->hasPermissionTo('race_team-delete')) {
             return true;
@@ -77,7 +77,7 @@ class RaceTeamPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, RaceTeam $raceTeam)
+    public function restore(User $user, RaceTeam $raceTeam): bool
     {
         //
     }
@@ -87,7 +87,7 @@ class RaceTeamPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, RaceTeam $raceTeam)
+    public function forceDelete(User $user, RaceTeam $raceTeam): bool
     {
         //
     }

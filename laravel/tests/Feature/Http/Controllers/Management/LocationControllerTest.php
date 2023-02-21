@@ -21,7 +21,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_locations_cannot_be_accessed_by_pilot_users()
+    public function test_view_all_locations_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('management.locations.index'))->assertForbidden();
         $this->assertAuthenticated();
@@ -33,7 +33,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_locations_can_be_accessed_by_authorized_users()
+    public function test_view_all_locations_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.locations.index'))->assertOk();
 
@@ -49,7 +49,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_location_cannot_be_accessed_by_pilot_users()
+    public function test_show_location_cannot_be_accessed_by_pilot_users(): void
     {
         $location = Location::factory()->create();
 
@@ -63,7 +63,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_show_location_can_be_accessed_by_authorized_users()
+    public function test_show_location_can_be_accessed_by_authorized_users(): void
     {
         $location = Location::factory()->create();
 
@@ -80,7 +80,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_location_cannot_be_accessed_by_pilot_users()
+    public function test_create_location_cannot_be_accessed_by_pilot_users(): void
     {
         $this->actingAs($this->pilot)->get(route('management.locations.create'))->assertForbidden();
         $this->assertAuthenticated();
@@ -92,7 +92,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_location_can_be_accessed_by_authorized_users()
+    public function test_create_location_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.locations.create'))->assertOk();
 
@@ -107,7 +107,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_location_cannot_by_pilot_users()
+    public function test_store_new_location_cannot_by_pilot_users(): void
     {
         $location = Location::factory()->make();
 
@@ -121,7 +121,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_new_location_can_by_authorized_users()
+    public function test_store_new_location_can_by_authorized_users(): void
     {
         $location = Location::factory()->make();
 
@@ -138,7 +138,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_location_cannot_be_accessed_by_pilot_users()
+    public function test_edit_location_cannot_be_accessed_by_pilot_users(): void
     {
         $location = Location::factory()->create();
 
@@ -152,7 +152,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_edit_location_can_be_accessed_by_authorized_users()
+    public function test_edit_location_can_be_accessed_by_authorized_users(): void
     {
         $location = Location::factory()->create();
 
@@ -170,7 +170,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_location_cannot_by_pilot_users()
+    public function test_update_location_cannot_by_pilot_users(): void
     {
         $location = Location::factory()->create();
 
@@ -184,7 +184,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_update_location_can_by_authorized_users()
+    public function test_update_location_can_by_authorized_users(): void
     {
         $location = Location::factory()->create();
 
@@ -208,7 +208,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_location_cannot_by_pilot_users()
+    public function test_destroy_location_cannot_by_pilot_users(): void
     {
         $location = Location::factory()->create();
 
@@ -222,7 +222,7 @@ class LocationControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_location_can_by_authorized_users()
+    public function test_destroy_location_can_by_authorized_users(): void
     {
         $location = Location::factory()->create();
 

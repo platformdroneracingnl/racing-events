@@ -43,7 +43,7 @@ class NewEventRegistration extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(): static
     {
         return $this->markdown('emails.event_registration')
                     ->subject('Inschrijving wedstrijd: '.$this->event->name)

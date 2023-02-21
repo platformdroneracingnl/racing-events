@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Management;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleCalendarController;
@@ -35,7 +37,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $lang = App::getLocale();
         $events = Event::all();
@@ -48,7 +50,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Event $event): View
     {
         return view('backend.management.events.show', compact('event'));
     }
@@ -58,7 +60,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $users = User::all();
         $organizations = Organization::all();
@@ -72,7 +74,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         // Valide input
         request()->validate([
@@ -149,7 +151,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit(Event $event)
+    public function edit(Event $event): View
     {
         $users = User::all();
         $organizations = Organization::all();
@@ -163,7 +165,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, Event $event): RedirectResponse
     {
         // Valide input
         request()->validate([
@@ -228,7 +230,7 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
+    public function destroy(Event $event): RedirectResponse
     {
         if ($event->google_calendar_id != null) {
             // Delete Google Event

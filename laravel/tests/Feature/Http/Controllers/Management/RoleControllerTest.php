@@ -19,7 +19,7 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_roles_cannot_be_accessed_by_unauthorized_users()
+    public function test_view_all_roles_cannot_be_accessed_by_unauthorized_users(): void
     {
         $this->unauthorized_user()->get(route('management.roles.index'))->assertForbidden();
         $this->assertAuthenticated();
@@ -31,7 +31,7 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_view_all_roles_can_be_accessed_by_authorized_users()
+    public function test_view_all_roles_can_be_accessed_by_authorized_users(): void
     {
         $response = $this->actingAs($this->manager)->get(route('management.roles.index'));
 
@@ -46,7 +46,7 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_role_cannot_be_accessed_by_unauthorized_users()
+    public function test_create_role_cannot_be_accessed_by_unauthorized_users(): void
     {
         $response = $this->unauthorized_user()->get(route('management.roles.create'));
 
@@ -60,7 +60,7 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_create_role_can_only_be_accessed_by_supervisor_users()
+    public function test_create_role_can_only_be_accessed_by_supervisor_users(): void
     {
         $response = $this->actingAs($this->supervisor)->get(route('management.roles.create'));
 
@@ -76,7 +76,7 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_role_cannot_be_accessed_by_unauthorized_users()
+    public function test_store_role_cannot_be_accessed_by_unauthorized_users(): void
     {
         $this->unauthorized_user()->post(route('management.roles.store'), [
             'name' => 'test',
@@ -90,7 +90,7 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_store_role_can_only_be_accessed_by_supervisor_users()
+    public function test_store_role_can_only_be_accessed_by_supervisor_users(): void
     {
         $response = $this->actingAs($this->supervisor)->post(route('management.roles.store'), [
             'name' => 'test',
@@ -173,7 +173,7 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_role_cannot_be_accessed_by_unauthorized_users()
+    public function test_destroy_role_cannot_be_accessed_by_unauthorized_users(): void
     {
         $response = $this->unauthorized_user()->delete(route('management.roles.destroy', ['role' => 1]))->assertForbidden();
         $response->assertStatus(403);
@@ -185,7 +185,7 @@ class RoleControllerTest extends TestCase
      *
      * @test
      */
-    public function test_destroy_role_can_only_be_accessed_by_supervisor_users()
+    public function test_destroy_role_can_only_be_accessed_by_supervisor_users(): void
     {
         $response = $this->actingAs($this->supervisor)->delete(route('management.roles.destroy', ['role' => 1]));
 
