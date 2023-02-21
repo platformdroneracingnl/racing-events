@@ -10,9 +10,10 @@ class CurrentPasswordCheckRule implements Rule
     /**
      * Determine if the validation rule passes.
      *
+     * @param  string  $attribute
      * @param  mixed  $value
      */
-    public function passes(string $attribute, $value): bool
+    public function passes($attribute, $value): bool
     {
         return Hash::check($value, auth()->user()->password);
     }
@@ -22,6 +23,6 @@ class CurrentPasswordCheckRule implements Rule
      */
     public function message(): string
     {
-        return __('The current password field does not match your password');
+        return __('The current password does not match the password you entered');
     }
 }
