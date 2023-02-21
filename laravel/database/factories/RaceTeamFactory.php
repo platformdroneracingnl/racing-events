@@ -9,13 +9,6 @@ use Illuminate\Http\UploadedFile;
 class RaceTeamFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = RaceTeam::class;
-
-    /**
      * Define the model's default state.
      *
      * @return array
