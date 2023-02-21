@@ -36,7 +36,6 @@ class LocationController extends Controller
      * Display a listing of the resource.
      *
      * @param \Illuminate\Http\Response
-     * @return \Illuminate\View\View
      */
     public function index(Request $request): View
     {
@@ -48,8 +47,6 @@ class LocationController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function show(Location $location): View
     {
@@ -58,8 +55,6 @@ class LocationController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function create(): View
     {
@@ -70,9 +65,6 @@ class LocationController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreLocationRequest  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(StoreLocationRequest $request): RedirectResponse
     {
@@ -104,8 +96,6 @@ class LocationController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function edit(Location $location): View
     {
@@ -122,9 +112,6 @@ class LocationController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateLocationRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateLocationRequest $request, Location $location): RedirectResponse
     {
@@ -157,8 +144,6 @@ class LocationController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Location $location): RedirectResponse
     {

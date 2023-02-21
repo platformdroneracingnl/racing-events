@@ -32,8 +32,6 @@ class RegistrationController extends Controller
 
     /**
      * Store a newly created registration in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Event $event): RedirectResponse
     {

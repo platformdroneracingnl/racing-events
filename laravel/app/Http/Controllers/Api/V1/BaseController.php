@@ -9,8 +9,6 @@ class BaseController extends Controller
 {
     /**
      * return succesfull response.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function sendResponse($result, $message): JsonResponse
     {
@@ -25,8 +23,6 @@ class BaseController extends Controller
 
     /**
      * return error response.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function sendError($error, $errorMessages = [], $code = 404): JsonResponse
     {

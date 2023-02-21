@@ -38,7 +38,6 @@ class UserController extends Controller
      * Display a listing of the users
      *
      * @param  \App\Models\User  $model
-     * @return \Illuminate\View\View
      */
     public function index(Request $request): View
     {
@@ -52,8 +51,6 @@ class UserController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function show(User $user): View
     {
@@ -62,8 +59,6 @@ class UserController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function create(): View
     {
@@ -76,8 +71,6 @@ class UserController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
@@ -97,8 +90,6 @@ class UserController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function edit(User $user): View
     {
@@ -111,8 +102,6 @@ class UserController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
@@ -138,8 +127,6 @@ class UserController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(User $user): RedirectResponse
     {
@@ -153,8 +140,6 @@ class UserController extends Controller
 
     /**
      * Suspend a user
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function suspendUser(Request $request, User $user): RedirectResponse
     {

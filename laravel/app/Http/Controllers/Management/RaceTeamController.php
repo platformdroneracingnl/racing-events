@@ -32,8 +32,6 @@ class RaceTeamController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function index(Request $request): View
     {
@@ -45,8 +43,6 @@ class RaceTeamController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function show(Raceteam $raceteam): View
     {
@@ -55,8 +51,6 @@ class RaceTeamController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function create(): View
     {
@@ -65,8 +59,6 @@ class RaceTeamController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRaceTeamRequest $request): RedirectResponse
     {
@@ -99,8 +91,6 @@ class RaceTeamController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\View\View
      */
     public function edit(Raceteam $raceteam): View
     {
@@ -109,8 +99,6 @@ class RaceTeamController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateRaceTeamRequest $request, Raceteam $raceteam): RedirectResponse
     {
@@ -144,8 +132,6 @@ class RaceTeamController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Raceteam $raceteam): RedirectResponse
     {

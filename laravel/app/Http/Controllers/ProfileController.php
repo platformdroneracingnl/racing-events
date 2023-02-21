@@ -24,8 +24,6 @@ class ProfileController extends Controller
 {
     /**
      * Show the form for editing the profile.
-     *
-     * @return \Illuminate\View\View
      */
     public function show(): View
     {
@@ -73,8 +71,6 @@ class ProfileController extends Controller
 
     /**
      * Update the profile
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function updateProfile(ProfileRequest $request): RedirectResponse
     {
@@ -98,8 +94,6 @@ class ProfileController extends Controller
 
     /**
      * Change the password
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function updatePassword(PasswordRequest $request): RedirectResponse
     {
