@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Event;
 use App\Models\Registration;
 use App\Models\User;
-use App\Models\Waiver;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class WaiverFactory extends Factory

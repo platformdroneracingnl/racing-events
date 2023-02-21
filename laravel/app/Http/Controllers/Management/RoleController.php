@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Management;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreRoleRequest;
 use App\Http\Requests\Management\UpdateRoleRequest;
 use DB;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 

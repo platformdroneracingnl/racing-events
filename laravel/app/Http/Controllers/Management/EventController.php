@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Management;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GoogleCalendarController;
@@ -12,8 +10,10 @@ use App\Models\Location;
 use App\Models\Organization;
 use App\Models\User;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 
 class EventController extends Controller

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Management;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreLocationRequest;
@@ -11,8 +9,10 @@ use App\Http\Requests\Management\UpdateLocationRequest;
 use App\Models\Country;
 use App\Models\Location;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 use JavaScript;
 

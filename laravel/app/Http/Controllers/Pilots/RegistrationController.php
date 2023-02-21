@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Pilots;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Mail\NewEventRegistration;
@@ -12,9 +10,11 @@ use App\Models\Registration;
 use App\Models\User;
 use App\Models\Waiver;
 use Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 use Mollie\Laravel\Facades\Mollie;
 
 class RegistrationController extends Controller

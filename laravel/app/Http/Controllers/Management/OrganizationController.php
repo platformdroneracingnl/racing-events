@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Management;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Management\StoreOrganizationRequest;
 use App\Http\Requests\Management\UpdateOrganizationRequest;
 use App\Models\Organization;
 use File;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Image;
 
 class OrganizationController extends Controller

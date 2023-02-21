@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class NotificationsController extends Controller
 {

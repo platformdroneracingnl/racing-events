@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App;
 use App\Models\Event;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\View\View;
 use Jenssegers\Agent\Agent;
 
 class EventController extends Controller

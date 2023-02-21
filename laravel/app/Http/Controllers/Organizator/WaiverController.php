@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Organizator;
 
-use Illuminate\View\View;
 use App;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Waiver;
 use Auth;
+use Illuminate\View\View;
 
 class WaiverController extends Controller
 {
