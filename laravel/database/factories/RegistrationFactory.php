@@ -23,11 +23,11 @@ class RegistrationFactory extends Factory
     {
         return [
             'event_id' => \App\Models\Event::factory(),
-            'failsafe' => $this->faker->boolean,
+            'failsafe' => $this->faker->boolean(),
             'reg_id' => $this->faker->unique()->integer,
             'status_id' => \App\Models\Status::factory(),
             'user_id' => \App\Models\User::factory(),
-            'vtx_power' => $this->faker->boolean,
+            'vtx_power' => $this->faker->boolean(),
         ];
     }
 }

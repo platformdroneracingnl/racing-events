@@ -26,9 +26,9 @@ class WaiverFactory extends Factory
     {
         return [
             'event_id' => Event::factory(),
-            'option_1' => $this->faker->boolean,
-            'option_2' => $this->faker->boolean,
-            'option_3' => $this->faker->boolean,
+            'option_1' => $this->faker->boolean(),
+            'option_2' => $this->faker->boolean(),
+            'option_3' => $this->faker->boolean(),
             'registration_id' => Registration::factory(),
             'user_id' => User::factory(),
             'registration_reg_id' => Registration::factory(),
