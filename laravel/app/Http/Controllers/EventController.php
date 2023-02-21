@@ -33,7 +33,6 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event)

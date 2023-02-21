@@ -31,8 +31,6 @@ class RegistrationController extends Controller
     /**
      * Store a newly created registration in storage.
      *
-     * @param  \App\Models\Event  $event
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Event $event)

@@ -47,7 +47,6 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Location  $location
      * @return \Illuminate\View\View
      */
     public function show(Location $location)
@@ -104,7 +103,6 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Location  $location
      * @return \Illuminate\View\View
      */
     public function edit(Location $location)
@@ -124,7 +122,6 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateLocationRequest  $request
-     * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateLocationRequest $request, Location $location)
@@ -159,7 +156,6 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Location $location)
