@@ -25,7 +25,7 @@
         "mcamara/laravel-localization": "^1.7",
         "mollie/laravel-mollie": "^2.18",
         "pragmarx/google2fa-laravel": "^2.0",
-        "realrashid/sweet-alert": "^5.0",
+        "realrashid/sweet-alert": "^6.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-backup": "^8.0",
         "spatie/laravel-google-calendar": "^3.5",
