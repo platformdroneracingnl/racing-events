@@ -25,7 +25,7 @@ class RegistrationController extends Controller
     public function myRegistrationsIndex(): View
     {
         $lang = App::getLocale();
-        $registrations = User::with('registrations')->find(Auth::user()->id);
+        $registrations = User::with('registrations')->find(Auth::id());
 
         return view('backend.pilots.registrations.index', compact('lang', 'registrations'));
     }
@@ -39,7 +39,7 @@ class RegistrationController extends Controller
         $registration = new Registration();
         $registration->reg_id = uniqid();
         $registration->event_id = $event->id;
-        $registration->user_id = Auth::user()->id;
+        $registration->user_id = Auth::id();
 
         // Create new waiver record
         $waiver = new Waiver();

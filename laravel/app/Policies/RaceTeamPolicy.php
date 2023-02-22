@@ -11,84 +11,58 @@ class RaceTeamPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
-     *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * Determine whether the user can view index method.
      */
     public function viewAny(User $user): bool
     {
-        // For index method in controller
-        if ($user->hasPermissionTo('race_team-read')) {
-            return true;
-        }
+        return $user->hasPermissionTo('race_team-read');
     }
 
     /**
-     * Determine whether the user can view the model.
-     *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * Determine whether the user can view the show method.
      */
     public function view(User $user, RaceTeam $raceTeam): bool
     {
-        // For show method in controller
-        if ($user->hasPermissionTo('race_team-read')) {
-            return true;
-        }
+        return $user->hasPermissionTo('race_team-read');
     }
 
     /**
      * Determine whether the user can create models.
-     *
-     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user): bool
     {
-        if ($user->hasPermissionTo('race_team-create')) {
-            return true;
-        }
+        return $user->hasPermissionTo('race_team-create');
     }
 
     /**
      * Determine whether the user can update the model.
-     *
-     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, RaceTeam $raceTeam): bool
     {
-        if ($user->hasPermissionTo('race_team-update')) {
-            return true;
-        }
+        return $user->hasPermissionTo('race_team-update');
     }
 
     /**
      * Determine whether the user can delete the model.
-     *
-     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, RaceTeam $raceTeam): bool
     {
-        if ($user->hasPermissionTo('race_team-delete')) {
-            return true;
-        }
+        return $user->hasPermissionTo('race_team-delete');
     }
 
     /**
      * Determine whether the user can restore the model.
-     *
-     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function restore(User $user, RaceTeam $raceTeam): bool
     {
-        //
+        return false;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
-     *
-     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function forceDelete(User $user, RaceTeam $raceTeam): bool
     {
-        //
+        return false;
     }
 }

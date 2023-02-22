@@ -5,16 +5,15 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Resources\V1\Event as EventResource;
 use App\Http\Resources\V1\EventCollection;
 use App\Models\Event;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class EventController extends BaseController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $events = Event::all();
 
@@ -23,21 +22,16 @@ class EventController extends BaseController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreEventRequest $request)
+    public function store(StoreEventRequest $request): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show(Event $event): JsonResponse
     {
         if (is_null($event)) {
             return $this->sendError('Event not found.');
@@ -48,21 +42,17 @@ class EventController extends BaseController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 }

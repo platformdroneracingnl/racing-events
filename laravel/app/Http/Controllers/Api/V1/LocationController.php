@@ -5,16 +5,15 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Resources\V1\Location as LocationResource;
 use App\Http\Resources\V1\LocationCollection;
 use App\Models\Location;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class LocationController extends BaseController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $locations = Location::all();
 
@@ -23,21 +22,16 @@ class LocationController extends BaseController
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreLocationRequest $request)
+    public function store(StoreLocationRequest $request): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(Location $location): JsonResponse
     {
         if (is_null($location)) {
             return $this->sendError('Location not found.');
@@ -48,21 +42,17 @@ class LocationController extends BaseController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 }

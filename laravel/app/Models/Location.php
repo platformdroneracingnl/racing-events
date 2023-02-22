@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Location extends Model
 {
@@ -19,14 +20,18 @@ class Location extends Model
         'date' => 'datetime',
     ];
 
-    // Relation with event table
-    public function event()
+    /*
+    * Relation with event table
+    */
+    public function event(): BelongsTo
     {
         return $this->belongsTo(Event::class);
     }
 
-    // Relation with country table
-    public function country()
+    /*
+    * Relation with country table
+    */
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }

@@ -29,7 +29,7 @@ class DashboardController extends Controller
             ->get()
             ->where('online', 1)
             ->where('date', '>=', Carbon::today());
-        $registrations = Registration::where('user_id', Auth::user()->id)->take(8)->get();
+        $registrations = Registration::where('user_id', Auth::id())->take(8)->get();
 
         return view('backend.index', compact('events', 'agent', 'registrations'));
     }

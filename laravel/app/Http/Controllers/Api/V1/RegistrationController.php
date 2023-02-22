@@ -5,79 +5,66 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Resources\V1\RegistrationCollection;
 use App\Models\Registration;
 use Auth;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class RegistrationController extends BaseController
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        $registrations = Registration::where('user_id', '=', Auth::user()->id)->get();
+        $registrations = Registration::where('user_id', '=', Auth::id())->get();
 
         return $this->sendResponse(new RegistrationCollection($registrations), 'All your registrations retrieved successfully.');
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show(int $id): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function edit(int $id)
+    public function edit(int $id): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        return $this->sendError('Not implemented.');
     }
 }

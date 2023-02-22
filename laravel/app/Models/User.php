@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Internetcode\LaravelUserSettings\Traits\HasSettingsTrait;
@@ -17,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
@@ -36,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that should be hidden for arrays.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -46,7 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'date_of_birth' => 'datetime',
@@ -57,37 +59,37 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Relationships
      */
-    public function countries()
+    public function countries(): HasOne
     {
         return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
-    public function organization()
+    public function organization(): HasOne
     {
         return $this->hasOne(Organization::class, 'id', 'organization_id');
     }
 
-    public function race_team()
+    public function race_team(): HasOne
     {
         return $this->hasOne(RaceTeam::class, 'id', 'race_team_id');
     }
 
-    public function registrations()
+    public function registrations(): HasMany
     {
         return $this->hasMany(Registration::class)->orderBy('created_at', 'DESC');
     }
 
-    public function events()
+    public function events(): HasMany
     {
         return $this->hasMany(Event::class);
     }
 
-    public function loginSecurity()
+    public function loginSecurity(): HasOne
     {
         return $this->hasOne(LoginSecurity::class);
     }
 
-    public function waivers()
+    public function waivers(): HasMany
     {
         return $this->hasMany(Waiver::class);
     }

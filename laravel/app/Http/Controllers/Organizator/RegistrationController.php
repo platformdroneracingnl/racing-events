@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Registration;
 use App\Models\Status;
-use app\Models\User;
+use App\Models\User;
 use App\Notifications\ChangeEventRegistration;
 use Auth;
 use Illuminate\Http\RedirectResponse;
@@ -20,8 +20,6 @@ class RegistrationController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function __construct()
     {
@@ -76,7 +74,7 @@ class RegistrationController extends Controller
         $registration = Registration::where('reg_id', $registrationID)->get()->first();
 
         // Check if correct user is logged in
-        if (Auth::user()->id == $registration->event->user_id) {
+        if (Auth::id() == $registration->event->user_id) {
             return view('backend.organizator.events.checkin', compact('registration'));
         } else {
             abort(403, 'Unauthorized action.');
@@ -200,9 +198,9 @@ class RegistrationController extends Controller
     /**
      * Check is user has already a registration for this competiion
      */
-    public static function checkRegistration($eventID)
+    public static function checkRegistration($eventID): bool
     {
-        $registration = Registration::all()->where('event_id', $eventID)->where('user_id', Auth::user()->id)->count();
+        $registration = Registration::all()->where('event_id', $eventID)->where('user_id', Auth::id())->count();
         if ($registration < 1) {
             return false;
         }
