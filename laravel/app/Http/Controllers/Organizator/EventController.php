@@ -39,7 +39,7 @@ class EventController extends Controller
     public function index(): View
     {
         $lang = App::getLocale();
-        $events = User::with('events')->find(Auth::user()->id);
+        $events = User::with('events')->find(Auth::id());
 
         return view('backend.organizator.events.index', compact('events', 'lang'));
     }
@@ -86,7 +86,7 @@ class EventController extends Controller
         $event->mollie_payments = $this->setBoolean($request->input('mollie_payments'));
         $event->google_calendar = $this->setBoolean($request->input('google_calendar'));
 
-        $event->user_id = Auth::user()->id;
+        $event->user_id = Auth::id();
         $event->organization_id = Auth::user()->organization;
         $event->email = $request->input('email');
         $event->name = $request->input('name');
@@ -115,7 +115,7 @@ class EventController extends Controller
         }
 
         // No price for event means free, turn mollie always off!
-        if ($event->price == null || 0) {
+        if ($event->price == null or $event->price == 0) {
             $event->price = 0;
             $event->mollie_payments = 0;
         }
@@ -177,7 +177,7 @@ class EventController extends Controller
         }
 
         // No price for event means free, turn mollie always off!
-        if ($event->price == null || 0) {
+        if ($event->price == null or $event->price == 0) {
             $event->price = 0;
             $mollie_payments = 0;
         }

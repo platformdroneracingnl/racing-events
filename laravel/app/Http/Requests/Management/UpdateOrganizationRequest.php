@@ -22,7 +22,7 @@ class UpdateOrganizationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:organizations,name,'.$this->route('organization')->id,
+            'name' => 'required|string|unique:organizations,name,'.$this->organization->id,
             'short_name' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];

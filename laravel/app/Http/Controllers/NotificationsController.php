@@ -27,9 +27,9 @@ class NotificationsController extends Controller
         $notification = auth()->user()->notifications()->where('id', $id)->first();
         if ($notification) {
             $notification->markAsRead();
-
-            return redirect()->back();
         }
+
+        return redirect()->back();
     }
 
     // Mark all unread notification as read
@@ -38,9 +38,9 @@ class NotificationsController extends Controller
         $notifications = Auth::user()->unreadNotifications;
         if ($notifications) {
             $notifications->markAsRead();
-
-            return redirect()->back();
         }
+
+        return redirect()->back();
     }
 
     // Remove single notification from database
@@ -49,9 +49,9 @@ class NotificationsController extends Controller
         $notification = auth()->user()->notifications()->where('id', $id)->first();
         if ($notification) {
             $notification->delete();
-
-            return redirect()->back();
         }
+
+        return redirect()->back();
     }
 
     // Remove all notifications
@@ -60,9 +60,9 @@ class NotificationsController extends Controller
         $notifications = Auth::user()->notifications();
         if ($notifications) {
             $notifications->delete();
-
-            return redirect()->back();
         }
+
+        return redirect()->back();
     }
 
     // Go to link from notification

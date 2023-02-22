@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Event extends Model
 {
@@ -39,22 +41,22 @@ class Event extends Model
         'date' => 'datetime',
     ];
 
-    public function location()
+    public function location(): HasOne
     {
         return $this->hasOne(Location::class, 'id', 'location_id');
     }
 
-    public function registration()
+    public function registration(): HasMany
     {
         return $this->hasMany(Registration::class);
     }
 
-    public function user()
+    public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function organization()
+    public function organization(): HasOne
     {
         return $this->hasOne(Organization::class, 'id', 'organization_id');
     }

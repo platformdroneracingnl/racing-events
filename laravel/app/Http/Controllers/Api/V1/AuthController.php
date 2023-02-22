@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Resources\V1\User as UserResource;
 use App\Models\User;
 use Auth;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -13,11 +14,9 @@ use Validator;
 class AuthController extends BaseController
 {
     /**
-     * Register api
-     *
-     * @return \Illuminate\Http\Response
+     * Register API
      */
-    public function register(Request $request)
+    public function register(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -44,11 +43,9 @@ class AuthController extends BaseController
     }
 
     /**
-     * Login api
-     *
-     * @return \Illuminate\Http\Response
+     * Login API
      */
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -73,11 +70,9 @@ class AuthController extends BaseController
     }
 
     /**
-     * Logout api
-     *
-     * @return \Illuminate\Http\Response
+     * Logout API
      */
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
         $user = User::where('email', $request->user()->email)->first();
 
@@ -95,7 +90,7 @@ class AuthController extends BaseController
     /**
      * Get authenticated user info
      */
-    public function authenticatedUser(Request $request)
+    public function authenticatedUser(Request $request): JsonResponse
     {
         return $this->sendResponse(new UserResource(Auth::user()), 'User info retrieved successfully.');
     }

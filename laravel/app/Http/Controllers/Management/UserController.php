@@ -35,9 +35,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the users
-     *
-     * @param  \App\Models\User  $model
+     * Display a listing of the users.
      */
     public function index(Request $request): View
     {

@@ -29,7 +29,7 @@ class WaiverController extends Controller
         $lang = App::getLocale();
 
         // Find all the waivers from all the events of a organizator
-        $events = User::with('events')->find(Auth::user()->id)->events->pluck('id');
+        $events = User::with('events')->find(Auth::id())->events->pluck('id');
         $waivers = Waiver::whereIn('event_id', $events)->get();
 
         return view('backend.organizator.waivers.index', compact('waivers', 'lang'));

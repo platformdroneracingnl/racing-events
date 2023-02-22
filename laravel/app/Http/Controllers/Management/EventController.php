@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Management;
 
 use App;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\GoogleCalendarController;
+use App\Http\Controllers\Utils\GoogleCalendarController;
 use App\Models\Event;
 use App\Models\Location;
 use App\Models\Organization;
 use App\Models\User;
+use Auth;
 use File;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -111,15 +112,15 @@ class EventController extends Controller
 
         // Determine user ID
         if ($request->input('user_id') == null) {
-            $event->user_id = Auth::user()->id;
+            $event->user_id = Auth::id();
         } else {
             $event->user_id = $request->input('user_id');
         }
 
         // No price for event means free, turn mollie always off!
-        if ($event->price == null || 0) {
+        if ($event->price == null or $event->price == 0) {
             $event->price = 0;
-            $event->mollie_payments = 0;
+            $event->mollie_payments = false;
         }
 
         try {
@@ -182,9 +183,9 @@ class EventController extends Controller
         }
 
         // No price for event means free, turn mollie always off!
-        if ($event->price == null || 0) {
+        if ($event->price == null or $event->price == 0) {
             $event->price = 0;
-            $mollie_payments = 0;
+            $mollie_payments = false;
         }
 
         // Only update the input booleans
