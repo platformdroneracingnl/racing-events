@@ -30,7 +30,7 @@
         "@fullcalendar/bootstrap": "^6.1.7",
         "@fullcalendar/core": "^6.1.5",
         "@fullcalendar/daygrid": "^6.1.6",
-        "@fullcalendar/interaction": "^6.1.6",
+        "@fullcalendar/interaction": "^6.1.7",
         "@fullcalendar/timegrid": "^6.1.7",
         "@mdi/font": "^7.2.96",
         "admin-resources": "git+https://github.com/themesbrand/admin-resources#master",
