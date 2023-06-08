@@ -34,7 +34,7 @@
         "@fullcalendar/timegrid": "^6.1.8",
         "@mdi/font": "^7.2.96",
         "admin-resources": "git+https://github.com/themesbrand/admin-resources#master",
-        "apexcharts": "^3.40.0",
+        "apexcharts": "^3.41.0",
         "bootstrap": "^5.2.3",
         "bootstrap-datepicker": "^1.10.0",
         "bootstrap-editable": "^1.0.1",
