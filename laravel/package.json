@@ -40,7 +40,7 @@
         "bootstrap-editable": "^1.0.1",
         "bootstrap-maxlength": "^1.10.1",
         "bootstrap-touchspin": "^4.7.3",
-        "chart.js": "^4.3.0",
+        "chart.js": "^4.4.0",
         "datatables.net": "^1.13.4",
         "datatables.net-autofill": "^2.5.3",
         "datatables.net-autofill-bs5": "^2.5.3",
