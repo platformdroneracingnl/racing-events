@@ -83,7 +83,7 @@
         "node-waves": "^0.7.6",
         "owl.carousel": "^2.3.4",
         "parsleyjs": "^2.9.2",
-        "pdfmake": "^0.2.7",
+        "pdfmake": "^0.2.9",
         "select2": "^4.0.10",
         "simplebar": "^6.2.5",
         "spectrum-colorpicker2": "^2.0.10",
