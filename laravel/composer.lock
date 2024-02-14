@@ -2039,30 +2039,30 @@
         },
         {
             "name": "laravel/fortify",
-            "version": "v1.19.1",
+            "version": "v1.20.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/fortify.git",
-                "reference": "1dde858a520f679b4a2f453fa68f8a0e98751875"
+                "reference": "ab1a76991a32be21448156419ddc7eb4731b0a8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/fortify/zipball/1dde858a520f679b4a2f453fa68f8a0e98751875",
-                "reference": "1dde858a520f679b4a2f453fa68f8a0e98751875",
+                "url": "https://api.github.com/repos/laravel/fortify/zipball/ab1a76991a32be21448156419ddc7eb4731b0a8b",
+                "reference": "ab1a76991a32be21448156419ddc7eb4731b0a8b",
                 "shasum": ""
             },
             "require": {
                 "bacon/bacon-qr-code": "^2.0",
                 "ext-json": "*",
-                "illuminate/support": "^8.82|^9.0|^10.0",
-                "php": "^7.3|^8.0",
-                "pragmarx/google2fa": "^7.0|^8.0"
+                "illuminate/support": "^10.0|^11.0",
+                "php": "^8.1",
+                "pragmarx/google2fa": "^8.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^6.34|^7.31|^8.11",
+                "orchestra/testbench": "^8.16|^9.0",
                 "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^9.3"
+                "phpunit/phpunit": "^10.4"
             },
             "type": "library",
             "extra": {
@@ -2099,20 +2099,20 @@
                 "issues": "https://github.com/laravel/fortify/issues",
                 "source": "https://github.com/laravel/fortify"
             },
-            "time": "2023-12-11T16:16:45+00:00"
+            "time": "2024-02-08T14:36:46+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v10.43.0",
+            "version": "v10.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4f7802dfc9993cb57cf69615491ce1a7eb2e9529"
+                "reference": "1199dbe361787bbe9648131a79f53921b4148cf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/4f7802dfc9993cb57cf69615491ce1a7eb2e9529",
-                "reference": "4f7802dfc9993cb57cf69615491ce1a7eb2e9529",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1199dbe361787bbe9648131a79f53921b4148cf6",
+                "reference": "1199dbe361787bbe9648131a79f53921b4148cf6",
                 "shasum": ""
             },
             "require": {
@@ -2160,6 +2160,7 @@
             "conflict": {
                 "carbonphp/carbon-doctrine-types": ">=3.0",
                 "doctrine/dbal": ">=4.0",
+                "phpunit/phpunit": ">=11.0.0",
                 "tightenco/collect": "<5.5.33"
             },
             "provide": {
@@ -2304,7 +2305,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-01-30T16:25:02+00:00"
+            "time": "2024-02-13T16:01:16+00:00"
         },
         {
             "name": "laravel/prompts",
