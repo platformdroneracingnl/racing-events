@@ -75,7 +75,7 @@ jobs:
         run: npm run development
 
       - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@2.29.0
+        uses: shivammathur/setup-php@2.30.0
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring, bcmath
@@ -154,7 +154,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.29.0
+        uses: shivammathur/setup-php@2.30.0
         with:
           # Should be the same as the live server version
           php-version: 8.0
