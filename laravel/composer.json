@@ -13,7 +13,7 @@
         "deployer/deployer": "^7.1",
         "guzzlehttp/guzzle": "^7.3",
         "internetcode/laravel-user-settings": "^1.0",
-        "intervention/image": "^2.7",
+        "intervention/image": "^3.5",
         "j2nlab/laravel-simple-version": "dev-update-repo",
         "jenssegers/agent": "^2.6",
         "laracasts/utilities": "^3.2",
