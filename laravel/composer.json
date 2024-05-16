@@ -22,7 +22,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "mcamara/laravel-localization": "^1.8",
-        "mollie/laravel-mollie": "^2.22",
+        "mollie/laravel-mollie": "^3.0",
         "pragmarx/google2fa-laravel": "^2.0",
         "realrashid/sweet-alert": "^7.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
