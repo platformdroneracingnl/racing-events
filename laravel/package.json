@@ -90,7 +90,7 @@
         "sweetalert2": "^11.10.0",
         "swiper": "^11.0.4",
         "table-edits": "^0.0.3",
-        "tinymce": "^6.7.3",
+        "tinymce": "^7.2.1",
         "toastr": "^2.1.4",
         "waypoints": "^4.0.1"
     }
