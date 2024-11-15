@@ -143,7 +143,7 @@ jobs:
 
       # Upload coverage report to Codecov
       - name: Upload to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           files: ./${{env.FOLDER}}/coverage.xml
           verbose: true
